@@ -127,7 +127,7 @@ class Properti_app
 
     public static function getKategoriBarang(array $url)
     {
-        
+
     }
 
     public static function getlevel()
@@ -145,6 +145,11 @@ class Properti_app
         } else {
             return null;
         }
+    }
+
+    static function identitas_app()
+    {
+        return 'Aplikasi Gadai';
     }
 
 
@@ -459,8 +464,7 @@ class Properti_app
     public static function guruid($parameter = 'id')
     {
         $username = Auth::user()->username;
-        $userdata = DB::table('karyawan')->where('nik', $username)->where('status', '1')->first();
-        return isset($userdata->$parameter) ? $userdata->$parameter : '';
+        return $username;
     }
     function statusHadir()
     {
@@ -472,5 +476,10 @@ class Properti_app
 
         ];
 
+    }
+
+    static function tipe_barang()
+    {
+        return \DB::table('kategori_barang')->get();
     }
 }

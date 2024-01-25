@@ -26,9 +26,7 @@
                 <div class="col-md-4">
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
-
-
-
+ 
                 <label for="name" class="col-md-2 text-left">Email<span class="required-label">*</span></label>
                 <div class="col-md-4">
                     <input type="email" class="form-control" id="email" name="email">
@@ -41,31 +39,17 @@
                 <div class="col-md-4">
                     <input type="password" class="form-control" id="password_k" name="password_k">
                 </div>
-                <label for="name" class="col-md-2 text-left">Level Akses <span class="required-label">*</span></label>
+                <label for="name" class="col-md-2 text-left">Level Akses <span
+                        class="required-label">*</span></label>
                 <div class="col-md-4">
-                    {{-- select level was here --}}
-                    <select name="tmlevel_id" class="form-control">
+                     <select name="tmlevel_id" class="form-control">
                         @foreach ($level as $lev)
                             <option value="{{ $lev->id }}">{{ $lev->level }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Foto<span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    <img src="{{ asset('assets') }}/img/profile.jpg" alt="" class="header-avatar" id="dd"
-                        class="img-responsive" style="width: 200px;height: 250px"
-                        onerror="this.onerror=null;this.src='{{ asset('assets') }}/img/profile.jpg';">
-                    <br /> <br />
-                    <input type='file' id="foto" name="foto" class='form-control' placeholder='Foto..'>
-                </div>
-
-                <label for="name" class="col-md-2 text-left">Proyek<span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    @php echo Properti_app::comboproyek() @endphp
-                </div>
-            </div>
+            
         </div>
 
         <div class="card-action">
@@ -213,5 +197,4 @@
             }
         });
     });
-
 </script>

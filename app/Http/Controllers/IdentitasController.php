@@ -18,7 +18,7 @@ class IdentitasController extends Controller
      */
 
     protected $route = 'aplikasi.';
-    protected $view = 'identitas.';
+    protected $view = '.identitas.';
     protected $title = 'Pendapatan SKPD';
 
     public function __construct()
@@ -27,8 +27,8 @@ class IdentitasController extends Controller
 
     public function index()
     {
-
-        return view($this->view . '.index', []);
+        $title = "Aplikasi Gadai";
+        return view('identitas', compact('title'));
     }
 
     /**

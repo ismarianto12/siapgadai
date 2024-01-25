@@ -10,14 +10,15 @@
             <div class="form-group row">
                 <label for="name" class="col-md-2 text-left">Username<span class="required-label">*</span></label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" id="username" name="username" value="{{ $username }}"
-                        disabled>
+                    <input type="text" class="form-control" id="username" name="username"
+                        value="{{ $username }}" disabled>
                     <small>Username tidak bisa di ganti *</small>
                 </div>
 
                 <label for="name" class="col-md-2 text-left">Nama<span class="required-label">*</span></label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $name }}">
+                    <input type="text" class="form-control" id="name" name="name"
+                        value="{{ $name }}">
                 </div>
             </div>
 
@@ -29,7 +30,8 @@
                 </div>
                 <label for="name" class="col-md-2 text-left">Email<span class="required-label">*</span></label>
                 <div class="col-md-4">
-                    <input type="email" class="form-control" id="email" name="email" value="{{ $email }}">
+                    <input type="email" class="form-control" id="email" name="email"
+                        value="{{ $email }}">
                 </div>
 
 
@@ -41,7 +43,8 @@
                     <input type="password" class="form-control" id="password" name="password_k">
                 </div>
 
-                <label for="name" class="col-md-2 text-left">Level Akses <span class="required-label">*</span></label>
+                <label for="name" class="col-md-2 text-left">Level Akses <span
+                        class="required-label">*</span></label>
                 <div class="col-md-4">
                     {{-- select level was here --}}
                     <select name="tmlevel_id" class="form-control">
@@ -52,22 +55,6 @@
                             <option value="{{ $lev->id }}" {{ $selected }}>{{ $lev->level }}</option>
                         @endforeach
                     </select>
-                </div>
-                <div class="form-group row">
-                    <label for="name" class="col-md-2 text-left">Foto<span class="required-label">*</span></label>
-                    <div class="col-md-4">
-                        <img src="{{ asset('assets') }}/img/profile.jpg" alt="" class="header-avatar"
-                            id="cc_upload_preview" class="img-responsive" style="width: 200px;height: 250px"
-                            onerror="this.onerror=null;this.src='{{ asset('assets') }}/img/profile.jpg';">
-                        <br /> <br />
-                        <input type='file' id="foto" name="foto" class='form-control' placeholder='Foto..'>
-                    </div>
-                    <div class="clearfix"></div>
-                    <br />
-                    <label for="name" class="col-md-2 text-left">Proyek </label>
-                    <div class="col-md-4">
-                        @php echo Properti_app::comboproyek($tmproyek_id) @endphp
-                    </div>
                 </div>
             </div>
         </div>
@@ -82,7 +69,6 @@
         </div>
     </form>
 </div>
-{{ Auth::user()->proyekid }}
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -205,5 +191,4 @@
         });
     });
     // sellect 2
-
 </script>

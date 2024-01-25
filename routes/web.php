@@ -34,7 +34,6 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::resource('cabang', CabangController::class);
         Route::resource('kategori', KategoryBarangController::class);
         Route::resource('pegawai', PegawaiController::class);
-
         Route::resource('user', UserController::class);
 
         Route::resource('identitas', IdentitasController::class);

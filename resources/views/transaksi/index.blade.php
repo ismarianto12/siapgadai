@@ -67,47 +67,34 @@
             <table class="table table-head-bg-success">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col"><input type='checkbox' name='cbox[]' /></th>
                         <th scope="col">Type Barang</th>
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Keluaran</th>
+                        <th scope="col">Harga</th>
                         <th scope="col">Limit Pinjaman</th>
                         <th scope="col">Foto</th>
-                        <th scope="col">Action</th>
+                        <th scope="col"><button class="btn btn-icon btn-primary btn-round btn-xs" id="_addtransaction">
+                                <i class="fa fa-plus"></i>
+                            </button>
+
+                        </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-
-                        <td>@fat</td>
-                    </tr>
+                <tbody class="_render_content_body">
+                </tbody>
+                <tfoot>
                     <tr>
                         <td></td>
                         <th colspan="5">Maks Pinjaman </th>
-                        <td>@twitter</td>
+                        <td>@IDR</td>
                     </tr>
                     <tr>
                         <td></td>
                         <th colspan="5">Jumlah yang diambil </th>
-                        <td>@twitter</td>
+                        <td>@IDR</td>
                     </tr>
-                </tbody>
+                </tfoot>
             </table>
 
 
@@ -122,7 +109,7 @@
         background: white;
     ">
             <div class="col-md-6">
-                <button class="btn btn-danger btn-block"><b>Batal</b></button>
+                <button class="cancel_transaction btn btn-danger btn-block"><b>Batal</b></button>
             </div>
             <div class="col-md-6">
                 <button class="btn btn-info btn-block"><b>Simpan</b></button>
@@ -142,7 +129,13 @@
 
     <script>
         // addd
+        var elements = document.querySelectorAll('.wrapper');
+        elements.forEach(function(element) {
+            element.classList.add('sidebar_minimize');
+        });
+
         $(function() {
+
             $('#add_data').on('click', function() {
                 $('#formmodal').modal('show');
                 addUrl = '';
@@ -159,97 +152,7 @@
 
             })
         });
-        // table data
-        var table = $('#datatable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [{
-                    extend: 'copyHtml5',
-                    className: 'btn btn-info btn-xs'
-                },
-                {
-                    extend: 'excelHtml5',
-                    className: 'btn btn-success btn-xs'
-                },
-                {
-                    extend: 'csvHtml5',
-                    className: 'btn btn-warning btn-xs'
-                },
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'landscape',
-                    pageSize: 'LEGAL',
-                    className: 'btn btn-prirmay btn-xs'
-                }
-            ],
-            processing: true,
-            serverSide: true,
-            order: [1, 'asc'],
-            pageLength: 10,
-            ajax: {
-                url: "{{ Url('/transaksi') }}",
-                method: 'POST',
-                data: function(data) {
-                    data.tmproyek_id = $('#tmproyek_id').val();
-                },
-                _token: "{{ csrf_token() }}",
-            },
-            columns: [{
-                    data: 'id',
-                    name: 'nama_proyek',
-                    orderable: false,
-                    searchable: false,
-                    align: 'center',
-                    className: 'text-center'
-                },
-                {
-                    data: 'namaproyek',
-                    name: 'namaproyek'
-                },
-                {
-                    data: 'namabangunan',
-                    name: 'namabangunan',
-                },
-                {
-                    data: 'jenisrapnama',
-                    name: 'jenisrapnama'
-                },
-                {
-                    data: 'pekerjaan',
-                    name: 'pekerjaan'
-                },
-                {
-                    data: 'volume',
-                    name: 'volume'
-                },
-                {
-                    data: 'satuan',
-                    name: 'satuan'
-                },
 
-                {
-                    data: 'harga_satuan',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'harga_satuan'
-                },
-                {
-                    data: 'jumlah_harga',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'jumlah_harga'
-                },
-                {
-                    data: 'usercreate',
-                    name: 'usercreate'
-                },
-                {
-                    data: 'action',
-                    name: 'action'
-                }
-            ]
-
-        });
-        $('select[name="tmproyek_id"]').on('change', function() {
-            $('#datatable').DataTable().ajax.reload();
-        });
         @include('layouts.tablechecked');
 
         function del() {
@@ -297,7 +200,78 @@
                 });
             }
         }
+
+        // action of bussiness flow apps 
         $(document).ready(function() {
+            $('.cancel_transaction').on('click', function() {
+                Swal.fire({
+                    title: "Anda Yakin? ",
+                    text: "Membatalkan Transaksi Gadai",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ok"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.pjax({
+                            container: '#pjax-container', // ID dari kontainer yang akan di-refresh
+                            url: '{{ Url('app/transaksi') }}', // URL yang akan dimuat secara dinamis
+                            push: false // Menonaktifkan perubahan URL di baris alamat
+                        });
+
+                    }
+                })
+            })
+
+            let number = 1;
+            $("#_addtransaction").on('click', function(e) {
+                e.preventDefault();
+                $('._render_content_body').append(`
+                    <tr>
+                        <td>${number}</td>
+                        <td>
+                            <input type="hidden" name="transaction_id" value="${number}" />
+                            <select name="tipe_barang">  
+                            <option value=""></option>
+                                @foreach (Properti_app::tipe_barang() as $type)
+                                <option value={{ $type->id }}> {{ $type->nama_kategori }}</option> 
+                                @endforeach
+                            </td>
+                        <td><input type="text" name="nama_barang" id="nama_barang${number}"><button class="btn btn-icon btn-danger btn-round btn-xs">
+                                <i class="fa fa-search" id="bandingkan_harga${number}"></i>
+                            </button></td>
+                            <td><input type="text" name="keluaran[]" id="keluaran_${number}"></td>
+                            <td><input type="decimal" name="harga[]" id="harga_${number}"></td> 
+                        <td><input type="text" name="limit_pinjaman[]" id="limit_pinjaman_${number}" placeholder="dalam persen"></td>
+                        <td><input type="file" name="foto[]"></td>
+                        <td colspan="2"><button class="btn btn-icon btn-danger btn-round btn-xs" id="_remove_transaction">
+                                <i class="fa fa-minus"></i>
+                            </button></td>  
+                    </tr>  
+              `);
+                $(`#bandingkan_harga${number}`).on("click", function() {
+                    let katakunci = $(`input[name="nama_barang${number}"]`).val();
+                    window.open(`https://www.google.com/search?q=${katakunci}+indonesia`, '_blank');
+                });
+                number++;
+            })
+            $("._render_content_body").on('click', '#_remove_transaction', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: "Anda Yakin? ",
+                    text: "Menghapus data transaksi ini",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ok"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).parent().parent().remove();
+                    }
+                })
+            });
             $('.js-example-basic-single').select2({
                 width: '100%'
             });

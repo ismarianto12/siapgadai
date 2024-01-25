@@ -16,7 +16,6 @@
                 </div>
             </div>
             <div class="card-body">
-                <!-- Modal -->
                 <div class="modal fade" id="formmodal" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document" style=" min-width: 65%;">
                         <div class="modal-content">
@@ -41,10 +40,8 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th style="width:50%">Foto</th>
-                                <th>Nama</th>
-                                <th>Proyek</th>
                                 <th>Username</th>
+                                <th>Nama</th>
                                 <th>Email</th>
                                 <th>Level</th>
                                 <th style="width: 10%">Action</th>
@@ -81,28 +78,27 @@
                     className: 'text-center'
                 },
                 {
-                    data: 'foto_p',
-                    name: 'foto_p'
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'namaproyek',
-                    name: 'namaproyek'
-                },
-                {
                     data: 'username',
-                    name: 'username',
+                    name: 'username'
+                },
+                {
+                    data: 'nama',
+                    name: 'nama',
+                    render: function(data, type, row) {
+                        if (data) {
+                            return data;
+                        } else {
+                            return 'Kosong';
+                        }
+                    }
                 },
                 {
                     data: 'email',
                     name: 'email'
                 },
                 {
-                    data: 'tmlevel.level',
-                    name: 'tmlevel.level'
+                    data: 'level',
+                    name: 'level',
                 },
                 {
                     data: 'action',
@@ -176,6 +172,5 @@
 
             })
         });
-
     </script>
 @endsection

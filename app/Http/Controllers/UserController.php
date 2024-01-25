@@ -23,8 +23,8 @@ class UserController extends Controller
     function __construct(Request $request)
     {
         $this->request = $request;
-        $this->view    = '.user.';
-        $this->route   = 'master.user.';
+        $this->view = '.user.';
+        $this->route = 'master.user.';
     }
 
 
@@ -58,23 +58,40 @@ class UserController extends Controller
 
     public function api()
     {
-        $data = User::join('tmuser_level', 'user.level_id', '=', 'tmuser_level.id')->get();
+        $data = User::select(
+            'users.id',
+            'users.statuslogin',
+            'users.token',
+            'users.password',
+            'users.created_at',
+            'users.id',
+            'users.updated_at',
+            'users.email',
+            'users.tmlevel_id',
+            'users.name',
+            'users.role',
+            'users.username',
+
+            'tmlevel.user_id',
+            'tmlevel.level_kode',
+            'tmlevel.level',
+
+            'tmlevel.updated_at',
+            'tmlevel.id as level_id',
+            'tmlevel.created_at'
+        )->join('tmlevel', 'users.tmlevel_id', '=', 'tmlevel.id')->get();
         return DataTables::of($data)
             ->editColumn('id', function ($p) {
                 return "<input type='checkbox' name='cbox[]' value='" . $p->id . "' />";
             })
             ->editColumn('action', function ($p) {
-                return  '<a href="" class="btn btn-warning btn-xs" id="edit" data-id="' . $p->id . '"><i class="fa fa-edit"></i>Edit </a> ';
+                return '<a href="" class="btn btn-warning btn-xs" id="edit" data-id="' . $p->id . '"><i class="fa fa-edit"></i>Edit </a> ';
             }, true)
             ->editColumn('nama', function ($p) {
                 return $p->name;
             }, true)
             ->editColumn('foto_p', function ($p) {
-                // return ;
-                return '<img src="' . asset('file/photo_user/' . $p->photo) . '" alt="..."
-                                                        class="avatar-img rounded-circle"
-                                                        onerror="this.onerror=null;this.src=\'' . asset('assets/img/profile.jpg') . '\';"
-                                                        id="foto">';
+                return '';
             }, true)
             ->addIndexColumn()
             ->rawColumns(['usercreate', 'foto_p', 'action', 'id'])
@@ -88,49 +105,35 @@ class UserController extends Controller
      */
     public function store()
     {
-        $this->request->validate([
-            'username' => 'required|unique:users,username',
-            'password' => 'required',
-            'email' => 'required|unique:users,email',
-            'tmlevel_id' => 'required',
-            'foto' => 'mimes:png,jpg'
-        ]);
         try {
-            $data = new User;
-
-            // $id = Auth::user()->id;
-            $tgl = Carbon::now()->format('y-m-d');
-            $ext = $this->request->file('foto');
-            if ($ext == '') {
-            } else {
-                $setname = rand(122, 333) . '-' . $tgl . '.' . $ext->getClientOriginalExtension();
-                $ext->move('./file/photo_user/', $setname);
-                $data->photo  = $setname;
-            }
-            $data->username = $this->request->username;
-            $data->password = bcrypt($this->request->password);
-            $data->email = $this->request->email;
-            $data->name = $this->request->name;
-
-            $data->tmlevel_id = $this->request->id_role;
-            $data->save();
-
-            return response()->json([
-                'status' => 1,
-                'msg' => 'data user berhasil dtambah'
+            $this->request->validate([
+                'username' => 'required|unique:users,username',
+                'password' => 'required',
+                'email' => 'required|unique:users,email',
+                'tmlevel_id' => 'required',
+                'foto' => 'mimes:png,jpg'
             ]);
-        } catch (User $t) {
-            return response()->json([
-                'status' => 1,
-                'msg' =>  $t,
-            ]);
+
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->validator->errors()], 422);
         }
+        $data = new User;
+        $id = Auth::user()->id;
+        $tgl = Carbon::now()->format('y-m-d');
+        $data->username = $this->request->username;
+        $data->password = bcrypt($this->request->password);
+        $data->email = $this->request->email;
+        $data->name = $this->request->name;
+        $data->tmlevel_id = $this->request->id_role;
+        $data->save();
+        return response()->json([
+            'status' => 1,
+            'msg' => 'data user berhasil dtambah'
+        ]);
     }
     public function profile()
     {
-        //
         $id = Auth::user()->id;
-
         $data = User::findOrfail($id);
         $name = $data->name;
         $username = $data->username;
@@ -143,18 +146,21 @@ class UserController extends Controller
         $photo = $data->photo;
 
         $title = "Edit Password";
-        return view($this->view . 'profil', compact(
-            'id',
-            'title',
-            'name',
-            'username',
-            'email',
-            'level',
-            'password',
-            'tmlevel_id',
-            'photo',
-            'id_lev'
-        ));
+        return view(
+            $this->view . 'profil',
+            compact(
+                'id',
+                'title',
+                'name',
+                'username',
+                'email',
+                'level',
+                'password',
+                'tmlevel_id',
+                'photo',
+                'id_lev'
+            )
+        );
     }
 
 
@@ -195,7 +201,7 @@ class UserController extends Controller
         } catch (User $t) {
             return response()->json([
                 'status' => 1,
-                'msg' =>  $t,
+                'msg' => $t,
             ]);
         }
     }
@@ -220,6 +226,8 @@ class UserController extends Controller
     public function edit($id)
     {
 
+        // dd
+
         if (!$this->request->ajax()) {
             return response()->json([
                 'data' => 'data null',
@@ -227,10 +235,11 @@ class UserController extends Controller
             ]);
         }
         //
-        $data = User::findOrfail($id);
+        $data = User::find($id);
+        // dd($data);
+
         $name = $data->name;
         $username = $data->username;
-        $tmproyek_id = $data->tmproyek_id;
         $email = $data->email;
         $id_lev = $data->tmlevel_id;
         $password = $data->password;
@@ -238,17 +247,19 @@ class UserController extends Controller
         $level = Tmlevel::get();
 
         $tmlevel_id = $data->tmlevel_id;
-        return view($this->view . 'form_edit', compact(
-            'id',
-            'name',
-            'username',
-            'tmproyek_id',
-            'email',
-            'level',
-            'password',
-            'tmlevel_id',
-            'id_lev'
-        ));
+        return view(
+            $this->view . 'form_edit',
+            compact(
+                'id',
+                'name',
+                'username',
+                'email',
+                'level',
+                'password',
+                'tmlevel_id',
+                'id_lev'
+            )
+        );
     }
 
     /**
@@ -260,48 +271,31 @@ class UserController extends Controller
      */
     public function update($id)
     {
+        // try {
+
+        // } catch (\ValidationException $e) {
+        //     return response()->json(['error' => $e->validator->errors()], 422);
+        // }
         // $this->request->validate([
-        //     // 'username' => 'required|unique:users,username',
         //     'password' => 'required',
-        //     'email' => 'required|unique:user,email',
-        //     'tmlevel_id' => 'required',
-        //     'tmproyek_id' => 'required'
+        //     'email' => 'required',
         // ]);
-        try {
-            dd($this->request->file('foto'));
-            $data = User::find($id);
-            // $data->username = $this->request->username;
 
-            $id = Auth::user()->id;
-            $tgl = Carbon::now()->format('y-m-d');
-            $ext = $this->request->file('foto');
-            $setname = rand(122, 333) . '-' . $tgl . '.' . $ext->getClientOriginalExtension();
+        $data = User::find($id);
+        $id = Auth::user()->id;
+        $tgl = Carbon::now()->format('y-m-d');
+        $data = User::find($id);
+        $data->password = bcrypt($this->request->password);
+        $data->email = $this->request->email;
+        $data->name = $this->request->name;
+        $data->tmlevel_id = $this->request->id_role;
+        $data->save();
 
-            $ext->move('./file/photo_user/', $setname);
-            $data = User::find($id);
-            $filename = public_path('./file/photo_user/' . $data->photo);
-            if (File::exists($filename)) {
-                File::delete($filename);
-            }
+        return response()->json([
+            'status' => 1,
+            'msg' => 'data user berhasil edit'
+        ]);
 
-            $data->password = bcrypt($this->request->password);
-            $data->email = $this->request->email;
-            $data->name = $this->request->name;
-
-            $data->tmlevel_id = $this->request->id_role;
-            $data->foto = $setname;
-            $data->save();
-
-            return response()->json([
-                'status' => 1,
-                'msg' => 'data user berhasil edit'
-            ]);
-        } catch (User $t) {
-            return response()->json([
-                'status' => 1,
-                'msg' =>  $t,
-            ]);
-        }
     }
 
     /**
@@ -314,7 +308,7 @@ class UserController extends Controller
     {
         try {
             if (is_array($this->request->id)) {
-                $datas =  user::whereIn('id', $this->request->id);
+                $datas = user::whereIn('id', $this->request->id);
                 foreach ($datas as $data) {
                     $tgl = Carbon::now()->format('y-m-d');
                     $ext = $this->request->file('foto');
@@ -327,7 +321,7 @@ class UserController extends Controller
                         File::delete($filename);
                     }
                 }
-                $data->delete();
+                $datas->delete();
             } else {
                 user::whereid($this->request->id)->delete();
             }
