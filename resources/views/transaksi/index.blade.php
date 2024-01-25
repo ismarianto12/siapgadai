@@ -63,7 +63,7 @@
 
 
         </div>
-        <div class="row row-card-no-pd">
+        <div class="row row-card-no-pd" style="padding: 10px">
             <table class="table table-head-bg-success">
                 <thead>
                     <tr>
