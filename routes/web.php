@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IdentitasController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JenisGuruController;
+use App\Http\Controllers\KategoryBarangController;
 use App\Http\Controllers\LaporanPegadaianController;
 use App\Http\Controllers\LaporanPendapatanController;
 use App\Http\Controllers\MapelController;
@@ -31,7 +32,9 @@ Route::group(['middleware' => ['auth', 'api']], function () {
     Route::prefix('master')->name('master.')->group(function () {
         Route::resource('barang', BarangController::class);
         Route::resource('cabang', CabangController::class);
+        Route::resource('kategori', KategoryBarangController::class);
         Route::resource('pegawai', PegawaiController::class);
+
         Route::resource('user', UserController::class);
 
         Route::resource('identitas', IdentitasController::class);
@@ -53,6 +56,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
     Route::prefix('api')->name('api.')->group(function () {
         Route::post('barang', [BarangController::class, 'api'])->name('barang');
         Route::post('cabang', [CabangController::class, 'api'])->name('cabang');
+        Route::post('kategori', [KategoryBarangController::class, 'api'])->name('kategori');
+
         // api
         Route::get('pegadaian', [LaporanPegadaianController::class, 'api'])->name('pegadaian');
         Route::post('pendapatan', [LaporanPendapatanController::class, 'api'])->name('pendapatan');

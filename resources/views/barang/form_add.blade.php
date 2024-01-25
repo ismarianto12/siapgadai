@@ -6,11 +6,10 @@
     <div class="ket"></div>
     <form id="exampleValidation" method="POST" class="simpan">
         <div class="card-body">
-
             <div class="form-group row">
                 <label class="col-md-2 text-left">Kategori Barang</label>
-                <div class="col-md-4">
-                    <input type="text" name='kategori_barang_id' class="form-control" />
+                <div class="col-md-4">  
+ 
                 </div>
             </div>
             <div class="form-group row">

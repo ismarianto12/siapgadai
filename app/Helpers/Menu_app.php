@@ -87,6 +87,7 @@ class Menu_app
                     <div class="collapse" id="retribusi">
                         <ul class="nav nav-collapse">';
                     $menu .= self::set_menu(Url('master/barang'), 'Barang');
+                    $menu .= self::set_menu(Url('master/kategori'), 'Ketegori Barang');
                     $menu .= self::set_menu(Url('master/cabang'), 'Cabang');
                     $menu .= '
                       </ul>

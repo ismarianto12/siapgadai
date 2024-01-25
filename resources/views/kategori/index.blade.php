@@ -3,7 +3,7 @@
     @include('layouts.breadcum')
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
+            {{-- <div class="card-header">
                 <div class="d-flex align-items-right">
                     <button class="btn btn-primary btn-round ml-auto btn-sm" id="add_data">
                         <i class="fa fa-plus"></i>
@@ -14,7 +14,7 @@
                         Delete selected
                     </button>
                 </div>
-            </div>
+            </div> --}}
             <div class="card-body">
                 <!-- Modal -->
                 <div class="modal fade" id="formmodal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -55,7 +55,6 @@
                             <th></th>
                             <th>Kode</th>
                             <th>Nama</th>
-                            <th>Alamat</th>
                             <th>Di input Oleh</th>
                             <th style="width: 10%">Action</th>
                         </tr>
@@ -122,11 +121,8 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ route('api.cabang') }}",
+                url: "{{ route('api.kategori') }}",
                 method: 'POST',
-                data: function(data) {
-                    data.tmproyek_id = $('#tmproyek_id').val();
-                },
                 _token: "{{ csrf_token() }}",
             },
             columns: [{
@@ -138,20 +134,16 @@
                     className: 'text-center'
                 },
                 {
-                    data: 'nama_cabang',
-                    name: 'nama_cabang'
+                    data: 'kode_kategori',
+                    name: 'kode_kategori'
                 },
                 {
-                    data: 'alamat_cabang',
-                    name: 'alamat_cabang',
+                    data: 'nama_kategori',
+                    name: 'nama_kategori'
                 },
                 {
                     data: 'name_user',
                     name: 'name_user'
-                },
-                {
-                    data: 'usercreate',
-                    name: 'usercreate'
                 },
                 {
                     data: 'action',

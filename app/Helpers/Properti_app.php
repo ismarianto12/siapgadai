@@ -125,6 +125,11 @@ class Properti_app
     }
 
 
+    public static function getKategoriBarang(array $url)
+    {
+        
+    }
+
     public static function getlevel()
     {
         $ff = Auth::user();
@@ -464,7 +469,7 @@ class Properti_app
             'A' => 'Alpha',
             'I' => 'Izin',
             'S' => 'Sakit',
-            
+
         ];
 
     }

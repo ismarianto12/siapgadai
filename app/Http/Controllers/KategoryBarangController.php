@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cabang;
+use App\Models\kategoryBarang;
 use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class CabangController extends Controller
+class KategoryBarangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,12 +22,12 @@ class CabangController extends Controller
     {
         $this->request = $request;
         $this->date = date("Y-m-d");
-        $this->view = '.cabang.';
-        $this->route = 'master.cabang.';
+        $this->view = '.kategori.';
+        $this->route = 'master.kategori.';
     }
     public function index()
     {
-        $title = 'Master Cabang';
+        $title = 'Master Kategori';
         return view($this->view . "index", compact("title"));
     }
 
@@ -51,15 +51,14 @@ class CabangController extends Controller
 
     function api()
     {
-        $data = DB::table('cabang')
+        $data = DB::table('kategori_barang')
             ->select(
-                'cabang.id',
-                'cabang.kode_cabang',
-                'cabang.nama_cabang',
-                'cabang.alamat_cabang',
+                'kategori_barang.id',
+                'kategori_barang.kode_kategori',
+                'kategori_barang.nama_kategori',
                 'users.name as name_user'
             )
-            ->join('users', 'cabang.user_id', '=', 'users.id', 'left')
+            ->join('users', 'kategori_barang.user_id', '=', 'users.id', 'left')
 
             ->get();
         return DataTables::of($data)
