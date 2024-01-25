@@ -482,4 +482,11 @@ class Properti_app
     {
         return \DB::table('kategori_barang')->get();
     }
+    static function Jk()
+    {
+        return [
+            '1' => 'Laki-laki',
+            '2' => 'Perempuan'
+        ];
+    }
 }
