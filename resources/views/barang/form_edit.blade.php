@@ -1,95 +1,52 @@
 <div class="card">
     <div class="card-header">
-        <div class="card-title">{{ __('Edit anggaran biaya proyek') }}</div>
+        <div class="card-title">Edit Data Master Barang
+        </div>
     </div>
     <div class="ket"></div>
-
     <form id="exampleValidation" method="POST" class="simpan">
         <div class="card-body">
-            <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Proyek<span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    {{-- <input type="text" class="form-control" zid="tmproyek_id" name="tmproyek_id"
-                        placeholder="Cari .. Proyek"> --}}
-                    {{-- <select class="js-example-basic-single form-control" name="tmproyek_id" id="tmproyek_id">
-                        @foreach ($proyek as $listproyek)
-                            @php
-                                $sl = $listproyek->id == $tmproyek_id ? 'selected' : '';
-                            @endphp
-                            <option value="{{ $listproyek->id }}" {{ $sl }}>
-                                {{ $listproyek->nama_proyek }}</option>
-                        @endforeach
-                    </select> --}}
-                    @php echo Properti_app::comboproyek($tmproyek_id) @endphp
-                </div>
-                <label for="name" class="col-md-2 text-left">Bangunan <span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    <div id="bangunan_data">
-                    </div>
-                </div>
-            </div>
 
             <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Jenis Rap<span class="required-label">*</span></label>
+                <label class="col-md-2 text-left">Kategori Barang</label>
                 <div class="col-md-4">
-                    {{-- <input type="text" class="form-control" id="tmjenisrap_id" name="tmjenisrap_id"> --}}
-                    <select class="js-example-basic-single form-control" name="tmjenisrap_id" id="tmbangunan_id">
-                        @foreach ($tmjenisrap as $tnjenis)
-                            @php
-                                $sltnjenis = $tnjenis->id == $tmjenisrap_id ? 'selected' : '';
-                            @endphp
-                            <option value="{{ $tnjenis->id }}" {{ $sltnjenis }}>{{ $tnjenis->kode_rap }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <label for="name" class="col-md-2 text-left">Pekerjaan <span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" value="{{ $pekerjaan }}">
+                    <input type="text" name='kategori_barang_id' class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Volume <span class="required-label">*</span></label>
+                <label class="col-md-2 text-left">Kode</label>
                 <div class="col-md-4">
-                    <input type="number" class="form-control" id="volume" name="volume" value="{{ $volume }}">
+                    <input type="text" name='kode' class="form-control" />
                 </div>
-
-                <label for="name" class="col-md-2 text-left">Satuan <span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="satuan" name="satuan" value="{{ $satuan }}">
-                </div>
-
             </div>
             <div class="form-group row">
-                <label for="number" class="col-md-2 text-left">Harga Satuan <span
-                        class="required-label">*</span></label>
+                <label class="col-md-2 text-left">Nama Barang</label>
                 <div class="col-md-4">
-                    <input type="text" class="number_format form-control" id="harga_satuan" name="harga_satuan"
-                        value="{{ number_format($harga_satuan, 2) }}">
+                    <input type="text" name='nama_barang' class="form-control" />
                 </div>
             </div>
-            <hr />
             <div class="form-group row">
-
-                <label for="name" class="col-md-2 text-left">Total Jumlah harga <span
-                        class="required-label">*</span></label>
+                <label class="col-md-2 text-left">Merk</label>
                 <div class="col-md-4">
-                    &nbsp; &nbsp;
-                    &nbsp;
-
-                    <h4>
-                        <div id="tharga">{{ number_format($jumlah_harga, 2) }}</div>
-                    </h4>
-                    <input type="hidden" name="jumlah_harga" value="{{ $jumlah_harga }}">
+                    <input type="text" name='merk' class="form-control" />
                 </div>
             </div>
-        </div>
-
-        <div class="card-action">
-            <div class="row">
-                <div class="col-md-12">
-                    <input class="btn btn-success" type="submit" value="Simpan">
-                    <button class="btn btn-danger" type="reset">Batal</button>
+            <div class="form-group row">
+                <label class="col-md-2 text-left">Type</label>
+                <div class="col-md-4">
+                    <input type="text" name='type' class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 text-left">Keluaran</label>
+                <div class="col-md-4">
+                    <input type="text" name='keluaran' class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 text-left">Kelengkapan</label>
+                <div class="col-md-4">
+                    <input type="text" name='Kelengkapan' class="form-control" />
                 </div>
             </div>
         </div>
@@ -215,6 +172,5 @@
             width: '100%'
         });
     });
-
 </script>
 {{-- list_model_proyek --}}

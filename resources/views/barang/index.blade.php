@@ -39,9 +39,7 @@
                 <form id="exampleValidation" method="POST" class="simpan">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="name" class="col-md-2 text-left">Sort By Proyek<span
-                                    class="required-label">*</span></label>
-                            <div class="col-md-4">
+                            
                                 {{-- @php
                                     echo Properti_app::comboproyek();
                                 @endphp --}}
@@ -55,19 +53,16 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Nama Proyek</th>
-                                <th>Bangunan</th>
-                                <th>Jenis RAP </th>
-                                <th>Pekerjaan</th>
-                                <th>Volume</th>
-                                <th>Satuan</th>
-                                <th>Harga Satuan</th>
-                                <th>Jumlah Harga</th>
+                                <th>Kode</th>
+                                <th>Nama Barang</th>
+                                <th>Merk</th>
+                                <th>Tipe</th>
+                                <th>Keluaran</th>
                                 <th>Di input Oleh</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        {{-- <tfoot>
                             <tr>
                                 <th></th>
                                 <th>Nama Proyek</th>
@@ -81,7 +76,7 @@
                                 <th>Di input Oleh</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> --}}
                         <tbody>
                         </tbody>
                     </table>
@@ -102,7 +97,7 @@
         $(function() {
             $('#add_data').on('click', function() {
                 $('#formmodal').modal('show');
-                addUrl = '';
+                addUrl = '{{ route('master.barang.create') }}';
                 $('#form_content').html('<center><h3>Loading ...</h3></center>').load(addUrl);
             });
 
@@ -144,11 +139,8 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ Url('/transaksi') }}",
+                url: "{{ route('api.barang') }}",
                 method: 'POST',
-                data: function(data) {
-                    data.tmproyek_id = $('#tmproyek_id').val();
-                },
                 _token: "{{ csrf_token() }}",
             },
             columns: [{
@@ -160,43 +152,28 @@
                     className: 'text-center'
                 },
                 {
-                    data: 'namaproyek',
-                    name: 'namaproyek'
+                    data: 'kode',
+                    name: 'kode'
                 },
                 {
-                    data: 'namabangunan',
-                    name: 'namabangunan',
+                    data: 'nama_barang',
+                    name: 'nama_barang',
                 },
                 {
-                    data: 'jenisrapnama',
-                    name: 'jenisrapnama'
+                    data: 'merk',
+                    name: 'merk'
                 },
                 {
-                    data: 'pekerjaan',
-                    name: 'pekerjaan'
+                    data: 'type',
+                    name: 'type'
                 },
                 {
-                    data: 'volume',
-                    name: 'volume'
+                    data: 'keluaran',
+                    name: 'keluaran'
                 },
                 {
-                    data: 'satuan',
-                    name: 'satuan'
-                },
-
-                {
-                    data: 'harga_satuan',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'harga_satuan'
-                },
-                {
-                    data: 'jumlah_harga',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'jumlah_harga'
-                },
-                {
-                    data: 'usercreate',
-                    name: 'usercreate'
+                    data: 'name_user',
+                    name: 'name_user'
                 },
                 {
                     data: 'action',
@@ -260,6 +237,5 @@
                 width: '100%'
             });
         });
-
     </script>
 @endsection

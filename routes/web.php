@@ -51,8 +51,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
     });
     // api  route datatable 
     Route::prefix('api')->name('api.')->group(function () {
-        Route::post('barang', [MapelController::class, 'api'])->name('barang');
-        Route::post('cabang', [JadwalController::class, 'api'])->name('cabang');
+        Route::post('barang', [BarangController::class, 'api'])->name('barang');
+        Route::post('cabang', [CabangController::class, 'api'])->name('cabang');
         // api
         Route::get('pegadaian', [LaporanPegadaianController::class, 'api'])->name('pegadaian');
         Route::post('pendapatan', [LaporanPendapatanController::class, 'api'])->name('pendapatan');

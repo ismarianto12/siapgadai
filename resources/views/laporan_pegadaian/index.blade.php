@@ -39,9 +39,7 @@
                 <form id="exampleValidation" method="POST" class="simpan">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="name" class="col-md-2 text-left">Sort By Proyek<span
-                                    class="required-label">*</span></label>
-                            <div class="col-md-4">
+                            
                                 {{-- @php
                                     echo Properti_app::comboproyek();
                                 @endphp --}}

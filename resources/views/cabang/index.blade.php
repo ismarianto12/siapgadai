@@ -39,9 +39,7 @@
                 <form id="exampleValidation" method="POST" class="simpan">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="name" class="col-md-2 text-left">Sort By Proyek<span
-                                    class="required-label">*</span></label>
-                            <div class="col-md-4">
+                            
                                 {{-- @php
                                     echo Properti_app::comboproyek();
                                 @endphp --}}
@@ -55,33 +53,13 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Nama Proyek</th>
-                                <th>Bangunan</th>
-                                <th>Jenis RAP </th>
-                                <th>Pekerjaan</th>
-                                <th>Volume</th>
-                                <th>Satuan</th>
-                                <th>Harga Satuan</th>
-                                <th>Jumlah Harga</th>
+                                <th>Kode</th>
+                                <th>Nama</th>
+                                <th>Alamat</th>
                                 <th>Di input Oleh</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Nama Proyek</th>
-                                <th>Bangunan</th>
-                                <th>Jenis RAP </th>
-                                <th>Pekerjaan</th>
-                                <th>Volume</th>
-                                <th>Satuan</th>
-                                <th>Harga Satuan</th>
-                                <th>Jumlah Harga</th>
-                                <th>Di input Oleh</th>
-                                <th style="width: 10%">Action</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
                         </tbody>
                     </table>
@@ -144,7 +122,7 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ Url('/transaksi') }}",
+                url: "{{ route('api.cabang') }}",
                 method: 'POST',
                 data: function(data) {
                     data.tmproyek_id = $('#tmproyek_id').val();
@@ -153,46 +131,23 @@
             },
             columns: [{
                     data: 'id',
-                    name: 'nama_proyek',
+                    name: 'kode_cabang',
                     orderable: false,
                     searchable: false,
                     align: 'center',
                     className: 'text-center'
                 },
                 {
-                    data: 'namaproyek',
-                    name: 'namaproyek'
+                    data: 'nama_cabang',
+                    name: 'nama_cabang'
                 },
                 {
-                    data: 'namabangunan',
-                    name: 'namabangunan',
+                    data: 'alamat_cabang',
+                    name: 'alamat_cabang',
                 },
                 {
-                    data: 'jenisrapnama',
-                    name: 'jenisrapnama'
-                },
-                {
-                    data: 'pekerjaan',
-                    name: 'pekerjaan'
-                },
-                {
-                    data: 'volume',
-                    name: 'volume'
-                },
-                {
-                    data: 'satuan',
-                    name: 'satuan'
-                },
-
-                {
-                    data: 'harga_satuan',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'harga_satuan'
-                },
-                {
-                    data: 'jumlah_harga',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'jumlah_harga'
+                    data: 'name_user',
+                    name: 'name_user'
                 },
                 {
                     data: 'usercreate',
@@ -203,7 +158,6 @@
                     name: 'action'
                 }
             ]
-
         });
         $('select[name="tmproyek_id"]').on('change', function() {
             $('#datatable').DataTable().ajax.reload();
@@ -260,6 +214,5 @@
                 width: '100%'
             });
         });
-
     </script>
 @endsection

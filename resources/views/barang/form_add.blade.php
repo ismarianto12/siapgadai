@@ -1,85 +1,55 @@
 <div class="card">
     <div class="card-header">
-        <div class="card-title">Input Rencana anggaran biaya proyek
+        <div class="card-title">Input Data Master Barang
         </div>
     </div>
     <div class="ket"></div>
-
     <form id="exampleValidation" method="POST" class="simpan">
         <div class="card-body">
-            <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Proyek<span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    @php echo Properti_app::comboproyek() @endphp
-                </div>
-
-
-                {{-- <select class="js-example-basic-single form-control" name="tmbangunan_id"
-                        id="tmbangunan_id">
-                        @foreach ($bangunan as $listbangunan)
-                            <option value="{{ $listbangunan->id }}">{{ $listbangunan->nama_bangunan }}</option>
-                        @endforeach
-                    </select> --}} <label for="name" class="col-md-2 text-left">Bangunan<span
-                        class="required-label">*</span></label>
-                <div class="col-md-4">
-                    <div id="bangunan_data">
-                    </div>
-
-                </div>
-            </div>
 
             <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Jenis Rap<span class="required-label">*</span></label>
+                <label class="col-md-2 text-left">Kategori Barang</label>
                 <div class="col-md-4">
-                    {{-- <input type="text" class="form-control" id="tmjenisrap_id" name="tmjenisrap_id"> --}}
-                    <select class="js-example-basic-single form-control" name="tmjenisrap_id" id="tmbangunan_id">
-                        @foreach ($tmjenisrap as $tnjenis)
-                            <option value="{{ $tnjenis->id }}">{{ $tnjenis->kode_rap }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <label for="name" class="col-md-2 text-left">Pekerjaan <span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="pekerjaan" name="pekerjaan">
+                    <input type="text" name='kategori_barang_id' class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Volume <span class="required-label">*</span></label>
+                <label class="col-md-2 text-left">Kode</label>
                 <div class="col-md-4">
-                    <input type="number" class="form-control" id="volume" name="volume">
-                </div>
-
-                <label for="name" class="col-md-2 text-left">Satuan <span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="satuan" name="satuan">
-                </div>
-
-            </div>
-            <div class="form-group row">
-                <label for="text" class="col-md-2 text-left">Harga Satuan <span class="required-label">*</span></label>
-                <div class="col-md-4">
-                    <input type="text" class="number_format form-control" id="harga_satuan" name="harga_satuan">
+                    <input type="text" name='kode' class="form-control" />
                 </div>
             </div>
-            <hr />
             <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Total Jumlah harga <span
-                        class="required-label">*</span></label>
+                <label class="col-md-2 text-left">Nama Barang</label>
                 <div class="col-md-4">
-                    &nbsp; &nbsp;
-                    &nbsp;
-
-                    <h4>
-                        <div id="tharga"></div>
-                    </h4>
-                    <input type="hidden" id="jumlah_harga" name="jumlah_harga" readonly>
+                    <input type="text" name='nama_barang' class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 text-left">Merk</label>
+                <div class="col-md-4">
+                    <input type="text" name='merk' class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 text-left">Type</label>
+                <div class="col-md-4">
+                    <input type="text" name='type' class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 text-left">Keluaran</label>
+                <div class="col-md-4">
+                    <input type="text" name='keluaran' class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 text-left">Kelengkapan</label>
+                <div class="col-md-4">
+                    <input type="text" name='Kelengkapan' class="form-control" />
                 </div>
             </div>
         </div>
-
-
-
         <div class="card-action">
             <div class="row">
                 <div class="col-md-12">
@@ -126,13 +96,12 @@
         $('.simpan').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('master.tmrap.store') }}",
+                url: "{{ route('master.barang.store') }}",
                 method: "POST",
                 data: $(this).serialize(),
                 chace: false,
                 async: false,
                 success: function(data) {
-                    $('select[name="tmproyek_id"]').val('');
                     $('#datatable').DataTable().ajax.reload();
                     $('#formmodal').modal('hide');
                     Swal.fire({
@@ -175,44 +144,7 @@
             })
         });
 
-        //search if that list 
-        // $('#tmproyek_id').on('click', function(e) {
-        //     $('#form_content').html(
-        //         '<iframe src="{{ route('get.getproyek') }}" frameborder="0" style="width:100%; height:100%;"></iframe>'
-        //     );
-        // });
-        // select data passed 
-        id = $('select[name="tmproyek_id"]').val();
-        $.post('{{ route('api.caribangunan') }}', {
-            id: id,
-        }, function(data) {
-            passing = '';
-            $.each(data, function(index, bangunan) {
-                passing += "<option value=" + bangunan.id + ">" + bangunan
-                    .nama_bangunan + "</option>";
-            });
-            $('#bangunan_data').html('<select name="tmbangunan_id" class="form-control">' +
-                passing + '</select>');
-        }, 'JSON').error(function() {
-            alert('tidak ada response');
-        });
-        $('select[name="tmproyek_id"]').on('change', function(e) {
-            e.preventDefault();
-            id = $(this).val();
-            $.post('{{ route('api.caribangunan') }}', {
-                id: id,
-            }, function(data) {
-                passing = '';
-                $.each(data, function(index, bangunan) {
-                    passing += "<option value=" + data.id + ">" + bangunan
-                        .nama_bangunan + "</option>";
-                });
-                $('#bangunan_data').html('<select name="tmbangunan_id" class="form-control">' +
-                    passing + '</select>');
-            }, 'JSON').error(function() {
-                alert('tidak ada response');
-            })
-        })
+
     });
     // sellect 2
     $(document).ready(function() {
@@ -220,6 +152,5 @@
             width: '100%'
         });
     });
-
 </script>
 {{-- list_model_proyek --}}
