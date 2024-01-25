@@ -64,7 +64,7 @@
 
         </div>
         <div class="row row-card-no-pd" style="padding: 10px">
-            <table class="table table-head-bg-success">
+            <table class="cashtable">
                 <thead>
                     <tr>
                         <th scope="col"><input type='checkbox' name='cbox[]' /></th>
@@ -86,12 +86,21 @@
                 <tfoot>
                     <tr>
                         <td></td>
-                        <th colspan="5">Maks Pinjaman </th>
+                        <th colspan="5" class="text-right">Maks Pinjaman </th>
+                        <td>
+                            <input type="text" name="jumlah_ambil" class="form-control" />
+                        </td>
+
                         <td>@IDR</td>
                     </tr>
                     <tr>
                         <td></td>
-                        <th colspan="5">Jumlah yang diambil </th>
+                        <th colspan="5" class="text-right">Jumlah yang diambil
+                        </th>
+                        <td>
+                            <input type="text" name="jumlah_ambil" class="form-control" />
+                        </td>
+
                         <td>@IDR</td>
                     </tr>
                 </tfoot>
@@ -135,7 +144,7 @@
         });
 
         $(function() {
-
+            $('.ayamayam').hide();
             $('#add_data').on('click', function() {
                 $('#formmodal').modal('show');
                 addUrl = '';
@@ -244,7 +253,11 @@
                             <td><input type="text" name="keluaran[]" id="keluaran_${number}"></td>
                             <td><input type="decimal" name="harga[]" id="harga_${number}"></td> 
                         <td><input type="text" name="limit_pinjaman[]" id="limit_pinjaman_${number}" placeholder="dalam persen"></td>
-                        <td><input type="file" name="foto[]"></td>
+                        <td><input type="file" name="foto[]">
+                            <input type="file" name="foto[]">
+                            <input type="file" name="foto[]">
+                            
+                            </td>
                         <td colspan="2"><button class="btn btn-icon btn-danger btn-round btn-xs" id="_remove_transaction">
                                 <i class="fa fa-minus"></i>
                             </button></td>  
