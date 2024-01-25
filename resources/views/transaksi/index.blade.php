@@ -82,8 +82,73 @@
                     </tr>
                 </thead>
                 <tbody class="_render_content_body">
+                    <tr style="background: green">
+                        <td colspan="8">
+                            <h4 style="color: #fff">A. Data Barang</h4>
+                        </td>
+                    </tr>
                 </tbody>
                 <tfoot>
+                    <tr style="background: green">
+                        <td colspan="8">
+                            <h4 style="color: #fff">B. Data Nasabah</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <th class="text-right">Nama Nasabah </th>
+                        <td>
+                            <input type="text" name="jumlah_ambil" class="form-control" />
+                        </td>
+
+                        <td>Nik</td>
+                        <td>
+                            <input type="text" name="jumlah_ambil" class="form-control" />
+
+                        </td>
+                        <td>Jenis Kelamin</td>
+                        <td>
+                            <select class="form-control">
+
+                            </select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <th class="text-right">Alamat
+                        </th>
+                        <td>
+                            <textarea type="text" name="alamat" class="form-control"></textarea>
+                        </td>
+                        <td>Rt/ Rw</td>
+                        <td>
+                            <input type="text" name="rt_rw" class="form-control" />
+                        </td>
+                        <td>Kelurahan</td>
+                        <td>
+                            <textarea type="text" name="kelurahan" class="form-control"></textarea>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <th class="text-right">Kecamatan
+                        </th>
+                        <td>
+                            <input type="text" name="kecamatan" class="form-control" />
+                        </td>
+                        <td>Kabupaten / Kota</td>
+                        <td>
+                            <input type="text" name="rt_rw" class="form-control" />
+                        </td>
+                        <td></td>
+                        <td>
+                        </td>
+
+                    </tr>
+
                     <tr>
                         <td></td>
                         <th colspan="5" class="text-right">Maks Pinjaman </th>
