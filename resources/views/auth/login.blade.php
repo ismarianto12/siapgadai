@@ -36,7 +36,7 @@
     <div class="wrapper wrapper-login wrapper-login-full p-0">
         <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center"
             style="
-            background: url('{{ asset('assets/img/spk.jpg') }}');
+            background: url('{{ asset('assets/img/background.jpeg') }}');
             background-size: cover;
             background-position: bottom center;
             ">
