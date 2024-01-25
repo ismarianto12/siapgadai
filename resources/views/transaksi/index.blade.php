@@ -3,7 +3,7 @@
     @include('layouts.breadcum')
     <div class="col-md-12">
         <div class="row row-card-no-pd">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <div class="card card-stats card-round">
                     <div class="card-body ">
                         <div class="row">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-4 col-md-4">
                 <div class="card card-stats card-round">
                     <div class="card-body ">
                         <div class="row">
@@ -35,6 +35,25 @@
                                 <div class="numbers">
                                     <p class="card-category">Kasir</p>
                                     <h4 class="card-title">{{ ucfirst(Auth::user()->username) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-coins text-success"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Cabang</p>
+                                    <h4 class="card-title">Mampang Prapatan</h4>
                                 </div>
                             </div>
                         </div>
