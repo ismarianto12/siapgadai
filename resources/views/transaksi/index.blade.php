@@ -2,90 +2,108 @@
 @section('content')
     @include('layouts.breadcum')
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex align-items-right">
-                    <button class="btn btn-primary btn-round ml-auto btn-sm" id="add_data">
-                        <i class="fa fa-plus"></i>
-                        Add Row
-                    </button>
-                    <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
-                        <i class="fa fa-minus"></i>
-                        Delete selected
-                    </button>
-                </div>
-            </div>
-            <div class="card-body">
-                <!-- Modal -->
-                <div class="modal fade" id="formmodal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog" role="document" style=" min-width: 65%;">
-                        <div class="modal-content">
-                            <div class="modal-header border-0">
-                                <h5 class="modal-title" id="title">
-                                </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+        <div class="row row-card-no-pd">
+            <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-chart-pie text-warning"></i>
+                                </div>
                             </div>
-                            <div class="modal-body" id="form_content">
-                            </div>
-                            <div class="modal-footer border-0">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <h3 class="card-category">Tanggal</h3>
+                                    <h4 class="card-title">@php echo Properti_app::tgl_indo(date('Y-m-d')) @endphp</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <form id="exampleValidation" method="POST" class="simpan">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            
-                                {{-- @php
-                                    echo Properti_app::comboproyek();
-                                @endphp --}}
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-coins text-success"></i>
+                                </div>
                             </div>
-
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Kasir</p>
+                                    <h4 class="card-title">{{ ucfirst(Auth::user()->username) }}</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
-                <div class="table-responsive">
-                    <table id="datatable" class="display table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Nama Proyek</th>
-                                <th>Bangunan</th>
-                                <th>Jenis RAP </th>
-                                <th>Pekerjaan</th>
-                                <th>Volume</th>
-                                <th>Satuan</th>
-                                <th>Harga Satuan</th>
-                                <th>Jumlah Harga</th>
-                                <th>Di input Oleh</th>
-                                <th style="width: 10%">Action</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Nama Proyek</th>
-                                <th>Bangunan</th>
-                                <th>Jenis RAP </th>
-                                <th>Pekerjaan</th>
-                                <th>Volume</th>
-                                <th>Satuan</th>
-                                <th>Harga Satuan</th>
-                                <th>Jumlah Harga</th>
-                                <th>Di input Oleh</th>
-                                <th style="width: 10%">Action</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                        </tbody>
-                    </table>
                 </div>
             </div>
+
+
         </div>
+        <div class="row row-card-no-pd">
+            <table class="table table-head-bg-success">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Type Barang</th>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Keluaran</th>
+                        <th scope="col">Limit Pinjaman</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <th colspan="5">Maks Pinjaman </th>
+                        <td>@twitter</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <th colspan="5">Jumlah yang diambil </th>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+        <div class="card-footer row">
+            <div class="col-md-6">
+                <button class="btn btn-danger btn-block"><b>Batal</b></button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-info btn-block"><b>Simpan</b></button>
+            </div>
+            
+        </div>
+
+
     </div>
 
     <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
@@ -257,6 +275,5 @@
                 width: '100%'
             });
         });
-
     </script>
 @endsection
