@@ -93,14 +93,22 @@
 
 
         </div>
-        <div class="card-footer row">
+        <div class="card-footer row"
+            style="
+        position: fixed;
+        bottom: 0;
+        margin: 0 auto;
+        width: 80%;
+        z-index: 999;
+        background: white;
+    ">
             <div class="col-md-6">
                 <button class="btn btn-danger btn-block"><b>Batal</b></button>
             </div>
             <div class="col-md-6">
                 <button class="btn btn-info btn-block"><b>Simpan</b></button>
             </div>
-            
+
         </div>
 
 
