@@ -47,6 +47,7 @@
                     <div class="card-body">
                         <div class="row" style="padding: 10px 10px 10px">
                             <h3 class="text-bold">Selamat datang di aplikasi SiapGadai </h3>
+                            <br />
                             <h4>Silahkan Akses Menu Disamping Untuk Menggunakan Aplikasi. </h4>
                         </div>
                     </div>
@@ -187,7 +188,7 @@
             title: {
                 text: 'Grafik Jumlah Barang Gadai Keluar',
                 style: {
-                    fontSize: '18px' 
+                    fontSize: '18px'
                 }
             },
             subtitle: {
