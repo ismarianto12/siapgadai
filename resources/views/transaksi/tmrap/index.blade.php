@@ -42,9 +42,9 @@
                             <label for="name" class="col-md-2 text-left">Sort By Proyek<span
                                     class="required-label">*</span></label>
                             <div class="col-md-4">
-                                {{-- @php
+                                @php
                                     echo Properti_app::comboproyek();
-                                @endphp --}}
+                                @endphp
                             </div>
 
                         </div>
@@ -102,7 +102,7 @@
         $(function() {
             $('#add_data').on('click', function() {
                 $('#formmodal').modal('show');
-                addUrl = '';
+                addUrl = '{{ route('master.tmrap.create') }}';
                 $('#form_content').html('<center><h3>Loading ...</h3></center>').load(addUrl);
             });
 
@@ -111,7 +111,7 @@
                 e.preventDefault();
                 $('#formmodal').modal('show');
                 id = $(this).data('id');
-                addUrl = ''.replace(':id', id);
+                addUrl = '{{ route('master.tmrap.edit', ':id') }}'.replace(':id', id);
                 $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(addUrl);
 
             })
@@ -143,7 +143,7 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ Url('/transaksi') }}",
+                url: "{{ route('api.tmrap') }}",
                 method: 'POST',
                 data: function(data) {
                     data.tmproyek_id = $('#tmproyek_id').val();
@@ -217,7 +217,7 @@
             if (c.length == 0) {
                 $.alert("Silahkan memilih data yang akan dihapus.");
             } else {
-                $.post("{{ Url('/', ':id') }}", {
+                $.post("{{ route('master.tmrap.destroy', ':id') }}", {
                     '_method': 'DELETE',
                     'id': c
                 }, function(data) {

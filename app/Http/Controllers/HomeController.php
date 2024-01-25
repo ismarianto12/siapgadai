@@ -400,4 +400,18 @@ class HomeController extends Controller
             $ef_amount = '';
         }
     }
+    function identitas()
+    {
+
+        $title = "Identitias aplikasi";
+        return view('identitias.index', compact('title'));
+    }
+
+    function save_identitas()
+    {
+
+        $title = "Identitias aplikasi";
+        return view('identitias.identitias', compact('title'));
+    }
+
 }

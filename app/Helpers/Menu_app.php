@@ -100,7 +100,7 @@ class Menu_app
                     </a>
                     <div class="collapse" id="transaksi">
                         <ul class="nav nav-collapse">';
-                    $menu .= self::set_menu(Url('master/transaksi'), 'Transaksi');
+                    $menu .= self::set_menu(Url('app/transaksi'), 'Transaksi');
                     $menu .= '
                       </ul>
                     </div>
@@ -113,8 +113,8 @@ class Menu_app
                 </a>
                 <div class="collapse" id="report">
                     <ul class="nav nav-collapse">';
-                    $menu .= self::set_menu(Url('laporan/laporan_pegadaian'), 'Laporan Transaksi', );
-                    $menu .= self::set_menu(Url('laporan/laporan_'), 'Laporan Pendapatan');
+                    $menu .= self::set_menu(Url('laporan/pegadaian'), 'Laporan Transaksi', );
+                    $menu .= self::set_menu(Url('laporan/pendapatan'), 'Laporan Pendapatan');
                     $menu .= '
                   </ul>
                 </div>';
@@ -140,7 +140,6 @@ class Menu_app
                     ';
                     $menu .= self::menu_single(Url('master/transaksi'), '', 'Transaksi');
                     $menu .= self::menu_single(Url('master/laporan_transaksi'), '', 'Laporan Transaksi');
-                    // $menu .= self::menu_single(Url('master/transaksi'), '', 'Transaksi');
 
                     '</ul>
                     </li>

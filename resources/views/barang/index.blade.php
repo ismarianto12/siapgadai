@@ -116,6 +116,7 @@
 
             })
         });
+        $.fn.dataTable.ext.errMode = 'throw';
         // table data
         var table = $('#datatable').DataTable({
             dom: 'Bfrtip',

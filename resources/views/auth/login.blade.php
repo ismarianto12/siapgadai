@@ -97,15 +97,22 @@
         <script>
             $(document).on('submit', '#loginacti', function(e) {
                 e.preventDefault();
+                Swal.fire({
+                    title: 'Check password...',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                });
+                Swal.showLoading();
+
                 $.ajax({
                     url: $(this).attr('action'),
                     method: 'post',
                     data: $(this).serialize(),
                     chace: false,
                     asynch: false,
-                    success: function(data, JqXHR) {
-                        window.location.href = 'home?contract=2022';
-                        console.log(JqXHR);
+                    success: function(data) {
+                        window.location.href = 'home';
                     },
                     error: function(data, JqXHR, err) {
                         err = '';
