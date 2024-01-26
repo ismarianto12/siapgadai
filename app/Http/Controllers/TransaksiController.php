@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Mpdf\Mpdf;
 
 class TransaksiController extends Controller
 {
@@ -159,63 +159,11 @@ class TransaksiController extends Controller
 
     public function detail_transaksi($id)
     {
-        $datatransaksi = transaksi::select(
-            'transaksi_gadai.pelunasan',
-            'transaksi_gadai.keluaran_tahun',
-            'transaksi_gadai.imei',
-            'transaksi_gadai.merk',
-            'transaksi_gadai.durasi_pelunasan',
-            'transaksi_gadai.foto_barang',
-            'transaksi_gadai.updated_at',
-            'transaksi_gadai.no_kwitansi',
-            'transaksi_gadai.id_nasabah',
-            'transaksi_gadai.referal_code',
-            'transaksi_gadai.user_id',
-            'transaksi_gadai.jatuh_tempo',
-            'transaksi_gadai.jumlah_pinjaman',
-            'transaksi_gadai.id',
-            'transaksi_gadai.perpajangan',
-            'transaksi_gadai.jasa_titip',
-            'transaksi_gadai.total',
-            'transaksi_gadai.menyetujui_nasabah',
-            'transaksi_gadai.maks_pinjaman',
-            'transaksi_gadai.created_at',
-            'transaksi_gadai.menyetujui_staff_sgi',
-            'transaksi_gadai.no_anggota',
-            'transaksi_gadai.administrasi',
-            'transaksi_gadai.no_faktur',
-            'transaksi_gadai.tanggal',
-            'barang.type',
-            'barang.keluaran',
-            'barang.merk',
-            'barang.created_at',
-            'barang.no_imei',
-            'barang.kode',
-            'barang.kategori_barang_id',
-            'barang.id',
-            'barang.Kelengkapan',
-            'barang.user_id',
-            'barang.nama_barang',
-            'barang.updated_at',
-            'nasabah.no_anggota',
-            'nasabah.id',
-            'nasabah.kelurahan',
-            'nasabah.tttl',
-            'nasabah.nik',
-            'nasabah.alamat',
-            'nasabah.jk',
-            'nasabah.foto',
-            'nasabah.rt_rw',
-            'nasabah.kab_kota',
-            'nasabah.nama',
-            'nasabah.kecamatan'
-        )
 
-            ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
-            ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
-            ->where('transaksi_gadai.id', $id)->get();
+        $idTransaction = $id;
+        $data = transaksi::getDetailTransaction($id);
         $title = 'Transaksi Berhasil';
-        return view($this->view . 'detail_transaksi', compact('datatransaksi', 'title'));
+        return view($this->view . 'detail_transaksi', compact('data', 'title', 'idTransaction'));
     }
 
     /**
@@ -225,6 +173,42 @@ class TransaksiController extends Controller
      * @param  \App\Models\transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
+
+    function cetak_kwitansi($id)
+    {
+
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+        $backgroundImage = asset('assets/img/logo.png'); // replace with the actual path to your image
+        $mpdf->SetWatermarkImage($backgroundImage);
+        $mpdf->showWatermarkImage = true;
+
+        $mpdf->SetTitle('Cetak Kwitansi');
+        $data = transaksi::getDetailTransaction($id);
+        $render = view($this->view . 'cetak_kwitansi', compact('data'));
+        $mpdf->WriteHTML($render);
+        return $mpdf->Output();
+
+    }
+
+    function syarat_ketentuan($id)
+    {
+
+
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+        $backgroundImage = asset('assets/img/logo.png'); // replace with the actual path to your image
+        $mpdf->SetWatermarkImage($backgroundImage);
+        $mpdf->showWatermarkImage = true;
+        $mpdf->SetTitle('Syarat dan Ketentuan');
+        $data = transaksi::getDetailTransaction($id);
+        $render = view($this->view . 'syarat_ketentuan', compact('data'));
+        $mpdf->WriteHTML($render);
+        return $mpdf->Output();
+
+    }
+
+
+
     public function destroy(transaksi $transaksi)
     {
         //
