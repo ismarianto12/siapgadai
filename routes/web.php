@@ -43,7 +43,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
 
     Route::prefix('app')->name('app.')->group(function () {
         Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi');
-        Route::post('save_transaksi', [TransaksiController::class, 'index'])->name('save_transaksi');
+        Route::post('save_transaksi', [TransaksiController::class, 'save_transaksi'])->name('save_transaksi');
+        Route::get('detail_transaksi/{id}', [TransaksiController::class, 'detail_transaksi'])->name('detail_transaksi');
 
     });
     Route::prefix('laporan')->name('laporan.')->group(function () {

@@ -482,6 +482,10 @@ class Properti_app
     {
         return \DB::table('kategori_barang')->get();
     }
+    static function masterBarang()
+    {
+        return \DB::table('barang')->get();
+    }
     static function Jk()
     {
         return [

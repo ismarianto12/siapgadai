@@ -63,156 +63,228 @@
 
 
         </div>
-        <form class="actin" enctype="multipart/form-data">
-            <div class="row row-card-no-pd" style="padding: 10px">
-
-                <table class="cashtable">
-                    <thead>
-                        <tr>
-                            <th scope="col"><input type='checkbox' name='cbox[]' /></th>
-                            <th scope="col">Type Barang</th>
-                            <th scope="col">Nama Barang</th>
-                            <th scope="col">Keluaran</th>
-                            <th scope="col">Harga</th>
-                            <th scope="col">Limit Pinjaman</th>
-                            <th scope="col">Foto</th>
-                            <th scope="col"><button class="btn btn-icon btn-primary btn-round btn-xs"
-                                    id="_addtransaction">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="_render_content_body">
-                        <tr style="background: green">
-                            <td colspan="8">
-                                <h4 style="color: #fff">A. Data Barang</h4>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-
-                        <tr style="background: green">
-                            <td colspan="8">
-                                <h4 style="color: #fff">B. NO FAKTUR</h4>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>No. Kwitansi:</td>
-                            <td><input type="text" name="no_kwitansi" /></td>
-
-                            <td>No. Faktur :</td>
-                            <td><input type="text" name="no_kwitansi" /></td>
-
-
-                            <td>No. Anggota :</td>
-                            <td><input type="text" name="no_kwitansi" /></td>
-
-
-
-                            <td>Tanggal
-                                Jatuh Tempo :</td>
-                            <td><input type="text" name="no_kwitansi" /></td>
-                        </tr>
-
-                        <tr style="background: green">
-                            <td colspan="6">
-                                <h4 style="color: #fff">C. Data Nasabah</h4>
-                            </td>
-                            <td colspan="2">
-
-                                <select class="form-control">
-                                    <option value="">Pilih Dari Yang Sudah</option>
-                                    @foreach (Properti_app::Jk() as $jk => $val)
-                                        <option value="{{ $jk }}"> {{ $val }} </option>
-                                    @endforeach
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="text-right">Nama Nasabah </td>
-                            <td>
-                                <input type="text" name="jumlah_ambil" class="form-control" required />
-                            </td>
-
-                            <td>Nik</td>
-                            <td>
-                                <input type="text" name="jumlah_ambil" class="form-control" required />
-
-                            </td>
-                            <td>Jenis Kelamin</td>
-                            <td>
-                                <select class="form-control">
-                                    @foreach (Properti_app::Jk() as $jk => $val)
-                                        <option value="{{ $jk }}"> {{ $val }} </option>
-                                    @endforeach
-                                </select>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="text-right">Alamat
-                            </td>
-                            <td>
-                                <textarea type="text" name="alamat" class="form-control"></textarea>
-                            </td>
-                            <td>Rt/ Rw</td>
-                            <td>
-                                <input type="text" name="rt_rw" class="form-control" />
-                            </td>
-                            <td>Kelurahan</td>
-                            <td>
-                                <textarea type="text" name="kelurahan" class="form-control"></textarea>
-
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="text-right">Kecamatan
-                            </td>
-                            <td>
-                                <input type="text" name="kecamatan" class="form-control" />
-                            </td>
-                            <td>Kabupaten / Kota</td>
-                            <td>
-                                <input type="text" name="rt_rw" class="form-control" />
-                            </td>
-                            <td></td>
-                            <td>
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <th colspan="5" class="text-right">Maks Pinjaman </th>
-                            <td>
-                                <input type="text" name="jumlah_ambil" class="form-control" />
-                            </td>
-
-                            <td>@IDR</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <th colspan="5" class="text-right">Jumlah yang diambil
-                            </th>
-                            <td>
-                                <input type="text" name="jumlah_ambil" class="form-control" />
-                            </td>
-
-                            <td>@IDR</td>
-                        </tr>
-                    </tfoot>
-                </table>
-
-
+        <form class="simpan" method="POST" enctype="multipart/form-data">
+            <div class="alert alert-info">
+                <h4 style="color: #000000">A. NO FAKTUR</h4>
             </div>
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="card-body">
+
+
+                            <div class="form-group row">
+                                <label for="no_kwitansi" class="col-md-4 text-left">No. Kwitansi:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="no_kwitansi" name="no_kwitansi" class="form-control"
+                                        required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="no_faktur" class="col-md-4 text-left">No. Faktur:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="no_faktur" name="no_faktur" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="no_anggota" class="col-md-4 text-left">No. Anggota:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Tanggal Jatuh Tempo:</label>
+                                <div class="col-md-8">
+                                    <input type="date" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo"
+                                        class="datepicker form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Referal Code:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="referal_code" name="referal_code" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-info">
+                <h4 style="color: #000000">B. Data Barang</h4>
+            </div>
+
+            <div class="card">
+                <div class="card-body row">
+
+
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">Jenis Barang</label>
+                            <div class="col-md-10">
+                                <select name="jenis_barang" class="form-control" required>
+                                    <option value=""></option>
+                                    @foreach (Properti_app::masterBarang() as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">Type Barang</label>
+                            <div class="col-md-10">
+                                <input type="text" name="type" class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">Nama Barang</label>
+                            <div class="col-md-10">
+                                <input type="text" name="nama_barang" class="form-control" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">Tahun Barang</label>
+                            <div class="col-md-10">
+                                <input type="number" name="keluaran_tahun" class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">No. Imei</label>
+                            <div class="col-md-10">
+                                <input type="text" name="no_imei" class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">Kelengkapan</label>
+                            <div class="col-md-10">
+                                <input type="text" name="kelengkapan" class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">Foto Barang</label>
+                            <div class="col-md-10">
+                                <input type="file" name="foto_barang" class="form-control" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-danger">
+                <h4 style="color: #000">C. Data Nasabah</h4>
+            </div>
+            <div class="card">
+                <div class="card-body">
+
+                    <!-- First Row -->
+                    <div class="row">
+                        <!-- Left Column -->
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="nama_nasabah" class="col-md-2 text-left">Nama Nasabah:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control"
+                                        required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="nik" class="col-md-2 text-left">NIK:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="nik" name="nik" class="form-control" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="jenis_kelamin" class="col-md-2 text-left">Jenis Kelamin:</label>
+                                <div class="col-md-8">
+                                    <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
+                                        @foreach (Properti_app::Jk() as $item => $val)
+                                            <option value="{{ $item }}">{{ $val }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="alamat" class="col-md-2 text-left">Alamat:</label>
+                                <div class="col-md-8">
+                                    <textarea id="alamat" name="alamat"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="rt_rw" class="col-md-2 text-left">Rt/Rw:</label>
+                                <div class="col-md-4">
+                                    <input type="text" id="rt_rw" name="rt_rw" class="form-control" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="kelurahan" class="col-md-2 text-left">Kelurahan:</label>
+                                <div class="col-md-4">
+                                    <textarea id="kelurahan" name="kelurahan" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="kecamatan" class="col-md-2 text-left">Kecamatan:</label>
+                                <div class="col-md-4">
+                                    <input type="text" id="kecamatan" name="kecamatan" class="form-control"
+                                        required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="kabupaten_kota" class="col-md-2 text-left">Kabupaten/Kota:</label>
+                                <div class="col-md-4">
+                                    <input type="text" id="kabupaten_kota" name="kabupaten_kota" class="form-control"
+                                        required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br /><br /><br />
+                    <!-- Second Row -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="maks_pinjaman" class="form-label">Maks Pinjaman:</label>
+                            <input type="text" id="maks_pinjaman" name="maks_pinjaman" class="form-control"
+                                required />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="jumlah_diambil" class="form-label">Jumlah yang diambil:</label>
+                            <input type="text" id="jumlah_diambil" name="jumlah_diambil" class="form-control"
+                                required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="card-footer row"
                 style="
         position: fixed;
@@ -247,6 +319,95 @@
             });
 
             $(function() {
+                $('.simpan').on('submit', function(e) {
+                    e.preventDefault();
+                    var datastring = new FormData(this);
+                    Swal.fire({
+                        title: 'Menyimpan data transaksi...',
+                        allowOutsideClick: false,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                    });
+                    Swal.showLoading();
+
+                    $.ajax({
+                        url: "{{ route('app.save_transaksi') }}",
+                        method: "POST",
+                        data: datastring,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function() {
+                            $.notify({
+                                icon: 'flaticon-loading-1',
+                                title: 'Processing',
+                                message: 'Sedang Memproses Penyimpanan Data .....',
+                            }, {
+                                type: 'secondary',
+                                placement: {
+                                    from: "center",
+                                    align: "right"
+                                },
+                                time: 1000,
+                                z_index: 2000
+                            });
+                        },
+                        success: function(data) {
+                            var id_transaction = data.idtransaksi;
+                            $.pjax({
+                                container: '#pjax-container',
+                                url: '{{ Url('app/detail_transaksi') }}/' + id_transaction,
+                                push: false
+                            });
+
+
+                            Swal.fire('success', 'Transaksi berhasil', 'success');  
+
+                            $.notify({
+                                icon: 'flaticon-alarm-1',
+                                title: 'Info',
+                                message: 'Berhasil di Simpan',
+                            }, {
+                                type: 'secondary',
+                                placement: {
+                                    from: "center",
+                                    align: "right"
+                                },
+                                time: 1000,
+                                z_index: 2000
+                            });
+                        },
+                        error: function(data) {
+                            var div = $('#container');
+                            setInterval(function() {
+                                var pos = div.scrollTop();
+                                div.scrollTop(pos + 2);
+                            }, 10)
+                            err = '';
+                            respon = data.responseJSON;
+                            $.each(respon.errors, function(index, value) {
+                                err += "<li>" + value + "</li>";
+                            });
+
+                            Swal.fire('error', err, 'error data');
+                            $.notify({
+                                icon: 'flaticon-alarm-1',
+                                title: 'Opp Seperti nya lupa inputan berikut :',
+                                message: err,
+                            }, {
+                                type: 'secondary',
+                                placement: {
+                                    from: "top",
+                                    align: "right"
+                                },
+                                time: 3000,
+                                z_index: 2000
+                            });
+
+                        }
+                    })
+                });
+
                 $('.ayamayam').hide();
                 $('#add_data').on('click', function() {
                     $('#formmodal').modal('show');
@@ -335,64 +496,6 @@
                         }
                     })
                 })
-
-                let number = 1;
-                $("#_addtransaction").on('click', function(e) {
-                    e.preventDefault();
-                    $('._render_content_body').append(`
-                    <tr>
-                        <td>${number}</td>
-                        <td>
-                            <input type="hidden" name="transaction_id" value="${number}" />
-                            <select name="tipe_barang">  
-                            <option value=""></option>
-                                @foreach (Properti_app::tipe_barang() as $type)
-                                <option value={{ $type->id }}> {{ $type->nama_kategori }}</option> 
-                                @endforeach
-                            </td>
-                        <td><input type="text" name="nama_barang" id="nama_barang${number}"><button class="btn btn-icon btn-danger btn-round btn-xs">
-                                <i class="fa fa-search" id="bandingkan_harga${number}"></i>
-                            </button></td>
-                            <td><input type="text" name="keluaran[]" id="keluaran_${number}">
-                                <br />
-                                <label>Imei</label>
-                                <br />
-                                <input type="text" name="keluaran[]" id="keluaran_${number}">
-                                </td>
-                            <td><input type="decimal" name="harga[]" id="harga_${number}"></td> 
-                        <td><input type="text" name="limit_pinjaman[]" id="limit_pinjaman_${number}" placeholder="dalam persen"></td>
-                        <td><input type="file" name="foto[]">
-                            <input type="file" name="foto[]">
-                            <input type="file" name="foto[]">
-                            
-                            </td>
-                        <td colspan="2"><button class="btn btn-icon btn-danger btn-round btn-xs" id="_remove_transaction">
-                                <i class="fa fa-minus"></i>
-                            </button></td>  
-                    </tr>  
-              `);
-                    $(`#bandingkan_harga${number}`).on("click", function() {
-                        let katakunci = $(`input[name="nama_barang${number}"]`).val();
-                        window.open(`https://www.google.com/search?q=${katakunci}+indonesia`, '_blank');
-                    });
-                    number++;
-                })
-                $("._render_content_body").on('click', '#_remove_transaction', function(e) {
-                    e.preventDefault();
-                    Swal.fire({
-                        title: "Anda Yakin? ",
-                        text: "Menghapus data transaksi ini",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Ok"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $(this).parent().parent().remove();
-                        }
-                    })
-                });
                 $('.js-example-basic-single').select2({
                     width: '100%'
                 });

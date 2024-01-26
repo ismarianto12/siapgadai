@@ -1,6 +1,6 @@
-// $('.datepicker').datetimepicker({
-//     format: 'YYYY-MM-DD',
-// });
+$('.datepicker').datetimepicker({
+    format: 'YYYY-MM-DD',
+});
 // //btn reload
 // $('#btnReload, #btnRead').on('click', function () {
 //     waitForContent();

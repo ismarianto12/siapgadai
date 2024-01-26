@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class transaksi extends Model
 {
     use HasFactory;
+
+    protected $table = 'transaksi_gadai';
+    public $incrementing = false;
+    public $datetime = false;
+    protected $guarded = [];
 }
