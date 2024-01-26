@@ -1,11 +1,40 @@
 @extends('layouts.template')
 @section('content')
+    <style>
+        iframe {
+            width: 100%;
+            height: 600px !important;
+            border: 0;
+        }
+    </style>
+
+
     <div class="col-md-12">
+
+        <!-- Modal -->
+        <div class="modal fade" id="formmodal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document" style=" min-width: 85%;">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="title">
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="form_content">
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="card" style="margin-top: 40px">
             <div class="card-header">
             </div>
-
             <div class="card-body text-center">
                 <img src="{{ asset('assets/img/logo.png') }}" class="img-responsive" style="width: 10%" />
                 <h3>Transaksi Berhasil</h3>
@@ -61,7 +90,6 @@
                                     <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Referal Code:</label>
                                     <div class="col-md-8">
                                         {{ $data->jatuh_tempo }}
-
                                     </div>
                                 </div>
                             </div>
@@ -78,26 +106,24 @@
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">Jenis Barang</label>
                                 <div class="col-md-10">
-                                    <select name="jenis_barang" class="form-control" required>
-                                        <option value=""></option>
-                                        @foreach (Properti_app::masterBarang() as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
-                                        @endforeach
-                                    </select>
+                                    {{ $data->jatuh_tempo }}
+
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">Type Barang</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="type" class="form-control" required />
+                                    {{ $data->type_barang }}
+
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">Nama Barang</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="nama_barang" class="form-control" required />
+                                    {{ $data->nama_barang }}
+
                                 </div>
                             </div>
                         </div>
@@ -107,28 +133,29 @@
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">Tahun Barang</label>
                                 <div class="col-md-10">
-                                    <input type="number" name="keluaran_tahun" class="form-control" required />
+                                    {{ $data->keluaran_tahun }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">No. Imei</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="no_imei" class="form-control" required />
+                                    {{ $data->no_imei }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">Kelengkapan</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="kelengkapan" class="form-control" required />
+                                    {{ $data->kelengkapan }}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">Foto Barang</label>
                                 <div class="col-md-10">
-                                    <input type="file" name="foto_barang" class="form-control" required />
+                                    <img src="{{ Url('./file_gadai/' . $data->foto) }}" class="form-control"
+                                        style="width:90%" />
                                 </div>
                             </div>
                         </div>
@@ -147,33 +174,28 @@
                                 <div class="form-group row">
                                     <label for="nama_nasabah" class="col-md-2 text-left">Nama Nasabah:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control"
-                                            required />
+                                        {{ $data->nama_nasabah }}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="nik" class="col-md-2 text-left">NIK:</label>
                                     <div class="col-md-8">
-                                        <input type="text" id="nik" name="nik" class="form-control"
-                                            required />
+                                        {{ $data->nama_nasabah }}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="jenis_kelamin" class="col-md-2 text-left">Jenis Kelamin:</label>
                                     <div class="col-md-8">
-                                        <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
-                                            @foreach (Properti_app::Jk() as $item => $val)
-                                                <option value="{{ $item }}">{{ $val }}</option>
-                                            @endforeach
-                                        </select>
+                                        {{ $data->jenis_kelamin }}
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="alamat" class="col-md-2 text-left">Alamat:</label>
                                     <div class="col-md-8">
-                                        <textarea id="alamat" name="alamat" class="form-control"></textarea>
+                                        {{ $data->alamat }}
                                     </div>
                                 </div>
                             </div>
@@ -183,31 +205,29 @@
                                 <div class="form-group row">
                                     <label for="rt_rw" class="col-md-2 text-left">Rt/Rw:</label>
                                     <div class="col-md-4">
-                                        <input type="text" id="rt_rw" name="rt_rw" class="form-control"
-                                            required />
+                                        {{ $data->rt_rw }}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="kelurahan" class="col-md-2 text-left">Kelurahan:</label>
                                     <div class="col-md-4">
-                                        <textarea id="kelurahan" name="kelurahan" class="form-control"></textarea>
+                                        {{ $data->kelurahan }}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="kecamatan" class="col-md-2 text-left">Kecamatan:</label>
                                     <div class="col-md-4">
-                                        <input type="text" id="kecamatan" name="kecamatan" class="form-control"
-                                            required />
+                                        {{ $data->kecamatan }}
+
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="kabupaten_kota" class="col-md-2 text-left">Kabupaten/Kota:</label>
                                     <div class="col-md-4">
-                                        <input type="text" id="kabupaten_kota" name="kabupaten_kota"
-                                            class="form-control" required />
+                                        {{ $data->kabupaten }}
                                     </div>
                                 </div>
                             </div>
@@ -240,17 +260,31 @@
                 background: white;
             ">
                     <div class="col-md-6">
-                        <a href="{{ Url('app/transaksi/cetak_kwitansi/' . $idTransaction) }}"
-                            class="btn btn-danger btn-block" target="_blank"><b>Cetak Kwitansi</b></a>
+                        <button to="{{ Url('app/transaksi/cetak_kwitansi/' . $idTransaction) }}"
+                            class="detail_pdf btn btn-danger btn-block"><b>Cetak Kwitansi</b></button>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{ Url('app/transaksi/syarat_ketentuan/' . $idTransaction) }}"
-                            class="btn btn-info btn-block" target="_blank"><b>Cetak
-                                Syarat dan kondisi</b></a>
+                        <button to="{{ Url('app/transaksi/syarat_ketentuan/' . $idTransaction) }}"
+                            class="detail_pdf btn btn-info btn-block"><b>Cetak
+                                Syarat dan kondisi</b></button>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <script>
+        $(function() {
+            $('.detail_pdf').on('click', function(e) {
+                e.preventDefault();
+                $('#formmodal').modal('show');
+                var pdffile = $(this).attr('to');
+                $('#form_content').html(`
+                        <iframe src="${pdffile}" frameborder="0" allowfullscreen></iframe>
+
+                `);
+            });
+        });
+    </script>
 @endsection

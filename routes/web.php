@@ -12,6 +12,8 @@ use App\Http\Controllers\LaporanPegadaianController;
 use App\Http\Controllers\LaporanPendapatanController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PelunasanController;
+use App\Http\Controllers\PenagihanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TmpGuruController;
@@ -43,8 +45,15 @@ Route::group(['middleware' => ['auth', 'api']], function () {
 
     Route::prefix('app')->name('app.')->group(function () {
         Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+        Route::get('return_transaksi', [TransaksiController::class, 'return_transaksi'])->name('return_transaksi');
+        Route::get('pelunasan', [PelunasanController::class, 'index'])->name('pelunasan');
+        Route::get('penagihan', [PenagihanController::class, 'index'])->name('penagihan');
+
+
         Route::post('save_transaksi', [TransaksiController::class, 'save_transaksi'])->name('save_transaksi');
         Route::get('detail_transaksi/{id}', [TransaksiController::class, 'detail_transaksi'])->name('detail_transaksi');
+
+
         Route::prefix('transaksi')->name('transaksi.')->group(function () {
             Route::get('cetak_kwitansi/{id}', [TransaksiController::class, 'cetak_kwitansi'])->name('cetak_kwitansi');
             Route::get('syarat_ketentuan/{id}', [TransaksiController::class, 'syarat_ketentuan'])->name('syarat_ketentuan');
@@ -62,7 +71,7 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::post('kategori', [KategoryBarangController::class, 'api'])->name('kategori');
 
         // api
-        Route::get('pegadaian', [LaporanPegadaianController::class, 'api'])->name('pegadaian');
+        Route::post('laporan_pegadaian', [LaporanPegadaianController::class, 'api'])->name('laporan_pegadaian');
         Route::post('pendapatan', [LaporanPendapatanController::class, 'api'])->name('pendapatan');
 
         Route::post('user', [UserController::class, 'api'])->name('user');

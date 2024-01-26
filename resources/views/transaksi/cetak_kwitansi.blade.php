@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header Surat</title>
+    <title>KWITANSI GADAI</title>
     <style>
-        /* Gaya CSS dapat ditambahkan di sini */
+        .custom-hr {
+            border: none;
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(to left, #ccc 50%, #555 50%);
+        }
+
         body {
             font-family: Arial, sans-serif;
         }
@@ -48,19 +54,19 @@
             <tr>
                 <td>
                     <img src="{{ asset('assets/img/logo.png') }}" style="width: 50%" />
-                    <p>&nbsp;<strong>Jalan Raya Kali Krukut&nbsp;</strong></p>
+                    <p>&nbsp;<strong>{{ Properti_app::getCabang($data->cabang_id, 'nama_cabang') }}&nbsp;</strong></p>
                 </td>
                 <td colspan="3">
                     <p style="text-align:center"><strong>KWITANSI PELUNASAN&nbsp;</strong></p>
                 </td>
             </tr>
             <tr>
-                <td><strong>No. Telp : 0852-1007-1462&nbsp;</strong></td>
+                <td><strong>No. Telp : {{ Properti_app::getCabang($data->cabang_id, 'no_telp') }}&nbsp;</strong></td>
                 <td>
                     <p>No. Kwitansi</strong></p>
                 </td>
                 <td>:</td>
-                <td>32131</td>
+                <td>{{ $data->no_kwitansi }}</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
@@ -68,7 +74,7 @@
                     <p>No. Faktur&nbsp;</strong></p>
                 </td>
                 <td>&nbsp;</td>
-                <td>1231313</td>
+                <td>{{ $data->no_faktur }}</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
@@ -76,7 +82,7 @@
                     <p><strong>No. Anggota&nbsp;</strong></p>
                 </td>
                 <td>&nbsp;</td>
-                <td>131231</td>
+                <td>{{ $data->no_anggota }}</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
@@ -92,12 +98,13 @@
                     <p><strong>Jatuh Tempo&nbsp;</strong></p>
                 </td>
                 <td>&nbsp;</td>
-                <td>2023-1230-123</td>
+                <td>{{ $data->tanggal_jatuh_tempo }}</td>
             </tr>
         </tbody>
     </table>
 
-    <hr />
+    <img src="{{ asset('assets/img/horizontal.png') }}" style="width: 100%;height:auto" />
+
 
     <table cellpadding="0" cellspacing="0">
         <tbody>
@@ -131,7 +138,7 @@
                 <td style="vertical-align:top">
                     :
                 </td>
-                <td style="vertical-align:top">{{ $data->alamat }}</td>
+                <td style="vertical-align:top">{{ $data->merk }}</td>
             </tr>
             <tr>
                 <td style="vertical-align:top">
@@ -140,13 +147,15 @@
                 <td style="vertical-align:top">
                     :
                 </td>
-                <td style="vertical-align:top"></td>
+                <td style="vertical-align:top">{{ $data->rt_rw }}</td>
                 <td style="vertical-align:top">
                     Type
                 </td>
                 <td style="vertical-align:top">
                     :
                 </td>
+                <td style="vertical-align:top">{{ $data->type }}</td>
+
             </tr>
             <tr>
                 <td style="vertical-align:top">
@@ -155,13 +164,14 @@
                 <td style="vertical-align:top">
                     :
                 </td>
-                <td style="vertical-align:top"></td>
+                <td style="vertical-align:top">{{ $data->kelurahan }}</td>
                 <td style="vertical-align:top">
                     No. Imei
                 </td>
                 <td style="vertical-align:top">
                     :
                 </td>
+                <td style="vertical-align:top">{{ $data->no_imei }}</td>
             </tr>
             <tr>
                 <td style="vertical-align:top">
@@ -170,6 +180,8 @@
                 <td style="vertical-align:top">
                     :
                 </td>
+                <td style="vertical-align:top">{{ $data->kecamatan }}</td>
+
                 <td style="vertical-align:top"></td>
                 <td style="vertical-align:top">
                     Kelengkapan
@@ -177,6 +189,7 @@
                 <td style="vertical-align:top">
                     :
                 </td>
+                <td style="vertical-align:top">{{ $data->kelengkapan }}</td>
             </tr>
             <tr>
                 <td style="vertical-align:top">
@@ -185,12 +198,14 @@
                 <td style="vertical-align:top">
                     :
                 </td>
+                <td style="vertical-align:top">{{ $data->kab_kota }}</td>
+
                 <td style="vertical-align:top"></td>
                 <td style="vertical-align:top">
                     Maks Pinjaman
                 </td>
                 <td style="vertical-align:top">
-                    : Rp.
+                    : Rp. {{ $data->maks_pinjam }}
                 </td>
             </tr>
             <tr>
@@ -198,7 +213,7 @@
                     Jumlah Pinjaman
                 </td>
                 <td style="vertical-align:top">
-                    : Rp.
+                    : Rp. {{ $data->jumlah_pinjaman }}
                 </td>
             </tr>
             <tr>
@@ -237,12 +252,15 @@
                 <td>
                     <p style="text-align: center;">Staff SGI</p>
                     <p>(…....................)</p>
+                    {{ Auth::user()->username }}
 
                 </td>
 
                 <td>
                     <p style="text-align: center;">Nasabah</p>
                     <p>(….....................)</p>
+                    {{ $data->nama_nasabah }}
+
                 </td>
             </tr>
         </table>

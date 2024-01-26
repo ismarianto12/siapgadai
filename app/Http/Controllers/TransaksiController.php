@@ -9,6 +9,7 @@ use DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Mpdf\Mpdf;
+use Properti_app;
 
 class TransaksiController extends Controller
 {
@@ -103,11 +104,12 @@ class TransaksiController extends Controller
                 'tttl' => $this->request->tttl,
                 'nik' => $this->request->nik,
                 'alamat' => $this->request->alamat,
-                'jk' => $this->request->jk,
+                'jk' => $this->request->jenis_kelamin,
                 'rt_rw' => $this->request->rt_rw,
-                'kab_kota' => $this->request->kab_kota,
-                'nama' => $this->request->nama,
+                'kab_kota' => $this->request->kabupaten_kota,
+                'nama' => $this->request->nama_nasabah,
                 'kecamatan' => $this->request->kecamatan,
+                'no_hp' => $this->request->no_hp,
             ];
 
             $lastInsertedId = \DB::table('nasabah')->insertGetId($nasabah);
@@ -115,29 +117,34 @@ class TransaksiController extends Controller
                 'imei' => $this->request->imei,
                 'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
                 'menyetujui_staff_sgi' => $this->request->menyetujui_staff_sgi,
-                'tanggal' => $this->request->tanggal,
                 'durasi_pelunasan' => $this->request->durasi_pelunasan,
                 'perpajangan' => $this->request->perpajangan,
                 'keluaran_tahun' => $this->request->keluaran_tahun,
-                'administrasi' => $this->request->administrasi,
+                'administrasi' => Properti_app::removeTag($this->request->administrasi),
+                'no_imei' => $this->request->no_imei,
+                'kelengkapan' => $this->request->kelengkapan,
                 'foto_barang' => $setname,
                 'updated_at' => $this->request->updated_at,
                 'id_barang' => $this->request->id_barang,
-
                 'no_faktur' => $this->request->no_faktur,
                 'user_id' => $this->request->user_id,
                 'no_anggota' => $this->request->no_anggota,
                 'pelunasan' => $this->request->pelunasan,
-                'id_nasabah' => $lastInsertedId,
-                'jatuh_tempo' => $this->request->jatuh_tempo,
+            'id_nasabah' => $lastInsertedId,
                 'jasa_titip' => $this->request->jasa_titip,
-                'jumlah_pinjaman' => $this->request->jumlah_pinjaman,
+                'jumlah_pinjaman' => Properti_app::removeTag($this->request->jumlah_diambil),
                 'total' => $this->request->total,
                 'merk' => $this->request->merk,
-                'maks_pinjaman' => $this->request->maks_pinjaman,
-                'created_at' => $this->request->created_at,
+                'cabang_id' => Auth::user()->cabang_id,
+                'maks_pinjaman' => Properti_app::removeTag($this->request->inputmaksimal_pinjam),
                 'no_kwitansi' => $this->request->no_kwitansi,
+                'tanggal_jatuh_tempo' => $this->request->tgl_jatuh_tempo,
                 'referal_code' => $this->request->referal_code,
+                'type' => $this->request->type,
+                'merek_barang' => $this->request->merek_barang,
+                'tujuan_gadai'=> $this->request->tujuan_gadai,
+                'created_at' => date('Y-m-d H:i:s'),
+
             ];
             $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($trasaksi);
             \DB::commit();
@@ -152,11 +159,14 @@ class TransaksiController extends Controller
                 'messages' => $e->getMessage()
             ], 500);
 
-            // return "Error: " . $e->getMessage();
         }
 
     }
-
+    function return_transaksi()
+    {
+        $title = 'Return Transaction';
+        return view($this->view . 'return_transaksi', compact('title'));
+    }
     public function detail_transaksi($id)
     {
 

@@ -102,6 +102,23 @@ class Menu_app
                     <div class="collapse" id="transaksi">
                         <ul class="nav nav-collapse">';
                     $menu .= self::set_menu(Url('app/transaksi'), 'Transaksi');
+                    $menu .= self::set_menu(Url('app/return_transaksi'), 'Batalkan Transaksi');
+
+                    $menu .= '
+                      </ul>
+                    </div>
+                </li>';
+
+                    $menu .= '<li class="nav-item">
+                    <a data-toggle="collapse" href="#pelunasan">
+                        <i class="flaticon-coins text-success"></i>
+                        <p>Penagihan  </p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="pelunasan">
+                        <ul class="nav nav-collapse">';
+                    $menu .= self::set_menu(Url('app/penagihan'), 'Penagihan');
+                    $menu .= self::set_menu(Url('app/pelunasan'), 'Pelunasan'); 
                     $menu .= '
                       </ul>
                     </div>

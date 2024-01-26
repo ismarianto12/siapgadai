@@ -493,4 +493,34 @@ class Properti_app
             '2' => 'Perempuan'
         ];
     }
+    static function getCabang($param_id, $parameter = 'default_parameter')
+    {
+        try {
+            $data = \DB::table('cabang')->where('id', '1')->get();
+
+            if ($data->isEmpty()) {
+                throw new \Exception('Branch not found.');
+            }
+
+            $namaCabang = isset($data->first()->$parameter) ? $data->first()->$parameter : '';
+
+            return $namaCabang;
+        } catch (\Exception $e) {
+            // Handle the exception according to your application's needs.
+            // For example, you can log the error or return a default value.
+            return 'Error: ' . $e->getMessage();
+        }
+    }
+
+    static function removeTag($inputString)
+    {
+        // Ganti tanda titik dengan spasi
+        $stringTanpaTitik = str_replace('.', ' ', $inputString);
+
+        // Ganti karakter spasi dengan karakter underscore
+        $stringTanpaTitikDanSpasi = str_replace(' ', '_', $stringTanpaTitik);
+
+        return $stringTanpaTitikDanSpasi;
+    }
+
 }

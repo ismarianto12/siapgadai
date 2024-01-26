@@ -3,15 +3,29 @@
     @include('layouts.breadcum')
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                <div class="d-flex align-items-right">
-                    <button class="btn btn-primary btn-round ml-auto btn-sm" id="add_data">
-                        <i class="fa fa-plus"></i>
-                        Add Row
+            {{-- <form cas --}}
+            <div class="card-header row">
+
+                <div class="form-group row">
+                    <label class="col-md-3 text-left">Dari</label>
+                    <div class="col-md-9">
+                        <input type="date" name='dari' class="form-control" id="dari" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 text-left">Sampai</label>
+                    <div class="col-md-9">
+                        <input type="date" name='sampai' class="form-control" id="sampai" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <button class="searchdata btn btn-info btn-round btn-sm">
+                        <i class="flaticon-search-2"></i>
+                        Search
                     </button>
-                    <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
-                        <i class="fa fa-minus"></i>
-                        Delete selected
+                    <button class="cleardata btn btn-danger btn-round btn-sm">
+                        <i class="flaticon-search-2"></i>
+                        Clear
                     </button>
                 </div>
             </div>
@@ -36,50 +50,26 @@
                     </div>
                 </div>
 
-                <form id="exampleValidation" method="POST" class="simpan">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            
-                                {{-- @php
-                                    echo Properti_app::comboproyek();
-                                @endphp --}}
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
                 <div class="table-responsive">
                     <table id="datatable" class="display table table-striped table-hover">
                         <thead>
+
                             <tr>
-                                <th></th>
-                                <th>Nama Proyek</th>
-                                <th>Bangunan</th>
-                                <th>Jenis RAP </th>
-                                <th>Pekerjaan</th>
-                                <th>Volume</th>
-                                <th>Satuan</th>
-                                <th>Harga Satuan</th>
-                                <th>Jumlah Harga</th>
-                                <th>Di input Oleh</th>
+                                <th>No.</th>
+                                <th>Nama</th>
+                                <th>Nama Barang</th>
+                                <th>No. Imei</th>
+                                <th>No Hanphpone</th>
+                                <th>Alamat</th>
+                                <th>Maks Pinjaman</th>
+                                <th>Jumlah Pinjaman</th>
+                                <th>Administrasi</th>
+                                <th>Jasa Titip</th>
+                                <th>Jumlah Diambil</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Nama Proyek</th>
-                                <th>Bangunan</th>
-                                <th>Jenis RAP </th>
-                                <th>Pekerjaan</th>
-                                <th>Volume</th>
-                                <th>Satuan</th>
-                                <th>Harga Satuan</th>
-                                <th>Jumlah Harga</th>
-                                <th>Di input Oleh</th>
-                                <th style="width: 10%">Action</th>
-                            </tr>
-                        </tfoot>
+
                         <tbody>
                         </tbody>
                     </table>
@@ -115,6 +105,7 @@
             })
         });
         // table data
+        $.fn.dataTable.ext.errMode = 'throw';
         var table = $('#datatable').DataTable({
             dom: 'Bfrtip',
             buttons: [{
@@ -141,59 +132,64 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ Url('/transaksi') }}",
+                url: "{{ route('api.laporan_pegadaian') }}",
                 method: 'POST',
                 data: function(data) {
-                    data.tmproyek_id = $('#tmproyek_id').val();
+                    data.dari = $('#dari').val();
+                    data.sampai = $('#sampai').val();
+
                 },
                 _token: "{{ csrf_token() }}",
             },
             columns: [{
-                    data: 'id',
-                    name: 'nama_proyek',
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
                     orderable: false,
                     searchable: false,
                     align: 'center',
                     className: 'text-center'
+
                 },
                 {
-                    data: 'namaproyek',
-                    name: 'namaproyek'
+                    data: 'nama',
+                    name: 'nama'
                 },
                 {
-                    data: 'namabangunan',
-                    name: 'namabangunan',
+                    data: 'nama_barang',
+                    name: 'nama_barang'
                 },
                 {
-                    data: 'jenisrapnama',
-                    name: 'jenisrapnama'
+                    data: 'no_imei',
+                    name: 'no_imei'
                 },
                 {
-                    data: 'pekerjaan',
-                    name: 'pekerjaan'
+                    data: 'no_handphone',
+                    name: 'no_handphone',
                 },
                 {
-                    data: 'volume',
-                    name: 'volume'
+                    data: 'alamat',
+                    name: 'alamat'
                 },
                 {
-                    data: 'satuan',
-                    name: 'satuan'
+                    data: 'maks_pinjaman',
+                    name: 'maks_pinjaman'
+                },
+                {
+                    data: 'jumlah_pinjaman',
+                    name: 'jumlah_pinjaman'
+                },
+                {
+                    data: 'administrasi',
+                    name: 'administrasi'
                 },
 
                 {
-                    data: 'harga_satuan',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'harga_satuan'
+                    data: 'jasa_titip',
+                    name: 'jasa_titipp'
                 },
                 {
-                    data: 'jumlah_harga',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'jumlah_harga'
-                },
-                {
-                    data: 'usercreate',
-                    name: 'usercreate'
+                    data: 'jumlah_diambil',
+                    name: 'jumlah_diambil'
                 },
                 {
                     data: 'action',
@@ -202,7 +198,14 @@
             ]
 
         });
-        $('select[name="tmproyek_id"]').on('change', function() {
+
+        $('.cleardata').on('click', function() {
+            $('#dari').val('');
+            $('#sampai').val('');
+            
+            $('#datatable').DataTable().ajax.reload();
+        });
+        $('.searchdata').on('click', function() {
             $('#datatable').DataTable().ajax.reload();
         });
         @include('layouts.tablechecked');
@@ -252,7 +255,5 @@
                 });
             }
         }
-       
-
     </script>
 @endsection

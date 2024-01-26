@@ -126,14 +126,12 @@
 
             <div class="card">
                 <div class="card-body row">
-
-
                     <!-- Left Column -->
                     <div class="col-md-6">
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Jenis Barang</label>
                             <div class="col-md-10">
-                                <select name="jenis_barang" class="form-control" required>
+                                <select name="id_barang" class="form-control" required>
                                     <option value=""></option>
                                     @foreach (Properti_app::masterBarang() as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
@@ -152,12 +150,36 @@
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Nama Barang</label>
                             <div class="col-md-10">
-                                <input type="text" name="nama_barang" class="form-control" required />
+                                <input type="text" name="merek_barang" class="form-control" required />
                             </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">Taksiran Harga</label>
+                            <div class="col-md-10">
+                                <input type="double" name="taksiran_harga" id="taksiran_harga"
+                                    class="number_format form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-6 text-left">Persentase Pinjaman</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+
+                                    <input type="text" name="persentase_pinjaman" id="persentase_pinjaman"
+                                        class="form-control" required />
+                                    <span class="input-group-addon">%</span>
+
+                                </div>
+
+
+                            </div>
+                            <div class="invalid-feedback" id="customError_persentase"></div>
+
                         </div>
                     </div>
 
-                    <!-- Right Column -->
                     <div class="col-md-6">
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Tahun Barang</label>
@@ -165,7 +187,6 @@
                                 <input type="number" name="keluaran_tahun" class="form-control" required />
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label class="col-md-2 text-left">No. Imei</label>
                             <div class="col-md-10">
@@ -176,7 +197,7 @@
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Kelengkapan</label>
                             <div class="col-md-10">
-                                <input type="text" name="kelengkapan" class="form-control" required />
+                                <textarea type="text" name="kelengkapan" class="form-control" required></textarea>
                             </div>
                         </div>
 
@@ -186,16 +207,28 @@
                                 <input type="file" name="foto_barang" class="form-control" required />
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 text-left">Administrasi</label>
+                            <div class="col-md-10">
+                                <input type="text" name="administrasi" class="number_format form-control" required />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="alert alert-danger">
-                <h4 style="color: #000">C. Data Nasabah</h4>
+            <div class="alert alert-danger d-flex justify-content-between">
+                <div class="align-items-left">
+                    <h4 style="color: #000">C. Data Nasabah</h4>
+                </div>
+                <div class="align-items-right">
+                    <button class="btn btn-primary btn-round ml-auto btn-sm" id="add_data">
+                        <i class="fa fa-plus"></i>
+                        Pilih yang sudah ada
+                    </button>
+                </div>
             </div>
             <div class="card">
                 <div class="card-body">
-
-                    <!-- First Row -->
                     <div class="row">
                         <!-- Left Column -->
                         <div class="col-md-6">
@@ -227,7 +260,7 @@
                             <div class="form-group row">
                                 <label for="alamat" class="col-md-2 text-left">Alamat:</label>
                                 <div class="col-md-8">
-                                    <textarea id="alamat" name="alamat"></textarea>
+                                    <textarea id="alamat" name="alamat" class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -235,52 +268,50 @@
                         <!-- Right Column -->
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="rt_rw" class="col-md-2 text-left">Rt/Rw:</label>
-                                <div class="col-md-4">
+                                <label for="rt_rw" class="col-md-3 text-left">Rt/Rw:</label>
+                                <div class="col-md-9">
                                     <input type="text" id="rt_rw" name="rt_rw" class="form-control" required />
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="kelurahan" class="col-md-2 text-left">Kelurahan:</label>
-                                <div class="col-md-4">
+                                <label for="kelurahan" class="col-md-3 text-left">Kelurahan:</label>
+                                <div class="col-md-9">
                                     <textarea id="kelurahan" name="kelurahan" class="form-control"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="kecamatan" class="col-md-2 text-left">Kecamatan:</label>
-                                <div class="col-md-4">
+                                <label for="kecamatan" class="col-md-3 text-left">Kecamatan:</label>
+                                <div class="col-md-9">
                                     <input type="text" id="kecamatan" name="kecamatan" class="form-control"
                                         required />
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="kabupaten_kota" class="col-md-2 text-left">Kabupaten/Kota:</label>
-                                <div class="col-md-4">
+                                <label for="kecamatan" class="col-md-3 text-left">No Handphone:</label>
+                                <div class="col-md-9">
+                                    <input type="number" id="no_hp" name="no_hp" class="form-control" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="kabupaten_kota" class="col-md-3 text-left">Kabupaten/Kota:</label>
+                                <div class="col-md-9">
                                     <input type="text" id="kabupaten_kota" name="kabupaten_kota" class="form-control"
                                         required />
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="kabupaten_kota" class="col-md-3 text-left">Tujuan Gadai:</label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" name="tujuan_gadai"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     <br /><br /><br />
-                    <!-- Second Row -->
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="maks_pinjaman" class="form-label">Maks Pinjaman:</label>
-                            <input type="text" id="maks_pinjaman" name="maks_pinjaman" class="form-control"
-                                required />
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="jumlah_diambil" class="form-label">Jumlah yang diambil:</label>
-                            <input type="text" id="jumlah_diambil" name="jumlah_diambil" class="form-control"
-                                required />
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -290,14 +321,30 @@
         position: fixed;
         bottom: 0;
         margin: 0 auto;
-        width: 80%;
+        width: 93%;
         z-index: 999;
         background: white;
     ">
-                <div class="col-md-6">
+
+                <div class="container row">
+
+                    <div class="col-md-6">
+                        <label for="maks_pinjaman" class="form-label">Maks Pinjaman:</label>
+                        <input type="hidden" name="inputmaksimal_pinjam" id="inputmaksimal_pinjam" />
+                        <h1 class="maksimal_pinjaman"></h1>
+                    </div>
+
+                    <div class="col-md-6">
+                        &nbsp; <label for="jumlah_diambil" class="form-label">Jumlah yang diambil:</label>
+                        &nbsp;<input type="text" id="jumlah_diambil" name="jumlah_diambil"
+                            class="number_format form-control" required />
+                    </div>
+                </div>
+
+                <div class="col-md-6" style="margin-top: 25px">
                     <button class="cancel_transaction btn btn-danger btn-block"><b>Batal</b></button>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-top: 25px">
                     <button class="btn btn-info btn-block"><b>Simpan</b></button>
                 </div>
             </div>
@@ -313,97 +360,220 @@
 
         <script>
             // addd
+
+            function formatCurrency(input) {
+                let value = input.value.replace(/[^\d]/g, '');
+
+                value = new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format(value);
+
+                input.value = value;
+            }
+
             var elements = document.querySelectorAll('.wrapper');
             elements.forEach(function(element) {
                 element.classList.add('sidebar_minimize');
             });
 
             $(function() {
+                $('.number_format').keyup(function(event) {
+                    if (event.which >= 37 && event.which <= 40) return;
+                    $(this).val(function(index, value) {
+                        return value
+                            .replace(/\D/g, "")
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    });
+                });
+
+                function calculateTaksiranHarga() {
+                    var persentasePinjaman = parseFloat($('#persentase_pinjaman').val()) || 0;
+                    var hargaBarang = $('#taksiran_harga').val();
+                    var rhargaBarang = hargaBarang?.replace(/\./g, '');;
+                    console.log(rhargaBarang, 'dasd')
+                    var taksiranHarga = (persentasePinjaman / 100) * parseFloat(rhargaBarang);
+                    $('input[name="inputmaksimal_pinjam"]').val(taksiranHarga);
+                    var formattedTaksiranHarga = formatRupiah(taksiranHarga.toFixed(0));
+                    $('.maksimal_pinjaman').text(formattedTaksiranHarga);
+                }
+
+                function formatRupiah(angka) {
+                    if (angka == '') {
+                        $.notify({
+                            icon: 'flaticon-alarm-1',
+                            title: 'Silahkan Input Harga Barang',
+                            message: err,
+                        }, {
+                            type: 'secondary',
+                            placement: {
+                                from: "top",
+                                align: "right"
+                            },
+                            time: 3000,
+                            z_index: 2000
+                        });
+                    } else {
+                        var reverse = angka?.toString().split('').reverse().join('');
+                        var ribuan = reverse?.match(/\d{1,3}/g);
+                        var formatted = ribuan?.join('.').split('').reverse().join('');
+                        return formatted === undefined ? 'Silahkan masukan nilai' :
+                            'Rp ' + formatted;
+                    }
+                }
+
+                function validatePercentageInput() {
+                    var input = $('#persentase_pinjaman').val();
+                    var regex = /^(100(\.0{1,2})?|\d{1,2}(\.\d{1,2})?)$/;
+
+                    if (!regex.test(input)) {
+                        $('#persentase_pinjaman').addClass('is-invalid');
+                    } else {
+                        $('#persentase_pinjaman').removeClass('is-invalid');
+                        calculateTaksiranHarga()
+
+                    }
+                }
+
+                $('input[name="taksiran_harga"]').on('input', function() {
+                    var persentaseInput = $('#persentase_pinjaman').val();
+                    var regex = /^(100(\.0{1,2})?|\d{1,2}(\.\d{1,2})?)$/;
+
+                    if (persentaseInput.trim() === '') {
+                        $('#persentase_pinjaman').addClass('is-invalid');
+                        $('.invalid-feedback').html('Silahkan isi persentase pinjaman.');
+                    } else if (!regex.test(persentaseInput)) {
+                        $('#persentase_pinjaman').addClass('is-invalid');
+                        $('.invalid-feedback').html('Pastikan angka persen di antara 0 dan 100.');
+                    } else {
+                        $('#persentase_pinjaman').removeClass('is-invalid');
+                        $('.invalid-feedback').html('');
+
+                        calculateTaksiranHarga();
+                    }
+                });
+
+                $('input[name="jumlah_diambil"]').on('input', function() {
+                    var inputmaksimal_pinjam = parseInt($('input[name="inputmaksimal_pinjam"]').val());
+                    var jumlah_ambil = $(this).val();
+                    var valueJambil = parseInt(jumlah_ambil?.replace(/\./g, ''));
+                    console.log(valueJambil, 'adsa');
+                    console.log(inputmaksimal_pinjam, 'maks')
+
+                    console.log(valueJambil > inputmaksimal_pinjam, 'maks')
+                    if (valueJambil > inputmaksimal_pinjam) {
+                        Swal.fire('error',
+                            'Gagal Pastikan maksimal pinjaman harus sama atau lebih kecil dari nilai maksimal',
+                            'error');
+                        $('#jumlah_diambil').addClass('is-invalid');
+                    } else {
+                        $('#jumlah_diambil').removeClass('is-invalid');
+                    }
+                });
+
+                $('#persentase_pinjaman').on('input', function() {
+                    validatePercentageInput();
+                });
                 $('.simpan').on('submit', function(e) {
                     e.preventDefault();
-                    var datastring = new FormData(this);
+
                     Swal.fire({
-                        title: 'Menyimpan data transaksi...',
-                        allowOutsideClick: false,
-                        showCancelButton: false,
-                        showConfirmButton: false,
-                    });
-                    Swal.showLoading();
+                        title: "Sebelum Submit ",
+                        text: "Pastikan Semua data sudah benar",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Ok"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var datastring = new FormData(this);
+                            Swal.fire({
+                                title: 'Menyimpan data transaksi...',
+                                allowOutsideClick: false,
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                            });
+                            Swal.showLoading();
 
-                    $.ajax({
-                        url: "{{ route('app.save_transaksi') }}",
-                        method: "POST",
-                        data: datastring,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        beforeSend: function() {
-                            $.notify({
-                                icon: 'flaticon-loading-1',
-                                title: 'Processing',
-                                message: 'Sedang Memproses Penyimpanan Data .....',
-                            }, {
-                                type: 'secondary',
-                                placement: {
-                                    from: "center",
-                                    align: "right"
+                            $.ajax({
+                                url: "{{ route('app.save_transaksi') }}",
+                                method: "POST",
+                                data: datastring,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                beforeSend: function() {
+                                    $.notify({
+                                        icon: 'flaticon-loading-1',
+                                        title: 'Processing',
+                                        message: 'Sedang Memproses Penyimpanan Data .....',
+                                    }, {
+                                        type: 'secondary',
+                                        placement: {
+                                            from: "center",
+                                            align: "right"
+                                        },
+                                        time: 1000,
+                                        z_index: 2000
+                                    });
+
                                 },
-                                time: 1000,
-                                z_index: 2000
-                            });
-                        },
-                        success: function(data) {
-                            var id_transaction = data.idtransaksi;
-                            $.pjax({
-                                container: '#pjax-container',
-                                url: '{{ Url('app/detail_transaksi') }}/' + id_transaction,
-                                push: false
-                            });
+                                success: function(data) {
+                                    var id_transaction = data.idtransaksi;
+                                    $.pjax({
+                                        container: '#pjax-container',
+                                        url: '{{ Url('app/detail_transaksi') }}/' +
+                                            id_transaction,
+                                        push: false
+                                    });
 
 
-                            Swal.fire('success', 'Transaksi berhasil', 'success');  
+                                    Swal.fire('success', 'Transaksi berhasil', 'success');
 
-                            $.notify({
-                                icon: 'flaticon-alarm-1',
-                                title: 'Info',
-                                message: 'Berhasil di Simpan',
-                            }, {
-                                type: 'secondary',
-                                placement: {
-                                    from: "center",
-                                    align: "right"
+                                    $.notify({
+                                        icon: 'flaticon-alarm-1',
+                                        title: 'Info',
+                                        message: 'Berhasil di Simpan',
+                                    }, {
+                                        type: 'secondary',
+                                        placement: {
+                                            from: "center",
+                                            align: "right"
+                                        },
+                                        time: 1000,
+                                        z_index: 2000
+                                    });
                                 },
-                                time: 1000,
-                                z_index: 2000
-                            });
-                        },
-                        error: function(data) {
-                            var div = $('#container');
-                            setInterval(function() {
-                                var pos = div.scrollTop();
-                                div.scrollTop(pos + 2);
-                            }, 10)
-                            err = '';
-                            respon = data.responseJSON;
-                            $.each(respon.errors, function(index, value) {
-                                err += "<li>" + value + "</li>";
-                            });
+                                error: function(data) {
+                                    var div = $('#container');
+                                    setInterval(function() {
+                                        var pos = div.scrollTop();
+                                        div.scrollTop(pos + 2);
+                                    }, 10)
+                                    err = '';
+                                    respon = data.responseJSON;
+                                    $.each(respon.errors, function(index, value) {
+                                        err += "<li>" + value + "</li>";
+                                    });
 
-                            Swal.fire('error', err, 'error data');
-                            $.notify({
-                                icon: 'flaticon-alarm-1',
-                                title: 'Opp Seperti nya lupa inputan berikut :',
-                                message: err,
-                            }, {
-                                type: 'secondary',
-                                placement: {
-                                    from: "top",
-                                    align: "right"
-                                },
-                                time: 3000,
-                                z_index: 2000
-                            });
+                                    Swal.fire('error', err, 'error data');
+                                    $.notify({
+                                        icon: 'flaticon-alarm-1',
+                                        title: 'Opp Seperti nya lupa inputan berikut :',
+                                        message: err,
+                                    }, {
+                                        type: 'secondary',
+                                        placement: {
+                                            from: "top",
+                                            align: "right"
+                                        },
+                                        time: 3000,
+                                        z_index: 2000
+                                    });
 
+                                }
+                            })
                         }
                     })
                 });

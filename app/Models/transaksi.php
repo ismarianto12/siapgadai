@@ -19,6 +19,7 @@ class transaksi extends Model
     public static function getDetailTransaction($id)
     {
         return transaksi::select(
+            'transaksi_gadai.id',
             'transaksi_gadai.pelunasan',
             'transaksi_gadai.keluaran_tahun',
             'transaksi_gadai.imei',
@@ -30,25 +31,25 @@ class transaksi extends Model
             'transaksi_gadai.id_nasabah',
             'transaksi_gadai.referal_code',
             'transaksi_gadai.user_id',
-            'transaksi_gadai.jatuh_tempo',
+            'transaksi_gadai.tanggal_jatuh_tempo',
             'transaksi_gadai.jumlah_pinjaman',
-            'transaksi_gadai.id',
             'transaksi_gadai.perpajangan',
             'transaksi_gadai.jasa_titip',
             'transaksi_gadai.total',
             'transaksi_gadai.menyetujui_nasabah',
             'transaksi_gadai.maks_pinjaman',
+            'transaksi_gadai.tujuan',
             'transaksi_gadai.created_at',
             'transaksi_gadai.menyetujui_staff_sgi',
             'transaksi_gadai.no_anggota',
             'transaksi_gadai.administrasi',
             'transaksi_gadai.no_faktur',
-            'transaksi_gadai.tanggal',
+            'transaksi_gadai.no_imei',
+            'transaksi_gadai.cabang_id',
             'barang.type',
             'barang.keluaran',
             'barang.merk',
             'barang.created_at',
-            'barang.no_imei',
             'barang.kode',
             'barang.kategori_barang_id',
             'barang.id',
@@ -63,11 +64,13 @@ class transaksi extends Model
             'nasabah.nik',
             'nasabah.alamat',
             'nasabah.jk',
+            'nasabah.no_hp',
             'nasabah.foto',
             'nasabah.rt_rw',
             'nasabah.kab_kota',
             'nasabah.nama',
-            'nasabah.kecamatan'
+            'nasabah.kecamatan',
+
         )
 
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')

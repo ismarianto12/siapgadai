@@ -39,33 +39,50 @@
                 <form id="exampleValidation" method="POST" class="simpan">
                     <div class="card-body">
                         <div class="form-group row">
-
-                            {{-- @php
+                            
+                                {{-- @php
                                     echo Properti_app::comboproyek();
                                 @endphp --}}
-                        </div>
+                            </div>
 
+                        </div>
                     </div>
-            </div>
-            </form>
-            <div class="table-responsive">
-                <table id="datatable" class="display table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Kode</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>Di input Oleh</th>
-                            <th style="width: 10%">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                </form>
+                <div class="table-responsive">
+                    <table id="datatable" class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Kode</th>
+                                <th>Nama Barang</th>
+                                <th>Merk</th>
+                                <th>Tipe</th>
+                                <th>Keluaran</th>
+                                <th>Di input Oleh</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        {{-- <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Nama Proyek</th>
+                                <th>Bangunan</th>
+                                <th>Jenis RAP </th>
+                                <th>Pekerjaan</th>
+                                <th>Volume</th>
+                                <th>Satuan</th>
+                                <th>Harga Satuan</th>
+                                <th>Jumlah Harga</th>
+                                <th>Di input Oleh</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </tfoot> --}}
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
@@ -80,7 +97,7 @@
         $(function() {
             $('#add_data').on('click', function() {
                 $('#formmodal').modal('show');
-                addUrl = '{{ route('master.cabang.create') }}';
+                addUrl = '{{ route('master.barang.create') }}';
                 $('#form_content').html('<center><h3>Loading ...</h3></center>').load(addUrl);
             });
 
@@ -94,8 +111,8 @@
 
             })
         });
-        // table data
         $.fn.dataTable.ext.errMode = 'throw';
+        // table data
         var table = $('#datatable').DataTable({
             dom: 'Bfrtip',
             buttons: [{
@@ -122,32 +139,37 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ route('api.cabang') }}",
+                url: "{{ route('api.barang') }}",
                 method: 'POST',
-                data: function(data) {
-                    data.tmproyek_id = $('#tmproyek_id').val();
-                },
                 _token: "{{ csrf_token() }}",
             },
             columns: [{
                     data: 'id',
-                    name: 'kode_cabang',
+                    name: 'nama_proyek',
                     orderable: false,
                     searchable: false,
                     align: 'center',
                     className: 'text-center'
                 },
                 {
-                    data: 'nama_cabang',
-                    name: 'nama_cabang'
+                    data: 'kode',
+                    name: 'kode'
                 },
                 {
-                    data: 'alamat_cabang',
-                    name: 'alamat_cabang',
+                    data: 'nama_barang',
+                    name: 'nama_barang',
                 },
                 {
-                    data: 'name_user',
-                    name: 'name_user'
+                    data: 'merk',
+                    name: 'merk'
+                },
+                {
+                    data: 'type',
+                    name: 'type'
+                },
+                {
+                    data: 'keluaran',
+                    name: 'keluaran'
                 },
                 {
                     data: 'name_user',
@@ -158,6 +180,7 @@
                     name: 'action'
                 }
             ]
+
         });
         $('select[name="tmproyek_id"]').on('change', function() {
             $('#datatable').DataTable().ajax.reload();
@@ -172,7 +195,7 @@
             if (c.length == 0) {
                 $.alert("Silahkan memilih data yang akan dihapus.");
             } else {
-                $.post("{{ route('master.cabang.destroy', ':id') }}", {
+                $.post("{{ Url('/', ':id') }}", {
                     '_method': 'DELETE',
                     'id': c
                 }, function(data) {
