@@ -260,11 +260,17 @@
                 z-index: 999;
                 background: white;
             ">
-                    <div class="col-md-6">
+
+                    <div class="col-md-4">
+                        <button to="{{ Url('app/transaksi/cetak_barcode/' . $idTransaction) }}"
+                            class="detail_pdf btn btn-info btn-block"><b>Cetak
+                                Barcode barang</b></button>
+                    </div>
+                    <div class="col-md-4">
                         <button to="{{ Url('app/transaksi/cetak_kwitansi/' . $idTransaction) }}"
                             class="detail_pdf btn btn-danger btn-block"><b>Cetak Kwitansi</b></button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <button to="{{ Url('app/transaksi/syarat_ketentuan/' . $idTransaction) }}"
                             class="detail_pdf btn btn-info btn-block"><b>Cetak
                                 Syarat dan kondisi</b></button>

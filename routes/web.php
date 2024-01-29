@@ -57,6 +57,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
 
 
         Route::prefix('transaksi')->name('transaksi.')->group(function () {
+            Route::get('cetak_barcode/{id}', [TransaksiController::class, 'cetakBarcode'])->name('cetakBarcode');
+
             Route::get('cetak_kwitansi/{id}', [TransaksiController::class, 'cetak_kwitansi'])->name('cetak_kwitansi');
             Route::get('syarat_ketentuan/{id}', [TransaksiController::class, 'syarat_ketentuan'])->name('syarat_ketentuan');
         });

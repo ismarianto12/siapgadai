@@ -18,6 +18,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
+        "milon/barcode": "^10.0",
         "mpdf/mpdf": "^8.0",
         "phpoffice/phpword": "^0.18.2",
         "simplesoftwareio/simple-qrcode": "^4.2",

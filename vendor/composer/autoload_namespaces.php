@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'PHPSQLParser\\' => array($vendorDir . '/greenlion/php-sql-parser/src'),
+    'Milon\\Barcode' => array($vendorDir . '/milon/barcode/src'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
 );

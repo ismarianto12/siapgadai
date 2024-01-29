@@ -255,6 +255,12 @@
                                 <div class="col-md-8">
                                     <input type="text" id="nik" name="nik" class="form-control" required />
                                 </div>
+                            </div> 
+                            <div class="form-group row">
+                                <label for="nik" class="col-md-2 text-left">Foto KTP:</label>
+                                <div class="col-md-8">
+                                    <input type="file" id="foto_ktp" name="foto_ktp" class="form-control" required />
+                                </div>
                             </div>
 
                             <div class="form-group row">
