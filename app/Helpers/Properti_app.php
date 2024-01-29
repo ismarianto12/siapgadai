@@ -97,6 +97,12 @@ class Properti_app
     public function number_format()
     {
     }
+    static function formatRupiah($angka)
+    {
+        $rupiah = number_format($angka, 0, ',', '.');
+        return $rupiah;
+    }
+
 
     public static function user_satker()
     {
@@ -447,6 +453,8 @@ class Properti_app
         return self::format_percentage(self::calculate_percentage($number, $total));
     }
 
+
+
     public static function getKelas()
     {
         return DB::table('kelas')->get();
@@ -512,6 +520,21 @@ class Properti_app
         }
     }
 
+
+    static function ParameterHitung()
+    {
+        $data = \DB::table('perhitungan_biaya')->get();
+        return $data;
+    }
+
+    static function generateInvoiceNumber()
+    {
+        $lastPurchaseId = transaksi::latest('id')->first()->id ?? 0;
+        $randomDigits = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+        $invoiceNumber = 'INVOICE-' . $lastPurchaseId . $randomDigits;
+        return $invoiceNumber;
+    }
+
     static function removeTag($inputString)
     {
         // Ganti tanda titik dengan spasi
@@ -522,5 +545,17 @@ class Properti_app
 
         return $stringTanpaTitikDanSpasi;
     }
-
+    function statusBayar()
+    {
+        return [
+            '1' => 'Belum Lunas',
+            '2' => 'Overdue Pembayaran',
+            '3' => 'Lunas',
+        ];
+    }
+    static function dataCabang()
+    {
+        $data = DB::table('cabang')->get();
+        return $data; 
+    }
 }

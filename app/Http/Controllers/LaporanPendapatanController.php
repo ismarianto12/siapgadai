@@ -71,7 +71,7 @@ class LaporanPendapatanController extends Controller
             'transaksi_gadai.pelunasan',
             'transaksi_gadai.keluaran_tahun',
             'transaksi_gadai.imei',
-            'transaksi_gadai.merk',
+            'transaksi_gadai.merek_barang',
             'transaksi_gadai.durasi_pelunasan',
             'transaksi_gadai.foto_barang',
             'transaksi_gadai.updated_at',
@@ -88,7 +88,7 @@ class LaporanPendapatanController extends Controller
             'transaksi_gadai.total',
             'transaksi_gadai.menyetujui_nasabah',
             'transaksi_gadai.maks_pinjaman',
-            'transaksi_gadai.tujuan',
+            
             'transaksi_gadai.created_at',
             'transaksi_gadai.menyetujui_staff_sgi',
             'transaksi_gadai.no_anggota',

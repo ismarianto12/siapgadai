@@ -43,13 +43,12 @@ class LaporanPegadaianController extends Controller
 
         $dari = $this->request->input("dari");
         $sampai = $this->request->input("sampai");
-
         $data = transaksi::select(
             'transaksi_gadai.id',
             'transaksi_gadai.pelunasan',
             'transaksi_gadai.keluaran_tahun',
             'transaksi_gadai.imei',
-            'transaksi_gadai.merk',
+            'transaksi_gadai.merek_barang',
             'transaksi_gadai.durasi_pelunasan',
             'transaksi_gadai.foto_barang',
             'transaksi_gadai.updated_at',
@@ -66,13 +65,15 @@ class LaporanPegadaianController extends Controller
             'transaksi_gadai.total',
             'transaksi_gadai.menyetujui_nasabah',
             'transaksi_gadai.maks_pinjaman',
-            'transaksi_gadai.tujuan',
+
             'transaksi_gadai.created_at',
             'transaksi_gadai.menyetujui_staff_sgi',
             'transaksi_gadai.no_anggota',
             'transaksi_gadai.administrasi',
             'transaksi_gadai.no_faktur',
             'transaksi_gadai.cabang_id',
+            'transaksi_gadai.perhitungan_biaya_id',
+
             'transaksi_gadai.no_imei',
             'barang.type',
             'barang.keluaran',
@@ -98,15 +99,18 @@ class LaporanPegadaianController extends Controller
             'nasabah.kab_kota',
             'nasabah.nama',
             'nasabah.kecamatan',
+            'perhitungan_biaya.keterangan as durasi_pinjam',
+            'perhitungan_biaya.persentase as persentase_pinjaman'
         )
 
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
+            ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id');
         if ($dari && $sampai) {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
         }
         $sql = $data->get();
-        return DataTables::of($data)
+        return DataTables::of($sql)
             ->editColumn('action', function ($p) {
                 return '<a href="" class="btn btn-warning btn-xs" id="edit" data-id="' . $p->id . '"><i class="
                 flaticon-user-4"></i>detail </a> ';

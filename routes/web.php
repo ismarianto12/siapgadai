@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi');
         Route::get('return_transaksi', [TransaksiController::class, 'return_transaksi'])->name('return_transaksi');
         Route::get('pelunasan', [PelunasanController::class, 'index'])->name('pelunasan');
+        Route::get('pelunasan_berhasil/{id}', [PelunasanController::class, 'pelunasan_berhasil'])->name('pelunasan_berhasil');
+        // Route::get('pelunasan_detail/{id}', [PelunasanController::class, 'pelunasan_detail'])->name('pelunasan_detail');
         Route::get('penagihan', [PenagihanController::class, 'index'])->name('penagihan');
 
 
@@ -68,13 +70,16 @@ Route::group(['middleware' => ['auth', 'api']], function () {
     Route::prefix('api')->name('api.')->group(function () {
         Route::post('barang', [BarangController::class, 'api'])->name('barang');
         Route::post('cabang', [CabangController::class, 'api'])->name('cabang');
+        Route::post('pelunasan', [PelunasanController::class, 'api'])->name('pelunasan');
         Route::post('kategori', [KategoryBarangController::class, 'api'])->name('kategori');
 
         // api
         Route::post('laporan_pegadaian', [LaporanPegadaianController::class, 'api'])->name('laporan_pegadaian');
         Route::post('pendapatan', [LaporanPendapatanController::class, 'api'])->name('pendapatan');
-
+        Route::post('call_detail_transaction', [PelunasanController::class, 'getDetail'])->name('call_detail_transaction');
         Route::post('user', [UserController::class, 'api'])->name('user');
+        Route::post('action_pelunasan', [PelunasanController::class, 'action_pelunasan'])->name('action_pelunasan');
+
     });
     Route::post('jenis_show/{id}', [GuruController::class, 'carijenis'])->name('jenis_show');
     Route::prefix('laporan')->name('laporan.')->group(function () {

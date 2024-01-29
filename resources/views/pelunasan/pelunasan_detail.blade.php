@@ -70,34 +70,19 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-6">
-
                         <div class="card-body">
-
-
                             <div class="form-group row">
                                 <label for="no_kwitansi" class="col-md-4 text-left">No. Kwitansi:</label>
                                 <div class="col-md-8">
                                     <input type="text" id="no_kwitansi" name="no_kwitansi" class="form-control"
-                                        required />
+                                        readonly />
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="no_faktur" class="col-md-4 text-left">No. Faktur:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="no_faktur" name="no_faktur" class="form-control" required />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="no_faktur" class="col-md-4 text-left">Lama Pelunasan:</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" name="perhitungan_biaya_id" id="perhitungan_biaya_id"
-                                        required>
-                                        @foreach (Properti_app::ParameterHitung() as $perhitungan)
-                                            <option value="{{ $perhitungan->id }}">{{ $perhitungan->keterangan }} -
-                                                {{ $perhitungan->persentase }}%</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" id="no_faktur" name="no_faktur" class="form-control" readonly />
                                 </div>
                             </div>
                         </div>
@@ -111,7 +96,7 @@
                             <div class="form-group row">
                                 <label for="no_anggota" class="col-md-4 text-left">No. Anggota:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control" required />
+                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control" readonly />
                                 </div>
                             </div>
 
@@ -143,7 +128,7 @@
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Jenis Barang</label>
                             <div class="col-md-10">
-                                <select name="id_barang" class="form-control" required>
+                                <select name="id_barang" class="form-control" readonly>
                                     <option value=""></option>
                                     @foreach (Properti_app::masterBarang() as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
@@ -155,21 +140,23 @@
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Type Barang</label>
                             <div class="col-md-10">
-                                <input type="text" name="type" class="form-control" required />
+                                <input type="text" name="type" class="form-control" readonly />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Nama Barang</label>
                             <div class="col-md-10">
-                                <input type="text" name="merek_barang" class="form-control" required />
+                                <input type="text" name="merek_barang" class="form-control" readonly />
                             </div>
                         </div>
+
+
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Taksiran Harga</label>
                             <div class="col-md-10">
                                 <input type="double" name="taksiran_harga" id="taksiran_harga"
-                                    class="number_format form-control" required />
+                                    class="number_format form-control" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -178,7 +165,7 @@
                                 <div class="input-group">
 
                                     <input type="text" name="persentase_pinjaman" id="persentase_pinjaman"
-                                        class="form-control" required />
+                                        class="form-control" readonly />
                                     <span class="input-group-addon">%</span>
 
                                 </div>
@@ -194,33 +181,33 @@
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Tahun Barang</label>
                             <div class="col-md-10">
-                                <input type="number" name="keluaran_tahun" class="form-control" required />
+                                <input type="number" name="keluaran_tahun" class="form-control" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-2 text-left">No. Imei</label>
                             <div class="col-md-10">
-                                <input type="text" name="no_imei" class="form-control" required />
+                                <input type="text" name="no_imei" class="form-control" readonly />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Kelengkapan</label>
                             <div class="col-md-10">
-                                <textarea type="text" name="kelengkapan" class="form-control" required></textarea>
+                                <textarea type="text" name="kelengkapan" class="form-control" readonly></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Foto Barang</label>
                             <div class="col-md-10">
-                                <input type="file" name="foto_barang" class="form-control" required />
+                                <input type="file" name="foto_barang" class="form-control" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-2 text-left">Administrasi</label>
                             <div class="col-md-10">
-                                <input type="text" name="administrasi" class="number_format form-control" required />
+                                <input type="text" name="administrasi" class="number_format form-control" readonly />
                             </div>
                         </div>
                     </div>
@@ -246,14 +233,14 @@
                                 <label for="nama_nasabah" class="col-md-2 text-left">Nama Nasabah:</label>
                                 <div class="col-md-8">
                                     <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control"
-                                        required />
+                                        readonly />
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="nik" class="col-md-2 text-left">NIK:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="nik" name="nik" class="form-control" required />
+                                    <input type="text" id="nik" name="nik" class="form-control" readonly />
                                 </div>
                             </div>
 
@@ -280,7 +267,7 @@
                             <div class="form-group row">
                                 <label for="rt_rw" class="col-md-3 text-left">Rt/Rw:</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="rt_rw" name="rt_rw" class="form-control" required />
+                                    <input type="text" id="rt_rw" name="rt_rw" class="form-control" readonly />
                                 </div>
                             </div>
 
@@ -295,14 +282,14 @@
                                 <label for="kecamatan" class="col-md-3 text-left">Kecamatan:</label>
                                 <div class="col-md-9">
                                     <input type="text" id="kecamatan" name="kecamatan" class="form-control"
-                                        required />
+                                        readonly />
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="kecamatan" class="col-md-3 text-left">No Handphone:</label>
                                 <div class="col-md-9">
-                                    <input type="number" id="no_hp" name="no_hp" class="form-control" required />
+                                    <input type="number" id="no_hp" name="no_hp" class="form-control" readonly />
                                 </div>
                             </div>
 
@@ -310,7 +297,7 @@
                                 <label for="kabupaten_kota" class="col-md-3 text-left">Kabupaten/Kota:</label>
                                 <div class="col-md-9">
                                     <input type="text" id="kabupaten_kota" name="kabupaten_kota" class="form-control"
-                                        required />
+                                        readonly />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -339,15 +326,19 @@
                 <div class="container row">
 
                     <div class="col-md-6">
-                        <label for="maks_pinjaman" class="form-label">Maks Pinjaman:</label>
+                        <label for="maks_pinjaman" class="form-label">Total Pinjam:</label>
                         <input type="hidden" name="inputmaksimal_pinjam" id="inputmaksimal_pinjam" />
-                        <h1 class="maksimal_pinjaman"></h1>
+                        <h1>
+
+                           Rp. {{ Properti_app::formatRupiah($data->jumlah_pinjaman) }}
+
+                        </h1>
                     </div>
 
                     <div class="col-md-6">
-                        &nbsp; <label for="jumlah_diambil" class="form-label">Jumlah yang diambil:</label>
+                        &nbsp; <label for="jumlah_diambil" class="form-label">Jumlah yang bayar:</label>
                         &nbsp;<input type="text" id="jumlah_diambil" name="jumlah_diambil"
-                            class="number_format form-control" required />
+                            class="number_format form-control" readonly />
                     </div>
                 </div>
 

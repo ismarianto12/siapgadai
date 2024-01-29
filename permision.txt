@@ -18,7 +18,6 @@ CREATE table jadwal(
     updated_at datetime NULL,
     user_id datetime NULL
 )
-
-
-
-
+  
+ ---dropn table duplicate ----
+ALTER TABLE transaksi_gadai DROP COLUMN merk;

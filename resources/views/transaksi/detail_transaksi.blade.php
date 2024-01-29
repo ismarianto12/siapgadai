@@ -23,6 +23,7 @@
                         </button>
                     </div>
                     <div class="modal-body" id="form_content">
+                        <h3>Please Wait Pdf File ........</h3>
                     </div>
                     <div class="modal-footer border-0">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -277,6 +278,7 @@
     <script>
         $(function() {
             $('.detail_pdf').on('click', function(e) {
+
                 e.preventDefault();
                 $('#formmodal').modal('show');
                 var pdffile = $(this).attr('to');

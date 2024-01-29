@@ -4,3 +4,10 @@
    kasir 
    admin panel 
 
+
+/Applications/XAMPP/bin/mysqldump -u root -p siapgadai  > dbbaru_tst.sql
+
+syarat gadai dia harus 3 kali maksimal dengan nik yang sama
+
+
+

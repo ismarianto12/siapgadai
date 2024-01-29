@@ -57,6 +57,18 @@
                     </select>
                 </div>
             </div>
+
+            <div class="form-group row"> 
+                <label for="name" class="col-md-2 text-left">Cabang<span
+                        class="required-label">*</span></label>
+                <div class="col-md-4">
+                    <select name="cabang_id" class="form-control">
+                        @foreach (Properti_app::dataCabang() as $cabang)
+                            <option value="{{ $cabang->id }}">{{ $cabang->nama_cabang }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </div>
 
         <div class="card-action">

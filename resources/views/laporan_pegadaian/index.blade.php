@@ -62,10 +62,12 @@
                                 <th>No Hanphpone</th>
                                 <th>Alamat</th>
                                 <th>Maks Pinjaman</th>
-                                <th>Jumlah Pinjaman</th>
-                                <th>Administrasi</th>
-                                <th>Jasa Titip</th>
+                                <th>Limit Pinjaman</th>
                                 <th>Jumlah Diambil</th>
+                                <th>Administrasi</th>
+                                <th>Durasi Peminjaman</th>
+                                <th>Persentase</th> 
+                                <th>Jatuh Tempo</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
@@ -179,17 +181,25 @@
                     name: 'jumlah_pinjaman'
                 },
                 {
+                    data: 'jumlah_diambil',
+                    name: 'jumlah_diambil'
+                },
+                {
                     data: 'administrasi',
                     name: 'administrasi'
                 },
+                {
+                    data: 'durasi_pinjam',
+                    name: 'durasi_pinjam'
+                },
 
                 {
-                    data: 'jasa_titip',
-                    name: 'jasa_titipp'
-                },
+                    data: 'persentase_pinjaman',
+                    name: 'persentase_pinjaman'
+                }, 
                 {
-                    data: 'jumlah_diambil',
-                    name: 'jumlah_diambil'
+                    data: 'tanggal_jatuh_tempo',
+                    name: 'tanggal_jatuh_tempo'
                 },
                 {
                     data: 'action',
@@ -202,7 +212,7 @@
         $('.cleardata').on('click', function() {
             $('#dari').val('');
             $('#sampai').val('');
-            
+
             $('#datatable').DataTable().ajax.reload();
         });
         $('.searchdata').on('click', function() {

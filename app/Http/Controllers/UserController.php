@@ -125,6 +125,7 @@ class UserController extends Controller
         $data->email = $this->request->email;
         $data->name = $this->request->name;
         $data->tmlevel_id = $this->request->id_role;
+        $data->cabang_id = $this->request->cabang_id;
         $data->save();
         return response()->json([
             'status' => 1,
@@ -190,6 +191,8 @@ class UserController extends Controller
             $data->password = bcrypt($this->request->password);
             $data->email = $this->request->email;
             $data->name = $this->request->name;
+            $data->cabang_id = $this->request->cabang_id;
+ 
 
             $data->photo = $setname;
             $data->save();

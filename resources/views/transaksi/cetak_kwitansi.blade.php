@@ -40,9 +40,10 @@
             /* border: 1px solid black; */
         }
 
-        th,
+
+        .content_table>th,
         td {
-            /* padding: 10px; */
+            padding-left: 25px;
             text-align: left;
         }
     </style>
@@ -106,106 +107,81 @@
     <img src="{{ asset('assets/img/horizontal.png') }}" style="width: 100%;height:auto" />
 
 
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0" class="content_table">
         <tbody>
             <tr>
                 <td style="vertical-align:top">
                     Nama
                 </td>
+                <td style="text-align:left">:&nbsp;&nbsp;{{ $data->nama }}</td>
                 <td style="vertical-align:top">
-                    :
+                    Jenis Barang
                 </td>
-                <td style="text-align:left">{{ $data->nama }}</td>
-                <td style="vertical-align:top">
-                    Nama Barang
-                </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="text-align:left"> {{ $data->nama_barang }} {{ $data->merk }}</td>
+
+                <td style="text-align:left">:&nbsp;&nbsp;{{ $data->nama_barang }} - {{ $data->merek_barang }}</td>
             </tr>
             <tr>
                 <td style="vertical-align:top">
                     Alamat
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->alamat }}</td>
+
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->alamat }}</td>
                 <td style="vertical-align:top">
                     Merk
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->merk }}</td>
+
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->merek_barang }}</td>
             </tr>
             <tr>
                 <td style="vertical-align:top">
                     RT / RW
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->rt_rw }}</td>
+
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->rt_rw }}</td>
                 <td style="vertical-align:top">
                     Type
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->type }}</td>
+
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->type }}</td>
 
             </tr>
             <tr>
                 <td style="vertical-align:top">
                     Kelurahan
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->kelurahan }}</td>
+
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->kelurahan }}</td>
                 <td style="vertical-align:top">
                     No. Imei
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->no_imei }}</td>
+
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->no_imei }}</td>
             </tr>
             <tr>
                 <td style="vertical-align:top">
                     Kecamatan
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->kecamatan }}</td>
 
-                <td style="vertical-align:top"></td>
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->kecamatan }}</td>
+
                 <td style="vertical-align:top">
                     Kelengkapan
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->kelengkapan }}</td>
+
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->kelengkapan }}</td>
             </tr>
             <tr>
                 <td style="vertical-align:top">
                     Kab / Kota
                 </td>
-                <td style="vertical-align:top">
-                    :
-                </td>
-                <td style="vertical-align:top">{{ $data->kab_kota }}</td>
 
-                <td style="vertical-align:top"></td>
+                <td style="vertical-align:top">:&nbsp;&nbsp;{{ $data->kab_kota }}</td>
+
                 <td style="vertical-align:top">
                     Maks Pinjaman
                 </td>
                 <td style="vertical-align:top">
-                    : Rp. {{ $data->maks_pinjam }}
+                    : Rp. {{ Properti_app::formatRupiah($data->maks_pinjaman) }}
                 </td>
             </tr>
             <tr>
@@ -213,7 +189,7 @@
                     Jumlah Pinjaman
                 </td>
                 <td style="vertical-align:top">
-                    : Rp. {{ $data->jumlah_pinjaman }}
+                    : Rp. {{ Properti_app::formatRupiah($data->jumlah_pinjaman) }}
                 </td>
             </tr>
             <tr>
@@ -244,9 +220,9 @@
     </table>
 
 
-    <div style="margin-top: 20px;">
+    <div style="margin-top: 20px;margin-left:25px">
         <p>Menyetujui,</p>
-        <p>Nasabah</p>
+
         <table>
             <tr>
                 <td>
