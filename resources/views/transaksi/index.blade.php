@@ -269,6 +269,10 @@
                     <h4 style="color: #000">C. Data Nasabah</h4>
                 </div>
                 <div class="align-items-right">
+                    <button class="btn btn-danger btn-round ml-auto btn-sm" onclick="clearall()">
+                        <i class="fa fa-plus"></i>
+                        Buat Baru
+                    </button>
                     <button class="btn btn-primary btn-round ml-auto btn-sm" id="pilihyang_ada">
                         <i class="fa fa-plus"></i>
                         Pilih yang sudah ada
@@ -416,6 +420,18 @@
         <script>
             // addd
 
+            function clearall() {
+                $('input[name="nama_nasabah"]').val("").prop('readonly', false);
+                $('input[name="nik"]').val("").prop('readonly', false);
+                $('input[name="jenis_kelamin"]').val("").prop('readonly', false);
+                $('textarea[name="alamat"]').val("").prop('readonly', false);
+                $('input[name="rt_rw"]').val("").prop('readonly', false);
+                $('textarea[name="kelurahan"]').val("").prop('readonly', false);
+                $('input[name="kecamatan"]').val("").prop('readonly', false);
+                $('input[name="no_hp"]').val("").prop('readonly', false);
+                $('input[name="kabupaten_kota"]').val("").prop('readonly', false);
+            }
+
             function formatCurrency(input) {
                 let value = input.value.replace(/[^\d]/g, '');
 
@@ -442,86 +458,25 @@
 
 
 
-                function clearall() {
-
-                    $('input[name="transaksi_id"]').val("");
-                    $('input[name="id_nasabah"]').val("");
-                    $('input[name="perhitungan_biaya_id"]').val("");
-                    $('input[name="pokok"]').val("");
-                    $('input[name="bunga"]').val("");
-
-                    $('input[name="id_transaksi"]').val("");
-                    $('input[name="no_kwitansi"]').val("");
-                    $('input[name="no_faktur"]').val("");
-                    $('input[name="no_anggota"]').val("");
-                    $('input[name="tgl_jatuh_tempo"]').val("");
-                    $('input[name="referal_code"]').val("");
-                    $('input[name="id_barang"]').val("");
-                    $('input[name="type"]').val("");
-                    $('input[name="merek_barang"]').val("");
-                    $('input[name="taksiran_harga"]').val("");
-                    $('input[name="persentase_pinjaman"]').val("");
-                    $('input[name="keluaran_tahun"]').val("");
-                    $('input[name="no_imei"]').val("");
-                    $('textarea[name="kelengkapan"]').val("");
-                    $('input[name="foto_barang"]').val("");
-                    $('input[name="administrasi"]').val("");
-                    $('input[name="nama_nasabah"]').val("");
-                    $('input[name="nik"]').val("");
-                    $('input[name="jenis_kelamin"]').val("");
-                    $('input[name="alamat"]').val("");
-                    $('input[name="rt_rw"]').val("");
-                    $('textarea[name="kelurahan"]').val("");
-                    $('input[name="kecamatan"]').val("");
-                    $('input[name="no_hp"]').val("");
-                    $('input[name="kabupaten_kota"]').val("");
-                    $('input[name="tujuan_gadai"]').val("");
-                    $('input[name="jumlah_diambil"]').val("");
-                    $('input[name="inputmaksimal_pinjam"]').val("");
-                    $('.foto_barang_img').html("");
-
-                }
-
                 function getall(data) {
-                    $('input[name="id_transaksi"]').val(data?.id);
-                    $('input[name="no_kwitansi"]').val(data?.no_kwitansi);
-                    $('input[name="no_faktur"]').val(data?.no_faktur);
-                    $('input[name="no_anggota"]').val(data?.no_anggota);
-                    $('input[name="tgl_jatuh_tempo"]').val(data?.tanggal_jatuh_tempo);
-                    $('input[name="referal_code"]').val(data?.referal_code);
-                    $('input[name="id_barang"]').val(data?.id_barang);
-                    $('input[name="type"]').val(data?.type);
-                    $('input[name="merek_barang"]').val(data?.merek_barang);
-                    $('input[name="taksiran_harga"]').val(data?.taksiran_harga);
-                    $('input[name="persentase_pinjaman"]').val(data?.persentase_pinjaman);
-                    $('input[name="keluaran_tahun"]').val(data?.keluaran_tahun);
-                    $('input[name="no_imei"]').val(data?.no_imei);
-                    $('textarea[name="kelengkapan"]').val(data?.kelengkapan);
+
+                    console.log(data, 'function');
                     // $('input[name="foto_barang"]').val(data?.foto_barang);
-                    $('input[name="administrasi"]').val(data?.administrasi);
-                    $('input[name="nama_nasabah"]').val(data?.nama);
-                    $('input[name="nik"]').val(data?.nik);
-                    $('input[name="jenis_kelamin"]').val(data?.jenis_kelamin);
-                    $('textarea[name="alamat"]').val(data?.no_kwitansi);
-                    $('input[name="rt_rw"]').val(data?.rt_rw);
-                    $('textarea[name="kelurahan"]').val(data?.kelurahan);
-                    $('input[name="kecamatan"]').val(data?.kecamatan);
-                    $('input[name="no_hp"]').val(data?.no_hp);
-                    $('input[name="kabupaten_kota"]').val(data?.kab_kota);
-                    $('textarea[name="tujuan_gadai"]').val(data?.tujuan_gadai);
-                    $('input[name="jumlah_diambil"]').val(data?.jumlah_diambil);
-                    $('input[name="inputmaksimal_pinjam"]').val(data?.inputmaksimal_pinjam);
-                    $('.rtotalpinjam').html(`<h2>${formatRupiah(data?.maks_pinjaman)}</h2>`);
-                    $('.foto_barang_img').html(`
-    <img src="{{ Url('/file_gadai/') }}/${data?.foto_barang}" class="img-responsive" style="width:50%">
-`);
+                    $('input[name="nama_nasabah"]').val(data?.nama).prop('readonly', true);
+                    $('input[name="nik"]').val(data?.nik).prop('readonly', true);
+                    $('input[name="jenis_kelamin"]').val(data?.jenis_kelamin).prop('readonly', true);
+                    $('textarea[name="alamat"]').val(data?.textarea).prop('readonly', true);
+                    $('input[name="rt_rw"]').val(data?.rt_rw).prop('readonly', true);
+                    $('textarea[name="kelurahan"]').val(data?.kelurahan).prop('readonly', true);
+                    $('input[name="kecamatan"]').val(data?.kecamatan).prop('readonly', true);
+                    $('input[name="no_hp"]').val(data?.no_hp).prop('readonly', true);
+                    $('input[name="kabupaten_kota"]').val(data?.kab_kota).prop('readonly', true);
                 }
 
                 $('#datatable').on('click', '.checkpelunasan', function(e) {
                     e.preventDefault();
                     clearall();
                     var id = $(this).data('nasabah_id');
-
 
                     Swal.fire({
                         title: 'Please Wait ...',
@@ -538,8 +493,8 @@
                         },
                         success: function(data) {
                             Swal.close();
-                            console.log(data.data, 'detail data')
-                            getall(data?.data)
+                            console.log(data.data[0], 'detail data')
+                            getall(data?.data[0])
                             $('#formmodal').modal('hide');
 
                         },
@@ -563,7 +518,7 @@
                 function calculateTaksiranHarga() {
                     var persentasePinjaman = parseFloat($('#persentase_pinjaman').val()) || 0;
                     var hargaBarang = $('#taksiran_harga').val();
-                    var rhargaBarang = hargaBarang?.replace(/\./g, '');;
+                    var rhargaBarang = hargaBarang?.replace(/\./g, '');
                     console.log(rhargaBarang, 'dasd')
                     var taksiranHarga = (persentasePinjaman / 100) * parseFloat(rhargaBarang);
                     $('input[name="inputmaksimal_pinjam"]').val(taksiranHarga);
@@ -752,9 +707,9 @@
                 });
 
                 $('.ayamayam').hide();
- 
+
                 // edit
-             });
+            });
 
             // $.fn.dataTable.ext.errMode = 'throw';
             var table = $('#datatable').DataTable({
@@ -914,7 +869,7 @@
                         }
                     })
                 })
-               
+
             });
         </script>
     @endsection
