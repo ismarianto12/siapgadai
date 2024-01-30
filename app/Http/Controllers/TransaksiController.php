@@ -262,6 +262,7 @@ class TransaksiController extends Controller
         $data = transaksi::getDetailTransaction($id);
         $render = view($this->view . 'cetak_kwitansi', compact('data'));
         $mpdf->WriteHTML($render);
+        ob_clean();
         return $mpdf->Output();
 
     }
@@ -278,6 +279,7 @@ class TransaksiController extends Controller
         $data = transaksi::getDetailTransaction($id);
         $render = view($this->view . 'syarat_ketentuan', compact('data'));
         $mpdf->WriteHTML($render);
+        ob_clean();
         return $mpdf->Output();
 
     }
