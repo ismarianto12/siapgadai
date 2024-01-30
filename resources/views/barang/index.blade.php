@@ -39,30 +39,30 @@
                 <form id="exampleValidation" method="POST" class="simpan">
                     <div class="card-body">
                         <div class="form-group row">
-                            
-                                {{-- @php
+
+                            {{-- @php
                                     echo Properti_app::comboproyek();
                                 @endphp --}}
-                            </div>
-
                         </div>
+
                     </div>
-                </form>
-                <div class="table-responsive">
-                    <table id="datatable" class="display table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Kode</th>
-                                <th>Nama Barang</th>
-                                <th>Merk</th>
-                                <th>Tipe</th>
-                                <th>Keluaran</th>
-                                <th>Di input Oleh</th>
-                                <th style="width: 10%">Action</th>
-                            </tr>
-                        </thead>
-                        {{-- <tfoot>
+            </div>
+            </form>
+            <div class="table-responsive">
+                <table id="datatable" class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Kode</th>
+                            <th>Nama Barang</th>
+                            <th>Merk</th>
+                            <th>Tipe</th>
+                            <th>Keluaran</th>
+                            <th>Di input Oleh</th>
+                            <th style="width: 10%">Action</th>
+                        </tr>
+                    </thead>
+                    {{-- <tfoot>
                             <tr>
                                 <th></th>
                                 <th>Nama Proyek</th>
@@ -77,12 +77,12 @@
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </tfoot> --}}
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
@@ -106,7 +106,7 @@
                 e.preventDefault();
                 $('#formmodal').modal('show');
                 id = $(this).data('id');
-                addUrl = ''.replace(':id', id);
+                addUrl = '{{ route('master.barang.edit', ':id') }}'.replace(':id', id);
                 $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(addUrl);
 
             })
@@ -232,6 +232,5 @@
                 });
             }
         }
-       
     </script>
 @endsection
