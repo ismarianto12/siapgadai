@@ -195,7 +195,7 @@
             if (c.length == 0) {
                 $.alert("Silahkan memilih data yang akan dihapus.");
             } else {
-                $.post("{{ Url('/', ':id') }}", {
+                $.post("{{ route('master.barang.destroy', ':id') }}", {
                     '_method': 'DELETE',
                     'id': c
                 }, function(data) {

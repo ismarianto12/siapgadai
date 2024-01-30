@@ -90,7 +90,8 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Cabang</p>
-                                    <h4 class="card-title">Mampang Prapatan</h4>
+                                    <h4 class="card-title">{{ Properti_app::getCabang(Auth::user()->cabang_id, 'nama_cabang') }}
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -418,8 +419,6 @@
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 
         <script>
-            // addd
-
             function clearall() {
                 $('input[name="nama_nasabah"]').val("").prop('readonly', false);
                 $('input[name="nik"]').val("").prop('readonly', false);

@@ -49,13 +49,13 @@ class BarangController extends Controller
     {
         try {
             $request->validate([
-                "kategori_barang_id|required",
-                "kode|required",
-                "nama_barang|required",
-                "merk|required",
-                "type|required",
-                "keluaran|required",
-                "Kelengkapan|required"
+                "kategori_barang_id"=>"required",
+                "kode"=>"required",
+                "nama_barang"=>"required",
+                "merk"=>"required",
+                "type"=>"required",
+                "keluaran"=>"required",
+                "Kelengkapan"=>"required"
             ]);
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->validator->errors()], 422);
@@ -178,7 +178,7 @@ class BarangController extends Controller
      * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(barang $barang)
+    public function destroy()
     {
         try {
             if (is_array($this->request->id)) {

@@ -8,8 +8,12 @@
         <div class="card-body">
             <div class="form-group row">
                 <label class="col-md-2 text-left">Kategori Barang</label>
-                <div class="col-md-4">  
- 
+                <div class="col-md-4">
+                    <select class="form-control" name="kategori_barang_id">
+                        @foreach (Properti_app::getKategory() as $kategory)
+                            <option value="{{ $kategory->id }}">{{ $kategory->nama_kategori }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">

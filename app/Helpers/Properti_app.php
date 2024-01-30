@@ -556,6 +556,11 @@ class Properti_app
     static function dataCabang()
     {
         $data = DB::table('cabang')->get();
-        return $data; 
+        return $data;
+    }
+
+    static function getKategory()
+    {
+        return \DB::table('kategori_barang')->get();
     }
 }

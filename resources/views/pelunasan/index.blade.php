@@ -21,7 +21,6 @@
                                     <th>Nama</th>
                                     <th>No Faktur</th>
                                     <th>No Hanphpone</th>
-                                    {{-- <th>Alamat</th> --}}
                                     <th>Maks Pinjaman</th>
                                     <th>Limit Pinjaman</th>
                                     <th>Jumlah Diambil</th>
@@ -94,7 +93,8 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Cabang</p>
-                                    <h4 class="card-title">Mampang Prapatan</h4>
+                                    <h4 class="card-title">{{ Properti_app::getCabang(Auth::user()->cabang_id, 'nama_cabang') }}
+                                    </h4>
                                 </div>
                             </div>
                         </div>
