@@ -258,9 +258,8 @@ class TransaksiController extends Controller
         $render = view($this->view . 'cetak_kwitansi', compact('data'))->render();
         $mpdf->WriteHTML($render);
 
-        return response($mpdf->Output("cetak_kwitansi.pdf", 'S'))
-            ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'attachment; filename="cetak_kwitansi.pdf"');
+        return response($mpdf->Output("cetak_kwitansi.pdf", 'I'))
+            ->header('Content-Type', 'application/pdf');
 
 
     }
@@ -276,9 +275,9 @@ class TransaksiController extends Controller
         $data = transaksi::getDetailTransaction($id);
         $render = view($this->view . 'syarat_ketentuan', compact('data'))->render();
         $mpdf->WriteHTML($render);
-        return response($mpdf->Output("cetak_kwitansi.pdf", 'S'))
-            ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'attachment; filename="cetak_kwitansi.pdf"');
+        return response($mpdf->Output("cetak_kwitansi.pdf", 'I'))
+            ->header('Content-Type', 'application/pdf');
+
     }
 
 
