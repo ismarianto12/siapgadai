@@ -73,6 +73,7 @@ class LaporanPegadaianController extends Controller
             'transaksi_gadai.no_faktur',
             'transaksi_gadai.cabang_id',
             'transaksi_gadai.perhitungan_biaya_id',
+            'transaksi_gadai.status_transaksi',
 
             'transaksi_gadai.no_imei',
             'barang.type',
@@ -112,7 +113,7 @@ class LaporanPegadaianController extends Controller
         $sql = $data->get();
         return DataTables::of($sql)
             ->editColumn('action', function ($p) {
-                return '<a href="" class="btn btn-warning btn-xs" id="edit" data-id="' . $p->id . '"><i class="
+                return '<a to="' . route('laporan.detaildata', $p->id) . '" class="btn btn-warning btn-xs" id="edit"><i class="
                 flaticon-user-4"></i>detail </a> ';
 
             }, true)
@@ -141,10 +142,13 @@ class LaporanPegadaianController extends Controller
      * @param  \App\Models\laporan_pegadaian  $laporan_pegadaian
      * @return \Illuminate\Http\Response
      */
-    public function show(laporan_pegadaian $laporan_pegadaian)
+    public function show($id)
     {
-        //
+        $title = 'Laporan Pegadaian';
+        $data = transaksi::getDetailTransaction($id);
+        return view($this->view . "detail_data", compact("title", "data"));
     }
+
 
     /**
      * Show the form for editing the specified resource.

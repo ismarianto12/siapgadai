@@ -5,7 +5,6 @@
         <div class="card">
             {{-- <form cas --}}
             <div class="card-header row">
-
                 <div class="form-group row">
                     <label class="col-md-3 text-left">Dari</label>
                     <div class="col-md-9">
@@ -57,18 +56,18 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama</th>
-                                <th>Nama Barang</th>
-                                <th>No. Imei</th>
-                                <th>No Hanphpone</th>
                                 <th>Alamat</th>
+                                <th>No Handphpone</th>
+                                <th>Nama Barang</th>
+                                <th>Durasi Pinjaman</th>
                                 <th>Maks Pinjaman</th>
                                 <th>Limit Pinjaman</th>
                                 <th>Jumlah Diambil</th>
                                 <th>Administrasi</th>
-                                <th>Durasi Peminjaman</th>
-                                <th>Persentase</th> 
+                                <th>Persentase</th>
                                 <th>Jatuh Tempo</th>
-                                <th style="width: 10%">Action</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -90,14 +89,13 @@
     <script>
         // addd
         $(function() {
-          
+
             // edit
             $('#datatable').on('click', '#edit', function(e) {
                 e.preventDefault();
                 $('#formmodal').modal('show');
-                id = $(this).data('id');
-                addUrl = '{{ Url('/') }}'.replace(':id', id);
-                $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(addUrl);
+                var url = $(this).attr('to');
+                $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(url);
 
             })
         });
@@ -152,21 +150,23 @@
                     name: 'nama'
                 },
                 {
-                    data: 'nama_barang',
-                    name: 'nama_barang'
-                },
-                {
-                    data: 'no_imei',
-                    name: 'no_imei'
+                    data: 'alamat',
+                    name: 'alamat'
                 },
                 {
                     data: 'no_handphone',
                     name: 'no_handphone',
                 },
+
                 {
-                    data: 'alamat',
-                    name: 'alamat'
+                    data: 'nama_barang',
+                    name: 'nama_barang'
                 },
+                {
+                    data: 'durasi_pinjam',
+                    name: 'durasi_pinjam'
+                },
+
                 {
                     data: 'maks_pinjaman',
                     name: 'maks_pinjaman'
@@ -183,20 +183,33 @@
                     data: 'administrasi',
                     name: 'administrasi'
                 },
-                {
-                    data: 'durasi_pinjam',
-                    name: 'durasi_pinjam'
-                },
 
                 {
                     data: 'persentase_pinjaman',
                     name: 'persentase_pinjaman'
-                }, 
+                },
                 {
                     data: 'tanggal_jatuh_tempo',
                     name: 'tanggal_jatuh_tempo'
                 },
                 {
+                    data: 'status_transaksi',
+                    name: 'status_transaksi',
+                    render: function(row, data, type) {
+                        console.log(row, 'gadai if')
+                        if (row == '1') {
+                            return '<button class="btn btn-danger btn-sm">Belum Lunas</button>';
+                        } else if (row == '2') {
+                            return '<button class="btn btn-warning btn-sm">Overdue</button>';
+                        } else if (row == '3') {
+                            return '<button class="btn btn-success btn-sm">Lunas</button>';
+                        } else {
+                            return 'Unknown Status';
+                        }
+                    }
+
+                }, {
+
                     data: 'action',
                     name: 'action'
                 }

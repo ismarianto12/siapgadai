@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 
 class LaporanPendapatanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     protected $request;
     protected $route;
     protected $view;
