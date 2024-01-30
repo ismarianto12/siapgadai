@@ -89,10 +89,8 @@
                 'input[name="harga_satuan"]').val());
             nilai = volume * harga_satuan;
             $("#jumlah_harga").val(nilai);
-            isNaN(nilai) ? 0 : $("#tharga").html(nilai.toLocaleString());
-
-        });
-
+            isNaN(nilai) ? 0 : $("#tharga").html(nilai.toLocaleString()); 
+        }); 
     });
 
     $(function() {

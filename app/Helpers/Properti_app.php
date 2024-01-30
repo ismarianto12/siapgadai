@@ -99,6 +99,10 @@ class Properti_app
     }
     static function formatRupiah($angka)
     {
+        if (!is_numeric($angka)) {
+            return $angka;
+        }
+
         $rupiah = number_format($angka, 0, ',', '.');
         return $rupiah;
     }
