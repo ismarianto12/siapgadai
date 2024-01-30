@@ -288,4 +288,11 @@ class TransaksiController extends Controller
     {
         //
     }
+    function call_detail_nasabah()
+    {
+        $id_nasabah = $this->request->nasabah_d;
+        $data = \DB::table('nasabah')->where('id', $id_nasabah)->get();
+        return response()->json(['data' => $data]);
+
+    }
 }

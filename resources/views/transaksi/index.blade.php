@@ -1,6 +1,43 @@
 @extends('layouts.template')
 @section('content')
     @include('layouts.breadcum')
+
+    <div class="modal fade" id="formmodal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document" style=" min-width: 65%;">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="title">
+                        <i class="flaticon-right-arrow-4" style="font-size: 30px"></i> Data Transaksi
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="form_content">
+                    <div class="table-responsive">
+                        <table id="datatable" class="display table table-striped table-hover" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Nik</th>
+                                    <th>Nomor Anggota</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th style="width: 10%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-12">
         <div class="row row-card-no-pd">
             <div class="col-sm-4 col-md-4">
@@ -111,7 +148,8 @@
                             <div class="form-group row">
                                 <label for="no_anggota" class="col-md-4 text-left">No. Anggota:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control" required />
+                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control"
+                                        required />
                                 </div>
                             </div>
 
@@ -231,7 +269,7 @@
                     <h4 style="color: #000">C. Data Nasabah</h4>
                 </div>
                 <div class="align-items-right">
-                    <button class="btn btn-primary btn-round ml-auto btn-sm" id="add_data">
+                    <button class="btn btn-primary btn-round ml-auto btn-sm" id="pilihyang_ada">
                         <i class="fa fa-plus"></i>
                         Pilih yang sudah ada
                     </button>
@@ -255,11 +293,12 @@
                                 <div class="col-md-8">
                                     <input type="text" id="nik" name="nik" class="form-control" required />
                                 </div>
-                            </div> 
+                            </div>
                             <div class="form-group row">
                                 <label for="nik" class="col-md-2 text-left">Foto KTP:</label>
                                 <div class="col-md-8">
-                                    <input type="file" id="foto_ktp" name="foto_ktp" class="form-control" required />
+                                    <input type="file" id="foto_ktp" name="foto_ktp" class="form-control"
+                                        required />
                                 </div>
                             </div>
 
@@ -394,6 +433,124 @@
             });
 
             $(function() {
+
+
+                $('#pilihyang_ada').on('click', function(e) {
+                    e.preventDefault();
+                    $('#formmodal').modal('show');
+                });
+
+
+
+                function clearall() {
+
+                    $('input[name="transaksi_id"]').val("");
+                    $('input[name="id_nasabah"]').val("");
+                    $('input[name="perhitungan_biaya_id"]').val("");
+                    $('input[name="pokok"]').val("");
+                    $('input[name="bunga"]').val("");
+
+                    $('input[name="id_transaksi"]').val("");
+                    $('input[name="no_kwitansi"]').val("");
+                    $('input[name="no_faktur"]').val("");
+                    $('input[name="no_anggota"]').val("");
+                    $('input[name="tgl_jatuh_tempo"]').val("");
+                    $('input[name="referal_code"]').val("");
+                    $('input[name="id_barang"]').val("");
+                    $('input[name="type"]').val("");
+                    $('input[name="merek_barang"]').val("");
+                    $('input[name="taksiran_harga"]').val("");
+                    $('input[name="persentase_pinjaman"]').val("");
+                    $('input[name="keluaran_tahun"]').val("");
+                    $('input[name="no_imei"]').val("");
+                    $('textarea[name="kelengkapan"]').val("");
+                    $('input[name="foto_barang"]').val("");
+                    $('input[name="administrasi"]').val("");
+                    $('input[name="nama_nasabah"]').val("");
+                    $('input[name="nik"]').val("");
+                    $('input[name="jenis_kelamin"]').val("");
+                    $('input[name="alamat"]').val("");
+                    $('input[name="rt_rw"]').val("");
+                    $('textarea[name="kelurahan"]').val("");
+                    $('input[name="kecamatan"]').val("");
+                    $('input[name="no_hp"]').val("");
+                    $('input[name="kabupaten_kota"]').val("");
+                    $('input[name="tujuan_gadai"]').val("");
+                    $('input[name="jumlah_diambil"]').val("");
+                    $('input[name="inputmaksimal_pinjam"]').val("");
+                    $('.foto_barang_img').html("");
+
+                }
+
+                function getall(data) {
+                    $('input[name="id_transaksi"]').val(data?.id);
+                    $('input[name="no_kwitansi"]').val(data?.no_kwitansi);
+                    $('input[name="no_faktur"]').val(data?.no_faktur);
+                    $('input[name="no_anggota"]').val(data?.no_anggota);
+                    $('input[name="tgl_jatuh_tempo"]').val(data?.tanggal_jatuh_tempo);
+                    $('input[name="referal_code"]').val(data?.referal_code);
+                    $('input[name="id_barang"]').val(data?.id_barang);
+                    $('input[name="type"]').val(data?.type);
+                    $('input[name="merek_barang"]').val(data?.merek_barang);
+                    $('input[name="taksiran_harga"]').val(data?.taksiran_harga);
+                    $('input[name="persentase_pinjaman"]').val(data?.persentase_pinjaman);
+                    $('input[name="keluaran_tahun"]').val(data?.keluaran_tahun);
+                    $('input[name="no_imei"]').val(data?.no_imei);
+                    $('textarea[name="kelengkapan"]').val(data?.kelengkapan);
+                    // $('input[name="foto_barang"]').val(data?.foto_barang);
+                    $('input[name="administrasi"]').val(data?.administrasi);
+                    $('input[name="nama_nasabah"]').val(data?.nama);
+                    $('input[name="nik"]').val(data?.nik);
+                    $('input[name="jenis_kelamin"]').val(data?.jenis_kelamin);
+                    $('textarea[name="alamat"]').val(data?.no_kwitansi);
+                    $('input[name="rt_rw"]').val(data?.rt_rw);
+                    $('textarea[name="kelurahan"]').val(data?.kelurahan);
+                    $('input[name="kecamatan"]').val(data?.kecamatan);
+                    $('input[name="no_hp"]').val(data?.no_hp);
+                    $('input[name="kabupaten_kota"]').val(data?.kab_kota);
+                    $('textarea[name="tujuan_gadai"]').val(data?.tujuan_gadai);
+                    $('input[name="jumlah_diambil"]').val(data?.jumlah_diambil);
+                    $('input[name="inputmaksimal_pinjam"]').val(data?.inputmaksimal_pinjam);
+                    $('.rtotalpinjam').html(`<h2>${formatRupiah(data?.maks_pinjaman)}</h2>`);
+                    $('.foto_barang_img').html(`
+    <img src="{{ Url('/file_gadai/') }}/${data?.foto_barang}" class="img-responsive" style="width:50%">
+`);
+                }
+
+                $('#datatable').on('click', '.checkpelunasan', function(e) {
+                    e.preventDefault();
+                    clearall();
+                    var id = $(this).data('nasabah_id');
+
+
+                    Swal.fire({
+                        title: 'Please Wait ...',
+                        allowOutsideClick: false,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                    });
+                    Swal.showLoading();
+                    $.ajax({
+                        url: "{{ route('api.call_detail_nasabah') }}",
+                        method: "POST",
+                        data: {
+                            nasabah_d: id
+                        },
+                        success: function(data) {
+                            Swal.close();
+                            console.log(data.data, 'detail data')
+                            getall(data?.data)
+                            $('#formmodal').modal('hide');
+
+                        },
+                        error: function(data) {
+                            Swal.fire('error', 'gagal mengambil data nasabah', 'error');
+                        }
+                    });
+
+
+                })
+
                 $('.number_format').keyup(function(event) {
                     if (event.which >= 37 && event.which <= 40) return;
                     $(this).val(function(index, value) {
@@ -595,21 +752,94 @@
                 });
 
                 $('.ayamayam').hide();
-                $('#add_data').on('click', function() {
-                    $('#formmodal').modal('show');
-                    addUrl = '';
-                    $('#form_content').html('<center><h3>Loading ...</h3></center>').load(addUrl);
-                });
-
+ 
                 // edit
-                $('#datatable').on('click', '#edit', function(e) {
-                    e.preventDefault();
-                    $('#formmodal').modal('show');
-                    id = $(this).data('id');
-                    addUrl = ''.replace(':id', id);
-                    $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(addUrl);
+             });
 
-                })
+            // $.fn.dataTable.ext.errMode = 'throw';
+            var table = $('#datatable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'copyHtml5',
+                        className: 'btn btn-info btn-xs'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        className: 'btn btn-success btn-xs'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        className: 'btn btn-warning btn-xs'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        className: 'btn btn-prirmay btn-xs'
+                    }
+                ],
+                processing: true,
+                serverSide: true,
+                order: [1, 'asc'],
+                pageLength: 10,
+                ajax: {
+                    url: "{{ route('api.nasabah') }}",
+                    method: 'POST',
+                    data: function(data) {
+                        data.dari = $('#dari').val();
+                        data.sampai = $('#sampai').val();
+
+                    },
+                    _token: "{{ csrf_token() }}",
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false,
+                        align: 'center',
+                        className: 'text-center'
+
+                    },
+                    {
+                        data: 'nik',
+                        name: 'nik',
+                    },
+                    {
+                        data: 'no_anggota',
+                        name: 'no_anggota',
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama',
+                        orderable: false,
+                        searchable: false,
+                    },
+                    {
+                        data: 'jk',
+                        name: 'jk',
+                        orderable: false,
+                        searchable: false,
+                        render: function({
+                            data,
+                            row,
+                            type
+                        }) {
+                            if (data === 'L') {
+                                return 'Laki - laki';
+                            } else {
+                                return 'Perempuan';
+                            }
+                        }
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                    }
+                ]
+
             });
 
             @include('layouts.tablechecked');
@@ -660,6 +890,8 @@
                 }
             }
 
+
+
             // action of bussiness flow apps 
             $(document).ready(function() {
                 $('.cancel_transaction').on('click', function() {
@@ -682,9 +914,7 @@
                         }
                     })
                 })
-                $('.js-example-basic-single').select2({
-                    width: '100%'
-                });
+               
             });
         </script>
     @endsection
