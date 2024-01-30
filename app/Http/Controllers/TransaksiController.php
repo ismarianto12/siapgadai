@@ -251,7 +251,7 @@ class TransaksiController extends Controller
 
     function cetak_kwitansi($id)
     {
-
+        ob_start();
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $backgroundImage = asset('./assets/img/logo.png', 0.5, 'P', 'P', 'png'); // replace with the actual path to your image
@@ -262,16 +262,16 @@ class TransaksiController extends Controller
         $data = transaksi::getDetailTransaction($id);
         $render = view($this->view . 'cetak_kwitansi', compact('data'));
         $mpdf->WriteHTML($render);
-        ob_clean();
 
         return $mpdf->Output();
+        ob_clean();
 
     }
 
     function syarat_ketentuan($id)
     {
 
-
+        ob_start();
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $backgroundImage = asset('./assets/img/logo.png', 0.5, 'P', 'P', 'png'); // replace with the actual path to your image
         $mpdf->SetWatermarkImage($backgroundImage);
@@ -280,8 +280,9 @@ class TransaksiController extends Controller
         $data = transaksi::getDetailTransaction($id);
         $render = view($this->view . 'syarat_ketentuan', compact('data'));
         $mpdf->WriteHTML($render);
-        ob_clean();
+
         return $mpdf->Output();
+        ob_clean();
 
     }
 
