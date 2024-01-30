@@ -6,61 +6,47 @@
     <div class="ket"></div>
     <form id="exampleValidation" method="POST" class="simpan">
         <div class="form-group row">
-            <label class="col-md-2 text-left">nama_cabang</label>
-
-            <div class="col-md-4">
-                <input name='nama_cabang' class="form-control">
-            </div>
-
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">alamat_cabang</label>
-            <div class="col-md-4"><input name='alamat_cabang' class="form-control">
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">jam_buka</label>
-            <div class="col-md-4"><input name='jam_buka' class="form-control">
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">jam_tutup</label>
-            <div class="col-md-4"><input name='jam_tutup' class="form-control">
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">spv_cabang</label>
-            <div class="col-md-4"><input name='spv_cabang' class="form-control">
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">created_at</label>
-            <div class="col-md-4"><input name='created_at' class="form-control">
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">updated_at</label>
-            <div class="col-md-4"><input name='updated_at' class="form-control">
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">user_id</label>
-            <div class="col-md-4"><input name='user_id' class="form-control">
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">kode_cabang</label>
+            <label class="col-md-2 text-left">Kode Cabang</label>
             <div class="col-md-4"><input name='kode_cabang' class="form-control">
             </div>
+        </div> 
+        <div class="form-group row">
+            <label class="col-md-2 text-left">Nama cabang</label>
+
+            <div class="col-md-4">
+                <input type="text" name='nama_cabang' class="form-control">
+            </div>
+
+
         </div>
+        <div class="form-group row">
+            <label class="col-md-2 text-left">Alamat</label>
+            <div class="col-md-4">
+                <textarea name='alamat_cabang' class="form-control"></textarea>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 text-left">Jam Buka</label>
+            <div class="col-md-4"><input type="date" name='jam_buka' class="form-control">
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 text-left">Jam Tutup</label>
+            <div class="col-md-4"><input type="date" name='jam_tutup' class="form-control">
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 text-left">SPV /Head </label>
+            <div class="col-md-4"><input type="text" name='spv_cabang' class="form-control">
+            </div>
+
+        </div>
+        
+         
+        
         <div class="card-action">
             <div class="row">
                 <div class="col-md-12">
@@ -107,7 +93,7 @@
         $('.simpan').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('master.barang.store') }}",
+                url: "{{ route('master.cabang.store') }}",
                 method: "POST",
                 data: $(this).serialize(),
                 chace: false,

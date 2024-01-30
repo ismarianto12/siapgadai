@@ -9,10 +9,10 @@
                         <i class="fa fa-plus"></i>
                         Add Row
                     </button>
-                    <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
+                    {{-- <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
                         <i class="fa fa-minus"></i>
                         Delete selected
-                    </button>
+                    </button> --}}
                 </div>
             </div>
             <div class="card-body">
@@ -89,7 +89,7 @@
                 e.preventDefault();
                 $('#formmodal').modal('show');
                 id = $(this).data('id');
-                addUrl = ''.replace(':id', id);
+                addUrl = '{{ route('master.cabang.edit', ':id') }}'.replace(':id', id);
                 $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(addUrl);
 
             })
@@ -209,6 +209,5 @@
                 });
             }
         }
-       
     </script>
 @endsection

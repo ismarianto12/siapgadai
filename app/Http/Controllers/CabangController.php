@@ -38,16 +38,7 @@ class CabangController extends Controller
         return view($this->view . "form_add", compact("title"));
 
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     function api()
     {
@@ -92,9 +83,11 @@ class CabangController extends Controller
      * @param  \App\Models\cabang  $cabang
      * @return \Illuminate\Http\Response
      */
-    public function edit(cabang $cabang)
+    public function edit($id)
     {
-        //
+        $title = 'Tambah Cabang';
+        $data = \DB::table('cabang')->where('id', $id)->first();
+        return view($this->view . "form_edit", compact("title", "data","id"));
     }
 
     /**
@@ -104,10 +97,57 @@ class CabangController extends Controller
      * @param  \App\Models\cabang  $cabang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cabang $cabang)
+    public function store(Request $request)
     {
-        //
+        try {
+            DB::table("cabang")->insert([
+                'nama_cabang' => $request->nama_cabang,
+                'no_telp' => $request->no_telp,
+                'alamat_cabang' => $request->alamat_cabang,
+                'jam_buka' => $request->jam_buka,
+                'jam_tutup' => $request->jam_tutup,
+                'spv_cabang' => $request->spv_cabang,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'user_id' => $request->user_id,
+                'kode_cabang' => $request->kode_cabang,
+            ]);
+
+            return response()->json([
+                'message' => 'Data berhasil disimpan',
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat menyimpan data',
+            ], 500);
+        }
     }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            DB::table("cabang")->where('id', $id)->update([
+                'nama_cabang' => $request->nama_cabang,
+                'no_telp' => $request->no_telp,
+                'alamat_cabang' => $request->alamat_cabang,
+                'jam_buka' => $request->jam_buka,
+                'jam_tutup' => $request->jam_tutup,
+                'spv_cabang' => $request->spv_cabang,
+                'updated_at' => now(),
+                'user_id' => $request->user_id,
+                'kode_cabang' => $request->kode_cabang,
+            ]);
+
+            return response()->json([
+                'message' => 'Data berhasil diperbarui',
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat memperbarui data',
+            ], 500);
+        }
+    }
+
 
     /**
      * Remove the specified resource from storage.

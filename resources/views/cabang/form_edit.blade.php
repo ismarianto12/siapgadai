@@ -6,59 +6,50 @@
     <div class="ket"></div>
     <form id="exampleValidation" method="POST" class="simpan">
         <div class="form-group row">
-            <label class="col-md-2 text-left">nama_cabang</label>
+            <label class="col-md-2 text-left">Kode Cabang</label>
+            <div class="col-md-4"><input name='kode_cabang' value="{{ $data->kode_cabang }}" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 text-left">Nama cabang</label>
 
             <div class="col-md-4">
-                <input name='nama_cabang' class="form-control">
+                <input type="text" name='nama_cabang' value="{{ $data->kode_cabang }}" class="form-control">
             </div>
+
+
         </div>
         <div class="form-group row">
-            <label class="col-md-2 text-left">alamat_cabang</label>
-            <div class="col-md-4"><input name='alamat_cabang' class="form-control">
+            <label class="col-md-2 text-left">Alamat</label>
+            <div class="col-md-4">
+                <textarea name='alamat_cabang' class="form-control"> {{ $data->alamat_cabang }}</textarea>
             </div>
 
         </div>
         <div class="form-group row">
-            <label class="col-md-2 text-left">jam_buka</label>
-            <div class="col-md-4"><input name='jam_buka' class="form-control">
+            <label class="col-md-2 text-left">Jam Buka</label>
+            <div class="col-md-4"><input type="date" name='jam_buka' value="{{ $data->jam_buka }}"
+                    class="form-control">
             </div>
 
         </div>
         <div class="form-group row">
-            <label class="col-md-2 text-left">jam_tutup</label>
-            <div class="col-md-4"><input name='jam_tutup' class="form-control">
+            <label class="col-md-2 text-left">Jam Tutup</label>
+            <div class="col-md-4">
+                <input type="date" name='jam_tutup' value="{{ $data->jam_tutup }}"
+                    class="form-control">
             </div>
 
         </div>
         <div class="form-group row">
-            <label class="col-md-2 text-left">spv_cabang</label>
-            <div class="col-md-4"><input name='spv_cabang' class="form-control">
+            <label class="col-md-2 text-left">SPV /Head </label>
+            <div class="col-md-4">
+                <input type="text" name='spv_cabang' value="{{ $data->spv_cabang }}" class="form-control">
             </div>
+        </div>
 
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">created_at</label>
-            <div class="col-md-4"><input name='created_at' class="form-control">
-            </div>
 
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">updated_at</label>
-            <div class="col-md-4"><input name='updated_at' class="form-control">
-            </div>
 
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">user_id</label>
-            <div class="col-md-4"><input name='user_id' class="form-control">
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 text-left">kode_cabang</label>
-            <div class="col-md-4"><input name='kode_cabang' class="form-control">
-            </div>
-        </div>
         <div class="card-action">
             <div class="row">
                 <div class="col-md-12">
@@ -71,42 +62,13 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-
-        // format number 
-        $('.number_format').keyup(function(event) {
-            // skip for arrow keys
-            if (event.which >= 37 && event.which <= 40) return;
-            // format number
-            $(this).val(function(index, value) {
-                return value
-                    .replace(/\D/g, "")
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            });
-        });
-
-        function parseCurrency(num) {
-            return parseFloat(num.replace(/,/g, ''));
-        }
-        // if get  input value in texboxt 
-        $('input').keyup(function() {
-            volume = parseCurrency($('input[name="volume"]').val());
-            harga_satuan = parseCurrency($(
-                'input[name="harga_satuan"]').val());
-            nilai = volume * harga_satuan;
-            $("#jumlah_harga").val(nilai);
-            isNaN(nilai) ? 0 : $("#tharga").html(nilai.toLocaleString());
-
-        });
-
-    });
-
+     
     $(function() {
         $('.simpan').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('master.barang.store') }}",
-                method: "POST",
+                url: "{{ route('master.cabang.update', $id) }}",
+                method: "PUT",
                 data: $(this).serialize(),
                 chace: false,
                 async: false,
