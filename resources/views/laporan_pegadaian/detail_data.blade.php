@@ -29,6 +29,50 @@
                     <td>Jumlah Pinjaman:</td>
                     <td>{{ $data['jumlah_pinjaman'] }}</td>
                 </tr>
+
+                <tr>
+
+                    <td colspan="2">
+                        <div class="alert alert-danger">Data Pinjaman</div>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+                        Limit
+                    </td>
+
+                    <td>
+                        {{ $data['maks_pinjaman'] }}
+
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        Jumlah Diambil
+                    </td>
+
+                    <td>
+                        {{ $data['jumlah_pinjaman'] }}
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+
+                        Tanggal Jatuh Tempo
+                    </td>
+
+                    <td>
+                        {{ $data['tanggal_jatuh_tempo'] }}
+                    </td>
+
+                </tr>
             </tbody>
         </table>
 

@@ -125,7 +125,7 @@ table.dataTable tbody td {
 
 #datatable {
   border-collapse: collapse !important;
-  width: 100%;
+  width: 100% !important;
 }
 
 .form-control {
@@ -22786,4 +22786,8 @@ body[data-background-color="dark"] .board {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#datatable>tbody>tr>td {
+  white-space: nowrap;
 }

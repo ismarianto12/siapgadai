@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-    @include('layouts.breadcum')
+@include('layouts.breadcum')
     <div class="col-md-12">
         <div class="card">
             {{-- <form cas --}}
@@ -102,6 +102,7 @@
         // table data
         $.fn.dataTable.ext.errMode = 'throw';
         var table = $('#datatable').DataTable({
+            // autoWidth: true,
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
