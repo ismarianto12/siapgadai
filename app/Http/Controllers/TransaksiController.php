@@ -245,6 +245,9 @@ class TransaksiController extends Controller
 
     function cetak_kwitansi($id)
     {
+
+        require_once __DIR__ . '/vendor/autoload.php'; // Adjust the path to autoload.php
+ 
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
         $mpdf->SetWatermarkImage($backgroundImage);
