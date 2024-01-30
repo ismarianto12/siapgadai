@@ -160,6 +160,8 @@ class Menu_app
                     $menu .= self::menu_single(Url('app/transaksi'), '', 'Transaksi');
                     $menu .= self::menu_single(Url('app/return_transaksi'), '', 'Batalkan Transaksi');
                     $menu .= self::menu_single(Url('laporan/pegadaian'), '', 'Laporan Transaksi');
+                    $menu .= self::menu_single(Url('app/pelunasan'), '', 'Pelunasan');
+
 
                     '</ul>
                     </li>
