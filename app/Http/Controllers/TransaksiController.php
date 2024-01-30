@@ -247,7 +247,7 @@ class TransaksiController extends Controller
     {
 
         // require_once __DIR__ . '/vendor/autoload.php'; // Adjust the path to autoload.php
- 
+
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
         $mpdf->SetWatermarkImage($backgroundImage);
@@ -258,7 +258,9 @@ class TransaksiController extends Controller
         $render = view($this->view . 'cetak_kwitansi', compact('data'))->render();
         $mpdf->WriteHTML($render);
 
-        return $mpdf->Output("cetak_kwitansi.pdf", 'I');
+        return response($mpdf->Output("cetak_kwitansi.pdf", 'S'))
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'attachment; filename="cetak_kwitansi.pdf"');
 
 
     }
@@ -274,7 +276,9 @@ class TransaksiController extends Controller
         $data = transaksi::getDetailTransaction($id);
         $render = view($this->view . 'syarat_ketentuan', compact('data'))->render();
         $mpdf->WriteHTML($render);
-        return $mpdf->Output();
+        return response($mpdf->Output("cetak_kwitansi.pdf", 'S'))
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'attachment; filename="cetak_kwitansi.pdf"');
     }
 
 
