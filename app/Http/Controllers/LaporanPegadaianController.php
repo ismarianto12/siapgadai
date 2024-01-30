@@ -121,8 +121,6 @@ class LaporanPegadaianController extends Controller
             ->rawColumns(['action'])
             ->toJson();
 
-
-
     }
 
     /**
