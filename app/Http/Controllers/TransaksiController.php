@@ -254,7 +254,7 @@ class TransaksiController extends Controller
 
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
-        $backgroundImage = asset('assets/img/logo.png'); // replace with the actual path to your image
+        $backgroundImage = asset('assets/img/logo.jpg'); // replace with the actual path to your image
         $mpdf->SetWatermarkImage($backgroundImage);
         $mpdf->showWatermarkImage = true;
 
@@ -272,7 +272,7 @@ class TransaksiController extends Controller
 
 
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
-        $backgroundImage = asset('assets/img/logo.png'); // replace with the actual path to your image
+        $backgroundImage = asset('assets/img/logo.jpg'); // replace with the actual path to your image
         $mpdf->SetWatermarkImage($backgroundImage);
         $mpdf->showWatermarkImage = true;
         $mpdf->SetTitle('Syarat dan Ketentuan');
