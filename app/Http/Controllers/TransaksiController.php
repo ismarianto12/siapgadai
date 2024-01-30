@@ -241,7 +241,7 @@ class TransaksiController extends Controller
         return view($this->view . 'detail_transaksi', compact('data', 'title', 'idTransaction'));
     }
 
- 
+
 
     function cetak_kwitansi($id)
     {
@@ -255,7 +255,8 @@ class TransaksiController extends Controller
         $render = view($this->view . 'cetak_kwitansi', compact('data'));
         $mpdf->WriteHTML($render);
 
-        return $mpdf->Output();
+        return $mpdf->Output("cetak_kwitansi.pdf", 'I');
+
 
     }
 
