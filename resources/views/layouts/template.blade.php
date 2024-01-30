@@ -102,7 +102,7 @@
                         <li class="nav-item active">
                             <a href="#" class="nav-link logout">
                                 <b>
-                                    @if (Auth::user()->level_id == 1)
+                                    @if (Auth::user()->tmlevel_id == 1)
                                         {{ Str::ucfirst(Auth::user()->username) }}
                                     @else
                                         {{ Properti_app::guruid('nama') }}
@@ -130,7 +130,7 @@
                                     <img src="{{ asset('assets/img/logo.png') }}" class="img-responsive"
                                         style="width: 70%" />
                                     <center>
-                                        Akses: @if (Auth::user()->level_id == '1')
+                                        Akses: @if (Auth::user()->tmlevel_id == '1')
                                             {{ Str::ucfirst(Auth::user()->username) }}
                                         @else
                                             Guru

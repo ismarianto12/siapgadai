@@ -140,7 +140,7 @@ class JadwalController extends Controller
         if ($guru) {
             $data->where('karyawan.guru_id', '=', $guru);
         }
-        if (Auth::user()->level_id == '2') {
+        if (Auth::user()->tmlevel_id == '2') {
             $data->where('jadwal.guru_id', '=', Properti_app::guruid());
 
         }
@@ -219,7 +219,7 @@ class JadwalController extends Controller
     {
 
         $guru_id = Properti_app::guruid();
-        $level = Auth::user()->level_id;
+        $level = Auth::user()->tmlevel_id;
 
 
         $kelas = $this->request->kelas_id;
@@ -260,7 +260,7 @@ class JadwalController extends Controller
         if ($guru) {
             $data->where('karyawan.guru_id', '=', $guru);
         }
-        if (Auth::user()->level_id == '2') {
+        if (Auth::user()->tmlevel_id == '2') {
             $data->where('jadwal.guru_id', '=', Properti_app::guruid());
 
         }

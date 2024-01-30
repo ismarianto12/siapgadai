@@ -124,7 +124,7 @@ class UserController extends Controller
         $data->password = bcrypt($this->request->password);
         $data->email = $this->request->email;
         $data->name = $this->request->name;
-        $data->tmlevel_id = $this->request->id_role;
+        $data->tmlevel_id = $this->request->tmlevel_id;
         $data->cabang_id = $this->request->cabang_id;
         $data->save();
         return response()->json([
@@ -192,7 +192,7 @@ class UserController extends Controller
             $data->email = $this->request->email;
             $data->name = $this->request->name;
             $data->cabang_id = $this->request->cabang_id;
- 
+
 
             $data->photo = $setname;
             $data->save();
@@ -291,7 +291,7 @@ class UserController extends Controller
         $data->password = bcrypt($this->request->password);
         $data->email = $this->request->email;
         $data->name = $this->request->name;
-        $data->tmlevel_id = $this->request->id_role;
+        $data->tmlevel_id = $this->request->tmlevel_id;
         $data->save();
 
         return response()->json([

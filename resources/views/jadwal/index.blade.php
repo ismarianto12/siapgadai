@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    @if (Auth::user()->level_id == '1')
+                    @if (Auth::user()->tmlevel_id == '1')
                         <div class="card-header">
                             <div class="d-flex align-items-left">
                                 <div class="d-flex align-items-center">

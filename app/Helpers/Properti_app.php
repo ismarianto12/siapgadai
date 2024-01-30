@@ -217,7 +217,7 @@ class Properti_app
 
     public static function comboproyek($id = '')
     {
-        $level_id = Auth::user()->level_id;
+        $level_id = Auth::user()->tmlevel_id;
         $id_user = Auth::user()->id;
         $datas = User::select(
             'users.id as ltjk',
@@ -258,7 +258,7 @@ class Properti_app
 
     public static function combobangunan($id = '')
     {
-        $level_id = Auth::user()->level_id;
+        $level_id = Auth::user()->tmlevel_id;
         $datas = Tmbangunan::select('kode', 'nama_bangunan', 'id');
 
         if ($level_id != 1) {
@@ -466,7 +466,7 @@ class Properti_app
     public static function getUserLogin()
     {
 
-        $levelid = Auth::user()->level_id;
+        $levelid = Auth::user()->tmlevel_id;
         if ($levelid === '3') {
             return DB::table('kelas')->get();
         } else {
