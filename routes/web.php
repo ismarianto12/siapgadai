@@ -24,7 +24,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
-Route::group(['middleware' => ['api']], function () {
+Route::group(['middleware' => ['auth', 'api']], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/index.html', [App\Http\Controllers\HomeController::class, 'index'])->name('index.html');
@@ -74,13 +74,13 @@ Route::group(['middleware' => ['api']], function () {
         Route::post('cabang', [CabangController::class, 'api'])->name('cabang');
         Route::post('pelunasan', [PelunasanController::class, 'api'])->name('pelunasan');
         Route::post('kategori', [KategoryBarangController::class, 'api'])->name('kategori');
-	Route::post('nasabah', [NasabahController::class, 'api'])->name('nasabah');
+        Route::post('nasabah', [NasabahController::class, 'api'])->name('nasabah');
         // api
         Route::post('laporan_pegadaian', [LaporanPegadaianController::class, 'api'])->name('laporan_pegadaian');
         Route::post('pendapatan', [LaporanPendapatanController::class, 'api'])->name('pendapatan');
         Route::post('call_detail_transaction', [PelunasanController::class, 'getDetail'])->name('call_detail_transaction');
-	Route::post('call_detail_nasabah', [TransaksiController::class, 'call_detail_nasabah'])->name('call_detail_nasabah');       	
-   	Route::post('user', [UserController::class, 'api'])->name('user');
+        Route::post('call_detail_nasabah', [TransaksiController::class, 'call_detail_nasabah'])->name('call_detail_nasabah');
+        Route::post('user', [UserController::class, 'api'])->name('user');
         Route::post('action_pelunasan', [PelunasanController::class, 'action_pelunasan'])->name('action_pelunasan');
 
     });
