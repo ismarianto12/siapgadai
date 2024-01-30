@@ -133,7 +133,7 @@
                                         Akses: @if (Auth::user()->tmlevel_id == '1')
                                             {{ Str::ucfirst(Auth::user()->username) }}
                                         @else
-                                            Guru
+                                            Operator / Kasir
                                         @endif
                                     </center>
                                     <span class="user-level">{{ Auth::user()->level }}</span>
