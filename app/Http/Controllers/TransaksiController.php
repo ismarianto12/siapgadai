@@ -241,13 +241,7 @@ class TransaksiController extends Controller
         return view($this->view . 'detail_transaksi', compact('data', 'title', 'idTransaction'));
     }
 
-    /**
-     * 
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
+ 
 
     function cetak_kwitansi($id)
     {
