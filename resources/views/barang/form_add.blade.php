@@ -99,8 +99,8 @@
         $('.simpan').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('master.barang.store') }}",
-                method: "POST",
+                url: "{{ route('master.barang.update', $id) }}",
+                method: "PUT",
                 data: $(this).serialize(),
                 chace: false,
                 async: false,
