@@ -26,7 +26,7 @@ class Menu_app
         $structure = '<li class="nav-item">
         
 							<a href="' . $module_name . '">
-                            <i class="fas fa-list"></i> 
+                            <i class="la flaticon-laptop"></i> 
                                 ' . $font . '
                             <p>' . $title . '</p>
                             
@@ -132,7 +132,7 @@ class Menu_app
                 <div class="collapse" id="report">
                     <ul class="nav nav-collapse">';
                     $menu .= self::set_menu(Url('laporan/pegadaian'), 'Laporan Transaksi', );
-                    $menu .= self::set_menu(Url('laporan/pegadaian'), 'Laporan Pelunasan', ); 
+                    $menu .= self::set_menu(Url('laporan/pegadaian'), 'Laporan Pelunasan', );
                     $menu .= self::set_menu(Url('laporan/pendapatan'), 'Laporan Pendapatan');
                     $menu .= '
                   </ul>
@@ -157,8 +157,9 @@ class Menu_app
                     $menu .= '<li class="nav-item">
                             <ul class="nav">
                     ';
-                    $menu .= self::menu_single(Url('master/transaksi'), '', 'Transaksi');
-                    $menu .= self::menu_single(Url('master/laporan_transaksi'), '', 'Laporan Transaksi');
+                    $menu .= self::menu_single(Url('app/transaksi'), '', 'Transaksi');
+                    $menu .= self::menu_single(Url('app/return_transaksi'), '', 'Batalkan Transaksi');
+                    $menu .= self::menu_single(Url('laporan/pegadaian'), '', 'Laporan Transaksi');
 
                     '</ul>
                     </li>
