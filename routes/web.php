@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth', 'api']], function () {
     Route::prefix('laporan')->name('laporan.')->group(function () {
         Route::get('pegadaian', [LaporanPegadaianController::class, 'index'])->name('pegadaian');
         Route::get('detaildata/{id}', [LaporanPegadaianController::class, 'show'])->name('detaildata');
-        Route::get('pelunasan', [PelunasanController::class, 'index'])->name('pendapatan');
+        Route::get('pelunasan', [PelunasanController::class, 'laporan_pelunasan'])->name('pendapatan');
 
         Route::get('pendapatan', [LaporanPendapatanController::class, 'index'])->name('pendapatan');
 

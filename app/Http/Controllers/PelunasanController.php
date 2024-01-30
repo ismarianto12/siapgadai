@@ -33,6 +33,12 @@ class PelunasanController extends Controller
     {
         $title = 'Pelunasan';
         $data = [];
+        return view($this->view . "index", compact("title", "data"));
+    }
+    public function laporan_pelunasan()
+    {
+        $title = 'Pelunasan';
+        $data = [];
         return view($this->view . "laporan_pelunasan", compact("title", "data"));
     }
     public function create()
@@ -127,8 +133,8 @@ class PelunasanController extends Controller
             'perhitungan_biaya.persentase as persentase_pinjaman',
             'nasabah.nama',
             'nasabah.no_anggota',
-            'nasabah.alamat', 
-            'nasabah.no_hp as no_handphone'  
+            'nasabah.alamat',
+            'nasabah.no_hp as no_handphone'
 
         )
             ->join('transaksi_gadai', 'transaksi_gadai.id', '=', 'pelunasan.transaksi_id')
@@ -136,7 +142,7 @@ class PelunasanController extends Controller
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
             ->where('transaksi_gadai.status_transaksi', '=', '3');
-            
+
         if ($dari && $sampai) {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
         }
