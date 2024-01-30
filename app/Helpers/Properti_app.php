@@ -527,7 +527,7 @@ class Properti_app
 
     static function ParameterHitung()
     {
-        $data = \DB::table('perhitungan_biaya')->get();
+        $data = \DB::table('perhitungan_biaya')->where('id', '!=', '5')->get();
         return $data;
     }
 

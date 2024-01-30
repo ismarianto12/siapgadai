@@ -117,7 +117,7 @@ class Menu_app
                     </a>
                     <div class="collapse" id="pelunasan">
                         <ul class="nav nav-collapse">';
-                    $menu .= self::set_menu(Url('app/penagihan'), 'Penagihan');
+                    // $menu .= self::set_menu(Url('app/penagihan'), 'Penagihan');
                     $menu .= self::set_menu(Url('app/pelunasan'), 'Pelunasan');
                     $menu .= '
                       </ul>
