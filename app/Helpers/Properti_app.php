@@ -491,10 +491,10 @@ class Properti_app
             '2' => 'Perempuan',
         ];
     }
-    public static function getCabang($param_id, $parameter = 'default_parameter')
+    public static function getCabang($param_id, $parameter)
     {
         try {
-            $data = \DB::table('cabang')->where('id', '1')->get();
+            $data = \DB::table('cabang')->where('id', $param_id)->get();
 
             if ($data->isEmpty()) {
                 throw new \Exception('Branch not found.');
