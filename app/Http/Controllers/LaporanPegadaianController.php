@@ -42,7 +42,7 @@ class LaporanPegadaianController extends Controller
         $dari = $this->request->input("dari");
         $sampai = $this->request->input("sampai");
         $data = transaksi::select(
-            'transaksi_gadai.id',
+            'transaksi_gadai.id as id_transaksi',
             'transaksi_gadai.pelunasan',
             'transaksi_gadai.keluaran_tahun',
             'transaksi_gadai.imei',
@@ -57,6 +57,9 @@ class LaporanPegadaianController extends Controller
             'transaksi_gadai.tanggal_jatuh_tempo',
             'transaksi_gadai.jumlah_pinjaman as jumlah_diambil',
             'transaksi_gadai.jumlah_pinjaman',
+            'transaksi_gadai.taksiran_harga', 
+            'transaksi_gadai.persentase_pinjaman as pinjam_persen', 
+
 
             'transaksi_gadai.perpajangan',
             'transaksi_gadai.jasa_titip',
@@ -116,7 +119,7 @@ class LaporanPegadaianController extends Controller
         $sql = $data->get();
         return DataTables::of($sql)
             ->editColumn('action', function ($p) {
-                return '<a to="' . route('laporan.detaildata', $p->id) . '" class="btn btn-warning btn-xs" id="edit"><i class="
+                return '<a to="' . route('laporan.detaildata', $p->id_transaksi) . '" class="btn btn-warning btn-xs" id="edit"><i class="
                 flaticon-user-4"></i>detail </a> ';
 
             }, true)

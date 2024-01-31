@@ -72,12 +72,13 @@
                                 <th>Alamat</th>
                                 <th>No Handphpone</th>
                                 <th>Nama Barang</th>
-                                <th>Durasi Pinjaman</th>
+                                <th>Taksiran Harga</th>
                                 <th>Maks Pinjaman</th>
                                 <th>Limit Pinjaman</th>
                                 <th>Jumlah Diambil</th>
                                 <th>Administrasi</th>
-                                <th>Persentase</th>
+                                <th>Persentase Pinjaman</th>
+                                <th>Durasi Pinjaman</th>
                                 <th>Jatuh Tempo</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -179,17 +180,16 @@
                     name: 'nama_barang'
                 },
                 {
-                    data: 'durasi_pinjam',
-                    name: 'durasi_pinjam'
+                    data: 'taksiran_harga',
+                    name: 'taksiran_harga'
                 },
-
                 {
                     data: 'maks_pinjaman',
                     name: 'maks_pinjaman'
                 },
                 {
-                    data: 'jumlah_pinjaman',
-                    name: 'jumlah_pinjaman'
+                    data: 'maks_pinjaman',
+                    name: 'maks_pinjaman'
                 },
                 {
                     data: 'jumlah_diambil',
@@ -199,11 +199,16 @@
                     data: 'administrasi',
                     name: 'administrasi'
                 },
-
+                
                 {
-                    data: 'persentase_pinjaman',
-                    name: 'persentase_pinjaman'
+                    data: 'pinjam_persen',
+                    name: 'pinjam_persen'
                 },
+                {
+                    data: 'durasi_pinjam',
+                    name: 'durasi_pinjam'
+                },
+                
                 {
                     data: 'tanggal_jatuh_tempo',
                     name: 'tanggal_jatuh_tempo'
