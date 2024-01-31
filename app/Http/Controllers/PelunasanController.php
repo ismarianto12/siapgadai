@@ -229,6 +229,11 @@ class PelunasanController extends Controller
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
             ->where('transaksi_gadai.status_transaksi', '=', '3');
 
+        if (Auth::user()->tmlevel_id != '1') {
+            $data->where('transaksi_gadai.cabang_id', Auth::user()->cabang_id);
+
+        }
+
         if ($dari && $sampai) {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
         }
