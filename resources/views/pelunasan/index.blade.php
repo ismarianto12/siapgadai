@@ -846,7 +846,7 @@
                 order: [1, 'asc'],
                 pageLength: 10,
                 ajax: {
-                    url: "{{ route('api.pelunasan') }}",
+                    url: "{{ route('api.nasabah_belum_lunas') }}",
                     method: 'POST',
                     data: function(data) {
                         data.dari = $('#dari').val();

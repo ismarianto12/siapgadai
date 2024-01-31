@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::post('barang', [BarangController::class, 'api'])->name('barang');
         Route::post('cabang', [CabangController::class, 'api'])->name('cabang');
         Route::post('pelunasan', [PelunasanController::class, 'api'])->name('pelunasan');
+        Route::post('nasabah_belum_lunas', [PelunasanController::class, 'nasabah_belum_lunas'])->name('nasabah_belum_lunas'); 
         Route::post('kategori', [KategoryBarangController::class, 'api'])->name('kategori');
         Route::post('nasabah', [NasabahController::class, 'api'])->name('nasabah');
         // api
