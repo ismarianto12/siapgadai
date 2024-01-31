@@ -126,6 +126,7 @@ class TransaksiController extends Controller
             if ($CheckNasabah->count() > 0) {
                 $first_trasaksi = [
                     'imei' => $this->request->imei,
+                    'perhitungan_biaya_id'=> $this->request->perhitungan_biaya_id,
                     'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
                     'menyetujui_staff_sgi' => $this->request->menyetujui_staff_sgi,
                     'durasi_pelunasan' => $this->request->durasi_pelunasan,
@@ -176,6 +177,7 @@ class TransaksiController extends Controller
                 ];
                 $lastInsertedId = \DB::table('nasabah')->insertGetId($nasabah);
                 $trasaksi = [
+                    'perhitungan_biaya_id'=> $this->request->perhitungan_biaya_id,
                     'imei' => $this->request->imei,
                     'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
                     'menyetujui_staff_sgi' => $this->request->menyetujui_staff_sgi,
@@ -206,8 +208,7 @@ class TransaksiController extends Controller
                     'referal_code' => $this->request->referal_code,
                     'type' => $this->request->type,
                     'tujuan_gadai' => $this->request->tujuan_gadai,
-                    'created_at' => date('Y-m-d H:i:s'),
-
+                    'created_at' => date('Y-m-d H:i:s'), 
                 ];
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($trasaksi);
             }

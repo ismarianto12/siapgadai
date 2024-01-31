@@ -47,13 +47,8 @@
             <p style="margin-left:7px"><span style="font-size:10pt"><span
                         style="font-family:Tahoma,sans-serif">(selanjutnya
                         disebut sebagai &ldquo;Perusahaan&rdquo;)</span></span></p>
-
             <p>&nbsp;</p>
-
             <p>&nbsp;</p>
-
-
-
             <table>
                 <tbody>
                     <tr>
@@ -98,7 +93,7 @@
                             :
                         </td>
                         <td>
-                            {{ $data->tujuan }}
+                            {{ $data->tujuan_gadai }}
                         </td>
                     </tr>
                 </tbody>
