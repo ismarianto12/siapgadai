@@ -1,9 +1,8 @@
 @extends('layouts.template')
 @section('content')
-@include('layouts.breadcum')
+    @include('layouts.breadcum')
     <div class="col-md-12">
         <div class="card">
-            {{-- <form cas --}}
             <div class="card-header row">
                 <div class="form-group row">
                     <label class="col-md-3 text-left">Dari</label>
@@ -17,6 +16,20 @@
                         <input type="date" name='sampai' class="form-control" id="sampai" />
                     </div>
                 </div>
+                @if (Auth::user()->tmlevel_id == 1)
+                    <div class="form-group row">
+                        <label class="col-md-3 text-left">Cabang</label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="tmcabang_id" id="tmcabang_id">
+                                <option id="">Pilih Cabang</option>
+                                @foreach (Properti_app::dataCabang() as $cabangnya)
+                                    <option value="{{ $cabangnya->id }}"> {{ $cabangnya->nama_cabang }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="form-group row">
                     <button class="searchdata btn btn-info btn-round btn-sm">
                         <i class="flaticon-search-2"></i>
@@ -133,7 +146,9 @@
                 data: function(data) {
                     data.dari = $('#dari').val();
                     data.sampai = $('#sampai').val();
-
+                    @if (Auth::user()->tmlevel_id == 1)
+                        data.tmcabang_id = $('#tmcabang_id option:selected').val();
+                    @endif
                 },
                 _token: "{{ csrf_token() }}",
             },
