@@ -78,8 +78,13 @@ class UserController extends Controller
 
             'tmlevel.updated_at',
             'tmlevel.id as level_id',
-            'tmlevel.created_at'
-        )->join('tmlevel', 'users.tmlevel_id', '=', 'tmlevel.id')->get();
+            'tmlevel.created_at',
+            'cabang.nama_cabang',
+            'cabang.kode_cabang',
+
+        )->join('tmlevel', 'users.tmlevel_id', '=', 'tmlevel.id')
+        ->join('cabang', 'users.cabang_id', '=', 'cabang.id','left')->get();
+
         return DataTables::of($data)
             ->editColumn('id', function ($p) {
                 return "<input type='checkbox' name='cbox[]' value='" . $p->id . "' />";

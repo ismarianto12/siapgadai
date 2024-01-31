@@ -42,6 +42,7 @@
                                 <th></th>
                                 <th>Username</th>
                                 <th>Nama</th>
+                                <th>Cabang</th>
                                 <th>Email</th>
                                 <th>Level</th>
                                 <th style="width: 10%">Action</th>
@@ -93,6 +94,9 @@
                     }
                 },
                 {
+                    data: 'nama_cabang',
+                    name: 'nama_cabang'
+                }, {
                     data: 'email',
                     name: 'email'
                 },
