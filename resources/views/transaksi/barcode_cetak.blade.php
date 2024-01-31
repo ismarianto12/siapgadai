@@ -70,19 +70,22 @@
                 window.print();
             };
         </script>
- 
-        <div style="margin-top: -30px;margin-left:10px">
-            <p>
-                <?php
-                echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data->no_anggota, 'C39+') . '" alt="barcode"   />';
-                ?>
-                <br />
-                <b> {{ $data->nama }}</b>
-                {{ $data->no_faktur }} -
-                {{ Str::ucfirst(strtolower($data->nama_barang)) }} - {{ $data->no_imei }}
-                <br />
 
-                {{ $data->alamat }}
+        <div style="align-items: center;">
+
+            <?php
+            echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data->no_anggota, 'C39+') . '" alt="barcode"   />';
+            ?>
+
+            <br />
+            <p>
+
+                {{ $data->no_faktur }} -
+                {{ Str::ucfirst(strtolower($data->merek_barang)) }} - {{ $data->no_imei }}
+            <div style="border-top: 0.1px solid #ddd;margin-top:20px">
+
+                <b> {{ $data->nama }}</b>- {{ $data->alamat }}
+            </div>
             </p>
 
         </div>
