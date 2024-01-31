@@ -3,16 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\nasabah;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
 use DataTables;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Mpdf\Mpdf;
-use Properti_app;
-use DNS1D;
-use DNS2D;
-
 
 class NasabahController extends Controller
 {
@@ -20,7 +14,7 @@ class NasabahController extends Controller
     protected $request;
     protected $route;
     protected $view;
-    function __construct(Request $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
         $this->date = date("Y-m-d");
@@ -100,7 +94,9 @@ class NasabahController extends Controller
                 'nasabah.foto_ktp'
             );
 
-        $sql = $data->get();
+        $sql = $data->where('nasabah.cabang_id',
+            Auth::user()->cabang_id
+        )->get();
         return DataTables::of($sql)
             ->editColumn('id', function ($p) {
                 return "<input type='checkbox' name='cbox[]' value='" . $p->id . "' />";
@@ -112,7 +108,6 @@ class NasabahController extends Controller
             ->rawColumns(['usercreate', 'action', 'id'])
             ->toJson();
     }
-
 
     /**
      * Remove the specified resource from storage.

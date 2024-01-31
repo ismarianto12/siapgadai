@@ -162,6 +162,7 @@ class TransaksiController extends Controller
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($first_trasaksi);
             } else {
                 $nasabah = [
+                    'cabang_id'=> Auth::user()->cabang_id,
                     'no_anggota' => $this->request->no_anggota,
                     'foto_ktp' => $foto_ktpname,
                     'kelurahan' => $this->request->kelurahan,
