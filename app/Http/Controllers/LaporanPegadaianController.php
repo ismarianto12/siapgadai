@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\transaksi;
-use Illuminate\Http\Request;
 use DataTables;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LaporanPegadaianController extends Controller
@@ -14,7 +13,7 @@ class LaporanPegadaianController extends Controller
     protected $request;
     protected $route;
     protected $view;
-    function __construct(Request $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
         $this->date = date("Y-m-d");
@@ -37,9 +36,8 @@ class LaporanPegadaianController extends Controller
         //
     }
 
-    function api()
+    public function api()
     {
-
 
         $dari = $this->request->input("dari");
         $sampai = $this->request->input("sampai");
@@ -106,14 +104,15 @@ class LaporanPegadaianController extends Controller
 
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
-            ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id');
+            ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
+            ->where('status_transaksi.status', '!=', 3);
 
-                if(Auth::user()->tmlevel_id != '1'){
-                    $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
-    
-            }
+        if (Auth::user()->tmlevel_id != '1') {
+            $data->whereBetween('transaksi_gadai.tmcabang_id', Auth::user()->tmlevel_id);
+
+        }
         if ($dari && $sampai) {
-          $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
+            $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
         }
         $sql = $data->get();
         return DataTables::of($sql)
@@ -151,7 +150,6 @@ class LaporanPegadaianController extends Controller
         $data = transaksi::getDetailTransaction($id);
         return view($this->view . "detail_data", compact("title", "data"));
     }
-
 
     /**
      * Show the form for editing the specified resource.
