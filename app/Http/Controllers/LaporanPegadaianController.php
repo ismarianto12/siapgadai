@@ -86,7 +86,7 @@ class LaporanPegadaianController extends Controller
             'barang.nama_barang',
             'barang.updated_at',
             'nasabah.no_anggota',
-             'nasabah.kelurahan',
+            'nasabah.kelurahan',
             'nasabah.tttl',
             'nasabah.nik',
             'nasabah.alamat',
@@ -107,10 +107,10 @@ class LaporanPegadaianController extends Controller
             ->where('transaksi_gadai.status_transaksi', '!=', 3);
 
         if (Auth::user()->tmlevel_id != '1') {
-            $data->whereBetween('transaksi_gadai.tmcabang_id', Auth::user()->tmlevel_id);
+            $data->whereBetween('transaksi_gadai.tmcabang_id', Auth::user()->cabang_id);
 
         }
-        if ($dari && $sampai) {
+        if ($dari !='' && $sampai !='') {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
         }
         $sql = $data->get();
