@@ -74,11 +74,12 @@
         <div style="margin-top: -30px;margin-left:10px">
             <p>
                 <?php
-                echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data->no_faktur, 'C39+') . '" alt="barcode"   />';
+                echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data->no_anggota, 'C39+') . '" alt="barcode"   />';
                 ?>
+                <br />
                 <b> {{ $data->nama }}</b>
                 {{ $data->no_faktur }} -
-                {{ $data->nama_barang }} - {{ $data->no_imei }}
+                {{ Str::ucfirst(strtolower($data->nama_barang)) }} - {{ $data->no_imei }}
                 <br />
 
                 {{ $data->alamat }}
