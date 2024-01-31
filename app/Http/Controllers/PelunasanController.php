@@ -149,7 +149,7 @@ class PelunasanController extends Controller
         $sql = $data->get();
         return DataTables::of($sql)
             ->editColumn('action', function ($p) {
-                return '<a data-transaksi_id="' . $p->id . '" class="checkpelunasan btn btn-warning btn-xs" id="edit"><i class="
+                return '<a data-transaksi_id="' . $p->transaksi_gadai_id . '" class="checkpelunasan btn btn-warning btn-xs" id="edit"><i class="
                 flaticon-user-4"></i>detail </a> ';
 
             }, true)
