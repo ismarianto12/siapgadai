@@ -9,10 +9,10 @@
                         <i class="fa fa-plus"></i>
                         Add Row
                     </button>
-                    <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
+                    {{-- <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
                         <i class="fa fa-minus"></i>
                         Delete selected
-                    </button>
+                    </button> --}}
                 </div>
             </div>
             <div class="card-body">

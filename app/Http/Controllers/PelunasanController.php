@@ -142,7 +142,7 @@ class PelunasanController extends Controller
             ->where('transaksi_gadai.status_transaksi', '1');
 
         if (Auth::user()->tmlevel_id != '1') {
-            $data->whereBetween('transaksi_gadai.tmcabang_id', Auth::user()->t);
+            $data->whereBetween('transaksi_gadai.tmcabang_id', Auth::user()->cabang_id);
 
         }
 
