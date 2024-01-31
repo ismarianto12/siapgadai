@@ -320,7 +320,7 @@
                             <div class="form-group row">
                                 <label for="alamat" class="col-md-2 text-left">Alamat:</label>
                                 <div class="col-md-8">
-                                    <textarea id="alamat" name="alamat" class="form-control"></textarea>
+                                    <textarea id="alamat" name="alamat" class="form-control" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -337,7 +337,7 @@
                             <div class="form-group row">
                                 <label for="kelurahan" class="col-md-3 text-left">Kelurahan:</label>
                                 <div class="col-md-9">
-                                    <textarea id="kelurahan" name="kelurahan" class="form-control"></textarea>
+                                    <textarea id="kelurahan" name="kelurahan" class="form-control" required></textarea>
                                 </div>
                             </div>
 
@@ -366,7 +366,7 @@
                             <div class="form-group row">
                                 <label for="kabupaten_kota" class="col-md-3 text-left">Tujuan Gadai:</label>
                                 <div class="col-md-9">
-                                    <textarea class="form-control" name="tujuan_gadai"></textarea>
+                                    <textarea class="form-control" name="tujuan_gadai" required></textarea>
                                 </div>
                             </div>
                         </div>
