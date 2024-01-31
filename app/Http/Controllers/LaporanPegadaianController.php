@@ -107,7 +107,7 @@ class LaporanPegadaianController extends Controller
             ->where('transaksi_gadai.status_transaksi', '!=', 3);
 
         if (Auth::user()->tmlevel_id != '1') {
-            $data->whereBetween('transaksi_gadai.tmcabang_id', Auth::user()->cabang_id);
+            $data->where('transaksi_gadai.tmcabang_id', Auth::user()->cabang_id);
 
         }
         if ($dari !='' && $sampai !='') {
