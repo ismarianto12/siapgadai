@@ -105,7 +105,7 @@ class LaporanPegadaianController extends Controller
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
-            ->where('status_transaksi.status', '!=', 3);
+            ->where('transaksi_gadai.status_transaksi', '!=', 3);
 
         if (Auth::user()->tmlevel_id != '1') {
             $data->whereBetween('transaksi_gadai.tmcabang_id', Auth::user()->tmlevel_id);
