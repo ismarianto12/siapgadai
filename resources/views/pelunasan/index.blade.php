@@ -675,7 +675,7 @@
                 }
 
                 function getall(data) {
-                    $('input[name="id_transaksi"]').val(data?.id);
+                    $('input[name="id_transaksi"]').val(data?.transaksi_gadai_id);
                     $('input[name="no_kwitansi"]').val(data?.no_kwitansi);
                     $('input[name="no_faktur"]').val(data?.no_faktur);
                     $('input[name="no_anggota"]').val(data?.no_anggota);

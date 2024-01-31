@@ -76,7 +76,7 @@ class PelunasanController extends Controller
     {
 
         $data = transaksi::select(
-            'transaksi_gadai.id',
+            'transaksi_gadai.id as transaksi_gadai_id',
             'transaksi_gadai.pelunasan',
             'transaksi_gadai.keluaran_tahun',
             'transaksi_gadai.imei',
