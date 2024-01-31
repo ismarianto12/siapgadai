@@ -4,16 +4,12 @@
 namespace App\Helpers;
 
 use App\Models\Jenis_surat;
-use App\Models\User;
-use App\Models\Setupsikd\Tmsikd_satker;
-use App\Models\Setupsikd\Tmsikd_setup_tahun_anggaran;
 use App\Models\Tmbangunan;
 use App\Models\Tmproyek;
-use App\Models\Tmrap;
 use App\Models\Tmsurat_master;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Session;
 
 // use Illuminate\Support\Facades\Session;
 
@@ -26,14 +22,14 @@ class Properti_app
             'Closed BAK' => 'Closed BAK',
             'Closed PKS' => 'Closed PKS',
             'Closed PAID' => 'Closed PAID',
-            'Closed (Catatan)' => 'Closed (Catatan)'
+            'Closed (Catatan)' => 'Closed (Catatan)',
         ];
     }
     function jenjangPeg()
     {
         return [
             1 => 'Tenaga Pendidik',
-            2 => 'Tenaga Kependidikan'
+            2 => 'Tenaga Kependidikan',
         ];
     }
 
@@ -43,7 +39,7 @@ class Properti_app
             'S3' => 'S3',
             'S2' => 'S2',
             'S1' => 'S1',
-            'DIII' => 'DIII'
+            'DIII' => 'DIII',
         ];
     }
 
@@ -51,7 +47,7 @@ class Properti_app
     {
         return [
             'L' => 'Laki-Laki',
-            'P' => 'Perempuan'
+            'P' => 'Perempuan',
         ];
     }
     public function jenisSurat()
@@ -97,7 +93,7 @@ class Properti_app
     public function number_format()
     {
     }
-    static function formatRupiah($angka)
+    public static function formatRupiah($angka)
     {
         if (!is_numeric($angka)) {
             return $angka;
@@ -106,7 +102,6 @@ class Properti_app
         $rupiah = number_format($angka, 0, ',', '.');
         return $rupiah;
     }
-
 
     public static function user_satker()
     {
@@ -134,7 +129,6 @@ class Properti_app
         return $data;
     }
 
-
     public static function getKategoriBarang(array $url)
     {
 
@@ -157,11 +151,10 @@ class Properti_app
         }
     }
 
-    static function identitas_app()
+    public static function identitas_app()
     {
         return 'Aplikasi Gadai';
     }
-
 
     public static function tgl_indo($tgl)
     {
@@ -177,7 +170,7 @@ class Properti_app
             'September',
             'Oktober',
             'November',
-            'Desember'
+            'Desember',
         );
         $split = explode('-', $tgl);
         return $split[2] . ' ' . $bulan[(int) $split[1]] . ' ' . $split[0];
@@ -206,14 +199,12 @@ class Properti_app
             if ($data != '') {
                 return $data[$params];
             } else {
-                return NULL;
+                return null;
             }
         } else {
-            return NULL;
+            return null;
         }
     }
-
-
 
     public static function comboproyek($id = '')
     {
@@ -310,10 +301,7 @@ class Properti_app
         return $rdata;
     }
 
-
-
     // self return function
-
 
     public static function penyebut($nilai)
     {
@@ -369,7 +357,7 @@ class Properti_app
             'September',
             'Oktober',
             'November',
-            'Desember'
+            'Desember',
         );
     }
 
@@ -378,11 +366,11 @@ class Properti_app
         return [
             'SIP' => [
                 "nomor_surat" => "Nomor Surat",
-                "tanggal_surat" => "Tanggal Surat"
+                "tanggal_surat" => "Tanggal Surat",
             ], // Jenis surat SIP
             'SIT' => [
                 "nomor_surat" => "Nomor Surat",
-                "tanggal_surat" => "Tanggal Surat"
+                "tanggal_surat" => "Tanggal Surat",
             ], // Jenis surat SIT
             'SPH' => [
                 "nomor_surat" => "Nomor Surat",
@@ -393,7 +381,7 @@ class Properti_app
                 'periode_sewa_penawaran_akhir' => "Periode Sewa Penawaran Akhir",
                 "pic_landlord" => "Pic Landlord",
                 "jabatan_landlord" => "Jabatan Landlord",
-                "penawaran_harga_sewa" => "Penawaran Harga Sewa"
+                "penawaran_harga_sewa" => "Penawaran Harga Sewa",
             ], //dari jenis SPH
             'SMR' => [
                 "harga_sewa_baru" => 'Harga Sewa Baru',
@@ -409,7 +397,7 @@ class Properti_app
                 "pemilik_3" => "Penawaran Pemilik 3",
                 "pemilik_4" => "Penawaran Pemilik 4",
                 "total_harga_sewa_baru" => "Total Harga Sewa baru",
-                "keterangan_harga_patokan" => "Keterangan Harga Patokan"
+                "keterangan_harga_patokan" => "Keterangan Harga Patokan",
             ], //group by SMR
             'BAN' => [
                 "tanggal_ban" => "Tanggal",
@@ -417,7 +405,7 @@ class Properti_app
                 "nama_pic" => "Nama PIC",
                 "alamat_pic" => "Alamat PIC",
                 "jabatan_pic" => "Jabatan PIC",
-                "nomor_telp_pic" => "Nomor Telephone PIC"
+                "nomor_telp_pic" => "Nomor Telephone PIC",
             ], //BAN
             'BAK' => [
                 "nomor_bak" => "Nomor Surat BAK",
@@ -431,8 +419,8 @@ class Properti_app
                 "nomor_shm_ajb_hgb" => "Nomor SHM / AJB HGB",
                 "nomor_imb" => "Nomor IMB",
                 "nomor_sppt_pbb" => 'Nomor SPT PBB',
-                "total_harga_net" => "Total Harga NET"
-            ]
+                "total_harga_net" => "Total Harga NET",
+            ],
         ];
     }
 
@@ -456,8 +444,6 @@ class Properti_app
     {
         return self::format_percentage(self::calculate_percentage($number, $total));
     }
-
-
 
     public static function getKelas()
     {
@@ -490,22 +476,22 @@ class Properti_app
 
     }
 
-    static function tipe_barang()
+    public static function tipe_barang()
     {
         return \DB::table('kategori_barang')->get();
     }
-    static function masterBarang()
+    public static function masterBarang()
     {
         return \DB::table('barang')->get();
     }
-    static function Jk()
+    public static function Jk()
     {
         return [
             '1' => 'Laki-laki',
-            '2' => 'Perempuan'
+            '2' => 'Perempuan',
         ];
     }
-    static function getCabang($param_id, $parameter = 'default_parameter')
+    public static function getCabang($param_id, $parameter = 'default_parameter')
     {
         try {
             $data = \DB::table('cabang')->where('id', '1')->get();
@@ -524,14 +510,13 @@ class Properti_app
         }
     }
 
-
-    static function ParameterHitung()
+    public static function ParameterHitung()
     {
         $data = \DB::table('perhitungan_biaya')->where('id', '!=', '5')->get();
         return $data;
     }
 
-    static function generateInvoiceNumber()
+    public static function generateInvoiceNumber()
     {
         $lastPurchaseId = transaksi::latest('id')->first()->id ?? 0;
         $randomDigits = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
@@ -539,15 +524,10 @@ class Properti_app
         return $invoiceNumber;
     }
 
-    static function removeTag($inputString)
+    public static function removeTag($inputString)
     {
-        // Ganti tanda titik dengan spasi
-        $stringTanpaTitik = str_replace('.', ' ', $inputString);
-
-        // Ganti karakter spasi dengan karakter underscore
-        $stringTanpaTitikDanSpasi = str_replace(' ', '_', $stringTanpaTitik);
-
-        return $stringTanpaTitikDanSpasi;
+        $cleanedString = preg_replace('/[^0-9]/', '', $inputString);
+        return $cleanedString;
     }
     function statusBayar()
     {
@@ -557,13 +537,13 @@ class Properti_app
             '3' => 'Lunas',
         ];
     }
-    static function dataCabang()
+    public static function dataCabang()
     {
         $data = DB::table('cabang')->get();
         return $data;
     }
 
-    static function getKategory()
+    public static function getKategory()
     {
         return \DB::table('kategori_barang')->get();
     }
