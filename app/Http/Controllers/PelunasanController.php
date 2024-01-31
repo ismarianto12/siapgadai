@@ -140,9 +140,9 @@ class PelunasanController extends Controller
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
             ->where('transaksi_gadai.status_transaksi', '1');
-            
+
         if (Auth::user()->tmlevel_id != '1') {
-            $data->where('transaksi_gadai.tmcabang_id', Auth::user()->cabang_id);
+            $data->where('transaksi_gadai.cabang_id', Auth::user()->cabang_id);
         }
         $sql = $data->get();
         return DataTables::of($sql)
