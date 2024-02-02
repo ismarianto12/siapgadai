@@ -89,12 +89,11 @@
 
                 <div class="container-fluid">
                     <div class="collapse" id="search-nav">
-                        <h4>SIAP GADAI 
+                        <h4>SIAP GADAI
 
-                                @if (Auth::user()->tmlevel_id != '1')
-                                    {{ Properti_app::getCabang(Auth::user()->cabang_id, 'nama_cabang')}}
-
-                                @endif
+                            @if (Auth::user()->tmlevel_id != '1')
+                             Cabang: {{ Properti_app::getCabang(Auth::user()->cabang_id, 'nama_cabang') }}
+                            @endif
                         </h4>
                     </div>
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
