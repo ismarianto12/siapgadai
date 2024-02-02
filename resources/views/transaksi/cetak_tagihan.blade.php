@@ -29,9 +29,12 @@
         echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data['no_anggota'], 'C39+') . '" alt="barcode"   />';
         ?>
         <br /> <br /> <br />
-        <table>
+        <table class="table table-bordered">
             <tbody>
-              
+                <tr>
+                    <td>ID:</td>
+                    <td>{{ $data['id'] }}</td>
+                </tr>
                 <tr>
                     <td>No Kwitansi:</td>
                     <td>{{ $data['no_kwitansi'] }}</td>
@@ -52,9 +55,29 @@
                     </td>
 
                 </tr>
-
                 <tr>
+                    <td>
+                        Taksiran Harga
+                    </td>
 
+                    <td>
+                        {{ Properti_app::formatRupiah($data['taksiran_harga']) }}
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Persentase pinjaman
+                    </td>
+
+                    <td>
+                        {{ $data['persentase_pinjaman'] }}
+
+                    </td>
+
+                </tr>
+                <tr>
                     <td>
                         Limit
                     </td>

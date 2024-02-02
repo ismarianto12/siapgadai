@@ -40,7 +40,28 @@
                     </td>
 
                 </tr>
+                <tr>
+                    <td>
+                        Taksiran Harga
+                    </td>
 
+                    <td>
+                        {{ Properti_app::formatRupiah($data['taksiran_harga']) }}
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Persentase pinjaman
+                    </td>
+
+                    <td>
+                        {{ $data['persentase_pinjaman'] }}
+
+                    </td>
+
+                </tr>
                 <tr>
                     <td>
                         Limit

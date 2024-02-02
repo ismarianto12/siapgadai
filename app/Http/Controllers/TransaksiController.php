@@ -207,7 +207,7 @@ class TransaksiController extends Controller
                     'user_id' => $this->request->user_id,
                     'no_anggota' => $this->request->no_anggota,
                     'pelunasan' => $this->request->pelunasan,
-                     'taksiran_harga' => Properti_app::removeTag($this->request->taksiran_harga),
+                    'taksiran_harga' => Properti_app::removeTag($this->request->taksiran_harga),
                     'id_nasabah' => $lastInsertedId,
                     'jasa_titip' => $this->request->jasa_titip,
                     'persentase_pinjaman' => $this->request->persentase_pinjaman,
