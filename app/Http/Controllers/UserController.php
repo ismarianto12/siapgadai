@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tmlevel;
-use Illuminate\Http\Request;
 use App\Models\User;
 use DataTables;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
@@ -20,13 +20,12 @@ class UserController extends Controller
     protected $request;
     protected $route;
     protected $view;
-    function __construct(Request $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
         $this->view = '.user.';
         $this->route = 'master.user.';
     }
-
 
     public function index()
     {
@@ -83,7 +82,7 @@ class UserController extends Controller
             'cabang.kode_cabang',
 
         )->join('tmlevel', 'users.tmlevel_id', '=', 'tmlevel.id')
-        ->join('cabang', 'users.cabang_id', '=', 'cabang.id','left')->get();
+            ->join('cabang', 'users.cabang_id', '=', 'cabang.id', 'left')->get();
 
         return DataTables::of($data)
             ->editColumn('id', function ($p) {
@@ -116,7 +115,7 @@ class UserController extends Controller
                 'password' => 'required',
                 'email' => 'required|unique:users,email',
                 'tmlevel_id' => 'required',
-                'foto' => 'mimes:png,jpg'
+                'foto' => 'mimes:png,jpg',
             ]);
 
         } catch (ValidationException $e) {
@@ -134,7 +133,7 @@ class UserController extends Controller
         $data->save();
         return response()->json([
             'status' => 1,
-            'msg' => 'data user berhasil dtambah'
+            'msg' => 'data user berhasil dtambah',
         ]);
     }
     public function profile()
@@ -169,7 +168,6 @@ class UserController extends Controller
         );
     }
 
-
     public function profilesave()
     {
         $this->request->validate([
@@ -198,13 +196,12 @@ class UserController extends Controller
             $data->name = $this->request->name;
             $data->cabang_id = $this->request->cabang_id;
 
-
             $data->photo = $setname;
             $data->save();
 
             return response()->json([
                 'status' => 1,
-                'msg' => 'data user berhasil edit'
+                'msg' => 'data user berhasil edit',
             ]);
         } catch (User $t) {
             return response()->json([
@@ -239,7 +236,7 @@ class UserController extends Controller
         if (!$this->request->ajax()) {
             return response()->json([
                 'data' => 'data null',
-                'aspx' => 'response aspx fail '
+                'aspx' => 'response aspx fail ',
             ]);
         }
         //
@@ -279,15 +276,6 @@ class UserController extends Controller
      */
     public function update($id)
     {
-        // try {
-
-        // } catch (\ValidationException $e) {
-        //     return response()->json(['error' => $e->validator->errors()], 422);
-        // }
-        // $this->request->validate([
-        //     'password' => 'required',
-        //     'email' => 'required',
-        // ]);
 
         $data = User::find($id);
         $id = Auth::user()->id;
@@ -296,12 +284,12 @@ class UserController extends Controller
         $data->password = bcrypt($this->request->password);
         $data->email = $this->request->email;
         $data->name = $this->request->name;
-        $data->tmlevel_id = $this->request->tmlevel_id;
+        // $data->tmlevel_id = $this->request->tmlevel_id;
         $data->save();
 
         return response()->json([
             'status' => 1,
-            'msg' => 'data user berhasil edit'
+            'msg' => 'data user berhasil edit',
         ]);
 
     }
@@ -335,12 +323,12 @@ class UserController extends Controller
             }
             return response()->json([
                 'status' => 1,
-                'msg' => 'Data berhasil di hapus'
+                'msg' => 'Data berhasil di hapus',
             ]);
         } catch (user $t) {
             return response()->json([
                 'status' => 2,
-                'msg' => $t
+                'msg' => $t,
             ]);
         }
     }
