@@ -98,7 +98,7 @@
             e.preventDefault();
             $.ajax({
                 url: "{{ route('master.barang.store') }}",
-                method: "PUT",
+                method: "POST",
                 data: $(this).serialize(),
                 chace: false,
                 async: false,
