@@ -19,19 +19,19 @@
             <div class="form-group row">
                 <label class="col-md-2 text-left">Kode</label>
                 <div class="col-md-4">
-                    <input type="text" name='kode' value="{{ $data->kode }}" class="form-control" />
+                    <input type="text" name='kode' value="" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-2 text-left">Nama Barang</label>
                 <div class="col-md-4">
-                    <input type="text" name='nama_barang' value="{{ $data->nama_barang }}" class="form-control" />
+                    <input type="text" name='nama_barang' value="" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-2 text-left">Merk</label>
                 <div class="col-md-4">
-                    <input type="text" name='merk' value="{{ $data->merk }}" class="form-control" />
+                    <input type="text" name='merk' value="" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -43,13 +43,13 @@
             <div class="form-group row">
                 <label class="col-md-2 text-left">Keluaran</label>
                 <div class="col-md-4">
-                    <input type="text" name='keluaran' value="{{ $data->keluaran }}" class="form-control" />
+                    <input type="text" name='keluaran' value="" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-2 text-left">Kelengkapan</label>
                 <div class="col-md-4">
-                    <input type="text" name='Kelengkapan' value="{{ $data->Kelengkapan }}" class="form-control" />
+                    <input type="text" name='Kelengkapan' value="" class="form-control" />
                 </div>
             </div>
         </div>
