@@ -24,47 +24,46 @@
                 <div class="card-body">
                     <form id="exampleValidation" action="" method="POST" class="simpan" enctype="multipart/form-data">
                         @csrf
-                        {{ method_field('PATCH') }}
                         <div class="card-body">
                             <div class="form-group form-show-validation row">
                                 <label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nama Aplikasi
                                     <span class="required-label">*</span></label>
                                 <div class="col-sm-8">
-                                    SIPAKDE (APLIKASI PELAPORAN PENDAPATAN DAERAH)
+                                    <input type="text" name="nama_aplikasi" class="form-control" />
                                 </div>
 
                             </div>
                         </div>
                         <div class="form-group form-show-validation row">
-                            <label for="username" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Pemerintah daerah
+                            <label for="username" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Telp.
                                 <span class="required-label">*</span></label>
                             <div class="col-sm-8">
-                                KOTA TANGERANG SELATAN
+
+                                <input type="text" name="nama_aplikasi" class="form-control" />
                             </div>
                         </div>
 
                         <div class="form-group form-show-validation row">
-                            <label for="username" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">DINAS / OPD <span
+                            <label for="username" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Fax<span
                                     class="required-label">*</span></label>
                             <div class="col-sm-8">
-                                BADAN PENDAPATAN DAERAH
+                                <input type="text" name="fax" class="form-control" />
                             </div>
                         </div>
 
-                </div>
-                <div class="card-action">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input class="simpan btn btn-success btn-xs" type="submit" value="Edit">
-                            <a href="#" class="btn btn-danger btn-xs" id="cancel">Cancel</a>
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input class="simpan btn btn-success btn-xs" type="submit" value="Edit">
+                                    <a href="#" class="btn btn-danger btn-xs" id="cancel">Cancel</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                </form>
+                    </form>
 
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     </div>

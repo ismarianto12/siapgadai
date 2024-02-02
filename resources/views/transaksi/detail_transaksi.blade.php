@@ -7,11 +7,8 @@
             border: 0;
         }
     </style>
-
-
-    <div class="col-md-12">
-
-        <!-- Modal -->
+   <div class="col-md-12">
+      <!-- Modal -->
         <div class="modal fade" id="formmodal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document" style=" min-width: 85%;">
                 <div class="modal-content">

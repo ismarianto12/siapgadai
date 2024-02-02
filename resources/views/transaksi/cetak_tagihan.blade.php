@@ -5,8 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice</title>
-    <!-- Tambahkan CSS Bootstrap jika diperlukan -->
 </head>
+
+
+<style>
+    table {
+        border-collapse: collapse !important;
+        width: 100%;
+    }
+
+    table,
+    tr,
+    th,
+    td {
+        /* border: 0.1px solid #ddd; */
+    }
+</style>
 
 <body>
     <div class="container">
@@ -14,12 +28,10 @@
         <?php
         echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data['no_anggota'], 'C39+') . '" alt="barcode"   />';
         ?>
-        <table class="table table-bordered">
+        <br /> <br /> <br />
+        <table>
             <tbody>
-                <tr>
-                    <td>ID:</td>
-                    <td>{{ $data['id'] }}</td>
-                </tr>
+              
                 <tr>
                     <td>No Kwitansi:</td>
                     <td>{{ $data['no_kwitansi'] }}</td>
@@ -42,6 +54,7 @@
                 </tr>
 
                 <tr>
+
                     <td>
                         Limit
                     </td>
@@ -84,12 +97,7 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ Url('app/cetak_tagihan/' . $data['id']) }}" target="_blank" class="btn btn-info btn-md">Cetak
-            Tagihan</a>
-        <a href="{{ Url('app/transaksi/cetak_tagihan/' . $data['id']) }}" target="_blank"
-            class="btn btn-success btn-md">Kirim Pesan
-            Wa</a>
-
+        <a href="{{ Url('app/cetak_tagihan/' . $data['id']) }}" class="btn btn-info btn-md">Cetak Tagihan</a>
     </div>
 
     <!-- Tambahkan JavaScript Bootstrap jika diperlukan -->

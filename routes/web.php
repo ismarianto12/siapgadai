@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
 
     Route::prefix('app')->name('app.')->group(function () {
         Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+        Route::get('cetak_tagihan/{id}', [TransaksiController::class, 'cetak_tagihan'])->name('transaksi');
+
         Route::get('return_transaksi', [TransaksiController::class, 'return_transaksi'])->name('return_transaksi');
         Route::get('pelunasan', [PelunasanController::class, 'index'])->name('pelunasan');
         Route::get('pelunasan_berhasil/{id}', [PelunasanController::class, 'pelunasan_berhasil'])->name('pelunasan_berhasil');

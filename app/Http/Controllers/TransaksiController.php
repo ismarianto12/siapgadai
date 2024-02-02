@@ -5,14 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\transaksi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Mpdf\Mpdf;
 use Properti_app;
-use DNS1D;
-use DNS2D;
-
 
 class TransaksiController extends Controller
 {
@@ -24,7 +20,7 @@ class TransaksiController extends Controller
     protected $request;
     protected $route;
     protected $view;
-    function __construct(Request $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
         $this->date = date("Y-m-d");
@@ -92,14 +88,13 @@ class TransaksiController extends Controller
         //
     }
 
-    function cetakBarcode($id)
+    public function cetakBarcode($id)
     {
 
         $data = transaksi::getDetailTransaction($id);
         return view($this->view . "barcode_cetak", compact("id", "data"));
 
     }
-
 
     public function save_transaksi()
     {
@@ -126,7 +121,7 @@ class TransaksiController extends Controller
             if ($CheckNasabah->count() > 0) {
                 $first_trasaksi = [
                     'imei' => $this->request->imei,
-                    'perhitungan_biaya_id'=> $this->request->perhitungan_biaya_id,
+                    'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
                     'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
                     'menyetujui_staff_sgi' => $this->request->menyetujui_staff_sgi,
                     'durasi_pelunasan' => $this->request->durasi_pelunasan,
@@ -162,7 +157,7 @@ class TransaksiController extends Controller
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($first_trasaksi);
             } else {
                 $nasabah = [
-                    'cabang_id'=> Auth::user()->cabang_id,
+                    'cabang_id' => Auth::user()->cabang_id,
                     'no_anggota' => $this->request->no_anggota,
                     'foto_ktp' => $foto_ktpname,
                     'kelurahan' => $this->request->kelurahan,
@@ -178,7 +173,7 @@ class TransaksiController extends Controller
                 ];
                 $lastInsertedId = \DB::table('nasabah')->insertGetId($nasabah);
                 $trasaksi = [
-                    'perhitungan_biaya_id'=> $this->request->perhitungan_biaya_id,
+                    'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
                     'imei' => $this->request->imei,
                     'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
                     'menyetujui_staff_sgi' => $this->request->menyetujui_staff_sgi,
@@ -209,43 +204,33 @@ class TransaksiController extends Controller
                     'referal_code' => $this->request->referal_code,
                     'type' => $this->request->type,
                     'tujuan_gadai' => $this->request->tujuan_gadai,
-                    'created_at' => date('Y-m-d H:i:s'), 
+                    'created_at' => date('Y-m-d H:i:s'),
                 ];
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($trasaksi);
             }
             \DB::commit();
             return response()->json([
                 'idtransaksi' => $idtransaksi,
-                'messages' => 'data berhasil disimpan'
+                'messages' => 'data berhasil disimpan',
             ]);
 
         } catch (\Exception $e) {
             DB::rollback();
 
             return response()->json([
-                'messages' => $e->getMessage()
+                'messages' => $e->getMessage(),
             ], 500);
 
         }
 
     }
-    function return_transaksi()
+    public function return_transaksi()
     {
         $title = 'Return Transaction';
         return view($this->view . 'return_transaksi', compact('title'));
     }
-    public function detail_transaksi($id)
-    {
-
-        $idTransaction = $id;
-        $data = transaksi::getDetailTransaction($id);
-        $title = 'Transaksi Berhasil';
-        return view($this->view . 'detail_transaksi', compact('data', 'title', 'idTransaction'));
-    }
-
-
-
-    function cetak_kwitansi($id)
+    
+    public function cetak_kwitansi($id)
     {
 
         // require_once __DIR__ . '/vendor/autoload.php'; // Adjust the path to autoload.php
@@ -263,10 +248,9 @@ class TransaksiController extends Controller
         return response($mpdf->Output("cetak_kwitansi.pdf", 'I'))
             ->header('Content-Type', 'application/pdf');
 
-
     }
 
-    function syarat_ketentuan($id)
+    public function syarat_ketentuan($id)
     {
 
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
@@ -282,17 +266,34 @@ class TransaksiController extends Controller
 
     }
 
-
-
     public function destroy(transaksi $transaksi)
     {
         //
     }
-    function call_detail_nasabah()
+    public function call_detail_nasabah()
     {
         $id_nasabah = $this->request->nasabah_d;
         $data = \DB::table('nasabah')->where('id', $id_nasabah)->get();
         return response()->json(['data' => $data]);
+
+    }
+
+    public function cetak_tagihan($id)
+    {
+
+        // $idTransaction = $id;
+        // $data = transaksi::getDetailTransaction($id);
+        // $title = 'Transaksi Berhasil'; 
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+        $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
+        $mpdf->SetWatermarkImage($backgroundImage);
+        $mpdf->showWatermarkImage = true;
+        $mpdf->SetTitle('Syarat dan Ketentuan');
+        $data = transaksi::getDetailTagihan($id);
+        $render = view($this->view . 'cetak_tagihan', compact('data'))->render();
+        $mpdf->WriteHTML($render);
+        return response($mpdf->Output("cetak_tagihan_transaksi.pdf", 'I'))
+            ->header('Content-Type', 'application/pdf');
 
     }
 }
