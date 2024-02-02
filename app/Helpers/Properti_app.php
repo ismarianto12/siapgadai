@@ -547,4 +547,18 @@ class Properti_app
     {
         return \DB::table('kategori_barang')->get();
     }
+
+    public function akses()
+    {
+
+        $akses = Auth::user()->tmlevel_id;
+        if ($akses === '1') {
+            return response()->json([
+                'akses menu ini hanya bisa diakases oleh operator / kasir.',
+            ]);
+            die;
+        } else {
+            return true;
+        }
+    }
 }

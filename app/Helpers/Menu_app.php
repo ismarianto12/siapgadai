@@ -24,12 +24,12 @@ class Menu_app
     {
 
         $structure = '<li class="nav-item">
-        
+
 							<a href="' . $module_name . '">
-                            <i class="' . $font . '"></i> 
-                             
+                            <i class="' . $font . '"></i>
+
                             <p>' . $title . '</p>
-                            
+
  							</a>
 						</li>';
         return $structure;
@@ -93,36 +93,36 @@ class Menu_app
                       </ul>
                     </div>
                 </li>';
-                    $menu .= '<li class="nav-item">
-                    <a data-toggle="collapse" href="#transaksi">
-                        <i class="flaticon-coins text-success"></i>
-                        <p>Transaksi </p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="transaksi">
-                        <ul class="nav nav-collapse">';
-                    $menu .= self::set_menu(Url('app/transaksi'), 'Transaksi');
-                    $menu .= self::set_menu(Url('app/return_transaksi'), 'Batalkan Transaksi');
+                    //     $menu .= '<li class="nav-item">
+                    //     <a data-toggle="collapse" href="#transaksi">
+                    //         <i class="flaticon-coins text-success"></i>
+                    //         <p>Transaksi </p>
+                    //         <span class="caret"></span>
+                    //     </a>
+                    //     <div class="collapse" id="transaksi">
+                    //         <ul class="nav nav-collapse">';
+                    //     $menu .= self::set_menu(Url('app/transaksi'), 'Transaksi');
+                    //     $menu .= self::set_menu(Url('app/return_transaksi'), 'Batalkan Transaksi');
 
-                    $menu .= '
-                      </ul>
-                    </div>
-                </li>';
+                    //     $menu .= '
+                    //       </ul>
+                    //     </div>
+                    // </li>';
 
-                    $menu .= '<li class="nav-item">
-                    <a data-toggle="collapse" href="#pelunasan">
-                        <i class="flaticon-coins text-success"></i>
-                        <p>Penagihan  </p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="pelunasan">
-                        <ul class="nav nav-collapse">';
-                    $menu .= self::set_menu(Url('app/penagihan'), 'Penagihan');
-                    $menu .= self::set_menu(Url('app/pelunasan'), 'Pelunasan');
-                    $menu .= '
-                      </ul>
-                    </div>
-                </li>';
+                    //     $menu .= '<li class="nav-item">
+                    //     <a data-toggle="collapse" href="#pelunasan">
+                    //         <i class="flaticon-coins text-success"></i>
+                    //         <p>Penagihan  </p>
+                    //         <span class="caret"></span>
+                    //     </a>
+                    //     <div class="collapse" id="pelunasan">
+                    //         <ul class="nav nav-collapse">';
+                    //     $menu .= self::set_menu(Url('app/penagihan'), 'Penagihan');
+                    //     $menu .= self::set_menu(Url('app/pelunasan'), 'Pelunasan');
+                    //     $menu .= '
+                    //       </ul>
+                    //     </div>
+                    // </li>';
                     $menu .= '<li class="nav-item">
                 <a data-toggle="collapse" href="#report">
                     <i class="flaticon-windows text-info"></i>
@@ -154,7 +154,7 @@ class Menu_app
                     $menu .= '</li>';
                     break;
                 case 2:
-                    $menu .= ' 
+                    $menu .= '
                             <ul class="nav">
                     ';
                     $menu .= self::menu_single(Url('app/transaksi'), 'flaticon-shopping-bag', 'Transaksi');
@@ -163,9 +163,7 @@ class Menu_app
                     $menu .= self::menu_single(Url('laporan/pegadaian'), 'flaticon-user-3', 'Laporan Transaksi');
                     $menu .= self::menu_single(Url('laporan/pelunasan'), 'flaticon-user-3', 'Laporan Pelunasan');
 
-
-
-                    ' 
+                    '
                     </li>
                     ';
                     break;

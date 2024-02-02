@@ -29,6 +29,15 @@ class PelunasanController extends Controller
     }
     public function index()
     {
+        $akses = Auth::user()->tmlevel_id;
+        if ($akses === '1') {
+            return response()->json([
+                'akses menu ini hanya bisa diakases oleh operator / kasir.',
+            ]);
+            die;
+        } else {
+            return true;
+        }
         $title = 'Pelunasan';
         $data = [];
         return view($this->view . "index", compact("title", "data"));

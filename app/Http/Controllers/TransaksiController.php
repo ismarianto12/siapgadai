@@ -29,6 +29,16 @@ class TransaksiController extends Controller
     }
     public function index()
     {
+
+        $akses = Auth::user()->tmlevel_id;
+        if ($akses === '1') {
+            return response()->json([
+                'akses menu ini hanya bisa diakases oleh operator / kasir.',
+            ]);
+            die;
+        } else {
+            return true;
+        }
         $title = 'Transaksi';
         return view($this->view . "index", compact("title"));
     }
@@ -229,7 +239,7 @@ class TransaksiController extends Controller
         $title = 'Return Transaction';
         return view($this->view . 'return_transaksi', compact('title'));
     }
-    
+
     public function cetak_kwitansi($id)
     {
 
@@ -283,7 +293,7 @@ class TransaksiController extends Controller
 
         // $idTransaction = $id;
         // $data = transaksi::getDetailTransaction($id);
-        // $title = 'Transaksi Berhasil'; 
+        // $title = 'Transaksi Berhasil';
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
         $mpdf->SetWatermarkImage($backgroundImage);
