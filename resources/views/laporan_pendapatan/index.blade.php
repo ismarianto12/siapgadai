@@ -5,7 +5,6 @@
         <div class="card">
             {{-- <form cas --}}
             <div class="card-header row">
-
                 <div class="form-group row">
                     <label class="col-md-3 text-left">Dari</label>
                     <div class="col-md-9">
@@ -57,21 +56,33 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama</th>
-                                <th>Nama Barang</th>
-                                <th>No. Imei</th>
-                                <th>No Hanphpone</th>
                                 <th>Alamat</th>
+                                <th>No Handphpone</th>
+                                <th>Nama Barang</th>
+                                <th>Durasi Pinjaman</th>
                                 <th>Maks Pinjaman</th>
-                                <th>Jumlah Pinjaman</th>
-                                <th>Administrasi</th>
-                                <th>Jasa Titip</th>
                                 <th>Jumlah Diambil</th>
-                                <th style="width: 10%">Action</th>
+                                <th>Administrasi</th>
+                                <th>Persentase</th>
+                                <th>Jatuh Tempo</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th colspan="7" style="text-align:right"></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -88,43 +99,105 @@
     <script>
         // addd
         $(function() {
-            $('#add_data').on('click', function() {
-                $('#formmodal').modal('show');
-                addUrl = '';
-                $('#form_content').html('<center><h3>Loading ...</h3></center>').load(addUrl);
-            });
 
             // edit
             $('#datatable').on('click', '#edit', function(e) {
                 e.preventDefault();
                 $('#formmodal').modal('show');
-                id = $(this).data('id');
-                addUrl = ''.replace(':id', id);
-                $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(addUrl);
+                var url = $(this).attr('to');
+                $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(url);
 
             })
         });
+
+        function formatRupiah(amount) {
+            // Convert to string and split at the decimal point
+            const parts = amount.toString().split(".");
+
+            // Format the integer part with commas
+            const formattedInteger = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            // Combine the integer part with the decimal part (if exists)
+            const result = parts.length === 1 ? formattedInteger : formattedInteger + "." + parts[1];
+
+            // Return the formatted result with 'Rp' prefix
+            return "Rp " + result;
+        }
+
         // table data
         $.fn.dataTable.ext.errMode = 'throw';
         var table = $('#datatable').DataTable({
+            "footerCallback": function(row, data, start, end, display) {
+
+
+
+
+                var api = this.api(),
+                    data;
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function(i) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '') * 1 :
+                        typeof i === 'number' ?
+                        i : 0;
+                };
+
+                // Total over all pages
+                total = api
+                    .column(7)
+                    .data()
+                    .reduce(function(a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Total over this page
+                pageTotal = api
+                    .column(7, {
+                        page: 'current'
+                    })
+                    .data()
+                    .reduce(function(a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Update footer
+                $(api.column(7).footer()).html(
+                    "Total Pendapatan : " + formatRupiah(pageTotal) + ' ( ' + formatRupiah(total) +
+                    ' )'
+                );
+            },
+            // autoWidth: true,
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
-                    className: 'btn btn-info btn-xs'
+                    className: 'btn btn-info btn-xs',
+                    exportOptions: {
+                        columns: [12, ':visible']
+                    }
                 },
                 {
                     extend: 'excelHtml5',
-                    className: 'btn btn-success btn-xs'
+                    className: 'btn btn-success btn-xs',
+                    exportOptions: {
+                        columns: [12, ':visible']
+                    }
                 },
                 {
                     extend: 'csvHtml5',
-                    className: 'btn btn-warning btn-xs'
+                    className: 'btn btn-warning btn-xs',
+                    exportOptions: {
+                        columns: [12, ':visible']
+                    }
                 },
                 {
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
-                    className: 'btn btn-prirmay btn-xs'
+                    className: 'btn btn-prirmay btn-xs',
+                    exportOptions: {
+                        columns: [12, ':visible']
+                    }
                 }
             ],
             processing: true,
@@ -132,7 +205,7 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ route('api.laporan_pegadaian') }}",
+                url: "{{ route('api.pendapatan') }}",
                 method: 'POST',
                 data: function(data) {
                     data.dari = $('#dari').val();
@@ -155,25 +228,31 @@
                     name: 'nama'
                 },
                 {
-                    data: 'nama_barang',
-                    name: 'nama_barang'
-                },
-                {
-                    data: 'no_imei',
-                    name: 'no_imei'
+                    data: 'alamat',
+                    name: 'alamat'
                 },
                 {
                     data: 'no_handphone',
                     name: 'no_handphone',
                 },
+
                 {
-                    data: 'alamat',
-                    name: 'alamat'
+                    data: 'nama_barang',
+                    name: 'nama_barang'
+                },
+                {
+                    data: 'durasi_pinjam',
+                    name: 'durasi_pinjam',
+                    render: function(row, data, type) {
+                        return `<button class="btn btn-info btn-sm">${row}</button>`;
+
+                    },
                 },
                 {
                     data: 'maks_pinjaman',
                     name: 'maks_pinjaman'
                 },
+
                 {
                     data: 'jumlah_pinjaman',
                     name: 'jumlah_pinjaman'
@@ -184,14 +263,32 @@
                 },
 
                 {
-                    data: 'jasa_titip',
-                    name: 'jasa_titipp'
+                    data: 'persentase_pinjaman',
+                    name: 'persentase_pinjaman'
                 },
                 {
-                    data: 'jumlah_diambil',
-                    name: 'jumlah_diambil'
+                    data: 'tanggal_jatuh_tempo',
+                    name: 'tanggal_jatuh_tempo'
                 },
                 {
+                    data: 'status_transaksi',
+                    name: 'status_transaksi',
+                    render: function(row, data, type) {
+                        console.log(row, 'gadai if')
+                        if (row == '1') {
+                            return '<button class="btn btn-danger btn-sm">Belum Lunas</button>';
+                        } else if (row == '2') {
+                            return '<button class="btn btn-warning btn-sm">Overdue</button>';
+                        } else if (row == '3') {
+                            return '<button class="btn btn-success btn-sm">Lunas</button>';
+                        } else {
+                            return 'Unknown Status';
+                        }
+                    }
+
+                },
+                {
+
                     data: 'action',
                     name: 'action'
                 }
@@ -202,7 +299,7 @@
         $('.cleardata').on('click', function() {
             $('#dari').val('');
             $('#sampai').val('');
-            
+
             $('#datatable').DataTable().ajax.reload();
         });
         $('.searchdata').on('click', function() {
