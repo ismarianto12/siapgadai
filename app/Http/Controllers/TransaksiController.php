@@ -243,8 +243,15 @@ class TransaksiController extends Controller
     }
     public function return_transaksi()
     {
+        $akses = Auth::user()->tmlevel_id;
+        if ($akses != '1') {
+            return response()->json([
+                'akses menu ini tidak bisa diakases oleh operator / kasir.',
+            ]);
+        }
         $title = 'Return Transaction';
         return view($this->view . 'return_transaksi', compact('title'));
+
     }
 
     public function cetak_kwitansi($id)

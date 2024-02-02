@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\barang;
 use DataTables;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BarangController extends Controller
 {
@@ -14,7 +14,7 @@ class BarangController extends Controller
     protected $request;
     protected $route;
     protected $view;
-    function __construct(Request $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
         $this->date = date("Y-m-d");
@@ -23,6 +23,12 @@ class BarangController extends Controller
     }
     public function index()
     {
+        $akses = Auth::user()->tmlevel_id;
+        if ($akses != '1') {
+            return response()->json([
+                'akses menu ini tidak bisa diakases oleh operator / kasir.',
+            ]);
+        }
         $title = 'Master barang';
         return view($this->view . "index", compact("title"));
     }
@@ -49,13 +55,13 @@ class BarangController extends Controller
     {
         try {
             $request->validate([
-                "kategori_barang_id"=>"required",
-                "kode"=>"required",
-                "nama_barang"=>"required",
-                "merk"=>"required",
-                "type"=>"required",
-                "keluaran"=>"required",
-                "Kelengkapan"=>"required"
+                "kategori_barang_id" => "required",
+                "kode" => "required",
+                "nama_barang" => "required",
+                "merk" => "required",
+                "type" => "required",
+                "keluaran" => "required",
+                "Kelengkapan" => "required",
             ]);
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->validator->errors()], 422);
@@ -151,7 +157,7 @@ class BarangController extends Controller
                 "merk|required",
                 "type|required",
                 "keluaran|required",
-                "Kelengkapan|required"
+                "Kelengkapan|required",
             ]);
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->validator->errors()], 422);
