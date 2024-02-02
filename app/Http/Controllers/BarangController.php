@@ -137,7 +137,7 @@ class BarangController extends Controller
     {
         $title = 'Edit Barang';
         $data = barang::find($id);
-        return view($this->view . "form_add", compact("title", "data"));
+        return view($this->view . "form_edit", compact("title", "data",'id'));
     }
 
     /**
