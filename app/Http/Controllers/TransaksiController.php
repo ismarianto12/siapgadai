@@ -35,12 +35,10 @@ class TransaksiController extends Controller
             return response()->json([
                 'akses menu ini hanya bisa diakases oleh operator / kasir.',
             ]);
-            die;
         } else {
-            return true;
+            $title = 'Transaksi';
+            return view($this->view . "index", compact("title"));
         }
-        $title = 'Transaksi';
-        return view($this->view . "index", compact("title"));
     }
 
     /**
