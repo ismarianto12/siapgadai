@@ -27,6 +27,15 @@ class TransaksiController extends Controller
         $this->view = '.transaksi.';
         $this->route = 'app.transaksi.';
     }
+
+    public function detail_transaksi($id)
+    {
+
+        $idTransaction = $id;
+        $data = transaksi::getDetailTransaction($id);
+        $title = 'Transaksi Berhasil';
+        return view($this->view . 'detail_transaksi', compact('data', 'title', 'idTransaction'));
+    }
     public function index()
     {
 

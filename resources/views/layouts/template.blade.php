@@ -92,7 +92,7 @@
                         <h4>SIAP GADAI
 
                             @if (Auth::user()->tmlevel_id != '1')
-                             Cabang: {{ Properti_app::getCabang(Auth::user()->cabang_id, 'nama_cabang') }}
+                                Cabang: {{ Properti_app::getCabang(Auth::user()->cabang_id, 'nama_cabang') }}
                             @endif
                         </h4>
                     </div>
