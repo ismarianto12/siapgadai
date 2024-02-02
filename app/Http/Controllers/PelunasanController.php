@@ -34,8 +34,7 @@ class PelunasanController extends Controller
             return response()->json([
                 'akses menu ini hanya bisa diakases oleh operator / kasir.',
             ]);
-            die;
-        }  
+        }
         $title = 'Pelunasan';
         $data = [];
         return view($this->view . "index", compact("title", "data"));
