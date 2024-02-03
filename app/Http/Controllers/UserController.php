@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+// use DB
+// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -265,6 +269,24 @@ class UserController extends Controller
                 'id_lev'
             )
         );
+    }
+    public function chnage_password()
+    {
+        try {
+            $currentPasword = $this->request->password;
+            $password_k = $this->request->password_k;
+            $username = Auth::user()->username;
+            $data = DB::table('users')->where('username', $username)->update([
+                'password' => bcrypt($currentPasword),
+            ]);
+            return response()->json([
+                'messages' => 'password berhasil di update',
+            ]);
+        } catch (Throwable $th) {
+            return response()->json([
+                'messages' =>  $th,
+            ],400);
+        }
     }
 
     /**
