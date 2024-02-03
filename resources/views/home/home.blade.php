@@ -65,7 +65,7 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Total Nasabah</p>
-                                    <h4 class="card-title"></h4>
+                                    <h4 class="card-title">{{ $tnasabah }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Total Barang Masuk</p>
-                                    <h4 class="card-title"></h4>
+                                    <h4 class="card-title">{{ $tbarangmasuk }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Total Barang Lunas</p>
-                                    <h4 class="card-title"></h4>
+                                    <h4 class="card-title">{{ $tbaranglunas }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Pendapatan Hari ini</p>
-                                    <h4 class="card-title"></h4>
+                                    <h4 class="card-title">{{ Properti_app::formatRupiah($tpendapatan->total_pendapatan) }}</h4>
                                 </div>
                             </div>
                         </div>

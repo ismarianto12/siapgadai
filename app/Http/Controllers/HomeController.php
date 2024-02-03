@@ -26,20 +26,30 @@ class HomeController extends Controller
         $this->route = 'home';
     }
 
-
     public function index()
     {
         $tahun = $this->request->contract;
         $title = 'Welcome Page';
+
+        $tnasabah = \DB::table('nasabah')->get()->count();
+        $tbarangmasuk = \DB::table('transaksi_gadai')->where('status_transaksi', '!=', '3')->get()->count();
+        $tbaranglunas = \DB::table('transaksi_gadai')->where('status_transaksi', '=', '3')->get()->count();
+        $tpendapatan = $totalPendapatan = DB::table('pendapatan as p')
+            ->select(DB::raw('SUM(p.pokok + p.bunga + p.jasa_titip) as total_pendapatan'))
+            ->first(); 
+            
+        //\DB::select(\DB::raw('sum(p.pokok + p.bunga+ p.jasa_titip)'))->table('pendapatan p')->get();
         return view(
             $this->view . '.home',
             compact(
-                'title'
+                'title',
+                'tnasabah',
+                'tbarangmasuk',
+                'tbaranglunas',
+                'tpendapatan'
             )
         );
     }
-
-
 
     public function pieData($par, $tahun)
     {
@@ -102,17 +112,17 @@ class HomeController extends Controller
         if ($periode == '1') {
             $fperiode = '3';
         } else
-            if ($periode == '2') {
-                $fperiode = '6';
-            } else
-                if ($periode == '3') {
-                    $fperiode = '9';
-                } else
-                    if ($periode == '4') {
-                        $fperiode = '12';
-                    } else {
-                        $fperiode = '12';
-                    }
+        if ($periode == '2') {
+            $fperiode = '6';
+        } else
+        if ($periode == '3') {
+            $fperiode = '9';
+        } else
+        if ($periode == '4') {
+            $fperiode = '12';
+        } else {
+            $fperiode = '12';
+        }
 
         $y = date('Y');
         if ($jenis == 'cos_saving') {
@@ -127,22 +137,22 @@ class HomeController extends Controller
                     $origin->where("tmsurat_master.quartal", "Q1")->get();
                     $compare->where("tmsurat_master.quartal", "Q1")->get();
                 } else
-                    if ($periode == '2') {
-                        // origin start
-                        $origin->where("tmsurat_master.quartal", "Q2")->get();
-                        $compare->where("tmsurat_master.quartal", "Q2")->get();
-                    } else
-                        if ($periode == '3') {
-                            $origin->where("tmsurat_master.quartal", "Q3")->get();
-                            $compare->where("tmsurat_master.quartal", "Q3")->get();
-                        } else
-                            if ($periode == '4') {
-                                $origin->where("tmsurat_master.quartal", "Q4")->get();
-                                $compare->where("tmsurat_master.quartal", "Q4")->get();
-                            } else {
-                                $origin->get();
-                                $compare->get();
-                            }
+                if ($periode == '2') {
+                    // origin start
+                    $origin->where("tmsurat_master.quartal", "Q2")->get();
+                    $compare->where("tmsurat_master.quartal", "Q2")->get();
+                } else
+                if ($periode == '3') {
+                    $origin->where("tmsurat_master.quartal", "Q3")->get();
+                    $compare->where("tmsurat_master.quartal", "Q3")->get();
+                } else
+                if ($periode == '4') {
+                    $origin->where("tmsurat_master.quartal", "Q4")->get();
+                    $compare->where("tmsurat_master.quartal", "Q4")->get();
+                } else {
+                    $origin->get();
+                    $compare->get();
+                }
                 $c_saving = ($origin->first()->fharga_patokan - $compare->first()->tharga_sewa_baru);
                 $fharga_patokan = $origin->first()->fharga_patokan;
                 if ($origin->first()->fharga_patokan < 0 || $origin->first()->fharga_patokan == null) {
@@ -400,14 +410,14 @@ class HomeController extends Controller
             $ef_amount = '';
         }
     }
-    function identitas()
+    public function identitas()
     {
 
         $title = "Identitias aplikasi";
         return view('identitias.index', compact('title'));
     }
 
-    function save_identitas()
+    public function save_identitas()
     {
 
         $title = "Identitias aplikasi";
