@@ -115,6 +115,27 @@ class TransaksiController extends Controller
 
     public function save_transaksi()
     {
+
+        $checkNokwitansi = \DB::table('transaksi_gadai')->where('no_kwitansi', $this->request->no_kwitansi)->get();
+        if ($checkNokwitansi->count() > 0) {
+            return response()->json([
+                // 'idtransaksi' => $idtransaksi,
+                'messages' => 'Gagal nomor anggota dan nomor kwitansi sudah ada sebelumnya silahkan coba yang lain.',
+            ], 400);
+            die();
+        }
+        $CheckNasabah = DB::table('nasabah')->where('nik', $this->request->nik)->get();
+        if ($CheckNasabah->count() < 0) {
+            $checkAnggota = \DB::table('nasabah')->where('no_anggota', $this->request->no_anggota)->get();
+            if ($checkAnggota->count() > 0) {
+                return response()->json([
+                    // 'idtransaksi' => $idtransaksi,
+                    'messages' => 'Gagal nomor anggota sudah ada sebelumnya silahkan coba yang lain.',
+                ], 400);
+                die();
+            } 
+        } 
+
         DB::beginTransaction();
         $id = Auth::user()->id;
         $tgl = Carbon::now()->format('y-m-d');
@@ -173,6 +194,7 @@ class TransaksiController extends Controller
                 ];
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($first_trasaksi);
             } else {
+
                 $nasabah = [
                     'cabang_id' => Auth::user()->cabang_id,
                     'no_anggota' => $this->request->no_anggota,
@@ -318,6 +340,15 @@ class TransaksiController extends Controller
         $mpdf->WriteHTML($render);
         return response($mpdf->Output("cetak_tagihan_transaksi.pdf", 'I'))
             ->header('Content-Type', 'application/pdf');
+
+    }
+
+    public function valiateNotransaksi()
+    {
+    }
+
+    public function validateNoanggota()
+    {
 
     }
 }

@@ -34,12 +34,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </div> 
                 <form id="exampleValidation" method="POST" class="simpan">
                     <div class="card-body">
-                        <div class="form-group row">
-
+                        <div class="form-group row"> 
                             {{-- @php
                                     echo Properti_app::comboproyek();
                                 @endphp --}}

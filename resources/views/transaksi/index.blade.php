@@ -90,7 +90,8 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Cabang</p>
-                                    <h4 class="card-title">{{ Properti_app::getCabang(Auth::user()->cabang_id, 'nama_cabang') }}
+                                    <h4 class="card-title">
+                                        {{ Properti_app::getCabang(Auth::user()->cabang_id, 'nama_cabang') }}
                                     </h4>
                                 </div>
                             </div>
@@ -180,7 +181,7 @@
                     <!-- Left Column -->
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Jenis Barang</label>
+                            <label class="col-md-4 text-left">Jenis Barang</label>
                             <div class="col-md-10">
                                 <select name="id_barang" class="form-control" required>
                                     <option value=""></option>
@@ -192,20 +193,20 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Type Barang</label>
+                            <label class="col-md-4 text-left">Type Barang</label>
                             <div class="col-md-10">
                                 <input type="text" name="type" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Nama Barang</label>
+                            <label class="col-md-4 text-left">Nama Barang</label>
                             <div class="col-md-10">
                                 <input type="text" name="merek_barang" class="form-control" required />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Taksiran Harga</label>
+                            <label class="col-md-4 text-left">Taksiran Harga</label>
                             <div class="col-md-10">
                                 <input type="double" name="taksiran_harga" id="taksiran_harga"
                                     class="number_format form-control" required />
@@ -231,35 +232,37 @@
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Tahun Barang</label>
+                            <label class="col-md-4 text-left">Tahun Barang</label>
                             <div class="col-md-10">
                                 <input type="number" name="keluaran_tahun" class="form-control" required />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">No. Imei</label>
+                            <label class="col-md-4 text-left">No. Imei</label>
                             <div class="col-md-10">
                                 <input type="text" name="no_imei" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Kelengkapan</label>
+                            <label class="col-md-4 text-left">Kelengkapan</label>
                             <div class="col-md-10">
                                 <textarea type="text" name="kelengkapan" class="form-control" required></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Foto Barang</label>
+                            <label class="col-md-4 text-left">Foto Barang</label>
                             <div class="col-md-10">
                                 <input type="file" name="foto_barang" class="form-control" required />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Administrasi</label>
+                            <label class="col-md-4 text-left">Administrasi</label>
                             <div class="col-md-10">
-                                <input type="text" name="administrasi" class="number_format form-control" required />
+                                <small>silahkan isi persentase admin fee </small>
+                                <input type="text" name="administrasi" id="persentase_pinjaman"
+                                    class="number_format form-control" required />
                             </div>
                         </div>
                     </div>
@@ -286,7 +289,7 @@
                         <!-- Left Column -->
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="nama_nasabah" class="col-md-2 text-left">Nama Nasabah:</label>
+                                <label for="nama_nasabah" class="col-md-4 text-left">Nama Nasabah:</label>
                                 <div class="col-md-8">
                                     <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control"
                                         required />
@@ -294,13 +297,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="nik" class="col-md-2 text-left">NIK:</label>
+                                <label for="nik" class="col-md-4 text-left">NIK:</label>
                                 <div class="col-md-8">
                                     <input type="text" id="nik" name="nik" class="form-control" required />
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="nik" class="col-md-2 text-left">Foto KTP:</label>
+                                <label for="nik" class="col-md-4 text-left">Foto KTP:</label>
                                 <div class="col-md-8">
                                     <input type="file" id="foto_ktp" name="foto_ktp" class="form-control"
                                         required />
@@ -308,7 +311,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="jenis_kelamin" class="col-md-2 text-left">Jenis Kelamin:</label>
+                                <label for="jenis_kelamin" class="col-md-4 text-left">Jenis Kelamin:</label>
                                 <div class="col-md-8">
                                     <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
                                         @foreach (Properti_app::Jk() as $item => $val)
@@ -318,7 +321,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="alamat" class="col-md-2 text-left">Alamat:</label>
+                                <label for="alamat" class="col-md-4 text-left">Alamat:</label>
                                 <div class="col-md-8">
                                     <textarea id="alamat" name="alamat" class="form-control" required></textarea>
                                 </div>
@@ -385,6 +388,8 @@
         z-index: 999;
         background: white;
     ">
+
+                <div id="render_error"></div>
 
                 <div class="container row">
 
@@ -673,6 +678,7 @@
                                     });
                                 },
                                 error: function(data) {
+                                    console.log(data);
                                     var div = $('#container');
                                     setInterval(function() {
                                         var pos = div.scrollTop();
@@ -680,9 +686,17 @@
                                     }, 10)
                                     err = '';
                                     respon = data.responseJSON;
-                                    $.each(respon.errors, function(index, value) {
-                                        err += "<li>" + value + "</li>";
-                                    });
+
+
+
+                                    Swal.fire('error', respon, 'error');
+
+                                    // $.each(respon.errors, function(index, value) {
+                                    //     err += "<li>" + value + "</li>";
+                                    // });
+
+                                    $('#render_error').html(
+                                        `<div class="alert alert-danger">${respon}</div>`);
 
                                     Swal.fire('error', err, 'error data');
                                     $.notify({
@@ -823,23 +837,23 @@
 
                         err = '';
                         respon = data.responseJSON;
-                        $.each(respon.errors, function(index, value) {
-                            err += "<li>" + value + "</li>";
-                        });
+                        // $.each(respon.errors, function(index, value) {
+                        //     err += "<li>" + value + "</li>";
+                        // });
 
-                        $.notify({
-                            icon: 'flaticon-alarm-1',
-                            title: 'Akses tidak bisa',
-                            message: err,
-                        }, {
-                            type: 'secondary',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 3000,
-                            z_index: 2000
-                        });
+                        // $.notify({
+                        //     icon: 'flaticon-alarm-1',
+                        //     title: 'Akses tidak bisa',
+                        //     message: err,
+                        // }, {
+                        //     type: 'secondary',
+                        //     placement: {
+                        //         from: "top",
+                        //         align: "right"
+                        //     },
+                        //     time: 3000,
+                        //     z_index: 2000
+                        // });
                     });
                 }
             }
