@@ -159,7 +159,7 @@
                                 <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Tanggal Jatuh Tempo:</label>
                                 <div class="col-md-8">
                                     <input type="date" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo"
-                                        class="datepicker form-control" />
+                                        class="datepicker form-control" required/>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -685,9 +685,7 @@
                                         div.scrollTop(pos + 2);
                                     }, 10)
                                     err = '';
-                                    respon = data.responseJSON;
-
-
+                                    respon = data.responseJSON?.messages;  
 
                                     Swal.fire('error', respon, 'error');
 
@@ -698,11 +696,11 @@
                                     $('#render_error').html(
                                         `<div class="alert alert-danger">${respon}</div>`);
 
-                                    Swal.fire('error', err, 'error data');
+                                    Swal.fire('error', respon, 'error data');
                                     $.notify({
                                         icon: 'flaticon-alarm-1',
                                         title: 'Opp Seperti nya lupa inputan berikut :',
-                                        message: err,
+                                        message: respon,
                                     }, {
                                         type: 'secondary',
                                         placement: {
