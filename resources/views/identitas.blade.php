@@ -29,7 +29,7 @@
                                 <label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nama Aplikasi
                                     <span class="required-label">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="nama_aplikasi" class="form-control" />
+                                    <input type="text" name="nama_aplikasi" class="form-control"  value="Sistem Informasi Gadai"/>
                                 </div>
 
                             </div>

@@ -74,7 +74,7 @@
         <div style="align-items: center;">
 
             <?php
-            echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data->no_anggota, 'C39+') . '" alt="barcode"   />';
+            echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data->no_anggota, 'C39+') . '" alt="barcode"  style="width:100%" />';
             ?>
 
             <br />
