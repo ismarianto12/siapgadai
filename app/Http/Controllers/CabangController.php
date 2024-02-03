@@ -48,6 +48,7 @@ class CabangController extends Controller
                 'cabang.kode_cabang',
                 'cabang.nama_cabang',
                 'cabang.alamat_cabang',
+                // 'cabang'
                 'users.name as name_user'
             )
             ->join('users', 'cabang.user_id', '=', 'users.id', 'left')

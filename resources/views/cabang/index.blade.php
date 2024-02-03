@@ -131,11 +131,15 @@
             },
             columns: [{
                     data: 'id',
-                    name: 'kode_cabang',
+                    name: 'id',
                     orderable: false,
                     searchable: false,
                     align: 'center',
                     className: 'text-center'
+                },
+                {
+                    data: 'kode_cabang',
+                    name: 'kode_cabang'
                 },
                 {
                     data: 'nama_cabang',
@@ -144,11 +148,7 @@
                 {
                     data: 'alamat_cabang',
                     name: 'alamat_cabang',
-                },
-                {
-                    data: 'name_user',
-                    name: 'name_user'
-                },
+                }, 
                 {
                     data: 'name_user',
                     name: 'name_user'
