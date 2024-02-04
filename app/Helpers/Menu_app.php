@@ -24,9 +24,8 @@ class Menu_app
     {
 
         if ($title == 'Transaksi' || $title == 'Pelunasan') {
-            $structure = '<li class="nav-item">
-
-							<a onclick="location.href(\'' . $module_name . '\');">
+            $structure = '<li class="nav-item"> 
+							<a href="#" onclick="location.href=\'' . $module_name . '\';">
                             <i class="' . $font . '"></i>
 
                             <p>' . $title . '</p>
