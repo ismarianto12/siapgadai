@@ -745,12 +745,7 @@
 
 
     <script>
-        $(document).pjax('a', '#pjax-container', {
-            complete: function(xhr, textStatus) {
-                // Fungsi ini akan dijalankan setelah pjax selesai
-                $.pjax.reload('#pjax-container');
-            }
-        });
+        $(document).pjax('a', '#pjax-container');
 
         function search_contract(tahun) {
             if (tahun === "") {
