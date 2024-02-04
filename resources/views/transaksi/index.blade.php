@@ -422,465 +422,470 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-         <script>
-            function clearall() {
-                $('input[name="nama_nasabah"]').val("").prop('readonly', false);
-                $('input[name="nik"]').val("").prop('readonly', false);
-                $('input[name="jenis_kelamin"]').val("").prop('readonly', false);
-                $('textarea[name="alamat"]').val("").prop('readonly', false);
-                $('input[name="rt_rw"]').val("").prop('readonly', false);
-                $('textarea[name="kelurahan"]').val("").prop('readonly', false);
-                $('input[name="kecamatan"]').val("").prop('readonly', false);
-                $('input[name="no_hp"]').val("").prop('readonly', false);
-                $('input[name="kabupaten_kota"]').val("").prop('readonly', false);
-            }
+        <script>
+            $(document).on('ready pjax:success', function() {
 
-            function formatCurrency(input) {
-                let value = input.value.replace(/[^\d]/g, '');
-
-                value = new Intl.NumberFormat('id-ID', {
-                    style: 'currency',
-                    currency: 'IDR'
-                }).format(value);
-
-                input.value = value;
-            }
-
-            var elements = document.querySelectorAll('.wrapper');
-            elements.forEach(function(element) {
-                element.classList.add('sidebar_minimize');
-            });
-
-            $(function() {
-
-
-                $('#pilihyang_ada').on('click', function(e) {
-                    e.preventDefault();
-                    $('#formmodal').modal('show');
-                });
-
-
-
-                function getall(data) {
-
-                    console.log(data, 'function');
-                    // $('input[name="foto_barang"]').val(data?.foto_barang);
-                    $('input[name="nama_nasabah"]').val(data?.nama).prop('readonly', true);
-                    $('input[name="nik"]').val(data?.nik).prop('readonly', true);
-                    $('input[name="jenis_kelamin"]').val(data?.jenis_kelamin).prop('readonly', true);
-                    $('textarea[name="alamat"]').val(data?.textarea).prop('readonly', true);
-                    $('input[name="rt_rw"]').val(data?.rt_rw).prop('readonly', true);
-                    $('textarea[name="kelurahan"]').val(data?.kelurahan).prop('readonly', true);
-                    $('input[name="kecamatan"]').val(data?.kecamatan).prop('readonly', true);
-                    $('input[name="no_hp"]').val(data?.no_hp).prop('readonly', true);
-                    $('input[name="kabupaten_kota"]').val(data?.kab_kota).prop('readonly', true);
+                function clearall() {
+                    $('input[name="nama_nasabah"]').val("").prop('readonly', false);
+                    $('input[name="nik"]').val("").prop('readonly', false);
+                    $('input[name="jenis_kelamin"]').val("").prop('readonly', false);
+                    $('textarea[name="alamat"]').val("").prop('readonly', false);
+                    $('input[name="rt_rw"]').val("").prop('readonly', false);
+                    $('textarea[name="kelurahan"]').val("").prop('readonly', false);
+                    $('input[name="kecamatan"]').val("").prop('readonly', false);
+                    $('input[name="no_hp"]').val("").prop('readonly', false);
+                    $('input[name="kabupaten_kota"]').val("").prop('readonly', false);
                 }
 
-                $('#datatable').on('click', '.checkpelunasan', function(e) {
-                    e.preventDefault();
-                    clearall();
-                    var id = $(this).data('nasabah_id');
+                function formatCurrency(input) {
+                    let value = input.value.replace(/[^\d]/g, '');
 
-                    Swal.fire({
-                        title: 'Please Wait ...',
-                        allowOutsideClick: false,
-                        showCancelButton: false,
-                        showConfirmButton: false,
-                    });
-                    Swal.showLoading();
-                    $.ajax({
-                        url: "{{ route('api.call_detail_nasabah') }}",
-                        method: "POST",
-                        data: {
-                            nasabah_d: id
-                        },
-                        success: function(data) {
-                            Swal.close();
-                            console.log(data.data[0], 'detail data')
-                            getall(data?.data[0])
-                            $('#formmodal').modal('hide');
+                    value = new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR'
+                    }).format(value);
 
-                        },
-                        error: function(data) {
-                            Swal.fire('error', 'gagal mengambil data nasabah', 'error');
-                        }
+                    input.value = value;
+                }
+
+                var elements = document.querySelectorAll('.wrapper');
+                elements.forEach(function(element) {
+                    element.classList.add('sidebar_minimize');
+                });
+
+                $(function() {
+
+
+                    $('#pilihyang_ada').on('click', function(e) {
+                        e.preventDefault();
+                        $('#formmodal').modal('show');
                     });
 
 
-                })
 
-                $('.number_format').keyup(function(event) {
-                    if (event.which >= 37 && event.which <= 40) return;
-                    $(this).val(function(index, value) {
-                        return value
-                            .replace(/\D/g, "")
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                    });
-                });
+                    function getall(data) {
 
-                function calculateTaksiranHarga() {
-                    var persentasePinjaman = parseFloat($('#persentase_pinjaman').val()) || 0;
-                    var hargaBarang = $('#taksiran_harga').val();
-                    var rhargaBarang = hargaBarang?.replace(/\./g, '');
-                    console.log(rhargaBarang, 'dasd')
-                    var taksiranHarga = (persentasePinjaman / 100) * parseFloat(rhargaBarang);
-                    $('input[name="inputmaksimal_pinjam"]').val(taksiranHarga);
-                    var formattedTaksiranHarga = formatRupiah(taksiranHarga.toFixed(0));
-                    $('.maksimal_pinjaman').text(formattedTaksiranHarga);
-                }
-
-                function formatRupiah(angka) {
-                    if (angka == '') {
-                        $.notify({
-                            icon: 'flaticon-alarm-1',
-                            title: 'Silahkan Input Harga Barang',
-                            message: err,
-                        }, {
-                            type: 'secondary',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 3000,
-                            z_index: 2000
-                        });
-                    } else {
-                        var reverse = angka?.toString().split('').reverse().join('');
-                        var ribuan = reverse?.match(/\d{1,3}/g);
-                        var formatted = ribuan?.join('.').split('').reverse().join('');
-                        return formatted === undefined ? 'Silahkan masukan nilai' :
-                            'Rp ' + formatted;
+                        console.log(data, 'function');
+                        // $('input[name="foto_barang"]').val(data?.foto_barang);
+                        $('input[name="nama_nasabah"]').val(data?.nama).prop('readonly', true);
+                        $('input[name="nik"]').val(data?.nik).prop('readonly', true);
+                        $('input[name="jenis_kelamin"]').val(data?.jenis_kelamin).prop('readonly', true);
+                        $('textarea[name="alamat"]').val(data?.textarea).prop('readonly', true);
+                        $('input[name="rt_rw"]').val(data?.rt_rw).prop('readonly', true);
+                        $('textarea[name="kelurahan"]').val(data?.kelurahan).prop('readonly', true);
+                        $('input[name="kecamatan"]').val(data?.kecamatan).prop('readonly', true);
+                        $('input[name="no_hp"]').val(data?.no_hp).prop('readonly', true);
+                        $('input[name="kabupaten_kota"]').val(data?.kab_kota).prop('readonly', true);
                     }
-                }
 
-                function validatePercentageInput() {
-                    var input = $('#persentase_pinjaman').val();
-                    var regex = /^(100(\.0{1,2})?|\d{1,2}(\.\d{1,2})?)$/;
+                    $('#datatable').on('click', '.checkpelunasan', function(e) {
+                        e.preventDefault();
+                        clearall();
+                        var id = $(this).data('nasabah_id');
 
-                    if (!regex.test(input)) {
-                        $('#persentase_pinjaman').addClass('is-invalid');
-                    } else {
-                        $('#persentase_pinjaman').removeClass('is-invalid');
-                        calculateTaksiranHarga()
-
-                    }
-                }
-
-                $('input[name="taksiran_harga"]').on('input', function() {
-                    var persentaseInput = $('#persentase_pinjaman').val();
-                    var regex = /^(100(\.0{1,2})?|\d{1,2}(\.\d{1,2})?)$/;
-
-                    if (persentaseInput.trim() === '') {
-                        $('#persentase_pinjaman').addClass('is-invalid');
-                        $('.invalid-feedback').html('Silahkan isi persentase pinjaman.');
-                    } else if (!regex.test(persentaseInput)) {
-                        $('#persentase_pinjaman').addClass('is-invalid');
-                        $('.invalid-feedback').html('Pastikan angka persen di antara 0 dan 100.');
-                    } else {
-                        $('#persentase_pinjaman').removeClass('is-invalid');
-                        $('.invalid-feedback').html('');
-
-                        calculateTaksiranHarga();
-                    }
-                });
-
-                $('input[name="jumlah_diambil"]').on('input', function() {
-                    var inputmaksimal_pinjam = parseInt($('input[name="inputmaksimal_pinjam"]').val());
-                    var jumlah_ambil = $(this).val();
-                    var valueJambil = parseInt(jumlah_ambil?.replace(/\./g, ''));
-                    console.log(valueJambil, 'adsa');
-                    console.log(inputmaksimal_pinjam, 'maks')
-
-                    console.log(valueJambil > inputmaksimal_pinjam, 'maks')
-                    if (valueJambil > inputmaksimal_pinjam) {
-                        Swal.fire('error',
-                            'Gagal Pastikan maksimal pinjaman harus sama atau lebih kecil dari nilai maksimal',
-                            'error');
-                        $('#jumlah_diambil').addClass('is-invalid');
-                    } else {
-                        $('#jumlah_diambil').removeClass('is-invalid');
-                    }
-                });
-
-                $('#persentase_pinjaman').on('input', function() {
-                    validatePercentageInput();
-                });
-                $('.simpan').on('submit', function(e) {
-                    e.preventDefault();
-
-                    Swal.fire({
-                        title: "Sebelum Submit ",
-                        text: "Pastikan Semua data sudah benar",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Ok"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            var datastring = new FormData(this);
-                            Swal.fire({
-                                title: 'Menyimpan data transaksi...',
-                                allowOutsideClick: false,
-                                showCancelButton: false,
-                                showConfirmButton: false,
-                            });
-                            Swal.showLoading();
-
-                            $.ajax({
-                                url: "{{ route('app.save_transaksi') }}",
-                                method: "POST",
-                                data: datastring,
-                                cache: false,
-                                contentType: false,
-                                processData: false,
-                                beforeSend: function() {
-                                    $.notify({
-                                        icon: 'flaticon-loading-1',
-                                        title: 'Processing',
-                                        message: 'Sedang Memproses Penyimpanan Data .....',
-                                    }, {
-                                        type: 'secondary',
-                                        placement: {
-                                            from: "center",
-                                            align: "right"
-                                        },
-                                        time: 1000,
-                                        z_index: 2000
-                                    });
-
-                                },
-                                success: function(data) {
-                                    var id_transaction = data.idtransaksi;
-                                    $.pjax({
-                                        container: '#pjax-container',
-                                        url: '{{ Url('app/detail_transaksi') }}/' +
-                                            id_transaction,
-                                        push: false
-                                    });
-
-
-                                    Swal.fire('success', 'Transaksi berhasil', 'success');
-
-                                    $.notify({
-                                        icon: 'flaticon-alarm-1',
-                                        title: 'Info',
-                                        message: 'Berhasil di Simpan',
-                                    }, {
-                                        type: 'secondary',
-                                        placement: {
-                                            from: "center",
-                                            align: "right"
-                                        },
-                                        time: 1000,
-                                        z_index: 2000
-                                    });
-                                },
-                                error: function(data) {
-                                    console.log(data);
-                                    var div = $('#container');
-                                    setInterval(function() {
-                                        var pos = div.scrollTop();
-                                        div.scrollTop(pos + 2);
-                                    }, 10)
-                                    err = '';
-                                    respon = data.responseJSON?.messages;
-
-                                    Swal.fire('error', respon, 'error');
-
-                                    // $.each(respon.errors, function(index, value) {
-                                    //     err += "<li>" + value + "</li>";
-                                    // });
-
-                                    $('#render_error').html(
-                                        `<div class="alert alert-danger">${respon}</div>`
-                                    );
-
-                                    Swal.fire('error', respon, 'error data');
-                                    $.notify({
-                                        icon: 'flaticon-alarm-1',
-                                        title: 'Opp Seperti nya lupa inputan berikut :',
-                                        message: respon,
-                                    }, {
-                                        type: 'secondary',
-                                        placement: {
-                                            from: "top",
-                                            align: "right"
-                                        },
-                                        time: 3000,
-                                        z_index: 2000
-                                    });
-
-                                }
-                            })
-                        }
-                    })
-                });
-
-                $('.ayamayam').hide();
-
-                // edit
-            });
-
-            // $.fn.dataTable.ext.errMode = 'throw';
-            var table = $('#datatable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [{
-                        extend: 'copyHtml5',
-                        className: 'btn btn-info btn-xs'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        className: 'btn btn-success btn-xs'
-                    },
-                    {
-                        extend: 'csvHtml5',
-                        className: 'btn btn-warning btn-xs'
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        className: 'btn btn-prirmay btn-xs'
-                    }
-                ],
-                processing: true,
-                serverSide: true,
-                order: [1, 'asc'],
-                pageLength: 10,
-                ajax: {
-                    url: "{{ route('api.nasabah') }}",
-                    method: 'POST',
-                    data: function(data) {
-                        data.dari = $('#dari').val();
-                        data.sampai = $('#sampai').val();
-
-                    },
-                    _token: "{{ csrf_token() }}",
-                },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false,
-                        align: 'center',
-                        className: 'text-center'
-
-                    },
-                    {
-                        data: 'nik',
-                        name: 'nik',
-                    },
-                    {
-                        data: 'no_anggota',
-                        name: 'no_anggota',
-                    },
-                    {
-                        data: 'nama',
-                        name: 'nama',
-                        orderable: false,
-                        searchable: false,
-                    },
-                    {
-                        data: 'jk',
-                        name: 'jk',
-                        orderable: false,
-                        searchable: false,
-                        render: function({
-                            data,
-                            row,
-                            type
-                        }) {
-                            if (data === 'L') {
-                                return 'Laki - laki';
-                            } else {
-                                return 'Perempuan';
-                            }
-                        }
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                    }
-                ]
-
-            });
-
-            @include('layouts.tablechecked');
-
-            function del() {
-                var c = new Array();
-                $("input:checked").each(function() {
-                    c.push($(this).val());
-                });
-                if (c.length == 0) {
-                    $.alert("Silahkan memilih data yang akan dihapus.");
-                } else {
-                    $.post("{{ Url('/', ':id') }}", {
-                        '_method': 'DELETE',
-                        'id': c
-                    }, function(data) {
-                        $('#datatable').DataTable().ajax.reload();
                         Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Data berhasil di hapus',
+                            title: 'Please Wait ...',
+                            allowOutsideClick: false,
+                            showCancelButton: false,
                             showConfirmButton: false,
-                            timer: 1500
                         });
-                    }, "JSON").fail(function(data) {
-                        $('#datatable').DataTable().ajax.reload();
+                        Swal.showLoading();
+                        $.ajax({
+                            url: "{{ route('api.call_detail_nasabah') }}",
+                            method: "POST",
+                            data: {
+                                nasabah_d: id
+                            },
+                            success: function(data) {
+                                Swal.close();
+                                console.log(data.data[0], 'detail data')
+                                getall(data?.data[0])
+                                $('#formmodal').modal('hide');
 
-                        err = '';
-                        respon = data.responseJSON;
-                        // $.each(respon.errors, function(index, value) {
-                        //     err += "<li>" + value + "</li>";
-                        // });
+                            },
+                            error: function(data) {
+                                Swal.fire('error', 'gagal mengambil data nasabah', 'error');
+                            }
+                        });
 
-                        // $.notify({
-                        //     icon: 'flaticon-alarm-1',
-                        //     title: 'Akses tidak bisa',
-                        //     message: err,
-                        // }, {
-                        //     type: 'secondary',
-                        //     placement: {
-                        //         from: "top",
-                        //         align: "right"
-                        //     },
-                        //     time: 3000,
-                        //     z_index: 2000
-                        // });
+
+                    })
+
+                    $('.number_format').keyup(function(event) {
+                        if (event.which >= 37 && event.which <= 40) return;
+                        $(this).val(function(index, value) {
+                            return value
+                                .replace(/\D/g, "")
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        });
                     });
-                }
-            }
 
+                    function calculateTaksiranHarga() {
+                        var persentasePinjaman = parseFloat($('#persentase_pinjaman').val()) || 0;
+                        var hargaBarang = $('#taksiran_harga').val();
+                        var rhargaBarang = hargaBarang?.replace(/\./g, '');
+                        console.log(rhargaBarang, 'dasd')
+                        var taksiranHarga = (persentasePinjaman / 100) * parseFloat(rhargaBarang);
+                        $('input[name="inputmaksimal_pinjam"]').val(taksiranHarga);
+                        var formattedTaksiranHarga = formatRupiah(taksiranHarga.toFixed(0));
+                        $('.maksimal_pinjaman').text(formattedTaksiranHarga);
+                    }
 
-
-            // action of bussiness flow apps 
-            $(document).ready(function() {
-                $('.cancel_transaction').on('click', function() {
-                    Swal.fire({
-                        title: "Anda Yakin? ",
-                        text: "Membatalkan Transaksi Gadai",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Ok"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.pjax({
-                                container: '#pjax-container', // ID dari kontainer yang akan di-refresh
-                                url: '{{ Url('app/transaksi') }}', // URL yang akan dimuat secara dinamis
-                                push: false // Menonaktifkan perubahan URL di baris alamat
+                    function formatRupiah(angka) {
+                        if (angka == '') {
+                            $.notify({
+                                icon: 'flaticon-alarm-1',
+                                title: 'Silahkan Input Harga Barang',
+                                message: err,
+                            }, {
+                                type: 'secondary',
+                                placement: {
+                                    from: "top",
+                                    align: "right"
+                                },
+                                time: 3000,
+                                z_index: 2000
                             });
+                        } else {
+                            var reverse = angka?.toString().split('').reverse().join('');
+                            var ribuan = reverse?.match(/\d{1,3}/g);
+                            var formatted = ribuan?.join('.').split('').reverse().join('');
+                            return formatted === undefined ? 'Silahkan masukan nilai' :
+                                'Rp ' + formatted;
+                        }
+                    }
+
+                    function validatePercentageInput() {
+                        var input = $('#persentase_pinjaman').val();
+                        var regex = /^(100(\.0{1,2})?|\d{1,2}(\.\d{1,2})?)$/;
+
+                        if (!regex.test(input)) {
+                            $('#persentase_pinjaman').addClass('is-invalid');
+                        } else {
+                            $('#persentase_pinjaman').removeClass('is-invalid');
+                            calculateTaksiranHarga()
 
                         }
-                    })
-                })
+                    }
 
+                    $('input[name="taksiran_harga"]').on('input', function() {
+                        var persentaseInput = $('#persentase_pinjaman').val();
+                        var regex = /^(100(\.0{1,2})?|\d{1,2}(\.\d{1,2})?)$/;
+
+                        if (persentaseInput.trim() === '') {
+                            $('#persentase_pinjaman').addClass('is-invalid');
+                            $('.invalid-feedback').html('Silahkan isi persentase pinjaman.');
+                        } else if (!regex.test(persentaseInput)) {
+                            $('#persentase_pinjaman').addClass('is-invalid');
+                            $('.invalid-feedback').html('Pastikan angka persen di antara 0 dan 100.');
+                        } else {
+                            $('#persentase_pinjaman').removeClass('is-invalid');
+                            $('.invalid-feedback').html('');
+
+                            calculateTaksiranHarga();
+                        }
+                    });
+
+                    $('input[name="jumlah_diambil"]').on('input', function() {
+                        var inputmaksimal_pinjam = parseInt($('input[name="inputmaksimal_pinjam"]')
+                            .val());
+                        var jumlah_ambil = $(this).val();
+                        var valueJambil = parseInt(jumlah_ambil?.replace(/\./g, ''));
+                        console.log(valueJambil, 'adsa');
+                        console.log(inputmaksimal_pinjam, 'maks')
+
+                        console.log(valueJambil > inputmaksimal_pinjam, 'maks')
+                        if (valueJambil > inputmaksimal_pinjam) {
+                            Swal.fire('error',
+                                'Gagal Pastikan maksimal pinjaman harus sama atau lebih kecil dari nilai maksimal',
+                                'error');
+                            $('#jumlah_diambil').addClass('is-invalid');
+                        } else {
+                            $('#jumlah_diambil').removeClass('is-invalid');
+                        }
+                    });
+
+                    $('#persentase_pinjaman').on('input', function() {
+                        validatePercentageInput();
+                    });
+                    $('.simpan').on('submit', function(e) {
+                        e.preventDefault();
+
+                        Swal.fire({
+                            title: "Sebelum Submit ",
+                            text: "Pastikan Semua data sudah benar",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Ok"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                var datastring = new FormData(this);
+                                Swal.fire({
+                                    title: 'Menyimpan data transaksi...',
+                                    allowOutsideClick: false,
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                });
+                                Swal.showLoading();
+
+                                $.ajax({
+                                    url: "{{ route('app.save_transaksi') }}",
+                                    method: "POST",
+                                    data: datastring,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    beforeSend: function() {
+                                        $.notify({
+                                            icon: 'flaticon-loading-1',
+                                            title: 'Processing',
+                                            message: 'Sedang Memproses Penyimpanan Data .....',
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "center",
+                                                align: "right"
+                                            },
+                                            time: 1000,
+                                            z_index: 2000
+                                        });
+
+                                    },
+                                    success: function(data) {
+                                        var id_transaction = data.idtransaksi;
+                                        $.pjax({
+                                            container: '#pjax-container',
+                                            url: '{{ Url('app/detail_transaksi') }}/' +
+                                                id_transaction,
+                                            push: false
+                                        });
+
+
+                                        Swal.fire('success', 'Transaksi berhasil',
+                                            'success');
+
+                                        $.notify({
+                                            icon: 'flaticon-alarm-1',
+                                            title: 'Info',
+                                            message: 'Berhasil di Simpan',
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "center",
+                                                align: "right"
+                                            },
+                                            time: 1000,
+                                            z_index: 2000
+                                        });
+                                    },
+                                    error: function(data) {
+                                        console.log(data);
+                                        var div = $('#container');
+                                        setInterval(function() {
+                                            var pos = div.scrollTop();
+                                            div.scrollTop(pos + 2);
+                                        }, 10)
+                                        err = '';
+                                        respon = data.responseJSON?.messages;
+
+                                        Swal.fire('error', respon, 'error');
+
+                                        // $.each(respon.errors, function(index, value) {
+                                        //     err += "<li>" + value + "</li>";
+                                        // });
+
+                                        $('#render_error').html(
+                                            `<div class="alert alert-danger">${respon}</div>`
+                                        );
+
+                                        Swal.fire('error', respon, 'error data');
+                                        $.notify({
+                                            icon: 'flaticon-alarm-1',
+                                            title: 'Opp Seperti nya lupa inputan berikut :',
+                                            message: respon,
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "top",
+                                                align: "right"
+                                            },
+                                            time: 3000,
+                                            z_index: 2000
+                                        });
+
+                                    }
+                                })
+                            }
+                        })
+                    });
+
+                    $('.ayamayam').hide();
+
+                    // edit
+                });
+
+                // $.fn.dataTable.ext.errMode = 'throw';
+                var table = $('#datatable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [{
+                            extend: 'copyHtml5',
+                            className: 'btn btn-info btn-xs'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            className: 'btn btn-success btn-xs'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            className: 'btn btn-warning btn-xs'
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'landscape',
+                            pageSize: 'LEGAL',
+                            className: 'btn btn-prirmay btn-xs'
+                        }
+                    ],
+                    processing: true,
+                    serverSide: true,
+                    order: [1, 'asc'],
+                    pageLength: 10,
+                    ajax: {
+                        url: "{{ route('api.nasabah') }}",
+                        method: 'POST',
+                        data: function(data) {
+                            data.dari = $('#dari').val();
+                            data.sampai = $('#sampai').val();
+
+                        },
+                        _token: "{{ csrf_token() }}",
+                    },
+                    columns: [{
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex',
+                            orderable: false,
+                            searchable: false,
+                            align: 'center',
+                            className: 'text-center'
+
+                        },
+                        {
+                            data: 'nik',
+                            name: 'nik',
+                        },
+                        {
+                            data: 'no_anggota',
+                            name: 'no_anggota',
+                        },
+                        {
+                            data: 'nama',
+                            name: 'nama',
+                            orderable: false,
+                            searchable: false,
+                        },
+                        {
+                            data: 'jk',
+                            name: 'jk',
+                            orderable: false,
+                            searchable: false,
+                            render: function({
+                                data,
+                                row,
+                                type
+                            }) {
+                                if (data === 'L') {
+                                    return 'Laki - laki';
+                                } else {
+                                    return 'Perempuan';
+                                }
+                            }
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false,
+                        }
+                    ]
+
+                });
+
+                @include('layouts.tablechecked');
+
+                function del() {
+                    var c = new Array();
+                    $("input:checked").each(function() {
+                        c.push($(this).val());
+                    });
+                    if (c.length == 0) {
+                        $.alert("Silahkan memilih data yang akan dihapus.");
+                    } else {
+                        $.post("{{ Url('/', ':id') }}", {
+                            '_method': 'DELETE',
+                            'id': c
+                        }, function(data) {
+                            $('#datatable').DataTable().ajax.reload();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Data berhasil di hapus',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }, "JSON").fail(function(data) {
+                            $('#datatable').DataTable().ajax.reload();
+
+                            err = '';
+                            respon = data.responseJSON;
+                            // $.each(respon.errors, function(index, value) {
+                            //     err += "<li>" + value + "</li>";
+                            // });
+
+                            // $.notify({
+                            //     icon: 'flaticon-alarm-1',
+                            //     title: 'Akses tidak bisa',
+                            //     message: err,
+                            // }, {
+                            //     type: 'secondary',
+                            //     placement: {
+                            //         from: "top",
+                            //         align: "right"
+                            //     },
+                            //     time: 3000,
+                            //     z_index: 2000
+                            // });
+                        });
+                    }
+                }
+
+
+
+                // action of bussiness flow apps 
+                $(document).ready(function() {
+                    $('.cancel_transaction').on('click', function() {
+                        Swal.fire({
+                            title: "Anda Yakin? ",
+                            text: "Membatalkan Transaksi Gadai",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Ok"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.pjax({
+                                    container: '#pjax-container', // ID dari kontainer yang akan di-refresh
+                                    url: '{{ Url('app/transaksi') }}', // URL yang akan dimuat secara dinamis
+                                    push: false // Menonaktifkan perubahan URL di baris alamat
+                                });
+
+                            }
+                        })
+                    })
+
+                });
             });
         </script>
     @endsection
