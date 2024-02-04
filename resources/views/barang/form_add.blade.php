@@ -149,9 +149,7 @@
     });
     // sellect 2
     $(document).ready(function() {
-        $('.js-example-basic-single').select2({
-            width: '100%'
-        });
+      
     });
 </script>
 {{-- list_model_proyek --}}
