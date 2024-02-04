@@ -735,6 +735,13 @@
     <script src="{{ asset('assets') }}/js/jquery.pjax.js"></script>
     <script src="{{ asset('assets') }}/js/plugin/pace/pace.js"></script>
 
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+
+
 
     <script>
         $(document).pjax('a', '#pjax-container');
@@ -747,7 +754,7 @@
             }
         }
         $(document).ready(function() {
-            
+
             // preload page
             var $body = $('body');
             if ($body.hasClass('apus-body-loading')) {
@@ -871,12 +878,6 @@
             });
         });
     </script>
-
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 
 
     <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
