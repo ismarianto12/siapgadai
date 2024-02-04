@@ -747,12 +747,7 @@
             }
         }
         $(document).ready(function() {
-            $('.select2').select2({
-                width: '100%'
-            });
-            $('.periode').select2({
-                width: '100%'
-            });
+            
             // preload page
             var $body = $('body');
             if ($body.hasClass('apus-body-loading')) {
