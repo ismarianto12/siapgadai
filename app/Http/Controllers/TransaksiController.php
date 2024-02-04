@@ -133,8 +133,8 @@ class TransaksiController extends Controller
                     'messages' => 'Gagal nomor anggota sudah ada sebelumnya silahkan coba yang lain.',
                 ], 400);
                 die();
-            } 
-        } 
+            }
+        }
 
         DB::beginTransaction();
         $id = Auth::user()->id;
@@ -190,6 +190,7 @@ class TransaksiController extends Controller
                     'type' => $this->request->type,
                     'tujuan_gadai' => $this->request->tujuan_gadai,
                     'created_at' => date('Y-m-d H:i:s'),
+                    'user_id' => Auth::user()->id,
 
                 ];
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($first_trasaksi);
@@ -244,6 +245,8 @@ class TransaksiController extends Controller
                     'type' => $this->request->type,
                     'tujuan_gadai' => $this->request->tujuan_gadai,
                     'created_at' => date('Y-m-d H:i:s'),
+                    'user_id' => Auth::user()->id,
+
                 ];
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($trasaksi);
             }

@@ -66,6 +66,9 @@
                                 <th>Persentase</th>
                                 <th>Jatuh Tempo</th>
                                 <th>Status</th>
+                                <th>Operator</th>
+                                <th>Cabang</th>
+                                <th>Tanggal Pelunasan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -205,7 +208,23 @@
                         }
                     }
 
-                }, {
+                },
+                {
+
+                    data: 'nama_user',
+                    name: 'nama_user'
+                },
+                {
+
+                    data: 'nama_cabang',
+                    name: 'nama_cabang'
+                },
+                {
+
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
 
                     data: 'action',
                     name: 'action'

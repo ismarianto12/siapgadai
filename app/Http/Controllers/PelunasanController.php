@@ -226,10 +226,16 @@ class PelunasanController extends Controller
             'nasabah.nama',
             'nasabah.no_anggota',
             'nasabah.alamat',
-            'nasabah.no_hp as no_handphone'
+            'nasabah.no_hp as no_handphone',
+            'users.id as id_user',
+            'users.username  as nama_user',
+            'cabang.nama_cabang'
+            // 'users.name as nama_user'
 
         )
             ->join('transaksi_gadai', 'transaksi_gadai.id', '=', 'pelunasan.transaksi_id')
+            ->join('users', 'pelunasan.user_id', '=', 'users.id', 'left')
+            ->leftJoin('cabang', 'users.cabang_id', '=', 'cabang.id')
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
@@ -260,7 +266,6 @@ class PelunasanController extends Controller
 
         $transaksiId = $this->request->id_transaksi;
         $datatransac = DB::table('transaksi_gadai')->where('id', $transaksiId)->first();
-
         $pelunasan = DB::table('pelunasan')->where('id_transaksi', $transaksiId)->get();
         $pendapatan = DB::table('pendapatan')->where('id_transaksi', $transaksiId)->get();
 

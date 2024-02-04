@@ -24,7 +24,7 @@
 
 <body>
     <div class="container">
-        <h2>Deatail transaksi Gadai - {{ $data['nama'] }} </h2>
+        <h2>Detail transaksi Gadai - {{ $data['nama'] }} </h2>
         <?php
         echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data['no_anggota'], 'C39+') . '" alt="barcode"   />';
         ?>

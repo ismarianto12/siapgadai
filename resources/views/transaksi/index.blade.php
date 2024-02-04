@@ -262,7 +262,7 @@
                             <div class="col-md-10">
                                 <small>silahkan isi persentase admin fee </small>
                                 <input type="text" name="administrasi" id="persentase_pinjaman"
-                                    class="number_format form-control" required />
+                                    class="number_format form-control" required maxlength="3"/>
                             </div>
                         </div>
                     </div>

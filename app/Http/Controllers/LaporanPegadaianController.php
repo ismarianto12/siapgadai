@@ -57,9 +57,8 @@ class LaporanPegadaianController extends Controller
             'transaksi_gadai.tanggal_jatuh_tempo',
             'transaksi_gadai.jumlah_pinjaman as jumlah_diambil',
             'transaksi_gadai.jumlah_pinjaman',
-            'transaksi_gadai.taksiran_harga', 
-            'transaksi_gadai.persentase_pinjaman as pinjam_persen', 
-
+            'transaksi_gadai.taksiran_harga',
+            'transaksi_gadai.persentase_pinjaman as pinjam_persen',
 
             'transaksi_gadai.perpajangan',
             'transaksi_gadai.jasa_titip',
@@ -77,6 +76,8 @@ class LaporanPegadaianController extends Controller
             'transaksi_gadai.status_transaksi',
 
             'transaksi_gadai.no_imei',
+            'transaksi_gadai.created_at as tanggal_transaksi_gadai',
+
             'barang.type',
             'barang.keluaran',
             'barang.merk',
@@ -101,8 +102,12 @@ class LaporanPegadaianController extends Controller
             'nasabah.nama',
             'nasabah.kecamatan',
             'perhitungan_biaya.keterangan as durasi_pinjam',
-            'perhitungan_biaya.persentase as persentase_pinjaman'
+            'perhitungan_biaya.persentase as persentase_pinjaman',
+            'users.username',
+            'cabang.nama_cabang'
         )
+            ->leftJoin('users', 'users.id', '=', 'transaksi_gadai.user_id')
+            ->leftJoin('cabang', 'users.cabang_id', '=', 'cabang.id')
 
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
@@ -113,7 +118,7 @@ class LaporanPegadaianController extends Controller
             $data->where('transaksi_gadai.cabang_id', Auth::user()->cabang_id);
 
         }
-        if ($dari !='' && $sampai !='') {
+        if ($dari != '' && $sampai != '') {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
         }
         $sql = $data->get();

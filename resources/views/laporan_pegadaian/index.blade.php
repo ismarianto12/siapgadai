@@ -81,6 +81,9 @@
                                 <th>Durasi Pinjaman</th>
                                 <th>Jatuh Tempo</th>
                                 <th>Status</th>
+                                <th>Operator</th>
+                                <th>Cabang</th>
+                                <th>Tanggal Transaksi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -199,7 +202,7 @@
                     data: 'administrasi',
                     name: 'administrasi'
                 },
-                
+
                 {
                     data: 'pinjam_persen',
                     name: 'pinjam_persen'
@@ -208,7 +211,7 @@
                     data: 'durasi_pinjam',
                     name: 'durasi_pinjam'
                 },
-                
+
                 {
                     data: 'tanggal_jatuh_tempo',
                     name: 'tanggal_jatuh_tempo'
@@ -229,7 +232,23 @@
                         }
                     }
 
-                }, {
+                },
+                {
+
+                    data: 'username',
+                    name: 'username'
+                },
+                {
+
+                    data: 'nama_cabang',
+                    name: 'nama_cabang'
+                },
+                {
+
+                    data: 'tanggal_transaksi_gadai',
+                    name: 'tanggal_transaksi_gadai'
+                },
+                {
 
                     data: 'action',
                     name: 'action'
