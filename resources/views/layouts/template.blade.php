@@ -31,7 +31,10 @@
     <script src="{{ asset('assets/js//2.1.1/jquery.min.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('assets') }}/css/demo.css">
+    
     <link rel="stylesheet" href="{{ asset('assets/css/jquery-confirm.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -735,13 +738,6 @@
     <script src="{{ asset('assets') }}/js/jquery.pjax.js"></script>
     <script src="{{ asset('assets') }}/js/plugin/pace/pace.js"></script>
 
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-
-
 
     <script>
         $(document).pjax('a', '#pjax-container');
@@ -754,7 +750,12 @@
             }
         }
         $(document).ready(function() {
-
+            $('.select2').select2({
+                width: '100%'
+            });
+            $('.periode').select2({
+                width: '100%'
+            });
             // preload page
             var $body = $('body');
             if ($body.hasClass('apus-body-loading')) {
@@ -878,6 +879,12 @@
             });
         });
     </script>
+
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 
 
     <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
