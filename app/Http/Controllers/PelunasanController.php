@@ -253,7 +253,7 @@ class PelunasanController extends Controller
 
         return DataTables::of($sql)
             ->editColumn('action', function ($p) {
-                return '<a to="' . Url('laporan/pelunasan_detail/' . $p->id) . '" class="btn btn-success btn-xs" id="edit"><i class="
+                return '<a to="' . Url('app/pelunasan_detail/' . $p->id) . '" class="btn btn-success btn-xs" id="edit"><i class="
                 flaticon-user-4"></i>Detail pelunasan </a> ';
             }, true)
             ->addIndexColumn()
@@ -337,7 +337,7 @@ class PelunasanController extends Controller
     public function pelunasan_detail($id)
     {
         $idTransaction = $id;
-        $data = transaksi::getDetailTransaction($id);
+        $data = pelunasan::detailPelunasan($id);
         $title = 'Pelunasan Transaksi';
         return view($this->view . 'pelunasan_detail', compact('data', 'title', 'idTransaction'));
 

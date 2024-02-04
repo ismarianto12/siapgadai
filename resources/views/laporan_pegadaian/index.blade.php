@@ -184,18 +184,23 @@
                 },
                 {
                     data: 'taksiran_harga',
+                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
                     name: 'taksiran_harga'
                 },
                 {
                     data: 'maks_pinjaman',
+                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
                     name: 'maks_pinjaman'
                 },
                 {
                     data: 'maks_pinjaman',
+                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
+
                     name: 'maks_pinjaman'
                 },
                 {
                     data: 'jumlah_diambil',
+                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
                     name: 'jumlah_diambil'
                 },
                 {
@@ -209,6 +214,7 @@
                 },
                 {
                     data: 'durasi_pinjam',
+
                     name: 'durasi_pinjam'
                 },
 
