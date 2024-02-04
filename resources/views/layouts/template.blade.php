@@ -884,8 +884,7 @@
             });
         });
     </script>
-    @yield('script')
-
+ 
  
 
     <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>

@@ -422,9 +422,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-    @endsection
-    @section('script')
-        <script>
+         <script>
             function clearall() {
                 $('input[name="nama_nasabah"]').val("").prop('readonly', false);
                 $('input[name="nik"]').val("").prop('readonly', false);
