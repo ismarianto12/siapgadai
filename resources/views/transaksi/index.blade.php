@@ -159,7 +159,7 @@
                                 <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Tanggal Jatuh Tempo:</label>
                                 <div class="col-md-8">
                                     <input type="date" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo"
-                                        class="datepicker form-control" required/>
+                                        class="datepicker form-control" required />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -262,7 +262,7 @@
                             <div class="col-md-10">
                                 <small>silahkan isi persentase admin fee </small>
                                 <input type="text" name="administrasi" id="persentase_pinjaman"
-                                    class="number_format form-control" required maxlength="3"/>
+                                    class="number_format form-control" required maxlength="3" />
                             </div>
                         </div>
                     </div>
@@ -422,7 +422,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-
+    @endsection
+    @section('script')
         <script>
             function clearall() {
                 $('input[name="nama_nasabah"]').val("").prop('readonly', false);
@@ -685,7 +686,7 @@
                                         div.scrollTop(pos + 2);
                                     }, 10)
                                     err = '';
-                                    respon = data.responseJSON?.messages;  
+                                    respon = data.responseJSON?.messages;
 
                                     Swal.fire('error', respon, 'error');
 
@@ -694,7 +695,8 @@
                                     // });
 
                                     $('#render_error').html(
-                                        `<div class="alert alert-danger">${respon}</div>`);
+                                        `<div class="alert alert-danger">${respon}</div>`
+                                    );
 
                                     Swal.fire('error', respon, 'error data');
                                     $.notify({
