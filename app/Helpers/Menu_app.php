@@ -162,7 +162,6 @@ class Menu_app
                     $menu .= self::menu_single(Url('app/pelunasan'), 'flaticon-desk', 'Pelunasan');
                     $menu .= self::menu_single(Url('laporan/pegadaian'), 'flaticon-user-3', 'Laporan Transaksi');
                     $menu .= self::menu_single(Url('laporan/pelunasan'), 'flaticon-user-3', 'Laporan Pelunasan');
-
                     '
                     </li>
                     ';
