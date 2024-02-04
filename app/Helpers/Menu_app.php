@@ -23,15 +23,28 @@ class Menu_app
     private static function menu_single($module_name, $font, $title)
     {
 
-        $structure = '<li class="nav-item">
+        if ($title == 'Transaksi' || $title == 'Pelunasan') {
+            $structure = '<li class="nav-item">
 
-							<a href="' . $module_name . '">
+							<a href="' . $module_name . '" onclick="location.reload();">
                             <i class="' . $font . '"></i>
 
                             <p>' . $title . '</p>
 
  							</a>
 						</li>';
+        } else {
+
+            $structure = '<li class="nav-item">
+
+            <a href="' . $module_name . '">
+            <i class="' . $font . '"></i>
+
+            <p>' . $title . '</p>
+
+             </a>
+        </li>';
+        }
         return $structure;
     }
     private static function parent_dropdown($judul, $icon = null)
