@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\laporan_pendapatan;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DataTables;
-
 use Illuminate\Support\Facades\DB;
 
 class LaporanPendapatanController extends Controller
@@ -213,6 +212,8 @@ class LaporanPendapatanController extends Controller
         if (Auth::user()->tmlevel_id != '1') {
             $data->where('transaksi_gadai.cabang_id', Auth::user()->cabang_id);
 
+        } else { 
+            $data->where('transaksi_gadai.cabang_id', $this->request->tmcabang_id);
         }
 
         if ($dari && $sampai) {
