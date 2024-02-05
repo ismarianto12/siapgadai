@@ -213,7 +213,7 @@ class LaporanPendapatanController extends Controller
             $data->where('transaksi_gadai.cabang_id', Auth::user()->cabang_id);
 
         } else {
-            if ($this->request->tmcabang_id) {
+            if ($this->request->tmcabang_id != '') {
                 $data->where('transaksi_gadai.cabang_id', $this->request->tmcabang_id);
             }
         }
