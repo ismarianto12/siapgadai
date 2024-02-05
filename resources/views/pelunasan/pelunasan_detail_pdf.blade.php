@@ -96,10 +96,7 @@
                     </td>
 
                 </tr>
-                <tr>
-                    <td>ID:</td>
-                    <td>{{ $data['id'] }}</td>
-                </tr>
+              
                 <tr>
                     <td>No Kwitansi:</td>
                     <td>{{ $data['no_kwitansi'] }}</td>
