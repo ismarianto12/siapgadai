@@ -42,7 +42,7 @@
             <tbody>
                 <tr>
 
-                    <td colspan="2">
+                    <td colspan="2" style="background: orange">
                         <div class="alert alert-danger">Data Nasabah</div>
                     </td>
 
@@ -58,7 +58,7 @@
                 </tr>
                 <tr>
                     <td>Jenis Kelamin</td>
-                    <td> {{ $data->jk === 'L' ? 'Laki laki' : 'Perempuan' }}
+                    <td> {{ $data['jk'] === 'L' ? 'Laki laki' : 'Perempuan' }}
                     </td>
                 </tr>
                 <tr>
@@ -92,7 +92,7 @@
                 </tr>
                 <tr>
 
-                    <td colspan="2">
+                    <td colspan="2" style="background: orange">
                         <div class="alert alert-danger">Data Barang</div>
                     </td>
 
@@ -116,7 +116,7 @@
 
                 <tr>
 
-                    <td colspan="2">
+                    <td colspan="2" style="background: orange">
                         <div class="alert alert-danger">Data Pinjaman</div>
                     </td>
 
