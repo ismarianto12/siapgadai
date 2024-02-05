@@ -37,8 +37,7 @@
         <?php
         echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data['no_anggota'], 'C39+') . '" alt="barcode"  style="width:30%" />';
         ?>
-        <br />
-        <table class="table table-bordered" style="margin-top:40px">
+         <table class="table table-bordered" style="margin-top:40px">
             <tbody>
                 <tr>
 
@@ -200,8 +199,7 @@
 
   
 
-        <h3>Terima Kasih Sudah Bertransaksi</h3>
-
+ 
 
         Jakarta , {{ Properti_app::tgl_indo(date('Y-m-d')) }}
 
