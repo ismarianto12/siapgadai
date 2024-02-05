@@ -214,6 +214,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-md-6 text-left">Persentase Pinjaman</label>
+                            <small>Pastikan nilai persentase 25% dari harga taksiran barang</small>
                             <div class="col-md-6">
                                 <div class="input-group">
 
