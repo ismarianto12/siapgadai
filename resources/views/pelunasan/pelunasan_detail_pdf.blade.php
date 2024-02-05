@@ -41,6 +41,63 @@
         <table class="table table-bordered" style="margin-top:40px">
             <tbody>
                 <tr>
+
+                    <td colspan="2">
+                        <div class="alert alert-danger">Data Nasabah</div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>Nama</td>
+                    <td>{{ $data['nama'] }}</td>
+                </tr>
+                <tr>
+                    <td>NIK</td>
+                    <td>{{ $data['nik'] }}</td>
+                </tr>
+                <tr>
+                    <td>Jenis Kelamin</td>
+                    <td> {{ $data->jk === 'L' ? 'Laki laki' : 'Perempuan' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td> {{ $data['alamat'] }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Rt/Rw</td>
+                    <td> {{ $data['rt_rw'] }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Kelurahan</td>
+                    <td> {{ $data['kelurahan'] }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Kecamatan</td>
+                    <td> {{ $data['kecamatan'] }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Kabupaten / Kota</td>
+                    <td> {{ $data['kab_kota'] }}
+                    </td>
+                </tr>
+                <tr>
+
+                    <td colspan="2">
+                        <div class="alert alert-danger">Data Barang</div>
+                    </td>
+
+                </tr>
+                <tr>
                     <td>ID:</td>
                     <td>{{ $data['id'] }}</td>
                 </tr>
