@@ -31,7 +31,7 @@
     <script src="{{ asset('assets/js//2.1.1/jquery.min.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('assets') }}/css/demo.css">
-    
+
     <link rel="stylesheet" href="{{ asset('assets/css/jquery-confirm.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -55,6 +55,7 @@
         <div id="loader"></div>
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
+        <h4 style="color: #000 !important">Please Wait ...</h4>
     </div>
     @php
         // $foto = Properti_app::propuser('photo');

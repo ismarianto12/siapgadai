@@ -7,8 +7,8 @@
             border: 0;
         }
     </style>
-   <div class="col-md-12">
-      <!-- Modal -->
+    <div class="col-md-12">
+        <!-- Modal -->
         <div class="modal fade" id="formmodal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document" style=" min-width: 85%;">
                 <div class="modal-content">
@@ -104,7 +104,7 @@
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">Jenis Barang</label>
                                 <div class="col-md-10">
-                                    {{ $data->jatuh_tempo }}
+                                    {{ $data->nama_kategori }}
 
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                             <div class="form-group row">
                                 <label class="col-md-2 text-left">Type Barang</label>
                                 <div class="col-md-10">
-                                    {{ $data->type_barang }}
+                                    {{ $data->type }}
 
                                 </div>
                             </div>
@@ -149,13 +149,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label class="col-md-2 text-left">Foto Barang</label>
                                 <div class="col-md-10">
                                     <img src="{{ Url('./file_gadai/' . $data->foto) }}" class="form-control"
                                         style="width:90%" />
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -172,21 +172,21 @@
                                 <div class="form-group row">
                                     <label for="nama_nasabah" class="col-md-2 text-left">Nama Nasabah:</label>
                                     <div class="col-md-8">
-                                        {{ $data->nama_nasabah }}
+                                        {{ $data->nama }}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="nik" class="col-md-2 text-left">NIK:</label>
                                     <div class="col-md-8">
-                                        {{ $data->nama_nasabah }}
+                                        {{ $data->nik }}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="jenis_kelamin" class="col-md-2 text-left">Jenis Kelamin:</label>
                                     <div class="col-md-8">
-                                        {{ $data->jenis_kelamin }}
+                                        {{ $data->jk === 'L' ? 'Laki laki' : 'Perempuan' }}
 
                                     </div>
                                 </div>
@@ -225,7 +225,7 @@
                                 <div class="form-group row">
                                     <label for="kabupaten_kota" class="col-md-2 text-left">Kabupaten/Kota:</label>
                                     <div class="col-md-4">
-                                        {{ $data->kabupaten }}
+                                        {{ $data->kab_kota }}
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="maks_pinjaman" class="form-label">Maks Pinjaman:</label>
-                                Rp. {{ $data->jumlah_pinjaman }}
+                                Rp. {{ $data->maks_pinjaman }}
                             </div>
 
                             <div class="col-md-6">

@@ -159,12 +159,13 @@ class transaksi extends Model
             'perhitungan_biaya.updated_at',
             'perhitungan_biaya.status_transaksi',
             'perhitungan_biaya.status_bayar',
+            'kategori_barang.nama_kategori',
 
         )
-
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
+            ->leftJoin('kategori_barang', 'kategori_barang.id', '=', 'barang.kategori_barang_id')
             ->where('transaksi_gadai.id', $id)->firstOrfail();
     }
 }
