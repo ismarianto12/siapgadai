@@ -94,10 +94,8 @@
                     <td colspan="2" style="background: orange">
                         <div class="alert alert-danger">Data Barang</div>
                     </td>
-
                 </tr>
-              
-                <tr>
+                              <tr>
                     <td>No Kwitansi:</td>
                     <td>{{ $data['no_kwitansi'] }}</td>
                 </tr>

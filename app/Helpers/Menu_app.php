@@ -24,7 +24,7 @@ class Menu_app
     {
 
         if ($title == 'Transaksi' || $title == 'Pelunasan') {
-            $structure = '<li class="nav-item"> 
+            $structure = '<li class="nav-item">
 							<a href="#" onclick="location.href=\'' . $module_name . '\';">
                             <i class="' . $font . '"></i>
 
@@ -98,6 +98,7 @@ class Menu_app
                     </a>
                     <div class="collapse" id="retribusi">
                         <ul class="nav nav-collapse">';
+                    $menu .= self::set_menu(Url('master/perhitungan_biaya'), 'Perhitungan Biaya');  
                     $menu .= self::set_menu(Url('master/barang'), 'Barang');
                     $menu .= self::set_menu(Url('master/kategori'), 'Ketegori Barang');
                     $menu .= self::set_menu(Url('master/cabang'), 'Cabang');

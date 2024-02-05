@@ -15,6 +15,7 @@ use App\Http\Controllers\PenagihanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaPresensiController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\PerhitunganBiayaController; 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Route::group(['middleware' => ['auth', 'api']], function () {
     });
     Route::prefix('master')->name('master.')->group(function () {
         Route::resource('barang', BarangController::class);
+        Route::resource('perhitungan_biaya', PerhitunganBiayaController::class);
         Route::resource('cabang', CabangController::class);
         Route::resource('kategori', KategoryBarangController::class);
         Route::resource('pegawai', PegawaiController::class);
@@ -75,6 +77,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::post('cabang', [CabangController::class, 'api'])->name('cabang');
         Route::post('pelunasan', [PelunasanController::class, 'api'])->name('pelunasan');
         Route::post('nasabah_belum_lunas', [PelunasanController::class, 'nasabah_belum_lunas'])->name('nasabah_belum_lunas');
+        Route::post('perhitungan_biaya', [PerhitunganBiayaController::class, 'api'])->name('perhitungan_biaya');
+
         Route::post('kategori', [KategoryBarangController::class, 'api'])->name('kategori');
         Route::post('nasabah', [NasabahController::class, 'api'])->name('nasabah');
         // api
