@@ -34,7 +34,7 @@ class TransaksiController extends Controller
         $idTransaction = $id;
         $data = transaksi::getDetailTransaction($id);
 
-        dd($data);
+        // dd($data);
         $title = 'Transaksi Berhasil';
         return view($this->view . 'detail_transaksi', compact('data', 'title', 'idTransaction'));
     }
