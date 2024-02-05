@@ -259,7 +259,7 @@ class PelunasanController extends Controller
                 flaticon-user-4"></i>Detail pelunasan </a> ';
             }, true)
             ->editColumn('bukti_lunas', function ($p) {
-                return '<a to="' . Url('/' . $p->bukti_bayar) . '" class="btn btn-success btn-xs" target="_blank" id="edit"><i class="
+                return '<a href="' . Url('/' . $p->bukti_bayar) . '" class="btn btn-success btn-xs" target="_blank"><i class="
                 flaticon-file-4"></i>Bukti Bayar </a> ';
             }, true)
             ->addIndexColumn()
