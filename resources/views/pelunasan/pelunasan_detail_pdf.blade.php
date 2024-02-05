@@ -198,14 +198,14 @@
         </table>
 
 
-        <hr />
+  
 
         <h3>Terima Kasih Sudah Bertransaksi</h3>
 
 
         Jakarta , {{ Properti_app::tgl_indo(date('Y-m-d')) }}
 
-        <br /><br /><br />
+        <br />
         <p>
 
             (.............................)
