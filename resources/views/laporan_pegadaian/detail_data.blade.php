@@ -107,13 +107,25 @@
         </table>
         <a href="{{ Url('app/cetak_tagihan/' . $data['id']) }}" target="_blank" class="btn btn-info btn-md">Cetak
             Tagihan</a>
-        <a href="{{ Url('app/transaksi/cetak_tagihan/' . $data['id']) }}" target="_blank"
-            class="btn btn-success btn-md">Kirim Pesan
-            Wa</a>
+        <button onclick="senwa_handle()" class="btn btn-success btn-md">Kirim Pesan
+            Wa</button>
 
     </div>
 
     <!-- Tambahkan JavaScript Bootstrap jika diperlukan -->
+
+    <script>
+        // github: omar-bakhsh
+
+        function senwa_handle() {
+
+            let num = '{{ $data['no_hp'] }}';
+            let msg = 'Hy {{ $data['nama'] }} Silahkan lunasi tunggakan anda sebesar {{ $data['jumlah_pinjaman'] }} ';
+            var win = window.open(`https://wa.me/${num}?text=${msg}`,
+                '_blank');
+            // win.focus();
+        }
+    </script>
 
 </body>
 
