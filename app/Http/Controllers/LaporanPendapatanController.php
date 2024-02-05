@@ -197,7 +197,7 @@ class LaporanPendapatanController extends Controller
             'transaksi_gadai.created_at',
             'transaksi_gadai.menyetujui_staff_sgi',
             'perhitungan_biaya.keterangan as durasi_pinjam',
-            'perhitungan_biaya.persentase as persentase_pinjaman',
+            'perhitungan_biaya.persentase',
             'nasabah.nama',
             'nasabah.no_anggota',
             'nasabah.alamat',
@@ -222,7 +222,7 @@ class LaporanPendapatanController extends Controller
 
         return DataTables::of($sql)
             ->editColumn('action', function ($p) {
-                return '<a to="' . Url('laporan/pelunasan_detail/' . $p->id) . '" class="btn btn-success btn-xs" id="edit"><i class="
+                return '<a to="' . Url('app/pelunasan_detail/' . $p->id) . '" class="btn btn-success btn-xs" id="edit"><i class="
                 flaticon-user-4"></i>Detail pelunasan </a> ';
             }, true)
             ->addIndexColumn()
