@@ -67,7 +67,7 @@ class pelunasan extends Model
             'transaksi_gadai.created_at',
             'transaksi_gadai.menyetujui_staff_sgi',
             'perhitungan_biaya.keterangan as durasi_pinjam',
-            'perhitungan_biaya.persentase as persentase_pinjaman',
+            // 'perhitungan_biaya.persentase as persentase_pinjaman',
             'nasabah.nama',
             'nasabah.no_anggota',
             'nasabah.alamat',
