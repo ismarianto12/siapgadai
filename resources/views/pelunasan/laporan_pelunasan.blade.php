@@ -183,10 +183,12 @@
                     data: 'administrasi',
                     name: 'administrasi'
                 },
-
                 {
-                    data: 'persentase_pinjaman',
-                    name: 'persentase_pinjaman'
+                    data: 'pinjam_persen',
+                    name: 'pinjam_persen',
+                    render: function(row, data, type) {
+                        return '<span class="btn btn-secondary btn-round">' + row + '%</span>';
+                    }
                 },
                 {
                     data: 'tanggal_jatuh_tempo',

@@ -221,6 +221,8 @@ class PelunasanController extends Controller
             'transaksi_gadai.perhitungan_biaya_id',
             'transaksi_gadai.created_at',
             'transaksi_gadai.menyetujui_staff_sgi',
+            'transaksi_gadai.persentase_pinjaman as pinjam_persen',
+
             'perhitungan_biaya.keterangan as durasi_pinjam',
             'perhitungan_biaya.persentase as persentase_pinjaman',
             'nasabah.nama',

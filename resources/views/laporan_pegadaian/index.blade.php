@@ -210,11 +210,13 @@
 
                 {
                     data: 'pinjam_persen',
-                    name: 'pinjam_persen'
+                    name: 'pinjam_persen',
+                    render: function(row, data, type) {
+                        return '<span class="btn btn-secondary btn-round">' + row + '%</span>';
+                    }
                 },
                 {
                     data: 'durasi_pinjam',
-
                     name: 'durasi_pinjam'
                 },
 
