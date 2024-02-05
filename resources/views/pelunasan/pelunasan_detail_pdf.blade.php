@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                     <td>Jumlah Pinjaman:</td>
-                    <td>{{ $data['jumlah_pinjaman'] }}</td>
+                    <td>{{ Properti_app::formatRupiah($data['jumlah_pinjaman']) }}</td>
                 </tr>
 
                 <tr>
@@ -78,10 +78,11 @@
                 <tr>
                     <td>
                         Persentase pinjaman
+                        <small>*)</small>
                     </td>
 
                     <td>
-                        {{ $data['pinjam_persen'] }}
+                        {{ $data['pinjam_persen'] }}%
 
                     </td>
 
@@ -92,7 +93,7 @@
                     </td>
 
                     <td>
-                        {{ $data['maks_pinjaman'] }}
+                        {{ Properti_app::formatRupiah($data['maks_pinjaman']) }}
 
                     </td>
 
@@ -104,7 +105,7 @@
                     </td>
 
                     <td>
-                        {{ $data['jumlah_pinjaman'] }}
+                        {{ Properti_app::formatRupiah($data['jumlah_pinjaman']) }}
                     </td>
 
                 </tr>
@@ -149,11 +150,11 @@
 
         <br /><br /><br />
         <p>
-        
-        (.............................)
+
+            (.............................)
         </p>
         <br />
-       <div style="margin-left:40px"> {{ Auth::user()->username }}</div>
+        <div style="margin-left:40px"> {{ Auth::user()->username }}</div>
     </div>
 
     <!-- Tambahkan JavaScript Bootstrap jika diperlukan -->
