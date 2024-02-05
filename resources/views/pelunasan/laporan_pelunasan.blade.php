@@ -66,6 +66,8 @@
                                 <th>Persentase</th>
                                 <th>Jatuh Tempo</th>
                                 <th>Status</th>
+                                <th>Bukti Pelunasan</th>
+
                                 <th>Operator</th>
                                 <th>Cabang</th>
                                 <th>Tanggal Pelunasan</th>
@@ -210,6 +212,10 @@
                         }
                     }
 
+                },
+                {
+                    data: 'bukti_lunas',
+                    name: 'bukti_lunas'
                 },
                 {
 

@@ -258,8 +258,12 @@ class PelunasanController extends Controller
                 return '<a to="' . Url('app/pelunasan_detail/' . $p->id) . '" class="btn btn-success btn-xs" id="edit"><i class="
                 flaticon-user-4"></i>Detail pelunasan </a> ';
             }, true)
+            ->editColumn('bukti_lunas', function ($p) {
+                return '<a to="' . Url('/' . $p->bukti_bayar) . '" class="btn btn-success btn-xs" target="_blank" id="edit"><i class="
+                flaticon-file-4"></i>Bukti Bayar </a> ';
+            }, true)
             ->addIndexColumn()
-            ->rawColumns(['action'])
+            ->rawColumns(['action', "bukti_lunas"])
             ->toJson();
     }
 
@@ -347,7 +351,7 @@ class PelunasanController extends Controller
 
     public function pelunasan_detail_pdf($id)
     {
-        $data = pelunasan::detailPelunasan($id); 
+        $data = pelunasan::detailPelunasan($id);
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
         $mpdf->SetWatermarkImage($backgroundImage);

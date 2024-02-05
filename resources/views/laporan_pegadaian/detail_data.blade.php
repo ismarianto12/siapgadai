@@ -110,13 +110,9 @@
         <button onclick="senwa_handle()" class="btn btn-success btn-md">Kirim Pesan
             Wa</button>
 
-    </div>
-
-    <!-- Tambahkan JavaScript Bootstrap jika diperlukan -->
-
-    <script>
-        // github: omar-bakhsh
-
+    </div> 
+    <!-- Tambahkan JavaScript Bootstrap jika diperlukan --> 
+    <script> 
         function senwa_handle() {
 
             let num = '{{ $data['no_hp'] }}';
