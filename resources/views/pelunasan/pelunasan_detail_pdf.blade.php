@@ -81,7 +81,7 @@
                     </td>
 
                     <td>
-                        {{ $data['persentase_pinjaman'] }}
+                        {{ $data['pinjam_persen'] }}
 
                     </td>
 
