@@ -123,6 +123,9 @@
                 {
                     data: 'persentase',
                     name: 'persentase',
+                    render: function(row, data, index) {
+                        return `${row} %`;
+                    }
                 },
                 {
                     data: 'keterangan',
