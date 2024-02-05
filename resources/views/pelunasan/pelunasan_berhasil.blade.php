@@ -31,7 +31,7 @@
             background: white;
         ">
                 <div class="col-md-6">
-                    <button to="{{ Url('app/transaksi/cetak_kwitansi/' . $idTransaction) }}"
+                    <button to="{{ Url('app/pelunasan_detail_pdf/' . $idTransaction) }}"
                         class="detail_pdf btn btn-success btn-block"><b>Cetak Bukti Pelunasan</b></button>
                 </div>
                 <div class="col-md-6"> 

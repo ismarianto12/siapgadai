@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::get('pelunasan', [PelunasanController::class, 'index'])->name('pelunasan');
         Route::get('pelunasan_berhasil/{id}', [PelunasanController::class, 'pelunasan_berhasil'])->name('pelunasan_berhasil');
         Route::get('pelunasan_detail/{id}', [PelunasanController::class, 'pelunasan_detail'])->name('pelunasan_detail');
+        Route::get('pelunasan_detail_pdf/{id}', [PelunasanController::class, 'pelunasan_detail_pdf'])->name('pelunasan_detail_pdf');
+
         Route::get('penagihan', [PenagihanController::class, 'index'])->name('penagihan');
 
         Route::post('save_transaksi', [TransaksiController::class, 'save_transaksi'])->name('save_transaksi');

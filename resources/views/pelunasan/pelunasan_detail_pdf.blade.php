@@ -5,17 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Data Pelunasan</title>
-    <!-- Tambahkan CSS Bootstrap jika diperlukan -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
+
+
 
 <body>
     <div class="container">
         <h2>Tanda Terima Pelunasan Gadai - {{ $data['nama'] }} </h2>
         <?php
-        echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data['no_anggota'], 'C39+') . '" alt="barcode"  style="width:100%" />';
+        echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data['no_anggota'], 'C39+') . '" alt="barcode"  style="width:30%" />';
         ?>
-        <br />  
-        <table class="table table-bordered">
+        <br />
+        <table class="table table-bordered" style="margin-top:40px">
             <tbody>
                 <tr>
                     <td>ID:</td>
@@ -110,19 +133,27 @@
                         Durasi Pijaman
                     </td>
                     <td>
-                        {{ $data['keterangan'] }}
+                        {{ $data['durasi_pinjam'] }}
                     </td>
                 </tr>
             </tbody>
         </table>
-        <a href="{{ Url('app/pelunasan_detail_pdf/' . $data['id'] . '?secure_sign=' . md5('teadsadmalsdsakdmaldmas')) }}"
-            target="_blank" class="btn btn-info btn-md">Cetak
-            Bukti Pelunasan</a>
+
 
         <hr />
 
         <h3>Terima Kasih Sudah Bertransaksi</h3>
 
+
+        Jakarta , {{ Properti_app::tgl_indo(date('Y-m-d')) }}
+
+        <br /><br /><br />
+        <p>
+        
+        (.............................)
+        </p>
+        <br />
+       <div style="margin-left:40px"> {{ Auth::user()->username }}</div>
     </div>
 
     <!-- Tambahkan JavaScript Bootstrap jika diperlukan -->

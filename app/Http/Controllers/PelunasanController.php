@@ -344,6 +344,20 @@ class PelunasanController extends Controller
         return view($this->view . 'pelunasan_detail', compact('data', 'title', 'idTransaction'));
 
     }
+
+    public function pelunasan_detail_pdf($id)
+    {
+        $data = pelunasan::detailPelunasan($id); 
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+        $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
+        $mpdf->SetWatermarkImage($backgroundImage);
+        $mpdf->showWatermarkImage = true;
+        $mpdf->SetTitle('Bukti Pelunasan');
+        $render = view($this->view . 'pelunasan_detail_pdf', compact('data'))->render();
+        $mpdf->WriteHTML($render);
+        return response($mpdf->Output("cetak_kwitansi.pdf", 'I'))
+            ->header('Content-Type', 'application/pdf');
+    }
     /**
      * Update the specified resource in storage.
      *
