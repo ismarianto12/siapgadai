@@ -102,6 +102,13 @@
                 $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(url);
 
             })
+            $('#datatable').on('click', '#bukti_bayaradssad', function(e) {
+                e.preventDefault();
+                $('#formmodal').modal('show');
+                var url = $(this).attr('to');
+                $('#form_content').html(`<img src="${url}" class="img-responsive" style="width:100%" />`);
+
+            })
         });
         // table data
         $.fn.dataTable.ext.errMode = 'throw';
