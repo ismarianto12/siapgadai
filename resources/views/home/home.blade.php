@@ -122,8 +122,7 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Total Pinjaman Tersalurkan</p>
-                                    <small>Di semua Cabang</small>
-                                    <h4 class="card-title">{{ Properti_app::formatRupiah($tpendapatan->total_pendapatan) }}</h4>
+                                     <h4 class="card-title">{{ Properti_app::formatRupiah($tpendapatan->total_pendapatan) }}</h4>
                                 </div>
                             </div>
                         </div>

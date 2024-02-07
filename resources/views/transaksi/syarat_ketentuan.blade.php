@@ -343,7 +343,9 @@
                                         </span></span><span dir="ltr" lang="id"
                                         style="font-size:10.0pt">)</span></span></span>
 
-                            {{ $data->nama }}
+                            <br />
+                            {{ Auth::user()->username }}
+
                         </p>
                     </td>
                     <td style="height:56px; vertical-align:top; width:245px">
@@ -358,8 +360,8 @@
                                             style="font-family:&quot;Times New Roman&quot;,serif">.............................
                                         </span></span><span dir="ltr" lang="id"
                                         style="font-size:10.0pt">)</span></span></span>
-
-                            {{ Auth::user()->username }}
+                            <br />
+                            {{ $data->nama }}
                         </p>
                     </td>
                 </tr>
