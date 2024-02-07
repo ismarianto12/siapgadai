@@ -120,10 +120,7 @@ class LaporanPegadaianController extends Controller
         } else {
             if ($this->request->tmcabang_id != '') {
                 $data->where('transaksi_gadai.cabang_id', $this->request->tmcabang_id);
-            } else {
-                // $data->where('transaksi_gadai.cabang_id', Auth::user()->cabang_id); 
-            }
-
+            } 
         }
         if ($dari != '' && $sampai != '') {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
