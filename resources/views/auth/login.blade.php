@@ -122,7 +122,7 @@
                         });
                         Swal.fire({
                             title: 'Opp ada kesalahan',
-                            html: err,
+                            html: err+'Silahkan Ulangi Login Kembali',
                             icon: 'error',
                             confirmButtonText: 'Cool'
                         })

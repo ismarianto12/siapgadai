@@ -174,8 +174,8 @@
                     <!-- Left Column -->
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Jenis Barang</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 text-left">Jenis Barang</label>
+                            <div class="col-md-8">
                                 <select name="id_barang" class="form-control" readonly>
                                     <option value=""></option>
                                     @foreach (Properti_app::masterBarang() as $item)
@@ -186,23 +186,23 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Type Barang</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 text-left">Type Barang</label>
+                            <div class="col-md-8">
                                 <input type="text" name="type" class="form-control" readonly />
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Nama Barang</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 text-left">Nama Barang</label>
+                            <div class="col-md-8">
                                 <input type="text" name="merek_barang" class="form-control" readonly />
                             </div>
                         </div>
 
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Taksiran Harga</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 text-left">Taksiran Harga</label>
+                            <div class="col-md-8">
                                 <input type="double" name="taksiran_harga" id="taksiran_harga"
                                     class="number_format form-control" readonly />
                             </div>
@@ -227,33 +227,33 @@
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Tahun Barang</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 text-left">Tahun Barang</label>
+                            <div class="col-md-8">
                                 <input type="number" name="keluaran_tahun" class="form-control" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">No. Imei</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 text-left">No. Imei</label>
+                            <div class="col-md-8">
                                 <input type="text" name="no_imei" class="form-control" readonly />
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Kelengkapan</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 text-left">Kelengkapan</label>
+                            <div class="col-md-8">
                                 <textarea type="text" name="kelengkapan" class="form-control" readonly></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Foto Barang</label>
+                            <label class="col-md-4 text-left">Foto Barang</label>
                             <div class="foto_barang_img col-md-10">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 text-left">Administrasi</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 text-left">Administrasi</label>
+                            <div class="col-md-8">
                                 <input type="text" name="administrasi" class="number_format form-control" readonly />
                             </div>
                         </div>

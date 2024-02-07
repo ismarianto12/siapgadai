@@ -114,6 +114,8 @@
     <!-- Tambahkan JavaScript Bootstrap jika diperlukan --> 
     <script> 
         function senwa_handle() {
+            // https://wa.me/85264522442?text=Hello,+I+am+interested+in+knowing+more+about+your +WhatsApp+API+service.
+
 
             let num = '{{ $data['no_hp'] }}';
             let msg = 'Hy {{ $data['nama'] }} Silahkan lunasi tunggakan anda sebesar {{ $data['jumlah_pinjaman'] }} ';
