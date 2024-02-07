@@ -59,7 +59,7 @@
                             :
                         </td>
                         <th>
-                            {{ $data->nama }}
+                            {{ trim($data->nama) }}
                         </th>
                     </tr>
                     <tr>

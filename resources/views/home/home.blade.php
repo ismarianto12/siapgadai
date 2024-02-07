@@ -45,10 +45,10 @@
             <div class="col-sm-12 col-md-12">
                 <div class="card card-stats card-round">
                     <div class="card-body">
-                        <div class="row" style="padding: 10px 10px 10px">
+                        <div>
                             <h3 class="text-bold">Selamat datang di aplikasi SiapGadai </h3>
-                            <br />
-                            <h4>Silahkan Akses Menu Disamping Untuk Menggunakan Aplikasi. </h4>
+
+                            <p>Silahkan Akses Menu Disamping Untuk Menggunakan Aplikasi. </p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,8 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Pinjaman Tersalurkan</p>
-                                     <h4 class="card-title">{{ Properti_app::formatRupiah($tpendapatan->total_pendapatan) }}</h4>
+                                    <h4 class="card-title">{{ Properti_app::formatRupiah($tpendapatan->total_pendapatan) }}
+                                    </h4>
                                 </div>
                             </div>
                         </div>
