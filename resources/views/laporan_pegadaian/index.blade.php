@@ -21,7 +21,7 @@
                         <label class="col-md-3 text-left">Cabang</label>
                         <div class="col-md-9">
                             <select class="form-control" name="tmcabang_id" id="tmcabang_id">
-                                <option value="">Pilih Cabang</option>
+                                <option value="">Semua Cabang</option>
                                 @foreach (Properti_app::dataCabang() as $cabangnya)
                                     <option value="{{ $cabangnya->id }}"> {{ $cabangnya->nama_cabang }}</option>
                                 @endforeach
