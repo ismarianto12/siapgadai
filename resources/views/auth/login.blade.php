@@ -112,6 +112,7 @@
                     chace: false,
                     asynch: false,
                     success: function(data) {
+                        Swal.fire('Info', 'Login Success Sedang mengalihkan', 'success');
                         window.location.href = 'home';
                     },
                     error: function(data, JqXHR, err) {
@@ -122,7 +123,7 @@
                         });
                         Swal.fire({
                             title: 'Opp ada kesalahan',
-                            html: err+'Silahkan Ulangi Login Kembali',
+                            html: err + 'Silahkan Ulangi Login Kembali',
                             icon: 'error',
                             confirmButtonText: 'Cool'
                         })
