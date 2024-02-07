@@ -198,13 +198,24 @@
                                 <input type="text" name="type" class="form-control" required />
                             </div>
                         </div>
-
                         <div class="form-group row">
-                            <label class="col-md-4 text-left">Nama Barang</label>
+                            <label class="col-md-4 text-left">Tahun Barang</label>
                             <div class="col-md-10">
-                                <input type="text" name="merek_barang" class="form-control" required />
+                                @php
+                                    $currentYear = date('Y');
+                                    $years = range($currentYear, 1980);
+                                @endphp
+
+                                <select name="keluaran_tahun" class="form-control" required>
+                                    <option value="">Pilih Tahun Barang</option>
+                                    @foreach ($years as $year)
+                                        <option value="{{ $year }}">{{ $year }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
+
+
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Taksiran Harga</label>
                             <div class="col-md-10">
@@ -214,7 +225,6 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-md-6 text-left">Persentase Pinjaman</label>
-                            <small>Pastikan nilai persentase 25% dari harga taksiran barang</small>
                             <div class="col-md-6">
                                 <div class="input-group">
 
@@ -223,6 +233,7 @@
                                     <span class="input-group-addon">%</span>
 
                                 </div>
+                                <small id="keterangan_persentase" style="color:red"></small>
 
 
                             </div>
@@ -233,9 +244,9 @@
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-md-4 text-left">Tahun Barang</label>
+                            <label class="col-md-4 text-left">Merk Barang</label>
                             <div class="col-md-10">
-                                <input type="number" name="keluaran_tahun" class="form-control" required />
+                                <input type="text" name="merek_barang" class="form-control" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -558,8 +569,39 @@
                         if (!regex.test(input)) {
                             $('#persentase_pinjaman').addClass('is-invalid');
                         } else {
-                            $('#persentase_pinjaman').removeClass('is-invalid');
+                            var keluaranTahunValue = $('select[name="keluaran_tahun"]').val();
+                            console.log(keluaranTahunValue, 'tahun valuenya');
+                            // console.log($('#persentase_pinjaman').val(), 'tahun valuenya');
                             calculateTaksiranHarga()
+                            $('#persentase_pinjaman').removeClass('is-invalid');
+
+                            // if (keluaranTahunValue < 2020) {
+                            //     console.log(keluaranTahunValue < 2020, 'benar');
+                            //     if ($('#persentase_pinjaman').val() >= 25 || $('#persentase_pinjaman').val() <=
+                            //         30) {
+                            //         $('#persentase_pinjaman').removeClass('is-invalid');
+                            //         calculateTaksiranHarga()
+
+                            //     } else {
+                            //         $('#persentase_pinjaman').addClass('is-invalid');
+                            //         Swal.fire('error', 'Barang dibawah 2020 Persentase antara 25 dan 30 ',
+                            //             'error');
+
+                            //     }
+
+                            // } else if (keluaranTahunValue >= 2030) {
+                            //     if ($('#persentase_pinjaman').val() >= 40 || $('#persentase_pinjaman').val() <=
+                            //         50) {
+                            //         $('#persentase_pinjaman').removeClass('is-invalid');
+                            //         calculateTaksiranHarga()
+
+                            //     } else {
+                            //         $('#persentase_pinjaman').addClass('is-invalid');
+                            //         Swal.fire('error', 'Barang dibawah 2020 Persentase antara 40 dan 50 ',
+                            //             'error');
+
+                            //     }
+                            // }
 
                         }
                     }
@@ -567,20 +609,42 @@
                     $('input[name="taksiran_harga"]').on('input', function() {
                         var persentaseInput = $('#persentase_pinjaman').val();
                         var regex = /^(100(\.0{1,2})?|\d{1,2}(\.\d{1,2})?)$/;
-
-                        if (persentaseInput.trim() === '') {
-                            $('#persentase_pinjaman').addClass('is-invalid');
-                            $('.invalid-feedback').html('Silahkan isi persentase pinjaman.');
-                        } else if (!regex.test(persentaseInput)) {
-                            $('#persentase_pinjaman').addClass('is-invalid');
-                            $('.invalid-feedback').html('Pastikan angka persen di antara 0 dan 100.');
+                        if ($('select[name="keluaran_tahun"]').val() == '') {
+                            Swal.fire('error', 'Tahun wajib di pilih', 'error');
                         } else {
-                            $('#persentase_pinjaman').removeClass('is-invalid');
-                            $('.invalid-feedback').html('');
+                            if (persentaseInput.trim() === '') {
+                                $('#persentase_pinjaman').addClass('is-invalid');
+                                $('.invalid-feedback').html('Silahkan isi persentase pinjaman.');
+                            } else if (!regex.test(persentaseInput)) {
+                                $('#persentase_pinjaman').addClass('is-invalid');
+                                $('.invalid-feedback').html(
+                                    'Pastikan angka persen di antara 0 dan 100.');
+                            } else {
+                                $('#persentase_pinjaman').removeClass('is-invalid');
+                                $('.invalid-feedback').html('');
 
-                            calculateTaksiranHarga();
+                                calculateTaksiranHarga();
+                            }
                         }
                     });
+
+                    $('select[name="keluaran_tahun"]').on('change', function() {
+                        var fkeluaran_tahun = $(this).val();
+
+                        if (fkeluaran_tahun < 2020) {
+                            $('#keterangan_persentase').html(
+                                'Barang di bawah 2020, nominal maksimal 25-30%');
+                            console.log("Barang di bawah 2020, nominal maksimal 25-30%");
+                        } else if (fkeluaran_tahun >= 2030) {
+                            $('#keterangan_persentase').html(
+                                'Barang di atas atau sama dengan 2030, nominal maksimal 40-50%');
+                        } else {
+                            $('#keterangan_persentase').html(
+                                'Barang di atas atau sama dengan 2030, nominal maksimal 40-50%');
+
+                        }
+                    });
+
 
                     $('input[name="jumlah_diambil"]').on('input', function() {
                         var inputmaksimal_pinjam = parseInt($('input[name="inputmaksimal_pinjam"]')
