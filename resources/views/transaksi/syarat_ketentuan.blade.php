@@ -53,7 +53,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            Nama Lengkap&nbsp;
+                            Nama Lengkap
                         </td>
                         <td>
                             :
@@ -64,7 +64,7 @@
                     </tr>
                     <tr>
                         <td>
-                            No. HP Yang aktif&nbsp;
+                            No. HP Yang aktif
                         </td>
                         <td>
                             :
@@ -76,7 +76,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Pin/Pola/Password jaminan&nbsp;
+                            Pin/Pola/Password jaminan
                         </td>
                         <td>
                             :
@@ -152,7 +152,7 @@
                 <li style="text-align:left"><span style="font-size:11pt"><span
                             style="font-family:Tahoma,sans-serif"><span dir="ltr" lang="id"
                                 style="font-size:10.0pt">Nilai pinjaman nasabah
-                                Rp.</span></span></span></li>
+                                Rp. {{ Properti_app::formatRupiah($data->jumlah_pinjaman) }}</span></span></span></li>
             </ol>
 
             <p style="margin-left:55px"><span style="font-size:10pt"><span
@@ -341,7 +341,10 @@
                                         style="font-size:10.0pt"><span
                                             style="font-family:&quot;Times New Roman&quot;,serif">.............................
                                         </span></span><span dir="ltr" lang="id"
-                                        style="font-size:10.0pt">)</span></span></span></p>
+                                        style="font-size:10.0pt">)</span></span></span>
+
+                            {{ $data->nama }}
+                        </p>
                     </td>
                     <td style="height:56px; vertical-align:top; width:245px">
                         <p>&nbsp;</p>
@@ -354,7 +357,10 @@
                                         style="font-size:10.0pt"><span
                                             style="font-family:&quot;Times New Roman&quot;,serif">.............................
                                         </span></span><span dir="ltr" lang="id"
-                                        style="font-size:10.0pt">)</span></span></span></p>
+                                        style="font-size:10.0pt">)</span></span></span>
+
+                            {{ Auth::user()->username }}
+                        </p>
                     </td>
                 </tr>
             </tbody>

@@ -312,7 +312,7 @@ class TransaksiController extends Controller
         $data = transaksi::getDetailTransaction($id);
         $render = view($this->view . 'syarat_ketentuan', compact('data'))->render();
         $mpdf->WriteHTML($render);
-        return response($mpdf->Output("cetak_kwitansi.pdf", 'I'))
+        return response($mpdf->Output("syarat_ketentuan.pdf", 'I'))
             ->header('Content-Type', 'application/pdf');
 
     }

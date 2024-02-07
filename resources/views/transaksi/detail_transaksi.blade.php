@@ -80,14 +80,14 @@
                                 <div class="form-group row">
                                     <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Tanggal Jatuh Tempo:</label>
                                     <div class="col-md-8">
-                                        {{ $data->jatuh_tempo }}
+                                        {{ $data->tanggal_jatuh_tempo }}
 
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Referal Code:</label>
                                     <div class="col-md-8">
-                                        {{ $data->jatuh_tempo }}
+                                        {{ $data->referal_code ? $data->referal_code : '-'  }}
                                     </div>
                                 </div>
                             </div>
@@ -236,12 +236,12 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="maks_pinjaman" class="form-label">Maks Pinjaman:</label>
-                                Rp. {{ $data->maks_pinjaman }}
+                                Rp. {{ Properti_app::formatRupiah($data->maks_pinjaman) }}
                             </div>
 
                             <div class="col-md-6">
                                 <label for="jumlah_diambil" class="form-label">Jumlah yang diambil:</label>
-                                Rp. {{ $data->jumlah_pinjaman }}
+                                Rp. {{ Properti_app::formatRupiah($data->jumlah_pinjaman) }}
 
                             </div>
                         </div>

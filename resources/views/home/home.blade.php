@@ -97,7 +97,7 @@
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">
-                                    <i class="flaticon-error text-danger"></i>
+                                    <i class="flaticon-success text-danger"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-stats">
@@ -121,7 +121,8 @@
                             </div>
                             <div class="col-7 col-stats">
                                 <div class="numbers">
-                                    <p class="card-category">Pendapatan Hari ini</p>
+                                    <p class="card-category">Total Pinjaman Tersalurkan</p>
+                                    <small>Di semua Cabang</small>
                                     <h4 class="card-title">{{ Properti_app::formatRupiah($tpendapatan->total_pendapatan) }}</h4>
                                 </div>
                             </div>
