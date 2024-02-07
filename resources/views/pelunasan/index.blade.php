@@ -272,7 +272,7 @@
                         <!-- Left Column -->
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="nama_nasabah" class="col-md-2 text-left">Nama Nasabah:</label>
+                                <label for="nama_nasabah" class="col-md-4 text-left">Nama Nasabah:</label>
                                 <div class="col-md-8">
                                     <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control"
                                         readonly />
@@ -280,14 +280,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="nik" class="col-md-2 text-left">NIK:</label>
+                                <label for="nik" class="col-md-4 text-left">NIK:</label>
                                 <div class="col-md-8">
                                     <input type="text" id="nik" name="nik" class="form-control" readonly />
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="jenis_kelamin" class="col-md-2 text-left">Jenis Kelamin:</label>
+                                <label for="jenis_kelamin" class="col-md-4 text-left">Jenis Kelamin:</label>
                                 <div class="col-md-8">
                                     <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
                                         @foreach (Properti_app::Jk() as $item => $val)
@@ -297,7 +297,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="alamat" class="col-md-2 text-left">Alamat:</label>
+                                <label for="alamat" class="col-md-4 text-left">Alamat:</label>
                                 <div class="col-md-8">
                                     <textarea id="alamat" name="alamat" class="form-control"></textarea>
                                 </div>
