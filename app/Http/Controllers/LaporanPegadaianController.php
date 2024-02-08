@@ -134,7 +134,7 @@ class LaporanPegadaianController extends Controller
                 flaticon-user-4"></i>detail </a> '; 
             }, true) 
             ->editColumn('status_gadai', function ($p) {
-                return Properti_app::cekJatuhTempo($p->tanggal_transaksi_gadai, 0);
+                return Properti_app::cekJatuhTempo($p->tanggal_transaksi_gadai, $p->batas_hari);
             }, true)
             ->addIndexColumn()
             ->rawColumns(['action'])
