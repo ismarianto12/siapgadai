@@ -14,57 +14,61 @@
             </div>
         </div>
     </div>
+    <div class="page-inner mt--5">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <div id="alert"></div>
-                </div>
-                <div class="card-body">
-                    <form id="exampleValidation" action="" method="POST" class="simpan" enctype="multipart/form-data">
-                        @csrf
-                        <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div id="alert"></div>
+                    </div>
+                    <div class="card-body">
+                        <form id="exampleValidation" action="" method="POST" class="simpan"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <div class="form-group form-show-validation row">
+                                    <label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nama
+                                        Aplikasi
+                                        <span class="required-label">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="nama_aplikasi" class="form-control"
+                                            value="Sistem Informasi Gadai" />
+                                    </div>
+
+                                </div>
+                            </div>
                             <div class="form-group form-show-validation row">
-                                <label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nama Aplikasi
+                                <label for="username" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Telp.
                                     <span class="required-label">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="nama_aplikasi" class="form-control"  value="Sistem Informasi Gadai"/>
-                                </div>
 
-                            </div>
-                        </div>
-                        <div class="form-group form-show-validation row">
-                            <label for="username" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Telp.
-                                <span class="required-label">*</span></label>
-                            <div class="col-sm-8">
-
-                                <input type="text" name="nama_aplikasi" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group form-show-validation row">
-                            <label for="username" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Fax<span
-                                    class="required-label">*</span></label>
-                            <div class="col-sm-8">
-                                <input type="text" name="fax" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="card-action">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input class="simpan btn btn-success btn-xs" type="submit" value="Edit">
-                                    <a href="#" class="btn btn-danger btn-xs" id="cancel">Cancel</a>
+                                    <input type="text" name="nama_aplikasi" class="form-control" />
                                 </div>
                             </div>
-                        </div>
-                    </form>
 
+                            <div class="form-group form-show-validation row">
+                                <label for="username" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Fax<span
+                                        class="required-label">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="fax" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="card-action">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input class="simpan btn btn-success btn-xs" type="submit" value="Edit">
+                                        <a href="#" class="btn btn-danger btn-xs" id="cancel">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     </div>
 @endsection

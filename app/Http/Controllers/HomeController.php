@@ -6,6 +6,8 @@ use App\Models\tmp_surat;
 use App\Models\Tmsurat_master;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 class HomeController extends Controller
 {
@@ -36,8 +38,8 @@ class HomeController extends Controller
         $tbaranglunas = \DB::table('transaksi_gadai')->where('status_transaksi', '=', '3')->get()->count();
         $tpendapatan = $totalPendapatan = DB::table('pendapatan as p')
             ->select(DB::raw('SUM(p.pokok + p.bunga + p.jasa_titip) as total_pendapatan'))
-            ->first(); 
-            
+            ->first();
+
         //\DB::select(\DB::raw('sum(p.pokok + p.bunga+ p.jasa_titip)'))->table('pendapatan p')->get();
         return view(
             $this->view . '.home',
@@ -422,6 +424,75 @@ class HomeController extends Controller
 
         $title = "Identitias aplikasi";
         return view('identitias.identitias', compact('title'));
+    }
+    public function export_db()
+    {
+        $title = "Export Database";
+        return view('export_db', compact('title'));
+    }
+    public function getFileList()
+    {
+        $folderName = "export_db";
+        $folderPath = public_path($folderName);
+        $fileList = [];
+    
+        if (File::isDirectory($folderPath)) {
+            $files = File::files($folderPath);
+    
+            foreach ($files as $file) {
+                $filename = $file->getFilename();
+                $underscoreIndex = strpos($filename, '_');
+    
+                if ($underscoreIndex !== false) {
+                    $fileList['namaFile'] = substr($filename, 0, $underscoreIndex);
+                    $fileList['resources'] = "/export/file";
+                    $fileList['tanggalExport'] = "";
+
+                } else {
+                    $fileList['namaFile'] = $filename;
+                    $fileList['resources'] =  "/export/file";
+                    $fileList['tanggalExport'] = "";
+                }
+            }
+        }
+    
+        // $jsonData = json_encode($fileList);
+        return response()->json($fileList);
+    }
+    
+
+    public function actioexport_db()
+    {
+        try {
+            $host = env('DB_HOST');
+            $port = env('DB_PORT');
+            $database = env('DB_DATABASE');
+            $username = env('DB_USERNAME');
+            $password = env('DB_PASSWORD');
+
+            $publicPath = public_path();
+            $currentDate = date('Y-m-d');
+            $outputFile = "export_db/{$currentDate}_database.sql";
+            $outputFilePath = $publicPath . '/' . $outputFile;
+
+            // Check if mysqldump command is available
+            if (exec('command -v mysqldump') === null) {
+                throw new \Exception('mysqldump command not found. Make sure MySQL is installed and in your PATH.');
+            }
+
+            $command = "mysqldump -h $host -P $port -u $username -p'$password' $database > $outputFilePath";
+            echo $command;
+            exec($command, $output, $returnCode);
+
+            if ($returnCode === 0) {
+                return " Database berhasil diekspor ke $outputFilePath";
+            } else {
+                throw new \Exception("Gagal mengekspor database. Error code: $returnCode");
+            }
+        } catch (\Exception $e) {
+
+            return "Error: " . $e->getMessage();
+        }
     }
 
 }

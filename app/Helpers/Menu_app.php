@@ -159,6 +159,7 @@ class Menu_app
                 <div class="collapse" id="sistem">
                     <ul class="nav nav-collapse">';
                     $menu .= self::set_menu(Url('master/user'), 'User');
+                    $menu .= self::set_menu(Url('routing/export_db'), 'Export DB Aplikasi');
                     $menu .= self::set_menu(Url('master/identitas'), 'Identitas Aplikasi');
                     $menu .= '
                   </ul>

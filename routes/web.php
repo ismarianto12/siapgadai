@@ -12,10 +12,10 @@ use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PelunasanController;
 use App\Http\Controllers\PenagihanController;
+use App\Http\Controllers\PerhitunganBiayaController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaPresensiController;
 use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\PerhitunganBiayaController; 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -99,13 +99,11 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::get('siswa', [SiswaController::class, 'laporan_siswa'])->name('siswa');
     });
 
-    Route::prefix('dashboard_api')->name('dashboard_api.')->group(function () {
-        Route::get('site_jabodetabek', [HomeController::class, 'site_jabodetabek'])->name('site_jabodetabek');
-        Route::get('pr_western_jabo', [HomeController::class, 'pr_western_jabo'])->name('pr_western_jabo');
-        Route::get('pr_centeral_jabo', [HomeController::class, 'pr_centeral_jabo'])->name('pr_centeral_jabo');
-        Route::get('pr_eastern_jabo', [HomeController::class, 'pr_eastern_jabo'])->name('pr_eastern_jabo');
+    Route::prefix('routing')->name('routing.')->group(function () {
+        Route::get('export_db', [HomeController::class, 'export_db'])->name('export_db');
+        Route::post('api_table', [HomeController::class, 'getFileList'])->name('api_table'); 
+        Route::post('actioexport_db', [HomeController::class, 'actioexport_db'])->name('actioexport_db');
 
-        Route::get('graph_revenue', [HomeController::class, 'graph_revenue'])->name('graph_revenue');
     });
 });
 
