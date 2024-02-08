@@ -32,7 +32,11 @@
                     <td>Jumlah Pinjaman:</td>
                     <td>{{ $data['jumlah_pinjaman'] }}</td>
                 </tr>
-
+                <tr>
+                    <td>Foto Barang:</td>
+                    <td><img src="{{ Url('./file_gadai/' . $data['foto_barang']) }}" class="img-responsive"
+                            style="width:100%;height:auto" /></td>
+                </tr>
                 <tr>
 
                     <td colspan="2">
@@ -110,9 +114,9 @@
         <button onclick="senwa_handle()" class="btn btn-success btn-md">Kirim Pesan
             Wa</button>
 
-    </div> 
-    <!-- Tambahkan JavaScript Bootstrap jika diperlukan --> 
-    <script> 
+    </div>
+    <!-- Tambahkan JavaScript Bootstrap jika diperlukan -->
+    <script>
         function senwa_handle() {
             // https://wa.me/85264522442?text=Hello,+I+am+interested+in+knowing+more+about+your +WhatsApp+API+service.
 
