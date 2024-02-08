@@ -316,6 +316,7 @@
         $('.cleardata').on('click', function() {
             $('#dari').val('');
             $('#sampai').val('');
+            $('#tmcabang_id').val('');
 
             $('#datatable').DataTable().ajax.reload();
         });

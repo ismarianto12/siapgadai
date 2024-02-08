@@ -113,7 +113,8 @@
                 e.preventDefault();
                 $('#formmodal').modal('show');
                 var url = $(this).attr('to');
-                $('#form_content').html('<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(url);
+                $('#form_content').html(
+                    '<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(url);
 
             })
         });
@@ -274,6 +275,8 @@
         $('.cleardata').on('click', function() {
             $('#dari').val('');
             $('#sampai').val('');
+            $('#tmcabang_id').val('');
+
 
             $('#datatable').DataTable().ajax.reload();
         });
