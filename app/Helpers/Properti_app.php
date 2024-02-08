@@ -8,6 +8,7 @@ use App\Models\Tmbangunan;
 use App\Models\Tmproyek;
 use App\Models\Tmsurat_master;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -93,6 +94,26 @@ class Properti_app
     public function number_format()
     {
     }
+
+    public static function cekJatuhTempo($tanggalAwal, $batasHari)
+    {
+        $tanggalAwalObj = Carbon::parse($tanggalAwal);
+        $tanggalBatas = $tanggalAwalObj->addDays($batasHari);
+        $tanggalSekarang = Carbon::now();
+
+        if ($tanggalSekarang->greaterThan($tanggalBatas)) {
+            return "Sudah jatuh tempo!";
+        } else {
+            return "Belum jatuh tempo, limit hari: " . $tanggalBatas->format('Y-m-d');
+        }
+    }
+
+// // Contoh pemanggilan fungsi
+    // $tanggalAwal = '2023-02-01';
+    // $batasHari = 8;
+
+// cekJatuhTempo($tanggalAwal, $batasHari);
+
     public static function formatRupiah($angka)
     {
         if (!is_numeric($angka)) {

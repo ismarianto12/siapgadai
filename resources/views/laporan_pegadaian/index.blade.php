@@ -77,6 +77,7 @@
                                 <th>Limit Pinjaman</th>
                                 <th>Jumlah Diambil</th>
                                 <th>Administrasi</th>
+                                <th>Status</th>
                                 <th>Persentase Pinjaman</th>
                                 <th>Durasi Pinjaman</th>
                                 <th>Jatuh Tempo</th>
@@ -195,7 +196,6 @@
                 {
                     data: 'maks_pinjaman',
                     render: $.fn.dataTable.render.number('.', '.', 2, ''),
-
                     name: 'maks_pinjaman'
                 },
                 {
@@ -205,9 +205,15 @@
                 },
                 {
                     data: 'administrasi',
-                    name: 'administrasi'
+                    name: 'administrasi',
+                    render: function(row, data, type) {
+                        return '<span class="btn btn-secondary btn-round">' + row + '%</span>';
+                    }
                 },
-
+                {
+                    data: 'status_gadai',
+                    name: 'status_gadai'
+                },
                 {
                     data: 'pinjam_persen',
                     name: 'pinjam_persen',

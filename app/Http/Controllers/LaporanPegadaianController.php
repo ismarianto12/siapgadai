@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\transaksi;
 use DataTables;
 use Illuminate\Http\Request;
+use Properti_app;
 use Illuminate\Support\Facades\Auth;
 
 class LaporanPegadaianController extends Controller
@@ -101,6 +102,7 @@ class LaporanPegadaianController extends Controller
             'nasabah.kab_kota',
             'nasabah.nama',
             'nasabah.kecamatan',
+            'perhitungan_biaya.batas_hari',
             'perhitungan_biaya.keterangan as durasi_pinjam',
             'perhitungan_biaya.persentase as persentase_pinjaman',
             'users.username',
@@ -120,7 +122,7 @@ class LaporanPegadaianController extends Controller
         } else {
             if ($this->request->tmcabang_id != '') {
                 $data->where('transaksi_gadai.cabang_id', $this->request->tmcabang_id);
-            } 
+            }
         }
         if ($dari != '' && $sampai != '') {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
@@ -129,8 +131,10 @@ class LaporanPegadaianController extends Controller
         return DataTables::of($sql)
             ->editColumn('action', function ($p) {
                 return '<a to="' . route('laporan.detaildata', $p->id_transaksi) . '" class="btn btn-warning btn-xs" id="edit"><i class="
-                flaticon-user-4"></i>detail </a> ';
-
+                flaticon-user-4"></i>detail </a> '; 
+            }, true) 
+            ->editColumn('status_gadai', function ($p) {
+                return Properti_app::cekJatuhTempo($p->tanggal_transaksi_gadai, 0);
             }, true)
             ->addIndexColumn()
             ->rawColumns(['action'])
