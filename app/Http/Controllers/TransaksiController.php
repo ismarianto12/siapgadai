@@ -335,17 +335,22 @@ class TransaksiController extends Controller
         // $idTransaction = $id;
         // $data = transaksi::getDetailTransaction($id);
         // $title = 'Transaksi Berhasil';
-        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
-        $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
-        $mpdf->SetWatermarkImage($backgroundImage);
-        $mpdf->showWatermarkImage = true;
-        $mpdf->SetTitle('Syarat dan Ketentuan');
         $data = transaksi::getDetailTagihan($id);
-        $render = view($this->view . 'cetak_tagihan', compact('data'))->render();
-        $mpdf->WriteHTML($render);
-        return response($mpdf->Output("cetak_tagihan_transaksi.pdf", 'I'))
-            ->header('Content-Type', 'application/pdf');
-
+        if ($data->status_transaksi != 3) {
+            $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+            $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
+            $mpdf->SetWatermarkImage($backgroundImage);
+            $mpdf->showWatermarkImage = true;
+            $mpdf->SetTitle('Syarat dan Ketentuan');
+            $render = view($this->view . 'cetak_tagihan', compact('data'))->render();
+            $mpdf->WriteHTML($render);
+            return response($mpdf->Output("cetak_tagihan_transaksi.pdf", 'I'))
+                ->header('Content-Type', 'application/pdf');
+        } else {
+            return response()->json([
+                'messages' => 'data nasabah ini sudah lunas',
+            ]);
+        }
     }
 
     public function valiateNotransaksi()

@@ -9,16 +9,25 @@
 
 
 <style>
-    table {
-        border-collapse: collapse !important;
-        width: 100%;
+    body {
+        font-family: Arial, sans-serif;
     }
 
-    table,
-    tr,
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 15px;
+    }
+
     th,
     td {
-        /* border: 0.1px solid #ddd; */
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
     }
 </style>
 
@@ -45,7 +54,7 @@
                 </tr>
                 <tr>
                     <td>Jumlah Pinjaman:</td>
-                    <td>{{ $data['jumlah_pinjaman'] }}</td>
+                    <td>{{ Properti_app::formatRupiah($data['jumlah_pinjaman']) }}</td>
                 </tr>
 
                 <tr>
@@ -83,7 +92,7 @@
                     </td>
 
                     <td>
-                        {{ $data['maks_pinjaman'] }}
+                        {{ Properti_app::formatRupiah($data['maks_pinjaman']) }}
 
                     </td>
 
@@ -95,7 +104,7 @@
                     </td>
 
                     <td>
-                        {{ $data['jumlah_pinjaman'] }}
+                        {{ Properti_app::formatRupiah($data['jumlah_pinjaman']) }}
                     </td>
 
                 </tr>
@@ -118,12 +127,18 @@
                         {{ $data['keterangan'] }}
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        Status
+                    </td>
+                    <td>
+                        Unpaid - (Belum dibayar)
+                    </td>
+                </tr>
             </tbody>
         </table>
-        <a href="{{ Url('app/cetak_tagihan/' . $data['id']) }}" class="btn btn-info btn-md">Cetak Tagihan</a>
     </div>
 
-    <!-- Tambahkan JavaScript Bootstrap jika diperlukan -->
 
 </body>
 
