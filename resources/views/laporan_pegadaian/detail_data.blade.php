@@ -28,14 +28,15 @@
                     <td>Nama Barang:</td>
                     <td>{{ $data['nama_barang'] }}</td>
                 </tr>
-                <tr>
-                    <td>Jumlah Pinjaman:</td>
-                    <td>{{ $data['jumlah_pinjaman'] }}</td>
-                </tr>
+                
                 <tr>
                     <td>Foto Barang:</td>
                     <td><img src="{{ Url('./file_gadai/' . $data['foto_barang']) }}" class="img-responsive"
                             style="width:100%;height:auto" /></td>
+                </tr>
+                <tr>
+                    <td>Jumlah Pinjaman:</td>
+                    <td>{{ $data['jumlah_pinjaman'] }}</td>
                 </tr>
                 <tr>
 
