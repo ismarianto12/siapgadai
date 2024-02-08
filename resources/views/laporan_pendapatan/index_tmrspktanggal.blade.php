@@ -75,7 +75,7 @@
                  $('#formmodal').modal('show');
                  id = $(this).data('id');
                  addUrl = '{{ route('master.tmrap.edit', ':id') }}'.replace(':id', id);
-                 $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(
+                 $('#form_content').html('<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(
                      addUrl);
 
              })

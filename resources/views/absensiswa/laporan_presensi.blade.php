@@ -356,7 +356,7 @@
                 console.log('get id' + id);
 
                 addroute = '{{ route('master.presensi_edit', ':id') }}'.replace(':id', id);
-                $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(addroute);
+                $('#form_content').html('<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(addroute);
 
             })
         });

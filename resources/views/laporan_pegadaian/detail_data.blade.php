@@ -32,7 +32,7 @@
                 <tr>
                     <td>Foto Barang:</td>
                     <td><img src="{{ Url('./file_gadai/' . $data['foto_barang']) }}" class="img-responsive"
-                            style="width:100%;height:auto" /></td>
+                            style="width:80%;height:auto" /></td>
                 </tr>
                 <tr>
                     <td>Jumlah Pinjaman:</td>
