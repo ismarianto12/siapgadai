@@ -187,7 +187,8 @@
             },
             series: [{
                 name: 'Jumlah Transaksi',
-                data: [{{ implode(',', array_values(get_object_vars($transaksiChart))) }}]
+                data: [
+                    {{ $transaksiChart ? implode(',', array_values(get_object_vars($transaksiChart))) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}]
             }]
         });
 
@@ -221,8 +222,12 @@
                 }
             },
             series: [{
-                name: 'Jumlah Pelunasan', 
-                data: [{{ implode(',', array_values(get_object_vars($pelunasanChart))) }}]
+                name: 'Jumlah Pelunasan',
+                data: [
+                    {{ $pelunasanChart
+                        ? implode(',', array_values(get_object_vars($pelunasanChart)))
+                        : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}
+                ]
             }]
         });
     </script>
