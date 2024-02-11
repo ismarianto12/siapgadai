@@ -221,6 +221,8 @@
                     </div> --}}
                 </div>
             </footer>
+
+
         </div>
 
         <div class="quick-sidebar">
@@ -726,9 +728,9 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="custom-toggle">
+            <div class="custom-toggle">
                 <i class="flaticon-settings"></i>
-            </div> --}}
+            </div>
         </div>
         <!-- End Custom template -->
     </div>
