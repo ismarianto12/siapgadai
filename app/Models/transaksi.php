@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class transaksi extends Model
 {
@@ -52,7 +52,20 @@ class transaksi extends Model
                 $sql = $result->get();
             }
         }
-        return isset($sql) ? $sql : [];
+        return isset($sql) ? $sql : [
+            'Januari' => '0',
+            'Februari' => '0',
+            'Maret' => '0',
+            'April' => '0',
+            'Mei' => '0',
+            'Juni' => '0',
+            'Juli' => '0',
+            'Agustus' => '0',
+            'September' => '0',
+            'Oktober' => '0',
+            'November' => '0',
+            'Desember' => '0',
+        ];
     }
 
     public static function getDetailTagihan($id)
