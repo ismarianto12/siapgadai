@@ -158,22 +158,27 @@
     <script>
         Highcharts.chart('barg', {
             title: {
-                text: 'Grafik Jumlah Barang Gadai Masuk',
+                text: 'Grafik Semua transaksi',
                 style: {
                     fontSize: '18px' // Ukuran teks judul
                 }
             },
             subtitle: {
-                text: 'Data Bedasarkan Tahun {{ date('Y') }}',
+                text: 'Data transaksi Tahun {{ date('Y') }}',
                 style: {
                     fontSize: '14px' // Ukuran teks subjudul
                 }
             },
             chart: {
-                type: 'column' // Menggunakan grafik tipe kolom/bar
+                type: 'column'
             },
             xAxis: {
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: 'Nilai Transaksi' // Label untuk sumbu Y
+                }
             },
             plotOptions: {
                 column: {
@@ -181,19 +186,20 @@
                 }
             },
             series: [{
-                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                name: 'Jumlah Transaksi',
+                data: [{{ implode(',', array_values(get_object_vars($transaksiChart))) }}]
             }]
         });
 
         Highcharts.chart('container', {
             title: {
-                text: 'Grafik Jumlah Barang Gadai Keluar',
+                text: 'Grafik Jumlah Transaksi Lunas',
                 style: {
                     fontSize: '18px'
                 }
             },
             subtitle: {
-                text: 'Data Barang', // Subjudul grafik
+                text: 'Data Peunasan Nasabah Tahun {{ date('Y') }}', // Subjudul grafik
                 style: {
                     fontSize: '14px' // Ukuran teks subjudul
                 }
@@ -204,13 +210,19 @@
             xAxis: {
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             },
+            yAxis: {
+                title: {
+                    text: 'Volume data' // Label untuk sumbu Y
+                }
+            },
             plotOptions: {
                 series: {
                     fillOpacity: 0.1
                 }
             },
             series: [{
-                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                name: 'Jumlah Pelunasan', 
+                data: [{{ implode(',', array_values(get_object_vars($pelunasanChart))) }}]
             }]
         });
     </script>

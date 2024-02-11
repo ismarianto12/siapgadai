@@ -22791,3 +22791,8 @@ body[data-background-color="dark"] .board {
 #datatable>tbody>tr>td {
   white-space: nowrap;
 }
+
+.highcharts-credits{
+display:none;
+
+}

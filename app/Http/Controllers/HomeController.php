@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\tmp_surat;
+use App\Models\transaksi;
+
 use App\Models\Tmsurat_master;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +34,8 @@ class HomeController extends Controller
     {
         $tahun = $this->request->contract;
         $title = 'Welcome Page';
+        $transaksiChart = transaksi::Chartdata()->first(); 
+        $pelunasanChart = transaksi::Chartdata('lunas')->first(); 
 
         $tnasabah = \DB::table('nasabah')->get()->count();
         $tbarangmasuk = \DB::table('transaksi_gadai')->where('status_transaksi', '!=', '3')->get()->count();
@@ -44,6 +48,8 @@ class HomeController extends Controller
         return view(
             $this->view . '.home',
             compact(
+                'pelunasanChart',
+                'transaksiChart',
                 'title',
                 'tnasabah',
                 'tbarangmasuk',

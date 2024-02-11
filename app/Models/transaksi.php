@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class transaksi extends Model
 {
@@ -14,6 +15,35 @@ class transaksi extends Model
     public $datetime = false;
 
     protected $guarded = [];
+
+    public static function Chartdata($status = '')
+    {
+
+        $year = date('Y');
+        $result = DB::table('transaksi_gadai as b')
+            ->selectRaw('
+        SUM(CASE WHEN MONTH(b.created_at) = 1 THEN 1 ELSE 0 END) AS Januari,
+        SUM(CASE WHEN MONTH(b.created_at) = 2 THEN 1 ELSE 0 END) AS Februari,
+        SUM(CASE WHEN MONTH(b.created_at) = 3 THEN 1 ELSE 0 END) AS Maret,
+        SUM(CASE WHEN MONTH(b.created_at) = 4 THEN 1 ELSE 0 END) AS April,
+        SUM(CASE WHEN MONTH(b.created_at) = 5 THEN 1 ELSE 0 END) AS Mei,
+        SUM(CASE WHEN MONTH(b.created_at) = 6 THEN 1 ELSE 0 END) AS Juni,
+        SUM(CASE WHEN MONTH(b.created_at) = 7 THEN 1 ELSE 0 END) AS Juli,
+        SUM(CASE WHEN MONTH(b.created_at) = 8 THEN 1 ELSE 0 END) AS Agustus,
+        SUM(CASE WHEN MONTH(b.created_at) = 9 THEN 1 ELSE 0 END) AS September,
+        SUM(CASE WHEN MONTH(b.created_at) = 10 THEN 1 ELSE 0 END) AS Oktober,
+        SUM(CASE WHEN MONTH(b.created_at) = 11 THEN 1 ELSE 0 END) AS November,
+        SUM(CASE WHEN MONTH(b.created_at) = 12 THEN 1 ELSE 0 END) AS Desember
+    ')
+            ->whereYear('b.created_at', $year)
+            ->groupBy(DB::raw('YEAR(b.created_at), MONTH(b.created_at)'));
+        if ($status == 'lunas') {
+            $sql = $result->where('b.status_transaksi', '=', '3')->get();
+        } else {
+            $sql = $result->get();
+        }
+        return $sql;
+    }
 
     public static function getDetailTagihan($id)
     {
