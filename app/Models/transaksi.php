@@ -37,10 +37,19 @@ class transaksi extends Model
     ')
             ->whereYear('b.created_at', $year)
             ->groupBy(DB::raw('YEAR(b.created_at), MONTH(b.created_at)'));
-        if ($status == 'lunas') {
-            $sql = $result->where('b.status_transaksi', '=', '3')->get();
+        if (Auth::user()->tmlevel_id != '1') {
+            if ($status == 'lunas') {
+                $sql = $result->where('b.status_transaksi', '=', '3')->where('transaksi_gadai.cabang_id', Auth::user()->cabang_id)->get();
+            } else {
+                $sql = $result->where('transaksi_gadai.cabang_id', Auth::user()->cabang_id)->get();
+            }
+
         } else {
-            $sql = $result->get();
+            if ($status == 'lunas') {
+                $sql = $result->where('b.status_transaksi', '=', '3')->get();
+            } else {
+                $sql = $result->get();
+            }
         }
         return $sql;
     }
