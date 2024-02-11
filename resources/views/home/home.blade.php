@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+    {{-- @dd(is_array($transaksiChart)); --}}
     <style>
         table,
         td,
@@ -188,7 +189,14 @@
             series: [{
                 name: 'Jumlah Transaksi',
                 data: [
-                    {{ $transaksiChart ? implode(',', array_values(get_object_vars($transaksiChart))) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}]
+
+                    @if ($transaksiChart)
+                        {{ implode(',', array_values(get_object_vars($transaksiChart))) }}
+                    @else
+                        {{ implode(',', array_fill(0, 11, 0)) }}
+                    @endif
+
+                ]
             }]
         });
 
@@ -224,9 +232,11 @@
             series: [{
                 name: 'Jumlah Pelunasan',
                 data: [
-                    {{ $pelunasanChart
-                        ? implode(',', array_values(get_object_vars($pelunasanChart)))
-                        : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}
+                    @if ($pelunasanChart)
+                        {{ implode(',', array_values(get_object_vars($pelunasanChart))) }}
+                    @else
+                        {{ implode(',', array_fill(0, 11, 0)) }}
+                    @endif
                 ]
             }]
         });

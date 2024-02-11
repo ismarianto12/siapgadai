@@ -19,53 +19,43 @@ class transaksi extends Model
 
     public static function Chartdata($status = '')
     {
-
         $year = date('Y');
         $result = DB::table('transaksi_gadai as b')
             ->selectRaw('
-        SUM(CASE WHEN MONTH(b.created_at) = 1 THEN 1 ELSE 0 END) AS Januari,
-        SUM(CASE WHEN MONTH(b.created_at) = 2 THEN 1 ELSE 0 END) AS Februari,
-        SUM(CASE WHEN MONTH(b.created_at) = 3 THEN 1 ELSE 0 END) AS Maret,
-        SUM(CASE WHEN MONTH(b.created_at) = 4 THEN 1 ELSE 0 END) AS April,
-        SUM(CASE WHEN MONTH(b.created_at) = 5 THEN 1 ELSE 0 END) AS Mei,
-        SUM(CASE WHEN MONTH(b.created_at) = 6 THEN 1 ELSE 0 END) AS Juni,
-        SUM(CASE WHEN MONTH(b.created_at) = 7 THEN 1 ELSE 0 END) AS Juli,
-        SUM(CASE WHEN MONTH(b.created_at) = 8 THEN 1 ELSE 0 END) AS Agustus,
-        SUM(CASE WHEN MONTH(b.created_at) = 9 THEN 1 ELSE 0 END) AS September,
-        SUM(CASE WHEN MONTH(b.created_at) = 10 THEN 1 ELSE 0 END) AS Oktober,
-        SUM(CASE WHEN MONTH(b.created_at) = 11 THEN 1 ELSE 0 END) AS November,
-        SUM(CASE WHEN MONTH(b.created_at) = 12 THEN 1 ELSE 0 END) AS Desember
-    ')
+                SUM(CASE WHEN MONTH(b.created_at) = 1 THEN 1 ELSE 0 END) AS Januari,
+                SUM(CASE WHEN MONTH(b.created_at) = 2 THEN 1 ELSE 0 END) AS Februari,
+                SUM(CASE WHEN MONTH(b.created_at) = 3 THEN 1 ELSE 0 END) AS Maret,
+                SUM(CASE WHEN MONTH(b.created_at) = 4 THEN 1 ELSE 0 END) AS April,
+                SUM(CASE WHEN MONTH(b.created_at) = 5 THEN 1 ELSE 0 END) AS Mei,
+                SUM(CASE WHEN MONTH(b.created_at) = 6 THEN 1 ELSE 0 END) AS Juni,
+                SUM(CASE WHEN MONTH(b.created_at) = 7 THEN 1 ELSE 0 END) AS Juli,
+                SUM(CASE WHEN MONTH(b.created_at) = 8 THEN 1 ELSE 0 END) AS Agustus,
+                SUM(CASE WHEN MONTH(b.created_at) = 9 THEN 1 ELSE 0 END) AS September,
+                SUM(CASE WHEN MONTH(b.created_at) = 10 THEN 1 ELSE 0 END) AS Oktober,
+                SUM(CASE WHEN MONTH(b.created_at) = 11 THEN 1 ELSE 0 END) AS November,
+                SUM(CASE WHEN MONTH(b.created_at) = 12 THEN 1 ELSE 0 END) AS Desember
+            ')
             ->whereYear('b.created_at', $year)
             ->groupBy(DB::raw('YEAR(b.created_at), MONTH(b.created_at)'));
-        if (Auth::user()->tmlevel_id != '1') {
-            if ($status == 'lunas') {
-                $sql = $result->where('b.status_transaksi', '=', '3')->where('b.cabang_id', Auth::user()->cabang_id)->get();
-            } else {
-                $sql = $result->where('b.cabang_id', Auth::user()->cabang_id)->get();
-            }
 
+        if (Auth::user()->tmlevel_id != '1') {
+
+            if ($status == 'lunas') {
+                $sql = $result->where('b.cabang_id', Auth::user()->cabang_id)->where('b.status_transaksi', '=', '3');
+            } else {
+                $sql = $result->where('b.cabang_id', Auth::user()->cabang_id);
+            }
+            return $sql->get() ?: [];
         } else {
             if ($status == 'lunas') {
                 $sql = $result->where('b.status_transaksi', '=', '3')->get();
             } else {
                 $sql = $result->get();
             }
+            
+            return $sql ?: [];
         }
-        return isset($sql) ? $sql : [
-            'Januari' => '0',
-            'Februari' => '0',
-            'Maret' => '0',
-            'April' => '0',
-            'Mei' => '0',
-            'Juni' => '0',
-            'Juli' => '0',
-            'Agustus' => '0',
-            'September' => '0',
-            'Oktober' => '0',
-            'November' => '0',
-            'Desember' => '0',
-        ];
+        return;
     }
 
     public static function getDetailTagihan($id)
