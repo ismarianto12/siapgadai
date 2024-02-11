@@ -52,7 +52,7 @@ class transaksi extends Model
                 $sql = $result->get();
             }
         }
-        return $sql;
+        return isset($sql) ? $sql : [];
     }
 
     public static function getDetailTagihan($id)
