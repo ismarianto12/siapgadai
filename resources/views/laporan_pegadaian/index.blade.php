@@ -40,6 +40,12 @@
                         Clear
                     </button>
                 </div>
+                <br />
+
+                <h3>- Max bunga 10% perbulan (perminggu kena 2,5% sampai dengan minggu ke-4)</h3>
+                <h3>- Denda bunga 5% (pada saat lebih dari 1 bulan. sampai dengan waktu 7 hari setelah jatuh tempo)</h3>
+                <h3>- Administrasi tetap dipotong diawal (dikenakan 10rb untuk administrasi)</h3>
+
             </div>
             <div class="card-body">
                 <!-- Modal -->

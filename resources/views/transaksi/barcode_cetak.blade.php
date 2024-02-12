@@ -76,14 +76,15 @@
             <?php
             echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($data->no_anggota, 'C39+') . '" alt="barcode"  style="width:100%" />';
             ?>
-
             <br />
-            <p>
+            <p style="
+            font-size: 10px;
+        ">
 
                 {{ $data->no_faktur }} -
                 {{ Str::ucfirst(strtolower($data->merek_barang)) }} - {{ $data->no_imei }}
-            <div style="border-top: 0.1px solid #ddd;margin-top:20px">
-
+           
+                <div style="border-top: 0.1px solid #ddd;font-size: 12px;text-align: center;margin-top: 20px;">
                 <b> {{ $data->nama }}</b>- {{ $data->alamat }}
             </div>
             </p>

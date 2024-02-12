@@ -409,12 +409,19 @@
                         <label for="maks_pinjaman" class="form-label">Maks Pinjaman:</label>
                         <input type="hidden" name="inputmaksimal_pinjam" id="inputmaksimal_pinjam" />
                         <h1 class="maksimal_pinjaman"></h1>
+                        <small> *) Setiap transaksi dikenakan biaya admin 10.000</small>
                     </div>
 
                     <div class="col-md-6">
                         &nbsp; <label for="jumlah_diambil" class="form-label">Jumlah yang diambil:</label>
                         &nbsp;<input type="text" id="jumlah_diambil" name="jumlah_diambil"
                             class="number_format form-control" required />
+                        <p
+                            style="
+                            font-size: 12px;
+                            font-style: italic;
+                        ">
+                            Pastikan nomimal pinjaman harus sama atau kurang dari maksimal.</p>
                     </div>
                 </div>
 
@@ -658,6 +665,11 @@
                         if (valueJambil > inputmaksimal_pinjam) {
                             Swal.fire('error',
                                 'Gagal Pastikan maksimal pinjaman harus sama atau lebih kecil dari nilai maksimal',
+                                'error');
+                            $('#jumlah_diambil').addClass('is-invalid');
+                        } else if (valueJambil != inputmaksimal_pinjam) {
+                            Swal.fire('error',
+                                'Gagal pastikan maksimal pinjaman harus sama dengan maksimal.',
                                 'error');
                             $('#jumlah_diambil').addClass('is-invalid');
                         } else {
