@@ -684,13 +684,16 @@
                         e.preventDefault();
 
                         Swal.fire({
-                            title: "Sebelum Submit ",
+                            title: "Sebelum Submit",
                             text: "Pastikan Semua data sudah benar",
                             icon: "warning",
                             showCancelButton: true,
+                            showDenyButton: true, // Menampilkan tombol tolak (deny)
                             confirmButtonColor: "#3085d6",
                             cancelButtonColor: "#d33",
-                            confirmButtonText: "Ok"
+                            confirmButtonText: "Approve",
+                            denyButtonText: "Datang", // Teks pada tombol tolak
+                            cancelButtonText: "Cancel / Periksa Inputan", // Teks pada tombol batal
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 var datastring = new FormData(this);
@@ -789,10 +792,17 @@
 
                                     }
                                 })
+
+                            } else if (result.isDenied) {
+                                // Logika jika tombol "Datang" ditekan
+                                console.log("Datang");
+                            } else if (result.isDismissed && result.dismiss === Swal
+                                .DismissReason
+                                .cancel) {
+                                console.log("Cancelled");
                             }
                         })
                     });
-
                     $('.ayamayam').hide();
 
                     // edit

@@ -28,7 +28,7 @@
                     <td>Nama Barang:</td>
                     <td>{{ $data['nama_barang'] }}</td>
                 </tr>
-                
+
                 <tr>
                     <td>Foto Barang:</td>
                     <td><img src="{{ Url('./file_gadai/' . $data['foto_barang']) }}" class="img-responsive"
@@ -112,12 +112,31 @@
         </table>
         <a href="{{ Url('app/cetak_tagihan/' . $data['id']) }}" target="_blank" class="btn btn-info btn-md">Cetak
             Tagihan</a>
+        <a onclick="batalkan_transaksi()" target="_blank" class="btn btn-info btn-md">
+            Batalkan Transaksi</a>
         <button onclick="senwa_handle()" class="btn btn-success btn-md">Kirim Pesan
             Wa</button>
 
     </div>
     <!-- Tambahkan JavaScript Bootstrap jika diperlukan -->
     <script>
+        function senwa_handle() {
+            Swal.fire({
+                title: "Konfirmasi Pembatalan",
+                text: "Anda Yakin Melakukan Pembatalan Transaksi?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ok"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                }
+
+            })
+        }
+
         function senwa_handle() {
             // https://wa.me/85264522442?text=Hello,+I+am+interested+in+knowing+more+about+your +WhatsApp+API+service.
 
