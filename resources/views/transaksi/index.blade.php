@@ -660,20 +660,14 @@
                         var valueJambil = parseInt(jumlah_ambil?.replace(/\./g, ''));
                         console.log(valueJambil, 'adsa');
                         console.log(inputmaksimal_pinjam, 'maks')
-
                         console.log(valueJambil > inputmaksimal_pinjam, 'maks')
-                        if (valueJambil > inputmaksimal_pinjam) {
+                        if (valueJambil <= inputmaksimal_pinjam) {
+                            $('#jumlah_diambil').removeClass('is-invalid');
+                        } else {
                             Swal.fire('error',
                                 'Gagal Pastikan maksimal pinjaman harus sama atau lebih kecil dari nilai maksimal',
                                 'error');
                             $('#jumlah_diambil').addClass('is-invalid');
-                        } else if (valueJambil != inputmaksimal_pinjam) {
-                            Swal.fire('error',
-                                'Gagal pastikan maksimal pinjaman harus sama dengan maksimal.',
-                                'error');
-                            $('#jumlah_diambil').addClass('is-invalid');
-                        } else {
-                            $('#jumlah_diambil').removeClass('is-invalid');
                         }
                     });
 
