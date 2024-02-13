@@ -160,6 +160,7 @@ class TransaksiController extends Controller
             $CheckNasabah = DB::table('nasabah')->where('nik', $this->request->nik)->get();
             if ($CheckNasabah->count() > 0) {
                 $first_trasaksi = [
+                    'kategori_barang_id'=> $this->request->kategori_barang_id,
                     'imei' => $this->request->imei,
                     'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
                     'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
@@ -193,11 +194,9 @@ class TransaksiController extends Controller
                     'tujuan_gadai' => $this->request->tujuan_gadai,
                     'created_at' => date('Y-m-d H:i:s'),
                     'user_id' => Auth::user()->id,
-
                 ];
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($first_trasaksi);
             } else {
-
                 $nasabah = [
                     'cabang_id' => Auth::user()->cabang_id,
                     'no_anggota' => $this->request->no_anggota,
@@ -215,6 +214,7 @@ class TransaksiController extends Controller
                 ];
                 $lastInsertedId = \DB::table('nasabah')->insertGetId($nasabah);
                 $trasaksi = [
+                    'kategori_barang_id'=> $this->request->kategori_barang_id,
                     'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
                     'imei' => $this->request->imei,
                     'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
@@ -248,7 +248,6 @@ class TransaksiController extends Controller
                     'tujuan_gadai' => $this->request->tujuan_gadai,
                     'created_at' => date('Y-m-d H:i:s'),
                     'user_id' => Auth::user()->id,
-
                 ];
                 $idtransaksi = \DB::table('transaksi_gadai')->insertGetId($trasaksi);
             }
@@ -257,10 +256,8 @@ class TransaksiController extends Controller
                 'idtransaksi' => $idtransaksi,
                 'messages' => 'data berhasil disimpan',
             ]);
-
         } catch (\Exception $e) {
             DB::rollback();
-
             return response()->json([
                 'messages' => $e->getMessage(),
             ], 500);
@@ -360,5 +357,15 @@ class TransaksiController extends Controller
     public function validateNoanggota()
     {
 
+    }
+    public function get_barang()
+    {
+        try {
+            $id = $this->request->id;
+            $data = \DB::table('barang')->where('kategori_barang_id', $id)->get();
+            return response()->json($data);
+        } catch (\Throwable $th) { 
+            return response()->json([]);
+        }
     }
 }

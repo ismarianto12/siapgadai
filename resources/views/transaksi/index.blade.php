@@ -181,17 +181,25 @@
                     <!-- Left Column -->
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-md-4 text-left">Jenis Barang</label>
+                            <label class="col-md-4 text-left">Kategori Gadai</label>
                             <div class="col-md-10">
-                                <select name="id_barang" class="form-control" required>
+                                <select name="kategori_barang_id" id="kategori_barang_id" class="form-control" required>
                                     <option value=""></option>
-                                    @foreach (Properti_app::masterBarang() as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                    @foreach (Properti_app::KategoriGadai() as $kategori)
+                                        <option value="{{ $kategori->id }}">
+                                            {{ $kategori->nama_kategori }} -
+                                            {{ $kategori->kode_kategori }} </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                            <label class="col-md-4 text-left">Jenis Barang</label>
+                            <div class="col-md-10">
+                                <div id="render_barang">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Type Barang</label>
                             <div class="col-md-10">
@@ -437,7 +445,31 @@
 
         <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
         <script type="text/javascript">
-            $(document).on('ready pjax:success', function() {
+            $(document).on('ready', function() {
+                $('#render_barang').html('<h5 class="alert alert-danger">Loading data barang ....</h5>');
+                $('select[name="kategori_barang_id"]').on('change', function(e) {
+                    e.preventDefault();
+                    id = $(this).val();
+                    if (id) {
+                        $.post('{{ route('app.transaksi.get_barang') }}', {
+                            id: id,
+                        }, function(data) {
+                            passing = '';
+                            $.each(data, function(index, barang) {
+                                passing += "<option value=" + barang.id + ">" + barang
+                                    .nama_barang + "</option>";
+                            });
+                            console.log(passing);
+                            $('#render_barang').html(`
+                         <select name="id_barang" class="form-control" required>${passing}</select>
+                        `);
+                        }, 'JSON').error(function() {
+                            alert('tidak ada response');
+                        })
+                    } else {
+                        Swal.fire('info', 'silahkan pilih kategori gadai', 'info');
+                    }
+                })
 
                 function clearall() {
                     $('input[name="nama_nasabah"]').val("").prop('readonly', false);

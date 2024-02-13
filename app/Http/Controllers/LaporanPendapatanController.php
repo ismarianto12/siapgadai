@@ -27,6 +27,11 @@ class LaporanPendapatanController extends Controller
         return view($this->view . "index", compact("title"));
     }
 
+    public function proses_pendapatan()
+    {
+        $title = 'Proses Pendapatan';
+        return view("proses_pendapatan.index", compact("title"));
+    }
     /**
      * Show the form for creating a new resource.
      *

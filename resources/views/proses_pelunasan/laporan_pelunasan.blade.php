@@ -3,39 +3,25 @@
     @include('layouts.breadcum')
     <div class="col-md-12">
         <div class="card">
+            {{-- <form cas --}}
             <div class="card-header row">
                 <div class="form-group row">
-                    <div class="col-md-12">
-                        <label class="text-left">Dari</label>
+                    <label class="col-md-3 text-left">Dari</label>
+                    <div class="col-md-9">
                         <input type="date" name='dari' class="form-control" id="dari" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-12">
-                        <label class="text-left">Sampai</label>
+                    <label class="col-md-3 text-left">Sampai</label>
+                    <div class="col-md-9">
                         <input type="date" name='sampai' class="form-control" id="sampai" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <label class="text-left">Kategori</label>
-
-                        <select name="kategori_barang_id" id="kategori_barang_id" class="form-control" required>
-                            <option value=""></option>
-                            @foreach (Properti_app::KategoriGadai() as $kategori)
-                                <option value="{{ $kategori->id }}">
-                                    {{ $kategori->nama_kategori }} -
-                                    {{ $kategori->kode_kategori }} </option>
-                            @endforeach
-                        </select>
                     </div>
                 </div>
 
                 @if (Auth::user()->tmlevel_id == 1)
                     <div class="form-group row">
-                        <div class="col-md-12">
-                            <label>Cabang</label>
-
+                        <label class="col-md-3 text-left">Cabang</label>
+                        <div class="col-md-9">
                             <select class="form-control" name="tmcabang_id" id="tmcabang_id">
                                 <option value="">Semua Cabang</option>
                                 @foreach (Properti_app::dataCabang() as $cabangnya)
@@ -45,15 +31,8 @@
                         </div>
                     </div>
                 @endif
-                <br />
-                <p>
-                <div class="form-group row"
-                    style="
-                height: 10px;
-                display: flow-root;
-                margin-top: 25px;
-                margin-left: 10px;
-            ">
+
+                <div class="form-group row">
                     <button class="searchdata btn btn-info btn-round btn-sm">
                         <i class="flaticon-search-2"></i>
                         Search
@@ -63,8 +42,6 @@
                         Clear
                     </button>
                 </div>
-                </p>
-
             </div>
             <div class="card-body">
                 <!-- Modal -->
@@ -93,23 +70,23 @@
 
                             <tr>
                                 <th>No.</th>
-                                <th>Nama Nasabah</th>
-                                <th>Kategori</th>
+                                <th>Nama</th>
+                                <th>Alamat</th>
                                 <th>No Handphpone</th>
                                 <th>Nama Barang</th>
-                                <th>Taksiran Harga</th>
+                                <th>Durasi Pinjaman</th>
                                 <th>Maks Pinjaman</th>
-                                <th>Limit Pinjaman</th>
                                 <th>Jumlah Diambil</th>
                                 <th>Administrasi</th>
-                                <th>Status</th>
-                                <th>Persentase Pinjaman</th>
-                                <th>Durasi Pinjaman</th>
+                                <th>Persentase</th>
                                 <th>Jatuh Tempo</th>
                                 <th>Status</th>
+                                <th>Bukti Pelunasan</th>
+
                                 <th>Operator</th>
                                 <th>Cabang</th>
-                                <th>Tanggal Transaksi</th>
+                                <th>Tanggal Pelunasan</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -137,8 +114,14 @@
                 e.preventDefault();
                 $('#formmodal').modal('show');
                 var url = $(this).attr('to');
-                $('#form_content').html(
-                    '<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(url);
+                $('#form_content').html('<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(url);
+
+            })
+            $('#datatable').on('click', '#bukti_bayaradssad', function(e) {
+                e.preventDefault();
+                $('#formmodal').modal('show');
+                var url = $(this).attr('to');
+                $('#form_content').html(`<img src="${url}" class="img-responsive" style="width:100%" />`);
 
             })
         });
@@ -171,12 +154,11 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ route('api.laporan_pegadaian') }}",
+                url: "{{ route('api.pelunasan') }}",
                 method: 'POST',
                 data: function(data) {
                     data.dari = $('#dari').val();
-                    data.sampai = $('#sampai').val();
-                    data.kategori_barang_id = $('#kategori_barang_id').val();
+                    data.sampai = $('#sampai').val(); 
                     @if (Auth::user()->tmlevel_id == 1)
                         data.tmcabang_id = $('#tmcabang_id option:selected').val();
                     @endif
@@ -197,8 +179,8 @@
                     name: 'nama'
                 },
                 {
-                    data: 'nama_kategori',
-                    name: 'nama_kategori'
+                    data: 'alamat',
+                    name: 'alamat'
                 },
                 {
                     data: 'no_handphone',
@@ -210,35 +192,22 @@
                     name: 'nama_barang'
                 },
                 {
-                    data: 'taksiran_harga',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'taksiran_harga'
+                    data: 'durasi_pinjam',
+                    name: 'durasi_pinjam'
                 },
+
                 {
                     data: 'maks_pinjaman',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
                     name: 'maks_pinjaman'
                 },
+
                 {
-                    data: 'maks_pinjaman',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'maks_pinjaman'
-                },
-                {
-                    data: 'jumlah_diambil',
-                    render: $.fn.dataTable.render.number('.', '.', 2, ''),
-                    name: 'jumlah_diambil'
+                    data: 'jumlah_pinjaman',
+                    name: 'jumlah_pinjaman'
                 },
                 {
                     data: 'administrasi',
-                    name: 'administrasi',
-                    render: function(row, data, type) {
-                        return '<span class="btn btn-secondary btn-round">' + row + '%</span>';
-                    }
-                },
-                {
-                    data: 'status_gadai',
-                    name: 'status_gadai'
+                    name: 'administrasi'
                 },
                 {
                     data: 'pinjam_persen',
@@ -247,11 +216,6 @@
                         return '<span class="btn btn-secondary btn-round">' + row + '%</span>';
                     }
                 },
-                {
-                    data: 'durasi_pinjam',
-                    name: 'durasi_pinjam'
-                },
-
                 {
                     data: 'tanggal_jatuh_tempo',
                     name: 'tanggal_jatuh_tempo'
@@ -274,9 +238,13 @@
 
                 },
                 {
+                    data: 'bukti_lunas',
+                    name: 'bukti_lunas'
+                },
+                {
 
-                    data: 'username',
-                    name: 'username'
+                    data: 'nama_user',
+                    name: 'nama_user'
                 },
                 {
 
@@ -285,9 +253,14 @@
                 },
                 {
 
-                    data: 'tanggal_transaksi_gadai',
-                    name: 'tanggal_transaksi_gadai'
+                    data: 'created_at',
+                    name: 'created_at'
                 },
+                {
+
+                    data: 'action',
+                    name: 'action'
+                }
             ]
 
         });
@@ -296,7 +269,6 @@
             $('#dari').val('');
             $('#sampai').val('');
             $('#tmcabang_id').val('');
-
 
             $('#datatable').DataTable().ajax.reload();
         });

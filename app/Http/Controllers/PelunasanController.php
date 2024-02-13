@@ -47,6 +47,13 @@ class PelunasanController extends Controller
         $data = [];
         return view($this->view . "laporan_pelunasan", compact("title", "data"));
     }
+
+    public function proses_pelunasan()
+    {
+        $title = 'Pelunasan';
+        $data = [];
+        return view("proses_pelunasan.laporan_pelunasan", compact("title", "data"));
+    }
     public function create()
     {
         //

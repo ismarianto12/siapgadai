@@ -505,6 +505,12 @@ class Properti_app
     {
         return \DB::table('barang')->get();
     }
+
+    public static function KategoriGadai()
+    {
+        return \DB::table('kategori_barang')->get();
+    }
+
     public static function Jk()
     {
         return [

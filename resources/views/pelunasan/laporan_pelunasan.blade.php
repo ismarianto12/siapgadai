@@ -80,13 +80,10 @@
                                 <th>Administrasi</th>
                                 <th>Persentase</th>
                                 <th>Jatuh Tempo</th>
-                                <th>Status</th>
-                                <th>Bukti Pelunasan</th>
 
                                 <th>Operator</th>
                                 <th>Cabang</th>
                                 <th>Tanggal Pelunasan</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -114,7 +111,8 @@
                 e.preventDefault();
                 $('#formmodal').modal('show');
                 var url = $(this).attr('to');
-                $('#form_content').html('<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(url);
+                $('#form_content').html(
+                    '<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(url);
 
             })
             $('#datatable').on('click', '#bukti_bayaradssad', function(e) {
@@ -158,7 +156,7 @@
                 method: 'POST',
                 data: function(data) {
                     data.dari = $('#dari').val();
-                    data.sampai = $('#sampai').val(); 
+                    data.sampai = $('#sampai').val();
                     @if (Auth::user()->tmlevel_id == 1)
                         data.tmcabang_id = $('#tmcabang_id option:selected').val();
                     @endif
@@ -211,36 +209,13 @@
                 },
                 {
                     data: 'pinjam_persen',
-                    name: 'pinjam_persen',
-                    render: function(row, data, type) {
-                        return '<span class="btn btn-secondary btn-round">' + row + '%</span>';
-                    }
+                    name: 'pinjam_persen'
                 },
                 {
                     data: 'tanggal_jatuh_tempo',
                     name: 'tanggal_jatuh_tempo'
                 },
-                {
-                    data: 'status_transaksi',
-                    name: 'status_transaksi',
-                    render: function(row, data, type) {
-                        console.log(row, 'gadai if')
-                        if (row == '1') {
-                            return '<button class="btn btn-danger btn-sm">Belum Lunas</button>';
-                        } else if (row == '2') {
-                            return '<button class="btn btn-warning btn-sm">Overdue</button>';
-                        } else if (row == '3') {
-                            return '<button class="btn btn-success btn-sm">Lunas</button>';
-                        } else {
-                            return 'Unknown Status';
-                        }
-                    }
 
-                },
-                {
-                    data: 'bukti_lunas',
-                    name: 'bukti_lunas'
-                },
                 {
 
                     data: 'nama_user',
@@ -256,11 +231,6 @@
                     data: 'created_at',
                     name: 'created_at'
                 },
-                {
-
-                    data: 'action',
-                    name: 'action'
-                }
             ]
 
         });

@@ -98,7 +98,7 @@ class Menu_app
                     </a>
                     <div class="collapse" id="retribusi">
                         <ul class="nav nav-collapse">';
-                    $menu .= self::set_menu(Url('master/perhitungan_biaya'), 'Perhitungan Biaya');  
+                    $menu .= self::set_menu(Url('master/perhitungan_biaya'), 'Perhitungan Biaya');
                     $menu .= self::set_menu(Url('master/barang'), 'Barang');
                     $menu .= self::set_menu(Url('master/kategori'), 'Ketegori Barang');
                     $menu .= self::set_menu(Url('master/cabang'), 'Cabang');
@@ -139,14 +139,27 @@ class Menu_app
                     $menu .= '<li class="nav-item">
                 <a data-toggle="collapse" href="#report">
                     <i class="flaticon-windows text-info"></i>
-                    <p>Laporan </p>
+                    <p>Proses Transaksi </p>
                     <span class="caret"></span>
                 </a>
                 <div class="collapse" id="report">
                     <ul class="nav nav-collapse">';
+                    $menu .= self::set_menu(Url('proses/pegadaian'), 'Proses Transaksi', );
+                    $menu .= self::set_menu(Url('proses/pelunasan'), 'Proses Pelunasan', );
+                    $menu .= '
+                  </ul>
+                </div>';
+                    $menu .= '<li class="nav-item">
+                <a data-toggle="collapse" href="#param">
+                    <i class="flaticon-list text-info"></i>
+                    <p>Laporan </p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="param">
+                    <ul class="nav nav-collapse">';
                     $menu .= self::set_menu(Url('laporan/pegadaian'), 'Laporan Transaksi', );
                     $menu .= self::set_menu(Url('laporan/pelunasan'), 'Laporan Pelunasan', );
-                    $menu .= self::set_menu(Url('laporan/pendapatan'), 'Laporan Pendapatan');
+                    $menu .= self::set_menu(Url('laporan/pendapatan'), 'Laporan Pendapatan', );
                     $menu .= '
                   </ul>
                 </div>';

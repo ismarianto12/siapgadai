@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\transaksi;
 use DataTables;
 use Illuminate\Http\Request;
-use Properti_app;
 use Illuminate\Support\Facades\Auth;
+use Properti_app;
 
 class LaporanPegadaianController extends Controller
 {
@@ -25,6 +25,11 @@ class LaporanPegadaianController extends Controller
     {
         $title = 'Laporan Pegadaian';
         return view($this->view . "index", compact("title"));
+    }
+    public function proses_pegadaian()
+    {
+        $title = 'Proses Pegadaian';
+        return view("proses_pegadaian.index", compact("title"));
     }
 
     /**
@@ -106,11 +111,13 @@ class LaporanPegadaianController extends Controller
             'perhitungan_biaya.keterangan as durasi_pinjam',
             'perhitungan_biaya.persentase as persentase_pinjaman',
             'users.username',
-            'cabang.nama_cabang'
+            'cabang.nama_cabang',
+            'kategori_barang.kode_kategori',
+            'kategori_barang.nama_kategori'
         )
             ->leftJoin('users', 'users.id', '=', 'transaksi_gadai.user_id')
             ->leftJoin('cabang', 'users.cabang_id', '=', 'cabang.id')
-
+            ->leftJoin('kategori_barang', 'kategori_barang.id', '=', 'transaksi_gadai.kategori_barang_id')
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
@@ -127,12 +134,15 @@ class LaporanPegadaianController extends Controller
         if ($dari != '' && $sampai != '') {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
         }
+        if ($this->request->kategori_barang_id) {
+            $data->where('transaksi_gadai.kategori_barang_id', $this->request->kategori_barang_id);
+        }
         $sql = $data->get();
         return DataTables::of($sql)
             ->editColumn('action', function ($p) {
                 return '<a to="' . route('laporan.detaildata', $p->id_transaksi) . '" class="btn btn-warning btn-xs" id="edit"><i class="
-                flaticon-user-4"></i>detail </a> '; 
-            }, true) 
+                flaticon-user-4"></i>detail </a> ';
+            }, true)
             ->editColumn('status_gadai', function ($p) {
                 return Properti_app::cekJatuhTempo($p->tanggal_transaksi_gadai, $p->batas_hari);
             }, true)

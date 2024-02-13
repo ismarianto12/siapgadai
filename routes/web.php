@@ -58,8 +58,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
 
         Route::prefix('transaksi')->name('transaksi.')->group(function () {
             Route::get('cetak_barcode/{id}', [TransaksiController::class, 'cetakBarcode'])->name('cetakBarcode');
-
             Route::get('cetak_kwitansi/{id}', [TransaksiController::class, 'cetak_kwitansi'])->name('cetak_kwitansi');
+            Route::post('get_barang', [TransaksiController::class, 'get_barang'])->name('get_barang');
             Route::get('syarat_ketentuan/{id}', [TransaksiController::class, 'syarat_ketentuan'])->name('syarat_ketentuan');
         });
     });
@@ -67,9 +67,13 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::get('pegadaian', [LaporanPegadaianController::class, 'index'])->name('pegadaian');
         Route::get('detaildata/{id}', [LaporanPegadaianController::class, 'show'])->name('detaildata');
         Route::get('pelunasan', [PelunasanController::class, 'laporan_pelunasan'])->name('pendapatan');
-
         Route::get('pendapatan', [LaporanPendapatanController::class, 'index'])->name('pendapatan');
 
+    });
+    Route::prefix('proses')->name('proses.')->group(function () {
+        Route::get('pegadaian', [LaporanPegadaianController::class, 'proses_pegadaian'])->name('pendapatan');
+        Route::get('pelunasan', [PelunasanController::class, 'proses_pelunasan'])->name('pendapatan');
+        // Route::get('pendapatan', [LaporanPendapatanController::class, 'proses_pendapatan'])->name('pendapatan');
     });
     // api  route datatable
     Route::prefix('api')->name('api.')->group(function () {
@@ -101,7 +105,7 @@ Route::group(['middleware' => ['auth', 'api']], function () {
 
     Route::prefix('routing')->name('routing.')->group(function () {
         Route::get('export_db', [HomeController::class, 'export_db'])->name('export_db');
-        Route::post('api_table', [HomeController::class, 'getFileList'])->name('api_table'); 
+        Route::post('api_table', [HomeController::class, 'getFileList'])->name('api_table');
         Route::post('actioexport_db', [HomeController::class, 'actioexport_db'])->name('actioexport_db');
 
     });
