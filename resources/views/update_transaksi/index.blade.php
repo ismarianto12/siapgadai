@@ -570,7 +570,7 @@
                                     });
 
 
-                                    Swal.fire('success', 'Transaksi berhasil', 'success');
+                                    Swal.fire('success', 'Data Transaksi berhasil di ubah', 'success');
 
                                     $.notify({
                                         icon: 'flaticon-alarm-1',
