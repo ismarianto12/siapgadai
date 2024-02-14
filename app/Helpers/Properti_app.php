@@ -550,6 +550,11 @@ class Properti_app
         $invoiceNumber = 'INVOICE-' . $lastPurchaseId . $randomDigits;
         return $invoiceNumber;
     }
+    public static function notFound()
+    {
+        $title = "halaman tidak di temukan";
+        return view('layouts.notfound', compact('title'));
+    }
 
     public static function removeTag($inputString)
     {
@@ -580,9 +585,7 @@ class Properti_app
 
         $akses = Auth::user()->tmlevel_id;
         if ($akses === '1') {
-            return response()->json([
-                'akses menu ini hanya bisa diakases oleh operator / kasir.',
-            ]);
+            return Properti_app::notFound();
             die;
         } else {
             return true;

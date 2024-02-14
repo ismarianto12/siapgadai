@@ -40,18 +40,14 @@ class TransaksiController extends Controller
     }
     public function index()
     {
-
         $akses = Auth::user()->tmlevel_id;
         if ($akses === '1') {
-            return response()->json([
-                'akses menu ini hanya bisa diakases oleh operator / kasir.',
-            ]);
+            return Properti_app::notFound();
         } else {
             $title = 'Transaksi';
             return view($this->view . "index", compact("title"));
         }
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -367,5 +363,16 @@ class TransaksiController extends Controller
         } catch (\Throwable $th) { 
             return response()->json([]);
         }
+    }
+
+    //
+    function update_transaksi(){
+        $title = 'Edit Transaksi';
+        $data = [];
+        return view("update_transaksi.index", compact("title", "data"));
+    }
+
+    function action_update_transaksi(){
+
     }
 }

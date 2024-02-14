@@ -61,6 +61,10 @@ Route::group(['middleware' => ['auth', 'api']], function () {
             Route::get('cetak_kwitansi/{id}', [TransaksiController::class, 'cetak_kwitansi'])->name('cetak_kwitansi');
             Route::post('get_barang', [TransaksiController::class, 'get_barang'])->name('get_barang');
             Route::get('syarat_ketentuan/{id}', [TransaksiController::class, 'syarat_ketentuan'])->name('syarat_ketentuan');
+// action update
+            Route::get('update_transaksi', [TransaksiController::class, 'update_transaksi'])->name('update_transaksi');
+            Route::post('action_update_transaksi', [TransaksiController::class, 'action_update_transaksi'])->name('action_update_transaksi');
+
         });
     });
     Route::prefix('laporan')->name('laporan.')->group(function () {

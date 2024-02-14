@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KWITANSI GADAI</title>
+    <title>SURAT BUKTI GADAI (SBG)</title>
     <style>
         .custom-hr {
             border: none;
@@ -58,7 +58,7 @@
                     <p>&nbsp;<strong>{{ Properti_app::getCabang($data->cabang_id, 'nama_cabang') }}&nbsp;</strong></p>
                 </td>
                 <td colspan="3">
-                    <p style="text-align:center"><strong>KWITANSI PELUNASAN&nbsp;</strong></p>
+                    <p style="text-align:center"><strong>SURAT BUKTI GADAI (SBG)&nbsp;</strong></p>
                 </td>
             </tr>
             <tr>
@@ -103,10 +103,7 @@
             </tr>
         </tbody>
     </table>
-
     <img src="{{ asset('assets/img/horizontal.png') }}" style="width: 100%;height:auto" />
-
-
     <table cellpadding="0" cellspacing="0" class="content_table">
         <tbody>
             <tr>
