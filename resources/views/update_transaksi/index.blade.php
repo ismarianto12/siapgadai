@@ -121,14 +121,14 @@
                             <div class="form-group row">
                                 <label for="no_kwitansi" class="col-md-4 text-left">No. Kwitansi:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="no_kwitansi" name="no_kwitansi" class="form-control" />
+                                    <input type="text" id="no_kwitansi" name="no_kwitansi" class="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="no_faktur" class="col-md-4 text-left">No. Faktur:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="no_faktur" name="no_faktur" class="form-control" />
+                                    <input type="text" id="no_faktur" name="no_faktur" class="form-control" readonly/>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                             <div class="form-group row">
                                 <label for="no_anggota" class="col-md-4 text-left">No. Anggota:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control" />
+                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control" readonly/>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -157,13 +157,13 @@
                                 <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Tanggal Jatuh Tempo:</label>
                                 <div class="col-md-8">
                                     <input type="date" id="tgl_jatuh_tempo" name="tgl_jatuh_tempo"
-                                        class="datepicker form-control" required />
+                                        class="datepicker form-control" required readonly/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="tgl_jatuh_tempo" class="col-md-4 text-left">Referal Code:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="referal_code" name="referal_code" class="form-control" />
+                                    <input type="text" id="referal_code" name="referal_code" class="form-control" readonly/>
                                 </div>
                             </div>
                         </div>
@@ -193,14 +193,14 @@
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Type Barang</label>
                             <div class="col-md-8">
-                                <input type="text" name="type" class="form-control" />
+                                <input type="text" name="type" class="form-control" readonly/>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Nama Barang</label>
                             <div class="col-md-8">
-                                <input type="text" name="merek_barang" class="form-control" />
+                                <input type="text" name="merek_barang" class="form-control" readonly/>
                             </div>
                         </div>
 
@@ -218,7 +218,7 @@
                                 <div class="input-group">
 
                                     <input type="text" name="persentase_pinjaman" id="persentase_pinjaman"
-                                        class="form-control" />
+                                        class="form-control" readonly/>
                                     <span class="input-group-addon">%</span>
 
                                 </div>
@@ -234,13 +234,13 @@
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Tahun Barang</label>
                             <div class="col-md-8">
-                                <input type="number" name="keluaran_tahun" class="form-control" />
+                                <input type="number" name="keluaran_tahun" class="form-control" readonly/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 text-left">No. Imei</label>
                             <div class="col-md-8">
-                                <input type="text" name="no_imei" class="form-control" />
+                                <input type="text" name="no_imei" class="form-control" readonly/>
                             </div>
                         </div>
 
@@ -279,14 +279,14 @@
                             <div class="form-group row">
                                 <label for="nama_nasabah" class="col-md-4 text-left">Nama Nasabah:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control" />
+                                    <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control" readonly/>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="nik" class="col-md-4 text-left">NIK:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="nik" name="nik" class="form-control" />
+                                    <input type="text" id="nik" name="nik" class="form-control" readonly/>
                                 </div>
                             </div>
 
@@ -313,7 +313,7 @@
                             <div class="form-group row">
                                 <label for="rt_rw" class="col-md-3 text-left">Rt/Rw:</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="rt_rw" name="rt_rw" class="form-control" />
+                                    <input type="text" id="rt_rw" name="rt_rw" class="form-control" readonly/>
                                 </div>
                             </div>
 
@@ -327,14 +327,14 @@
                             <div class="form-group row">
                                 <label for="kecamatan" class="col-md-3 text-left">Kecamatan:</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="kecamatan" name="kecamatan" class="form-control" />
+                                    <input type="text" id="kecamatan" name="kecamatan" class="form-control" readonly/>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="kecamatan" class="col-md-3 text-left">No Handphone:</label>
                                 <div class="col-md-9">
-                                    <input type="number" id="no_hp" name="no_hp" class="form-control" />
+                                    <input type="number" id="no_hp" name="no_hp" class="form-control" readonly/>
                                 </div>
                             </div>
 
@@ -342,7 +342,7 @@
                                 <label for="kabupaten_kota" class="col-md-3 text-left">Kabupaten/Kota:</label>
                                 <div class="col-md-9">
                                     <input type="text" id="kabupaten_kota" name="kabupaten_kota"
-                                        class="form-control" />
+                                        class="form-control" readonly/>
                                 </div>
                             </div>
                             <div class="form-group row">
