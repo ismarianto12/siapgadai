@@ -128,7 +128,7 @@
                             <div class="form-group row">
                                 <label for="no_faktur" class="col-md-4 text-left">No. Faktur:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="no_faktur" name="no_faktur" class="form-control" readonly />
+                                    <input type="text" id="no_faktur" name="no_faktur" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                             <div class="form-group row">
                                 <label for="no_anggota" class="col-md-4 text-left">No. Anggota:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control" readonly />
+                                    <input type="text" id="no_anggota" name="no_anggota" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -193,14 +193,14 @@
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Type Barang</label>
                             <div class="col-md-8">
-                                <input type="text" name="type" class="form-control" readonly />
+                                <input type="text" name="type" class="form-control" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Nama Barang</label>
                             <div class="col-md-8">
-                                <input type="text" name="merek_barang" class="form-control" readonly />
+                                <input type="text" name="merek_barang" class="form-control" />
                             </div>
                         </div>
 
@@ -209,7 +209,7 @@
                             <label class="col-md-4 text-left">Taksiran Harga</label>
                             <div class="col-md-8">
                                 <input type="double" name="taksiran_harga" id="taksiran_harga"
-                                    class="number_format form-control" readonly />
+                                    class="number_format form-control" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -218,7 +218,7 @@
                                 <div class="input-group">
 
                                     <input type="text" name="persentase_pinjaman" id="persentase_pinjaman"
-                                        class="form-control" readonly />
+                                        class="form-control" />
                                     <span class="input-group-addon">%</span>
 
                                 </div>
@@ -234,13 +234,13 @@
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Tahun Barang</label>
                             <div class="col-md-8">
-                                <input type="number" name="keluaran_tahun" class="form-control" readonly />
+                                <input type="number" name="keluaran_tahun" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 text-left">No. Imei</label>
                             <div class="col-md-8">
-                                <input type="text" name="no_imei" class="form-control" readonly />
+                                <input type="text" name="no_imei" class="form-control" />
                             </div>
                         </div>
 
@@ -259,7 +259,7 @@
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Administrasi</label>
                             <div class="col-md-8">
-                                <input type="text" name="administrasi" class="number_format form-control" readonly />
+                                <input type="text" name="administrasi" class="number_format form-control" />
                             </div>
                         </div>
                     </div>
@@ -279,15 +279,14 @@
                             <div class="form-group row">
                                 <label for="nama_nasabah" class="col-md-4 text-left">Nama Nasabah:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control"
-                                        readonly />
+                                    <input type="text" id="nama_nasabah" name="nama_nasabah" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="nik" class="col-md-4 text-left">NIK:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="nik" name="nik" class="form-control" readonly />
+                                    <input type="text" id="nik" name="nik" class="form-control" />
                                 </div>
                             </div>
 
@@ -314,7 +313,7 @@
                             <div class="form-group row">
                                 <label for="rt_rw" class="col-md-3 text-left">Rt/Rw:</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="rt_rw" name="rt_rw" class="form-control" readonly />
+                                    <input type="text" id="rt_rw" name="rt_rw" class="form-control" />
                                 </div>
                             </div>
 
@@ -328,23 +327,22 @@
                             <div class="form-group row">
                                 <label for="kecamatan" class="col-md-3 text-left">Kecamatan:</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="kecamatan" name="kecamatan" class="form-control"
-                                        readonly />
+                                    <input type="text" id="kecamatan" name="kecamatan" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="kecamatan" class="col-md-3 text-left">No Handphone:</label>
                                 <div class="col-md-9">
-                                    <input type="number" id="no_hp" name="no_hp" class="form-control" readonly />
+                                    <input type="number" id="no_hp" name="no_hp" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="kabupaten_kota" class="col-md-3 text-left">Kabupaten/Kota:</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="kabupaten_kota" name="kabupaten_kota" class="form-control"
-                                        readonly />
+                                    <input type="text" id="kabupaten_kota" name="kabupaten_kota"
+                                        class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -528,6 +526,13 @@
                 });
                 $('.simpan').on('submit', function(e) {
                     e.preventDefault();
+                    Swal.fire({
+                        title: 'Proses Edit data ...',
+                        allowOutsideClick: false,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                    });
+                    Swal.showLoading();
 
                     Swal.fire({
                         title: "Sebelum Submit ",
@@ -547,35 +552,19 @@
                                 showConfirmButton: false,
                             });
                             Swal.showLoading();
-
                             $.ajax({
-                                url: "{{ route('api.action_pelunasan') }}",
+                                url: "{{ route('app.transaksi.action_update_transaksi') }}",
                                 method: "POST",
                                 data: datastring,
                                 cache: false,
                                 contentType: false,
                                 processData: false,
-                                beforeSend: function() {
-                                    $.notify({
-                                        icon: 'flaticon-loading-1',
-                                        title: 'Processing',
-                                        message: 'Sedang Memproses Penyimpanan Data .....',
-                                    }, {
-                                        type: 'secondary',
-                                        placement: {
-                                            from: "center",
-                                            align: "right"
-                                        },
-                                        time: 1000,
-                                        z_index: 2000
-                                    });
 
-                                },
                                 success: function(data) {
                                     var id_transaction = data.idtransaksi;
                                     $.pjax({
                                         container: '#pjax-container',
-                                        url: '{{ Url('app/pelunasan_berhasil') }}/' +
+                                        url: '{{ Url('proses/pegadaian') }}?ref=' +
                                             id_transaction,
                                         push: false
                                     });
@@ -605,25 +594,7 @@
                                     }, 10)
                                     err = '';
                                     respon = data.responseJSON;
-                                    $.each(respon.errors, function(index, value) {
-                                        err += "<li>" + value + "</li>";
-                                    });
-
-                                    Swal.fire('error', err, 'error data');
-                                    $.notify({
-                                        icon: 'flaticon-alarm-1',
-                                        title: 'Opp Seperti nya lupa inputan berikut :',
-                                        message: err,
-                                    }, {
-                                        type: 'secondary',
-                                        placement: {
-                                            from: "top",
-                                            align: "right"
-                                        },
-                                        time: 3000,
-                                        z_index: 2000
-                                    });
-
+                                    Swal.fire('error', respon, 'error data');
                                 }
                             })
                         }
@@ -681,8 +652,7 @@
 
                 function getall(data) {
                     $('input[name="id_transaksi"]').val(data?.id);
-                    $('input[name="created_at"]').val(data?.created_at);
-
+                    $('input[name="created_at"]').val(data?.tanggal_transaksi);
                     $('input[name="no_kwitansi"]').val(data?.no_kwitansi);
                     $('input[name="no_faktur"]').val(data?.no_faktur);
                     $('input[name="no_anggota"]').val(data?.no_anggota);

@@ -156,7 +156,7 @@ class TransaksiController extends Controller
             $CheckNasabah = DB::table('nasabah')->where('nik', $this->request->nik)->get();
             if ($CheckNasabah->count() > 0) {
                 $first_trasaksi = [
-                    'kategori_barang_id'=> $this->request->kategori_barang_id,
+                    'kategori_barang_id' => $this->request->kategori_barang_id,
                     'imei' => $this->request->imei,
                     'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
                     'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
@@ -210,7 +210,7 @@ class TransaksiController extends Controller
                 ];
                 $lastInsertedId = \DB::table('nasabah')->insertGetId($nasabah);
                 $trasaksi = [
-                    'kategori_barang_id'=> $this->request->kategori_barang_id,
+                    'kategori_barang_id' => $this->request->kategori_barang_id,
                     'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
                     'imei' => $this->request->imei,
                     'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
@@ -276,8 +276,6 @@ class TransaksiController extends Controller
 
     public function cetak_kwitansi($id)
     {
-
-        // require_once __DIR__ . '/vendor/autoload.php'; // Adjust the path to autoload.php
 
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
         $backgroundImage = asset('./assets/img/logo.png'); // replace with the actual path to your image
@@ -360,19 +358,162 @@ class TransaksiController extends Controller
             $id = $this->request->id;
             $data = \DB::table('barang')->where('kategori_barang_id', $id)->get();
             return response()->json($data);
-        } catch (\Throwable $th) { 
+        } catch (\Throwable $th) {
             return response()->json([]);
         }
     }
-
-    //
-    function update_transaksi(){
+    public function update_transaksi()
+    {
         $title = 'Edit Transaksi';
         $data = [];
         return view("update_transaksi.index", compact("title", "data"));
     }
+    public function action_update_transaksi()
+    {
+        $idTransaksi = $this->request->id_transaksi;
+        $dtransaksi = DB::table('transaksi_gadai')->where('id', $idTransaksi)->first();
+        $dnasabah = DB::table('nasabah')->where('id', $dtransaksi->id_nasabah)->first();
+        // get id transaction
+        $checkNokwitansi = \DB::table('transaksi_gadai')->where('no_kwitansi', $dtransaksi->no_kwitansi)->get();
+        // if ($checkNokwitansi->count() > 0) {
+        //     return response()->json([
+        //         'messages' => 'Gagal nomor anggota dan nomor kwitansi sudah ada sebelumnya silahkan coba yang lain.',
+        //     ], 400);
+        //     die();
+        // }
+        $CheckNasabah = DB::table('nasabah')->where('nik', $dnasabah->nik)->get();
+        if ($CheckNasabah->count() < 0) {
+            $checkAnggota = \DB::table('nasabah')->where('no_anggota', $dtransaksi->no_anggota)->get();
+            if ($checkAnggota->count() > 0) {
+                return response()->json([
+                    'messages' => 'Gagal nomor anggota sudah ada sebelumnya silahkan coba yang lain.',
+                ], 400);
+                die();
+            }
+        }
+        DB::beginTransaction();
+        $id = Auth::user()->id;
+        $tgl = Carbon::now()->format('y-m-d');
+        $ext = $this->request->file('foto_barang');
+        if ($ext) {
+            $setname = rand(122, 333) . '-' . $tgl . '.' . $ext->getClientOriginalExtension();
+            $ext->move('./file_gadai/', $setname);
+        } else {
+            $setname = "";
+        }
+        $foto_ktp = $this->request->file('foto_ktp');
+        if ($foto_ktp) {
+            $foto_ktpname = rand(122, 333) . '-' . $tgl . '.' . $foto_ktp->getClientOriginalExtension();
+            $foto_ktp->move('./file_gadai/', $foto_ktpname);
+        } else {
+            $foto_ktpname = '';
+        }
+        try {
+            $CheckNasabah = DB::table('nasabah')->where('nik', $dnasabah->nik)->get();
+            if ($CheckNasabah->count() > 0) {
+                $first_trasaksi = [
+                    // 'kategori_barang_id' => $this->request->kategori_barang_id,
+                    // 'imei' => $this->request->imei,
+                    // 'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
+                    // 'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
+                    // 'menyetujui_staff_sgi' => $this->request->menyetujui_staff_sgi,
+                    // 'durasi_pelunasan' => $this->request->durasi_pelunasan,
+                    // 'perpajangan' => $this->request->perpajangan,
+                    // 'keluaran_tahun' => $this->request->keluaran_tahun,
+                    // 'administrasi' => Properti_app::removeTag($this->request->administrasi),
+                    // 'no_imei' => $this->request->no_imei,
+                    // 'kelengkapan' => $this->request->kelengkapan,
+                    // 'foto_barang' => $setname,
+                    // 'updated_at' => $this->request->updated_at,
+                    // 'id_barang' => $this->request->id_barang,
+                    // 'no_faktur' => $this->request->no_faktur,
+                    // 'user_id' => $this->request->user_id,
+                    // 'no_anggota' => $this->request->no_anggota,
+                    // 'pelunasan' => $this->request->pelunasan,
+                    // 'taksiran_harga' => Properti_app::removeTag($this->request->taksiran_harga),
+                    // 'id_nasabah' => $CheckNasabah->first()->id,
+                    // 'jasa_titip' => $this->request->jasa_titip,
+                    // 'persentase_pinjaman' => $this->request->persentase_pinjaman,
+                    // 'jumlah_pinjaman' => Properti_app::removeTag($this->request->jumlah_diambil),
+                    // 'total' => $this->request->total,
+                    // 'merek_barang' => $this->request->merek_barang,
+                    // 'cabang_id' => Auth::user()->cabang_id,
+                    // 'maks_pinjaman' => Properti_app::removeTag($this->request->inputmaksimal_pinjam),
+                    // 'no_kwitansi' => $this->request->no_kwitansi,
+                    // 'tanggal_jatuh_tempo' => $this->request->tgl_jatuh_tempo,
+                    // 'referal_code' => $this->request->referal_code,
+                    // 'type' => $this->request->type,
+                    // 'tujuan_gadai' => $this->request->tujuan_gadai,
+                    'created_at' => $this->request->created_at ? $this->request->created_at : date('Y-m-d H:i:s'),
+                    'user_id' => Auth::user()->id,
+                ];
+                $idtransaksi = \DB::table('transaksi_gadai')->where('id', $dtransaksi->id)->update($first_trasaksi);
+            } else {
+                $nasabah = [
+                    'cabang_id' => Auth::user()->cabang_id,
+                    'no_anggota' => $this->request->no_anggota,
+                    'foto_ktp' => $foto_ktpname,
+                    'kelurahan' => $this->request->kelurahan,
+                    'tttl' => $this->request->tttl,
+                    'nik' => $this->request->nik,
+                    'alamat' => $this->request->alamat,
+                    'jk' => $this->request->jenis_kelamin,
+                    'rt_rw' => $this->request->rt_rw,
+                    'kab_kota' => $this->request->kabupaten_kota,
+                    'nama' => $this->request->nama_nasabah,
+                    'kecamatan' => $this->request->kecamatan,
+                    'no_hp' => $this->request->no_hp,
+                ];
+                $lastInsertedId = \DB::table('nasabah')->where('id', $dnasabah->id)->update($nasabah);
+                $transaksi = [
+                    // 'kategori_barang_id' => $this->request->kategori_barang_id,
+                    // 'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
+                    // 'imei' => $this->request->imei,
+                    // 'menyetujui_nasabah' => $this->request->menyetujui_nasabah,
+                    // 'menyetujui_staff_sgi' => $this->request->menyetujui_staff_sgi,
+                    // 'durasi_pelunasan' => $this->request->durasi_pelunasan,
+                    // 'perpajangan' => $this->request->perpajangan,
+                    // 'keluaran_tahun' => $this->request->keluaran_tahun,
+                    // 'administrasi' => Properti_app::removeTag($this->request->administrasi),
+                    // 'no_imei' => $this->request->no_imei,
+                    // 'kelengkapan' => $this->request->kelengkapan,
+                    // 'foto_barang' => $setname,
+                    // 'updated_at' => $this->request->updated_at,
+                    // 'id_barang' => $this->request->id_barang,
+                    // 'no_faktur' => $this->request->no_faktur,
+                    // 'user_id' => $this->request->user_id,
+                    // 'no_anggota' => $this->request->no_anggota,
+                    // 'pelunasan' => $this->request->pelunasan,
+                    // 'taksiran_harga' => Properti_app::removeTag($this->request->taksiran_harga),
+                    // 'id_nasabah' => $lastInsertedId,
+                    // 'jasa_titip' => $this->request->jasa_titip,
+                    // 'persentase_pinjaman' => $this->request->persentase_pinjaman,
+                    // 'jumlah_pinjaman' => Properti_app::removeTag($this->request->jumlah_diambil),
+                    // 'total' => $this->request->total,
+                    // 'merek_barang' => $this->request->merek_barang,
+                    // 'cabang_id' => Auth::user()->cabang_id,
+                    // 'maks_pinjaman' => Properti_app::removeTag($this->request->inputmaksimal_pinjam),
+                    // //'no_kwitansi' => $this->request->no_kwitansi,
+                    // 'tanggal_jatuh_tempo' => $this->request->tgl_jatuh_tempo,
+                    // 'referal_code' => $this->request->referal_code,
+                    // 'type' => $this->request->type,
+                    // 'tujuan_gadai' => $this->request->tujuan_gadai,
+                    'created_at' => $this->request->created_at ? $this->request->created_at : date('Y-m-d H:i:s'),
+                    'user_id' => Auth::user()->id,
+                ];
+                \DB::table('transaksi_gadai')->where('id', $dtransaksi)->update($transaksi);
+            }
+            \DB::commit();
+            return response()->json([
+                'messages' => 'data berhasil ubah',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'messages' => $e->getMessage(),
+            ], 500);
 
-    function action_update_transaksi(){
+        }
 
     }
 }

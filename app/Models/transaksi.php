@@ -52,7 +52,7 @@ class transaksi extends Model
             } else {
                 $sql = $result->get();
             }
-            
+
             return $sql ?: [];
         }
         return;
@@ -162,7 +162,6 @@ class transaksi extends Model
             'transaksi_gadai.kelengkapan',
             'transaksi_gadai.maks_pinjaman',
             'transaksi_gadai.persentase_pinjaman',
-            'transaksi_gadai.created_at',
             'transaksi_gadai.menyetujui_staff_sgi',
             'transaksi_gadai.no_anggota',
             'transaksi_gadai.administrasi',
@@ -171,10 +170,11 @@ class transaksi extends Model
             'transaksi_gadai.cabang_id',
             'transaksi_gadai.merek_barang',
             'transaksi_gadai.type',
+            DB::raw("DATE_FORMAT(transaksi_gadai.created_at, '%Y-%m-%d') as tanggal_transaksi"),
 
             'barang.keluaran',
             'barang.merk',
-            'barang.created_at',
+            // 'barang.created_at',
             'barang.kode',
             'barang.kategori_barang_id',
             // 'barang.id',
@@ -198,7 +198,7 @@ class transaksi extends Model
             'perhitungan_biaya.keterangan',
             'perhitungan_biaya.persentase',
             'perhitungan_biaya.user_id',
-            'perhitungan_biaya.created_at',
+            // 'perhitungan_biaya.created_at',
             'perhitungan_biaya.updated_at',
             'perhitungan_biaya.status_transaksi',
             'perhitungan_biaya.status_bayar',

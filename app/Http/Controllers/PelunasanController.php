@@ -112,8 +112,7 @@ class PelunasanController extends Controller
             'transaksi_gadai.total',
             'transaksi_gadai.menyetujui_nasabah',
             'transaksi_gadai.maks_pinjaman',
-
-            'transaksi_gadai.created_at',
+            DB::raw("DATE_FORMAT(transaksi_gadai.created_at, '%Y-%m-%d') as created_at"),
             'transaksi_gadai.menyetujui_staff_sgi',
             'transaksi_gadai.no_anggota',
             'transaksi_gadai.administrasi',
@@ -126,7 +125,6 @@ class PelunasanController extends Controller
             'barang.type',
             'barang.keluaran',
             'barang.merk',
-            'barang.created_at',
             'barang.kode',
             'barang.kategori_barang_id',
             'barang.id',
