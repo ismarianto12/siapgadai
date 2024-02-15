@@ -740,6 +740,7 @@
     <script src="{{ asset('assets') }}/js/jquery.pjax.js"></script>
     <script src="{{ asset('assets') }}/js/plugin/pace/pace.js"></script>
 
+    @yield('script')
 
     <script>
         $(document).pjax('a', '#pjax-container');

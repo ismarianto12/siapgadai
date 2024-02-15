@@ -714,11 +714,11 @@
                             text: "Pastikan Semua data sudah benar",
                             icon: "warning",
                             showCancelButton: true,
-                            showDenyButton: true, // Menampilkan tombol tolak (deny)
+                            showDenyButton: true,  
                             confirmButtonColor: "#3085d6",
                             cancelButtonColor: "#d33",
                             confirmButtonText: "Approve",
-                            denyButtonText: "Datang", // Teks pada tombol tolak
+                            denyButtonText: "Datang",  
                             cancelButtonText: "Cancel / Periksa Inputan", // Teks pada tombol batal
                         }).then((result) => {
                             if (result.isConfirmed) {

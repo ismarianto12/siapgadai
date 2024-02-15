@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::resource('user', UserController::class);
 
         Route::resource('identitas', IdentitasController::class);
-        Route::post('save_identitas', [HomeController::class, 'save_identitas'])->name('save_identitas');
+        Route::post('save_identitas', [IdentitasController::class, 'update'])->name('save_identitas');
         Route::get('download_report', [GuruController::class, 'xls_report'])->name('download_report');
     });
 
