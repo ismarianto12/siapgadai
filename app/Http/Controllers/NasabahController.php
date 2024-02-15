@@ -23,7 +23,8 @@ class NasabahController extends Controller
     }
     public function index()
     {
-        //
+        $title = "Nasabah";
+        return view($this->view . 'index', compact('title'));
     }
 
     /**
@@ -53,9 +54,12 @@ class NasabahController extends Controller
      * @param  \App\Models\nasabah  $nasabah
      * @return \Illuminate\Http\Response
      */
-    public function show(nasabah $nasabah)
+    public function show($id)
     {
-        //
+        $title = 'detail nasabah';
+        $id = $id;
+        $data = DB::table('nasabah')->where('id', $id)->first();
+        return view($this->view . 'show', compact('data', 'title', 'id'));
     }
 
     /**
@@ -71,6 +75,41 @@ class NasabahController extends Controller
 
     public function update(Request $request, $id)
     {
+    }
+    public function master_api()
+    {
+
+        $data = DB::table('nasabah')
+            ->select(
+                'nasabah.id',
+                'nasabah.no_anggota',
+                'nasabah.no_hp',
+                'nasabah.nik',
+                'nasabah.nama',
+                'nasabah.foto',
+                'nasabah.jk',
+                'nasabah.tttl',
+                'nasabah.alamat',
+                'nasabah.rt_rw',
+                'nasabah.kelurahan',
+                'nasabah.kecamatan',
+                'nasabah.kab_kota',
+                'nasabah.foto_ktp'
+            );
+
+        $sql = $data->where('nasabah.cabang_id',
+            Auth::user()->cabang_id
+        )->get();
+        return DataTables::of($sql)
+            ->editColumn('id', function ($p) {
+                return "<input type='checkbox' name='cbox[]' value='" . $p->id . "' />";
+            })
+            ->editColumn('action', function ($p) {
+                return '<a href="" class="btn btn-warning btn-xs" id="edit" data-nasabah_id="' . $p->id . '"><i class="fa fa-eye"></i>Detail </a>';
+            }, true)
+            ->addIndexColumn()
+            ->rawColumns(['usercreate', 'action', 'id'])
+            ->toJson();
     }
     public function api()
     {

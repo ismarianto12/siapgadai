@@ -102,6 +102,7 @@ class Menu_app
                     $menu .= self::set_menu(Url('master/barang'), 'Barang');
                     $menu .= self::set_menu(Url('master/kategori'), 'Ketegori Barang');
                     $menu .= self::set_menu(Url('master/cabang'), 'Cabang');
+                    $menu .= self::set_menu(Url('master/nasabah'), 'Nasabah');
                     $menu .= '
                       </ul>
                     </div>

@@ -36,6 +36,9 @@ Route::group(['middleware' => ['auth', 'api']], function () {
         Route::resource('pegawai', PegawaiController::class);
         Route::resource('user', UserController::class);
 
+        Route::get('nasabah', [NasabahController::class, 'index'])->name('nasabah');
+        Route::get('nasabah_detail/{id}', [NasabahController::class, 'show'])->name('nasabah_detail');
+
         Route::resource('identitas', IdentitasController::class);
         Route::post('save_identitas', [IdentitasController::class, 'update'])->name('save_identitas');
         Route::get('download_report', [GuruController::class, 'xls_report'])->name('download_report');
@@ -89,6 +92,8 @@ Route::group(['middleware' => ['auth', 'api']], function () {
 
         Route::post('kategori', [KategoryBarangController::class, 'api'])->name('kategori');
         Route::post('nasabah', [NasabahController::class, 'api'])->name('nasabah');
+        Route::post('nasabah_api', [NasabahController::class, 'master_api'])->name('nasabah_api');
+ 
         // api
         Route::post('laporan_pegadaian', [LaporanPegadaianController::class, 'api'])->name('laporan_pegadaian');
         Route::post('pendapatan', [LaporanPendapatanController::class, 'api'])->name('pendapatan');
