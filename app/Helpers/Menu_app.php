@@ -145,7 +145,7 @@ class Menu_app
                     <ul class="nav nav-collapse">';
                     $menu .= self::set_menu(Url('master/user'), 'User');
                     $menu .= self::set_menu(Url('routing/export_db'), 'Export DB Aplikasi');
-                    $menu .= '<li class="active show"><a href="http://localhost/siapgadai/public/master/identitas" onclick="location.href=\'' . Url('master/identitas') . '\';"><span class="sub-item"></span>Identitas Aplikasi</a></li>'; //self::set_menu(Url('master/identitas'), 'Identitas Aplikasi');
+                    $menu .= '<li class="active show"><a onclick="location.href=\'' . Url('master/identitas') . '\';"><span class="sub-item"></span>Identitas Aplikasi</a></li>'; //self::set_menu(Url('master/identitas'), 'Identitas Aplikasi');
                     $menu .= '
                   </ul>
                 </div>
