@@ -109,7 +109,10 @@ class BarangController extends Controller
                 'barang.updated_at',
                 'barang.user_id',
                 'users.username',
-                'users.name as name_user'
+                'users.name as name_user',
+                'kategori_barang.kode_kategori',
+                'kategori_barang.nama_kategori'
+
             )
             ->join('kategori_barang', 'barang.kategori_barang_id', '=', 'kategori_barang.id', 'left')
             ->join('users', 'barang.user_id', '=', 'users.id', 'left')

@@ -55,6 +55,7 @@
                             <th></th>
                             <th>Kode</th>
                             <th>Nama Barang</th>
+                            <th>Kategori Barang</th>
                             <th>Merk</th>
                             <th>Tipe</th>
                             <th>Keluaran</th>
@@ -158,6 +159,10 @@
                 {
                     data: 'nama_barang',
                     name: 'nama_barang',
+                },
+                {
+                    data: 'nama_kategori',
+                    name: 'nama_kategori',
                 },
                 {
                     data: 'merk',
