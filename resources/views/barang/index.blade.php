@@ -39,31 +39,38 @@
                 <form id="exampleValidation" method="POST" class="simpan">
                     <div class="card-body">
                         <div class="form-group row">
+                            <div class="col-md-6">
 
-                            {{-- @php
-                                    echo Properti_app::comboproyek();
-                                @endphp --}}
+                                <label for="datakelas" class="col-form-label">Kategori Barang:</label>
+
+                                <select class="form-control" name="KategoriGadai" id="KategoriGadai">
+                                    <option value="">--Pilih Jenis Barang --</option>
+                                    @foreach (Properti_app::KategoriGadai() as $list)
+                                        <option value="{{ $list->id }}">
+                                            {{ $list->kode_kategori . '-' . $list->nama_kategori }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-
                     </div>
-            </div>
-            </form>
-            <div class="table-responsive">
-                <table id="datatable" class="display table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Kode</th>
-                            <th>Nama Barang</th>
-                            <th>Kategori Barang</th>
-                            <th>Merk</th>
-                            <th>Tipe</th>
-                            <th>Keluaran</th>
-                            <th>Di input Oleh</th>
-                            <th style="width: 10%">Action</th>
-                        </tr>
-                    </thead>
-                    {{-- <tfoot>
+                </form>
+                <div class="table-responsive">
+                    <table id="datatable" class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Kode</th>
+                                <th>Nama Barang</th>
+                                <th>Kategori Barang</th>
+                                <th>Merk</th>
+                                <th>Tipe</th>
+                                <th>Keluaran</th>
+                                <th>Di input Oleh</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        {{-- <tfoot>
                             <tr>
                                 <th></th>
                                 <th>Nama Proyek</th>
@@ -78,12 +85,12 @@
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </tfoot> --}}
-                    <tbody>
-                    </tbody>
-                </table>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
@@ -108,7 +115,9 @@
                 $('#formmodal').modal('show');
                 id = $(this).data('id');
                 addUrl = '{{ route('master.barang.edit', ':id') }}'.replace(':id', id);
-                $('#form_content').html('<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(addUrl);
+                $('#form_content').html(
+                    '<center><h3>Harap Bersabar , Sedang Meload Data ... ...</h3></center>').load(
+                    addUrl);
 
             })
         });
@@ -143,6 +152,12 @@
                 url: "{{ route('api.barang') }}",
                 method: 'POST',
                 _token: "{{ csrf_token() }}",
+                data: function(data) {
+                    var kategori = $(
+                        '#KategoriGadai option:selected'
+                    ).val();
+                    data.kategori_id = kategori;
+                }
             },
             columns: [{
                     data: 'id',
@@ -187,7 +202,7 @@
             ]
 
         });
-        $('select[name="tmproyek_id"]').on('change', function() {
+        $('select[name="KategoriGadai"]').on('change', function() {
             $('#datatable').DataTable().ajax.reload();
         });
         @include('layouts.tablechecked');

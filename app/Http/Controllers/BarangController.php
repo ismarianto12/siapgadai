@@ -115,10 +115,12 @@ class BarangController extends Controller
 
             )
             ->join('kategori_barang', 'barang.kategori_barang_id', '=', 'kategori_barang.id', 'left')
-            ->join('users', 'barang.user_id', '=', 'users.id', 'left')
-
-            ->get();
-        return DataTables::of($data)
+            ->join('users', 'barang.user_id', '=', 'users.id', 'left');
+        if ($this->request->kategori_id) {
+            $data->where('kategori_barang.id', $this->request->kategori_id);
+        }
+        $sql = $data->get();
+        return DataTables::of($sql)
             ->editColumn('id', function ($p) {
                 return "<input type='checkbox' name='cbox[]' value='" . $p->id . "' />";
             })
@@ -140,7 +142,7 @@ class BarangController extends Controller
     {
         $title = 'Edit Barang';
         $data = barang::find($id);
-        return view($this->view . "form_edit", compact("title", "data",'id'));
+        return view($this->view . "form_edit", compact("title", "data", 'id'));
     }
 
     /**
