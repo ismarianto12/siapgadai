@@ -45,6 +45,9 @@ class LaporanPegadaianController extends Controller
     public function api()
     {
 
+        try {
+             
+
         $dari = $this->request->input("dari");
         $sampai = $this->request->input("sampai");
         $statusNasabah = $this->request->status_nasabah;
@@ -151,12 +154,21 @@ class LaporanPegadaianController extends Controller
                 flaticon-user-4"></i>detail </a> ';
             }, true)
             ->editColumn('status_gadai', function ($p) {
-                return Properti_app::cekJatuhTempo($p->tanggal_transaksi_gadai, $p->batas_hari);
+                if ($p->status_transaksi == 5 || $p->status_transaksi == 4) {
+                    return 'Nasabah tidak di approve';
+                } else {
+                    return Properti_app::cekJatuhTempo($p->tanggal_transaksi_gadai, $p->batas_hari);
+                }
+            }, true)
+            ->editColumn('pstatus_transaksi', function ($p) {
+                return $p->status_transaksi;
             }, true)
             ->addIndexColumn()
-            ->rawColumns(['action'])
-            ->toJson();
-
+            ->rawColumns(['action', 'status_gadai','pstatus_transaksi'])
+            ->toJson(); 
+        } catch (\Throwable $th) {
+            throw $th->getMessage();
+        }
     }
 
     /**

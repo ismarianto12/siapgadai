@@ -102,12 +102,11 @@ class Properti_app
         $tanggalSekarang = Carbon::now();
 
         if ($tanggalSekarang->greaterThan($tanggalBatas)) {
-            return "Sudah jatuh tempo!";
+            return "<span class='badge bg-danger'>Sudah jatuh tempo!</span>";
         } else {
-            return "Belum jatuh tempo, limit hari: " . $tanggalBatas->format('Y-m-d');
+            return "<span class='badge bg-success'>Belum jatuh tempo, limit hari: " . $tanggalBatas->format('Y-m-d') . '</span>';
         }
     }
-
 // // Contoh pemanggilan fungsi
     // $tanggalAwal = '2023-02-01';
     // $batasHari = 8;
@@ -591,6 +590,29 @@ class Properti_app
             die;
         } else {
             return true;
+        }
+    }
+
+    public static function getNasabahCount($param)
+    {
+        return \DB::table('transaksi_gadai')->where('status_transaksi', $param)->get()->count();
+    }
+
+    public static function Dashboard_count($param)
+    {
+        switch ($param) {
+            case 'approve':
+                return self::getNasabahCount(1);
+                break;
+            case 'datang':
+                return self::getNasabahCount(4);
+                break;
+            case 'cancel':
+                return self::getNasabahCount(5);
+                break;
+            default:
+                return 'Status Undefined';
+                break;
         }
     }
 }

@@ -47,16 +47,16 @@
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div>
-                            <h3 class="text-bold">Selamat datang di aplikasi SiapGadai </h3>
-
+                            <h3 class="text-bold">Selamat datang di aplikasi </h3>
                             <p>Silahkan Akses Menu Disamping Untuk Menggunakan Aplikasi. </p>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6 col-md-3">
                 <div class="card card-stats card-round">
-                    <div class="card-body ">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">
@@ -133,6 +133,70 @@
             </div>
         </div>
     </div>
+    <div class="page-inner" style="margin-top:-44px">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-tool text-success"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Total Nasabah Approve</p>
+                                    <h4 class="card-title">{{ Properti_app::Dashboard_count('approve') }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-symbol text-info"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Total Nasabah Datang</p>
+                                    <h4 class="card-title">{{ Properti_app::Dashboard_count('datang') }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-circle
+                                    text-danger"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Total Nasabah Cancel</p>
+                                    <h4 class="card-title">{{ Properti_app::Dashboard_count('cancel') }}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-12 row">
         <div class="col-md-6">
             <div class="card">

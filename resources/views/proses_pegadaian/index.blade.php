@@ -2,12 +2,12 @@
 @section('content')
     @include('layouts.breadcum')
     <div class="col-md-12">
- 
+
         <div class="card">
             <small>jika button export file tidak muncul silahkan tekan f5 atau tombol reload orange </small>
 
             <div class="card-header row">
-                 <div class="form-group row">
+                <div class="form-group row">
                     <div class="col-md-12">
                         <label class="text-left">Dari</label>
                         <input type="date" name='dari' class="form-control" id="dari" />
@@ -130,11 +130,11 @@
                                 <th>Limit Pinjaman</th>
                                 <th>Jumlah Diambil</th>
                                 <th>Administrasi</th>
-                                <th>Status</th>
+                                <th>Status Transaksi</th>
+                                <th>Status Pinjaman</th>
                                 <th>Persentase Pinjaman</th>
                                 <th>Durasi Pinjaman</th>
                                 <th>Jatuh Tempo</th>
-                                <th>Status</th>
                                 <th>Operator</th>
                                 <th>Cabang</th>
                                 <th>Tanggal Transaksi</th>
@@ -156,9 +156,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-
     <script>
-        // addd
         $(function() {
 
             // edit
@@ -174,7 +172,27 @@
         // table data
         $.fn.dataTable.ext.errMode = 'throw';
         var table = $('#datatable').DataTable({
-            // autoWidth: true,
+            autoWidth: true,
+            // rowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            //     if (aData[11] == "5") {
+            //         $('td', nRow).css('background-color', 'red');
+            //     } else if (aData[11] == "4") {
+            //         $('td', nRow).css('background-color', 'orange');
+            //     }
+            // },
+            rowCallback: function(row, data) {
+                if (data.pstatus_transaksi == '5') {
+                    $(row).css({
+                        'background-color': 'red',
+                        'color': 'white'
+                    });
+                } else if (data.pstatus_transaksi == '6') {
+                    $(row).css({
+                        'background-color': 'blue',
+                        'color': 'white'
+                    });
+                }
+            },
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
@@ -271,6 +289,28 @@
                     name: 'status_gadai'
                 },
                 {
+                    data: 'pstatus_transaksi',
+                    name: 'pstatus_transaksi',
+                    orderable: false,
+                    searchable: false,
+                    render: function(data, row, type) {
+                        if (data == '1') {
+                            return 'Approve';
+                        } else if (data == '2') {
+                            return 'Overdue Pembayaran';
+                        } else if (data == '3') {
+                            return 'Lunas';
+                        } else if (data == '4') {
+                            return 'Datang';
+                        } else if (data == '5') {
+                            return 'Cancel';
+                        }else{
+                            return 'Cancel';
+                            
+                        }
+                    }
+                },
+                {
                     data: 'pinjam_persen',
                     name: 'pinjam_persen',
                     render: function(row, data, type) {
@@ -281,27 +321,9 @@
                     data: 'durasi_pinjam',
                     name: 'durasi_pinjam'
                 },
-
                 {
                     data: 'tanggal_jatuh_tempo',
                     name: 'tanggal_jatuh_tempo'
-                },
-                {
-                    data: 'status_transaksi',
-                    name: 'status_transaksi',
-                    render: function(row, data, type) {
-                        console.log(row, 'gadai if')
-                        if (row == '1') {
-                            return '<button class="btn btn-danger btn-sm">Belum Lunas</button>';
-                        } else if (row == '2') {
-                            return '<button class="btn btn-warning btn-sm">Overdue</button>';
-                        } else if (row == '3') {
-                            return '<button class="btn btn-success btn-sm">Lunas</button>';
-                        } else {
-                            return 'Unknown Status';
-                        }
-                    }
-
                 },
                 {
 

@@ -279,12 +279,13 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 text-left">Administrasi
-                                <small>persentase admin fee </small>
+                                <small>Persentase admin fee </small>
 
                             </label>
                             <div class="col-md-10 row">
-                                 <input type="text" name="administrasi" id="persentase_pinjaman"
-                                    class="number_format form-control" required value="10" placeholder="10%" readonly style="width: 20%"/> %
+                                <input type="text" name="administrasi" id="persentase_pinjaman"
+                                    class="number_format form-control" required value="10" placeholder="10%" readonly
+                                    style="width: 20%" /> %
                             </div>
                         </div>
                     </div>
