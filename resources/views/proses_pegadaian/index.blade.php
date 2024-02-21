@@ -31,6 +31,20 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label class="text-left">Status Nasabah</label>
+                        <select name="status_nasabah" id="status_nasabah" class="form-control" required>
+                            <option value=""></option>
+                            @foreach (Properti_app::statusBayar() as $value => $key)
+                                @if ($value != 3 && $value != 2)
+                                    <option value="{{ $value }}">{{ $key }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 @if (Auth::user()->tmlevel_id == 1)
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -188,6 +202,7 @@
                 data: function(data) {
                     data.dari = $('#dari').val();
                     data.sampai = $('#sampai').val();
+                    data.status_nasabah = $('#status_nasabah option:selected').val();
                     data.kategori_barang_id = $('#kategori_barang_id').val();
                     @if (Auth::user()->tmlevel_id == 1)
                         data.tmcabang_id = $('#tmcabang_id option:selected').val();
