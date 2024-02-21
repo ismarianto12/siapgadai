@@ -564,7 +564,7 @@ class Properti_app
     public static function statusBayar()
     {
         return [
-            '1' => 'Belum Lunas',
+            '1' => 'Approve',
             '2' => 'Overdue Pembayaran',
             '3' => 'Lunas',
             '4' => 'Datang',
