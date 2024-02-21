@@ -47,6 +47,8 @@ class LaporanPegadaianController extends Controller
 
         $dari = $this->request->input("dari");
         $sampai = $this->request->input("sampai");
+        $statusNasabah = $this->request->status_nasabah;
+
         $data = transaksi::select(
             'transaksi_gadai.id as id_transaksi',
             'transaksi_gadai.pelunasan',
@@ -134,6 +136,11 @@ class LaporanPegadaianController extends Controller
         if ($dari != '' && $sampai != '') {
             $data->whereBetween('transaksi_gadai.created_at', [$dari, $sampai]);
         }
+
+        if ($this->request->status_nasabah) {
+            $data->where('transaksi_gadai.status_transaksi', $this->request->status_nasabah);
+        }
+
         if ($this->request->kategori_barang_id) {
             $data->where('transaksi_gadai.kategori_barang_id', $this->request->kategori_barang_id);
         }

@@ -561,12 +561,14 @@ class Properti_app
         $cleanedString = preg_replace('/[^0-9]/', '', $inputString);
         return $cleanedString;
     }
-    function statusBayar()
+    public static function statusBayar()
     {
         return [
             '1' => 'Belum Lunas',
             '2' => 'Overdue Pembayaran',
             '3' => 'Lunas',
+            '4' => 'Datang',
+            '5' => 'Cancel',
         ];
     }
     public static function dataCabang()

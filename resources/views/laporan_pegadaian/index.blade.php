@@ -31,6 +31,18 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label class="text-left">Status Nasabah</label>
+                        <select name="status_nasabah" id="status_nasabah" class="form-control" required>
+                            <option value=""></option>
+                            @foreach (Properti_app::statusBayar() as $value => $key)
+                                <option value="{{ $value }}">{{ $key }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 @if (Auth::user()->tmlevel_id == 1)
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -50,9 +62,8 @@
                 <div class="form-group row"
                     style="
                 height: 10px;
-                display: flow-root;
-                margin-top: 25px;
-                margin-left: 10px;
+                display: flow-root; 
+                margin: 0 auto;
             ">
                     <button class="searchdata btn btn-info btn-round btn-sm">
                         <i class="flaticon-search-2"></i>
@@ -177,6 +188,7 @@
                     data.dari = $('#dari').val();
                     data.sampai = $('#sampai').val();
                     data.kategori_barang_id = $('#kategori_barang_id').val();
+                    data.status_nasabah = $('#status_nasabah option:selected').val();
                     @if (Auth::user()->tmlevel_id == 1)
                         data.tmcabang_id = $('#tmcabang_id option:selected').val();
                     @endif
