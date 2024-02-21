@@ -708,21 +708,21 @@
                     });
                     $('.simpan').on('submit', function(e) {
                         e.preventDefault();
-
                         Swal.fire({
-                            title: "Sebelum Submit",
-                            text: "Pastikan Semua data sudah benar",
-                            icon: "warning",
+                            title: "Pastikan Semua data sudah benar",
+                            html: "<p>Pastikan semua data sudah benar dan koreksi terlebih dahulu sebelum submit.</p><p>Silahkan Pilih Status Nasabah Berikut :.</p>",
                             showCancelButton: true,
-                            showDenyButton: true,  
+                            showDenyButton: true,
                             confirmButtonColor: "#3085d6",
                             cancelButtonColor: "#d33",
                             confirmButtonText: "Approve",
-                            denyButtonText: "Datang",  
+                            denyButtonText: "Datang",
                             cancelButtonText: "Cancel / Periksa Inputan", // Teks pada tombol batal
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 var datastring = new FormData(this);
+                                datastring.append('status_nasabah', 1);
+
                                 Swal.fire({
                                     title: 'Menyimpan data transaksi...',
                                     allowOutsideClick: false,
@@ -820,12 +820,203 @@
                                 })
 
                             } else if (result.isDenied) {
-                                // Logika jika tombol "Datang" ditekan
-                                console.log("Datang");
+                                var datastring = new FormData(this);
+                                datastring.append('status_nasabah', 4);
+                                Swal.fire({
+                                    title: 'Menyimpan data transaksi...',
+                                    allowOutsideClick: false,
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                });
+                                Swal.showLoading();
+
+                                $.ajax({
+                                    url: "{{ route('app.save_transaksi') }}",
+                                    method: "POST",
+                                    data: datastring,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    beforeSend: function() {
+                                        $.notify({
+                                            icon: 'flaticon-loading-1',
+                                            title: 'Processing',
+                                            message: 'Sedang Memproses Penyimpanan Data .....',
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "center",
+                                                align: "right"
+                                            },
+                                            time: 1000,
+                                            z_index: 2000
+                                        });
+
+                                    },
+                                    success: function(data) {
+                                        var id_transaction = data.idtransaksi;
+                                        $.pjax({
+                                            container: '#pjax-container',
+                                            url: '{{ Url('app/detail_transaksi') }}/' +
+                                                id_transaction,
+                                            push: false
+                                        });
+
+
+                                        Swal.fire('success',
+                                            'Status berhasil disimpan ke datang',
+                                            'success');
+
+                                        $.notify({
+                                            icon: 'flaticon-alarm-1',
+                                            title: 'Info',
+                                            message: 'Status berhasil disimpan ke datang',
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "center",
+                                                align: "right"
+                                            },
+                                            time: 1000,
+                                            z_index: 2000
+                                        });
+                                    },
+                                    error: function(data) {
+                                        console.log(data);
+                                        var div = $('#container');
+                                        setInterval(function() {
+                                            var pos = div.scrollTop();
+                                            div.scrollTop(pos + 2);
+                                        }, 10)
+                                        err = '';
+                                        respon = data.responseJSON?.messages;
+
+                                        Swal.fire('error', respon, 'error');
+
+                                        $('#render_error').html(
+                                            `<div class="alert alert-danger">${respon}</div>`
+                                        );
+
+                                        Swal.fire('error', respon, 'error data');
+                                        $.notify({
+                                            icon: 'flaticon-alarm-1',
+                                            title: 'Opp Seperti nya lupa inputan berikut :',
+                                            message: respon,
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "top",
+                                                align: "right"
+                                            },
+                                            time: 3000,
+                                            z_index: 2000
+                                        });
+
+                                    }
+                                })
                             } else if (result.isDismissed && result.dismiss === Swal
                                 .DismissReason
                                 .cancel) {
-                                console.log("Cancelled");
+
+                                var datastring = new FormData(this);
+                                datastring.append('status_nasabah', 5);
+                                Swal.fire({
+                                    title: 'Menyimpan data transaksi...',
+                                    allowOutsideClick: false,
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                });
+                                Swal.showLoading();
+
+                                $.ajax({
+                                    url: "{{ route('app.save_transaksi') }}",
+                                    method: "POST",
+                                    data: datastring,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    beforeSend: function() {
+                                        $.notify({
+                                            icon: 'flaticon-loading-1',
+                                            title: 'Processing',
+                                            message: 'Sedang Memproses Penyimpanan Data .....',
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "center",
+                                                align: "right"
+                                            },
+                                            time: 1000,
+                                            z_index: 2000
+                                        });
+
+                                    },
+                                    success: function(data) {
+
+                                        var id_transaction = data.idtransaksi;
+                                        $.pjax({
+                                            container: '#pjax-container',
+                                            url: '{{ Url('app/detail_transaksi') }}/' +
+                                                id_transaction,
+                                            push: false
+                                        });
+
+                                        Swal.fire('success',
+                                            'Transaksi di batalkan',
+                                            'success');
+
+                                        $.notify({
+                                            icon: 'flaticon-alarm-1',
+                                            title: 'Info',
+                                            message: 'Berhasil di Simpan',
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "center",
+                                                align: "right"
+                                            },
+                                            time: 1000,
+                                            z_index: 2000
+                                        });
+                                    },
+                                    error: function(data) {
+                                        console.log(data);
+                                        var div = $('#container');
+                                        setInterval(function() {
+                                            var pos = div.scrollTop();
+                                            div.scrollTop(pos + 2);
+                                        }, 10)
+                                        err = '';
+                                        respon = data.responseJSON?.messages;
+
+                                        Swal.fire('error', respon, 'error');
+
+                                        // $.each(respon.errors, function(index, value) {
+                                        //     err += "<li>" + value + "</li>";
+                                        // });
+
+                                        $('#render_error').html(
+                                            `<div class="alert alert-danger">${respon}</div>`
+                                        );
+
+                                        Swal.fire('error', respon, 'error data');
+                                        $.notify({
+                                            icon: 'flaticon-alarm-1',
+                                            title: 'Opp Seperti nya lupa inputan berikut :',
+                                            message: respon,
+                                        }, {
+                                            type: 'secondary',
+                                            placement: {
+                                                from: "top",
+                                                align: "right"
+                                            },
+                                            time: 3000,
+                                            z_index: 2000
+                                        });
+
+                                    }
+                                })
+
                             }
                         })
                     });

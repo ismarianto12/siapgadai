@@ -156,6 +156,7 @@ class TransaksiController extends Controller
             $CheckNasabah = DB::table('nasabah')->where('nik', $this->request->nik)->get();
             if ($CheckNasabah->count() > 0) {
                 $first_trasaksi = [
+                    'status_transaksi'=> $this->request->status_nasabah,
                     'kategori_barang_id' => $this->request->kategori_barang_id,
                     'imei' => $this->request->imei,
                     'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
@@ -210,6 +211,7 @@ class TransaksiController extends Controller
                 ];
                 $lastInsertedId = \DB::table('nasabah')->insertGetId($nasabah);
                 $trasaksi = [
+                    'status_transaksi'=> $this->request->status_nasabah,
                     'kategori_barang_id' => $this->request->kategori_barang_id,
                     'perhitungan_biaya_id' => $this->request->perhitungan_biaya_id,
                     'imei' => $this->request->imei,
@@ -259,7 +261,6 @@ class TransaksiController extends Controller
             ], 500);
 
         }
-
     }
     public function return_transaksi()
     {
