@@ -3,6 +3,7 @@
     @include('layouts.breadcum')
     <div class="col-md-12">
         <div class="card">
+            <small>jika button export file tidak muncul silahkan tekan f5 atau tombol reload orange </small>
             <div class="card-header row">
                 <div class="form-group row">
                     <div class="col-md-12">

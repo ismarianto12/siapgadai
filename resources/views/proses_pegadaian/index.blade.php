@@ -2,10 +2,12 @@
 @section('content')
     @include('layouts.breadcum')
     <div class="col-md-12">
+ 
         <div class="card">
+            <small>jika button export file tidak muncul silahkan tekan f5 atau tombol reload orange </small>
+
             <div class="card-header row">
-                <small>jika button export file tidak muncul silahkan tekan f5 atau tombol reload orange </small>
-                <div class="form-group row">
+                 <div class="form-group row">
                     <div class="col-md-12">
                         <label class="text-left">Dari</label>
                         <input type="date" name='dari' class="form-control" id="dari" />
