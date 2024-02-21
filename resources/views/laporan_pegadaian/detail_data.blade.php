@@ -112,8 +112,13 @@
         </table>
         <a href="{{ Url('app/cetak_tagihan/' . $data['id']) }}" target="_blank" class="btn btn-info btn-md">Cetak
             Tagihan</a>
-        <a onclick="batalkan_transaksi()" target="_blank" class="btn btn-info btn-md">
+        {{-- <a onclick="batalkan_transaksi()" target="_blank" class="btn btn-info btn-md">
             Batalkan Transaksi</a>
+         --}}
+        <a href="{{ Url('/app/transaksi/cetak_barcode/' . $data['id']) }}"
+            class="btn btn-info btn-md" target="_blank"><b>Cetak
+                Barcode barang</b></a>
+
         <button onclick="senwa_handle()" class="btn btn-success btn-md">Kirim Pesan
             Wa</button>
 
