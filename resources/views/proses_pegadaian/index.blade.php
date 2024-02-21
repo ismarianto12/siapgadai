@@ -4,6 +4,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header row">
+                <small>jika button export file tidak muncul silahkan tekan f5 atau tombol reload orang </small>
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label class="text-left">Dari</label>
