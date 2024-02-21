@@ -37,7 +37,9 @@
                         <select name="status_nasabah" id="status_nasabah" class="form-control" required>
                             <option value=""></option>
                             @foreach (Properti_app::statusBayar() as $value => $key)
-                                <option value="{{ $value }}">{{ $key }}</option>
+                                @if ($value != 3 && $value != 2)
+                                    <option value="{{ $value }}">{{ $key }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
