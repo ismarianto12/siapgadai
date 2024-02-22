@@ -628,9 +628,8 @@ class Properti_app
             ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
             ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
             ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
-            ->where('transaksi_gadai.status_transaksi', '!=', 3)->get();
-
-        $data = isset($data->first()->total_jumlah_pinjaman) ? number_format($data->first()->total_jumlah_pinjaman,'0','0','.') : 0;
+            ->whereNotIn('transaksi_gadai.status_transaksi', [3, 4, 5])->get();
+        $data = isset($data->first()->total_jumlah_pinjaman) ? number_format($data->first()->total_jumlah_pinjaman, '0', '0', '.') : 0;
         return $data;
     }
 }
