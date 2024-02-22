@@ -42,7 +42,18 @@
         <div class="row row-card-no-pd">
             <div class="col-sm-4 col-md-4">
                 <div class="card card-stats card-round">
-                    <div class="card-body ">
+                    <div class="card-body">
+                        <p
+                        style="
+        margin-left: 30px;
+        margin-top: 10px;
+        background: #6c665b5e;
+        border-right: 10px solid orange;
+        padding: 10px;
+    ">
+                        - Max bunga 10% perbulan (perminggu kena 2,5% sampai dengan minggu ke-4)<br>
+                        - Denda bunga 5% (pada saat lebih dari 1 bulan. sampai dengan waktu 7 hari setelah jatuh tempo)<br>
+                        - Administrasi tetap dipotong diawal (dikenakan 10rb untuk administrasi)</p>
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">

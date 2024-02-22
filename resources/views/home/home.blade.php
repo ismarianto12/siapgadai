@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('proses/pegadaian') }}', 'status', '1')">
+                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '1')">
                 <div class="card card-stats card-round">
                     <div class="card-body ">
                         <div class="row">
@@ -138,7 +138,7 @@
     </div>
     <div class="page-inner" style="margin-top:-44px">
         <div class="row">
-            <div class="col-sm-6 col-md-3 _appcover"  onclick="redirectToURLWithParameter('{{ url('proses/pegadaian') }}', 'status', '1')">
+            <div class="col-sm-6 col-md-3 _appcover"  onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '1')">
                 <div class="card card-stats card-round">
                     <div class="card-body ">
                         <div class="row">
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('proses/pegadaian') }}', 'status', '5')">
+                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '5')">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -178,7 +178,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('proses/pegadaian') }}', 'ref', 'originDash')">
+                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '5')">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
