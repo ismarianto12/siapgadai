@@ -4,6 +4,7 @@
         <ul class="breadcrumbs">
             <li class="nav-home">
                 <a href="#">
+                    Back To Dashoard
                     <i class="flaticon-home"></i>
                 </a>
             </li>
@@ -11,7 +12,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="{{ route('index.html') }}">Home</a>
+                <a href="{{ route('index.html') }}">Back To Dashoard</a>
             </li>
             <li class="separator">
                 <i class="flaticon-right-arrow"></i>

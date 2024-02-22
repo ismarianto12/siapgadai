@@ -3,7 +3,8 @@
         <h4 class="page-title">{{ $title }}</h4>
         <ul class="breadcrumbs">
             <li class="nav-home">
-                <a href="#">
+                <a href="{{ Url('/index.html?ref=' . md5(1312123)) }}">
+                    Back To Dashoard
                     <i class="flaticon-home"></i>
                 </a>
             </li>

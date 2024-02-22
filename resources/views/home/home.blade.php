@@ -178,7 +178,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('laporan/nasabah') }}', 'ref', 'originDash')">
+                onclick="redirectToURLWithParameter('{{ url('proses/pegadaian') }}', 'ref', 'originDash')">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
