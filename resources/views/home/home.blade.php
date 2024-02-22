@@ -116,7 +116,7 @@
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">
-                                    <i class="flaticon-dollar text-primary"></i>
+                                    <i class="flaticon-layer text-primary"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-stats">
@@ -194,14 +194,13 @@
                     </div>
                 </div>
             </a>
-            <a href="{{ url('laporan/pegadaian') }}" class="col-sm-6 col-md-3 _appcover">
-
+            <a href="{{ url('laporan/pegadaian?status=1') }}" class="col-sm-6 col-md-3 _appcover">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">
-                                    <i class="flaticon-circle
+                                    <i class="flaticon-layer
                                     text-danger"></i>
                                 </div>
                             </div>
