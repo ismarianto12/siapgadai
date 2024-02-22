@@ -116,7 +116,7 @@
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">
-                                    <i class="flaticon-layer text-primary"></i>
+                                    <i class="flaticon-coins text-success"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-stats">
@@ -200,8 +200,7 @@
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">
-                                    <i class="flaticon-layer
-                                    text-danger"></i>
+                                    <i class="flaticon-chart-pie text-warning"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-stats">
