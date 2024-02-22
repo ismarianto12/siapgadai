@@ -22792,14 +22792,14 @@ body[data-background-color="dark"] .board {
   white-space: nowrap;
 }
 
-.highcharts-credits{
-display:none;
+.highcharts-credits {
+  display: none;
 
 }
 
 ._appcover {
   cursor: pointer !important;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 a {

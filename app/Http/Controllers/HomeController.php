@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\tmp_surat;
-use App\Models\transaksi;
-
 use App\Models\Tmsurat_master;
+use App\Models\transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -34,16 +33,20 @@ class HomeController extends Controller
     {
         $tahun = $this->request->contract;
         $title = 'Welcome Page';
-        $transaksiChart = transaksi::Chartdata()->first(); 
-        $pelunasanChart = transaksi::Chartdata('lunas')->first(); 
+        $transaksiChart = transaksi::Chartdata()->first();
+        $pelunasanChart = transaksi::Chartdata('lunas')->first();
 
         $tnasabah = \DB::table('nasabah')->get()->count();
-        $tbarangmasuk = \DB::table('transaksi_gadai')->where('status_transaksi', '!=', '3')->get()->count();
+        $tbarangmasuk = \DB::table('transaksi_gadai')
+            ->whereNotIn('status_transaksi', [3, 4, 5])
+            ->get()
+            ->count();
+        // \DB::table('transaksi_gadai')->where('status_transaksi', '!=', '3')->get()->count();
         $tbaranglunas = \DB::table('transaksi_gadai')->where('status_transaksi', '=', '3')->get()->count();
-        $tpendapatan = $totalPendapatan = DB::table('pendapatan as p')
-            ->select(DB::raw('SUM(p.pokok) as total_pendapatan'))
+        $tpendapatan = $totalPendapatan = DB::table('transaksi_gadai as p')
+            ->select(DB::raw('SUM(p.jumlah_pinjaman) as total_pendapatan'))
+            ->where('status_transaksi', '=', '3')
             ->first();
-
         //\DB::select(\DB::raw('sum(p.pokok + p.bunga+ p.jasa_titip)'))->table('pendapatan p')->get();
         return view(
             $this->view . '.home',
@@ -441,14 +444,14 @@ class HomeController extends Controller
         $folderName = "export_db";
         $folderPath = public_path($folderName);
         $fileList = [];
-    
+
         if (File::isDirectory($folderPath)) {
             $files = File::files($folderPath);
-    
+
             foreach ($files as $file) {
                 $filename = $file->getFilename();
                 $underscoreIndex = strpos($filename, '_');
-    
+
                 if ($underscoreIndex !== false) {
                     $fileList['namaFile'] = substr($filename, 0, $underscoreIndex);
                     $fileList['resources'] = "/export/file";
@@ -456,16 +459,15 @@ class HomeController extends Controller
 
                 } else {
                     $fileList['namaFile'] = $filename;
-                    $fileList['resources'] =  "/export/file";
+                    $fileList['resources'] = "/export/file";
                     $fileList['tanggalExport'] = "";
                 }
             }
         }
-    
+
         // $jsonData = json_encode($fileList);
         return response()->json($fileList);
     }
-    
 
     public function actioexport_db()
     {

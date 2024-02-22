@@ -86,7 +86,6 @@ class LaporanPendapatanController extends Controller
             'transaksi_gadai.tanggal_jatuh_tempo',
             'transaksi_gadai.jumlah_pinjaman as jumlah_diambil',
             'transaksi_gadai.jumlah_pinjaman',
-
             'transaksi_gadai.perpajangan',
             'transaksi_gadai.jasa_titip',
             'transaksi_gadai.total',
