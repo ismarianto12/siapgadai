@@ -54,7 +54,7 @@
             </div>
 
             <a class="col-sm-6 col-md-3 _appcover" href="{{ url('master/nasabah') }}">
-               <div class="card card-stats card-round">
+                <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5">
@@ -208,7 +208,7 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Total Piutang Berjalan</p>
-                                    <h4 class="card-title" onclick="location.href='{{ url('master/identitas') }}'">
+                                    <h4 class="card-title">
                                         {{ Properti_app::PiutangBerjalan() }}
                                     </h4>
                                 </div>
