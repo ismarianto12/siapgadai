@@ -7,6 +7,7 @@ use App\Models\Jenis_surat;
 use App\Models\Tmbangunan;
 use App\Models\Tmproyek;
 use App\Models\Tmsurat_master;
+use App\Models\transaksi;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -614,5 +615,22 @@ class Properti_app
                 return 'Status Undefined';
                 break;
         }
+    }
+
+    public static function PiutangBerjalan()
+    {
+        $data = transaksi::select(
+            DB::raw('SUM(transaksi_gadai.jumlah_pinjaman) AS total_jumlah_pinjaman')
+        )
+            ->leftJoin('users', 'users.id', '=', 'transaksi_gadai.user_id')
+            ->leftJoin('cabang', 'users.cabang_id', '=', 'cabang.id')
+            ->leftJoin('kategori_barang', 'kategori_barang.id', '=', 'transaksi_gadai.kategori_barang_id')
+            ->leftJoin('barang', 'transaksi_gadai.id_barang', '=', 'barang.id')
+            ->leftJoin('perhitungan_biaya', 'transaksi_gadai.perhitungan_biaya_id', '=', 'perhitungan_biaya.id')
+            ->leftJoin('nasabah', 'transaksi_gadai.id_nasabah', '=', 'nasabah.id')
+            ->where('transaksi_gadai.status_transaksi', '!=', 3)->get();
+
+        $data = isset($data->first()->total_jumlah_pinjaman) ? number_format($data->first()->total_jumlah_pinjaman,'0','0','.') : 0;
+        return $data;
     }
 }

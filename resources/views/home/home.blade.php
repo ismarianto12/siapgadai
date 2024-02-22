@@ -42,7 +42,6 @@
     <div class="page-inner">
         <h4 class="page-title">Dashboard Panel</h4>
         <div class="row">
-
             <div class="col-sm-12 col-md-12">
                 <div class="card card-stats card-round">
                     <div class="card-body">
@@ -54,7 +53,8 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-3 _appcover"
+              onclick="redirectToURLWithParameter('{{ url('master/nasabah') }}', 'ref', 'originDash')"> 
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -73,7 +73,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-3 _appcover"
+                onclick="redirectToURLWithParameter('{{ url('proses/pegadaian') }}', 'status', '1')">
                 <div class="card card-stats card-round">
                     <div class="card-body ">
                         <div class="row">
@@ -92,7 +93,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-3 _appcover"
+                onclick="redirectToURLWithParameter('{{ url('laporan/pendapatan') }}', 'ref', 'originDash')">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -111,13 +113,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-3 _appcover"
+                onclick="redirectToURLWithParameter('{{ url('laporan/pendapatan') }}', 'ref', 'originDash')">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">
-                                    <i class="flaticon-twitter text-primary"></i>
+                                    <i class="flaticon-dollar text-primary"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-stats">
@@ -135,7 +138,7 @@
     </div>
     <div class="page-inner" style="margin-top:-44px">
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3 _appcover"  onclick="redirectToURLWithParameter('{{ url('proses/pegadaian') }}', 'status', '1')">
                 <div class="card card-stats card-round">
                     <div class="card-body ">
                         <div class="row">
@@ -154,7 +157,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3 _appcover"
+                onclick="redirectToURLWithParameter('{{ url('proses/pegadaian') }}', 'status', '5')">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -173,7 +177,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-3 _appcover"
+                onclick="redirectToURLWithParameter('{{ url('laporan/nasabah') }}', 'ref', 'originDash')">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -187,6 +192,29 @@
                                 <div class="numbers">
                                     <p class="card-category">Total Nasabah Cancel</p>
                                     <h4 class="card-title">{{ Properti_app::Dashboard_count('cancel') }}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 _appcover"
+                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'ref', 'originDash')">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-circle
+                                    text-danger"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Total Piutang Berjalan</p>
+                                    <h4 class="card-title" onclick="location.href='{{ url('master/identitas') }}'">
+                                        {{ Properti_app::PiutangBerjalan() }}
                                     </h4>
                                 </div>
                             </div>
@@ -221,6 +249,13 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script>
+        function redirectToURLWithParameter(url, parameterName, parameterValue) {
+            // Membuat URL lengkap dengan parameter
+            var fullURL = url + '?' + encodeURIComponent(parameterName) + '=' + encodeURIComponent(parameterValue);
+
+            // Melakukan redirect ke URL lengkap
+            window.location.href = fullURL;
+        }
         Highcharts.chart('barg', {
             title: {
                 text: 'Grafik Semua transaksi',

@@ -22796,3 +22796,7 @@ body[data-background-color="dark"] .board {
 display:none;
 
 }
+
+._appcover {
+  cursor: pointer !important;
+}

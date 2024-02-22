@@ -41,7 +41,7 @@ class HomeController extends Controller
         $tbarangmasuk = \DB::table('transaksi_gadai')->where('status_transaksi', '!=', '3')->get()->count();
         $tbaranglunas = \DB::table('transaksi_gadai')->where('status_transaksi', '=', '3')->get()->count();
         $tpendapatan = $totalPendapatan = DB::table('pendapatan as p')
-            ->select(DB::raw('SUM(p.pokok + p.bunga + p.jasa_titip) as total_pendapatan'))
+            ->select(DB::raw('SUM(p.pokok) as total_pendapatan'))
             ->first();
 
         //\DB::select(\DB::raw('sum(p.pokok + p.bunga+ p.jasa_titip)'))->table('pendapatan p')->get();
