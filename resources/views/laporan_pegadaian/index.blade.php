@@ -105,6 +105,12 @@
                 </div>
 
                 <div class="table-responsive">
+
+                <table>
+                    <tr><td style="background: red;width:20px"></td><td>&nbsp;Menandakan Cancel dan pokok tidak di hitung</td></tr>
+                    <tr><td style="background: orange;width:20px"></td><td>&nbsp;Menandakan Nasabah hanya datang dan poko tidak di hitung</td></tr>
+                </table>
+                <br />
                     <table id="datatable" class="display table table-striped table-hover">
                         <thead>
 
@@ -132,6 +138,17 @@
 
                         <tbody>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th colspan="8" style="text-align:right"></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -180,10 +197,73 @@
 
             })
         });
+
+        function formatRupiah(amount) {
+            // Convert to string and split at the decimal point
+            const parts = amount.toString().split(".");
+
+            // Format the integer part with commas
+            const formattedInteger = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            // Combine the integer part with the decimal part (if exists)
+            const result = parts.length === 1 ? formattedInteger : formattedInteger + "." + parts[1];
+
+            // Return the formatted result with 'Rp' prefix
+            return "Rp " + result;
+        }
+
         // table data
         $.fn.dataTable.ext.errMode = 'throw';
         var table = $('#datatable').DataTable({
             // autoWidth: true,
+
+            "footerCallback": function(row, data, start, end, display) {
+                var api = this.api(),
+                    data;
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function(i) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '') * 1 :
+                        typeof i === 'number' ?
+                        i : 0;
+                };
+
+                // Total over all pages
+                total = api
+                    .column(7)
+                    .data()
+                    .reduce(function(a, b, index) {
+                        if (data[index].pstatus_transaksi != 5 && data[index].pstatus_transaksi != 4) {
+                            return intVal(a) + intVal(b);
+                        } else {
+                            return intVal(a);
+                        }
+                    }, 0);
+
+                // Total over this page
+                pageTotal = api
+                    .column(8, {
+                        page: 'current'
+                    })
+                    .data()
+                    .reduce(function(a, b, index) {
+                        if (data[index].pstatus_transaksi != 5 && data[index].pstatus_transaksi != 4) {
+                            return intVal(a) + intVal(b);
+                        } else {
+                            return intVal(a);
+                        }
+                    }, 0);
+
+                // Update footer
+                $(api.column(7).footer()).html(
+                    "Total Pokok Pencairan Dana : " + formatRupiah(pageTotal) + ' ( ' + formatRupiah(
+                        total) +
+                    ' )'
+                );
+            },
+
+
             rowCallback: function(row, data) {
                 if (data.pstatus_transaksi == '5') {
                     $(row).css({

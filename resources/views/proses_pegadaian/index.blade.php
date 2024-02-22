@@ -81,7 +81,7 @@
                     </button>
                 </div>
                 </p>
-               
+
             </div>
             <div class="card-body">
                 <!-- Modal -->
@@ -105,6 +105,17 @@
                 </div>
 
                 <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <td style="background: red;width:20px"></td>
+                            <td>&nbsp;Menandakan Cancel dan pokok tidak di hitung</td>
+                        </tr>
+                        <tr>
+                            <td style="background: orange;width:20px"></td>
+                            <td>&nbsp;Menandakan Nasabah hanya datang dan pokok tidak di hitung</td>
+                        </tr>
+                    </table>
+                    <br /><br /><br />
                     <table id="datatable" class="display table table-striped table-hover">
                         <thead>
 
@@ -293,9 +304,9 @@
                             return 'Datang';
                         } else if (data == '5') {
                             return 'Cancel';
-                        }else{
+                        } else {
                             return 'Cancel';
-                            
+
                         }
                     }
                 },

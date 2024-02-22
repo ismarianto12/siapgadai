@@ -39,21 +39,22 @@
     </div>
 
     <div class="col-md-12">
+        <p
+        style="
+margin-left: 30px;
+margin-top: 10px;
+background: #6c665b5e;
+border-right: 10px solid orange;
+padding: 10px;
+">
+        - Max bunga 10% perbulan (perminggu kena 2,5% sampai dengan minggu ke-4)<br>
+        - Denda bunga 5% (pada saat lebih dari 1 bulan. sampai dengan waktu 7 hari setelah jatuh tempo)<br>
+        - Administrasi tetap dipotong diawal (dikenakan 10rb untuk administrasi)</p>
+    
         <div class="row row-card-no-pd">
             <div class="col-sm-4 col-md-4">
                 <div class="card card-stats card-round">
                     <div class="card-body">
-                        <p
-                        style="
-        margin-left: 30px;
-        margin-top: 10px;
-        background: #6c665b5e;
-        border-right: 10px solid orange;
-        padding: 10px;
-    ">
-                        - Max bunga 10% perbulan (perminggu kena 2,5% sampai dengan minggu ke-4)<br>
-                        - Denda bunga 5% (pada saat lebih dari 1 bulan. sampai dengan waktu 7 hari setelah jatuh tempo)<br>
-                        - Administrasi tetap dipotong diawal (dikenakan 10rb untuk administrasi)</p>
                         <div class="row">
                             <div class="col-5">
                                 <div class="icon-big text-center">
@@ -305,6 +306,7 @@
             <div class="alert alert-danger d-flex justify-content-between">
                 <div class="align-items-left">
                     <h4 style="color: #000">C. Data Nasabah</h4>
+                   <small> *) Jika Status Nasabah hanya datang silahkan isi dengan hanya Nama, Handphone, selebihnya hanya strip atau tanda - </small>
                 </div>
                 <div class="align-items-right">
                     <button class="btn btn-danger btn-round ml-auto btn-sm" onclick="clearall()">
@@ -318,7 +320,9 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="
+                margin-bottom: 50px;
+            ">
                     <div class="row">
                         <!-- Left Column -->
                         <div class="col-md-6">
@@ -333,14 +337,14 @@
                             <div class="form-group row">
                                 <label for="nik" class="col-md-4 text-left">NIK:</label>
                                 <div class="col-md-8">
-                                    <input type="text" id="nik" name="nik" class="form-control" required />
+                                    <input type="text" id="nik" name="nik" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="nik" class="col-md-4 text-left">Foto KTP:</label>
                                 <div class="col-md-8">
                                     <input type="file" id="foto_ktp" name="foto_ktp" class="form-control"
-                                        required />
+                                          />
                                 </div>
                             </div>
 
@@ -357,10 +361,17 @@
                             <div class="form-group row">
                                 <label for="alamat" class="col-md-4 text-left">Alamat:</label>
                                 <div class="col-md-8">
-                                    <textarea id="alamat" name="alamat" class="form-control" required></textarea>
+                                    <textarea id="alamat" name="alamat" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="alamat" class="col-md-4 text-left">Referensi Info Siap gadai:</label>
+                                <div class="col-md-8">
+                                    <textarea id="info_referensi" name="info_referensi" class="form-control" required></textarea>
                                 </div>
                             </div>
                         </div>
+                        <br /><br /><br />
 
                         <!-- Right Column -->
                         <div class="col-md-6">
