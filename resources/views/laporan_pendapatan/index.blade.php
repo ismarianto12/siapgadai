@@ -177,7 +177,7 @@
 
                 // Update footer
                 $(api.column(7).footer()).html(
-                    "Total Pendapatan : " + formatRupiah(pageTotal) + ' ( ' + formatRupiah(total) +
+                    "Total Pokok Pelunasan : " + formatRupiah(pageTotal) + ' ( ' + formatRupiah(total) +
                     ' )'
                 );
             },
