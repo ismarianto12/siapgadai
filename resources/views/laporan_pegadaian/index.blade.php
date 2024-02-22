@@ -231,7 +231,7 @@
 
                 // Total over all pages
                 total = api
-                    .column(7)
+                    .column(8)
                     .data()
                     .reduce(function(a, b, index) {
                         if (data[index].pstatus_transaksi != 5 && data[index].pstatus_transaksi != 4) {
