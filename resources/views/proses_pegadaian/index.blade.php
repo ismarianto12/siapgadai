@@ -175,7 +175,7 @@
                         'background-color': 'red',
                         'color': 'white'
                     });
-                } else if (data.pstatus_transaksi == '6') {
+                } else if (data.pstatus_transaksi == '4') {
                     $(row).css({
                         'background-color': 'blue',
                         'color': 'white'

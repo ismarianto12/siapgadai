@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '5')">
+                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '4')">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">

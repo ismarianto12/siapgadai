@@ -7,7 +7,7 @@
                 <small>jika button export file tidak muncul silahkan tekan f5 atau tombol reload orange </small>
 
             </span>
-             <div class="card-header row">
+            <div class="card-header row">
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label class="text-left">Dari</label>
@@ -146,6 +146,27 @@
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 
     <script>
+        function getUriParam() {
+            var url = window.location.href;
+            var paramName = 'status';
+            var regex = new RegExp('[?&]' + paramName + '=([^&#]*)');
+            var results = regex.exec(url);
+            var statusValue = results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            console.log(statusValue, 'parameter url')
+            return statusValue;
+        }
+
+        function replaceUrlParam(url, paramName, paramValue) {
+            if (paramValue == null) {
+                paramValue = '';
+            }
+            var pattern = new RegExp('\\b(' + paramName + '=).*?(&|#|$)');
+            if (url.search(pattern) >= 0) {
+                return url.replace(pattern, '$1' + paramValue + '$2');
+            }
+            url = url.replace(/[?#]$/, '');
+            return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
+        }
         // addd
         $(function() {
 
@@ -163,6 +184,19 @@
         $.fn.dataTable.ext.errMode = 'throw';
         var table = $('#datatable').DataTable({
             // autoWidth: true,
+            rowCallback: function(row, data) {
+                if (data.pstatus_transaksi == '5') {
+                    $(row).css({
+                        'background-color': 'red',
+                        'color': 'white'
+                    });
+                } else if (data.pstatus_transaksi == '4') {
+                    $(row).css({
+                        'background-color': 'blue',
+                        'color': 'white'
+                    });
+                }
+            },
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copyHtml5',
@@ -194,7 +228,8 @@
                     data.dari = $('#dari').val();
                     data.sampai = $('#sampai').val();
                     data.kategori_barang_id = $('#kategori_barang_id').val();
-                    data.status_nasabah = $('#status_nasabah option:selected').val();
+                    data.status_nasabah = getUriParam() ? getUriParam() : $('#status_nasabah option:selected')
+                        .val();
                     @if (Auth::user()->tmlevel_id == 1)
                         data.tmcabang_id = $('#tmcabang_id option:selected').val();
                     @endif
@@ -319,6 +354,19 @@
             $('#datatable').DataTable().ajax.reload();
         });
         $('.searchdata').on('click', function() {
+            // getUriParam() ?
+            //     $.pjax({
+            //         container: '#pjax-container',
+            //         url: '{{ Url('laporan/pegadaian') }}/',
+            //         push: false
+            //     }) : null
+            // var text = "{{ Url('laporan/pegadaian?status=') }}";
+            // var newSrc = '';
+            // var newText = text.replace(/(status=).*?(&)/, '$1' + newSrc + '$2');
+            // // http://localhost/siapgadai/public/laporan/pegadaian?status=1
+            // var theURL = "{{ Url('laporan/pegadaian?status=') }}";
+            // theURL.replace("?status", "");
+            history.pushState({}, '', '{{ Url('laporan/pegadaian') }}');
             $('#datatable').DataTable().ajax.reload();
         });
         @include('layouts.tablechecked');
