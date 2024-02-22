@@ -22799,4 +22799,9 @@ display:none;
 
 ._appcover {
   cursor: pointer !important;
+  text-decoration: none; 
+}
+
+a {
+  text-decoration: none;
 }

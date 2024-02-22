@@ -53,9 +53,8 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 col-md-3 _appcover"
-              onclick="redirectToURLWithParameter('{{ url('master/nasabah') }}', 'ref', 'originDash')"> 
-                <div class="card card-stats card-round">
+            <a class="col-sm-6 col-md-3 _appcover" href="{{ url('master/nasabah') }}">
+               <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5">
@@ -72,9 +71,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '1')">
+            </a>
+            <a class="col-sm-6 col-md-3 _appcover" href="{{ url('laporan/pegadaian?status=1') }}">
                 <div class="card card-stats card-round">
                     <div class="card-body ">
                         <div class="row">
@@ -92,9 +90,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('laporan/pendapatan') }}', 'ref', 'originDash')">
+            </a>
+            <a class="col-sm-6 col-md-3 _appcover" href="{{ url('laporan/pendapatan') }}">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -112,9 +109,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('laporan/pendapatan') }}', 'ref', 'originDash')">
+            </a>
+            <a class="col-sm-6 col-md-3 _appcover" href="{{ url('laporan/pendapatan') }}">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -126,19 +122,20 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Total Pelunasan</p>
-                                    <h4 class="card-title">{{ Properti_app::formatRupiah($tpendapatan->total_pendapatan) }}
+                                    <h4 class="card-title">
+                                        {{ Properti_app::formatRupiah($tpendapatan->total_pendapatan) }}
                                     </h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="page-inner" style="margin-top:-44px">
         <div class="row">
-            <div class="col-sm-6 col-md-3 _appcover"  onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '1')">
+            <a href="{{ url('laporan/pegadaian?status=1') }}" class="col-sm-6 col-md-3 _appcover">
                 <div class="card card-stats card-round">
                     <div class="card-body ">
                         <div class="row">
@@ -156,9 +153,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '4')">
+            </a>
+            <a href="{{ url('laporan/pegadaian?status=4') }}" class="col-sm-6 col-md-3 _appcover">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -176,9 +172,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'status', '5')">
+            </a>
+            <a href="{{ url('laporan/pegadaian?status=5') }}" class="col-sm-6 col-md-3 _appcover">
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -198,9 +193,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-3 _appcover"
-                onclick="redirectToURLWithParameter('{{ url('laporan/pegadaian') }}', 'ref', 'originDash')">
+            </a>
+            <a href="{{ url('laporan/pegadaian') }}" class="col-sm-6 col-md-3 _appcover">
+
                 <div class="card card-stats card-round">
                     <div class="card-body">
                         <div class="row">
@@ -221,7 +216,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 
