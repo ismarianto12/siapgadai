@@ -272,7 +272,7 @@
                     });
                 } else if (data.pstatus_transaksi == '4') {
                     $(row).css({
-                        'background-color': 'blue',
+                        'background-color': 'orange',
                         'color': 'white'
                     });
                 }
