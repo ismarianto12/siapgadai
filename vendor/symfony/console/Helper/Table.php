@@ -659,11 +659,11 @@ class Table
         $numberOfRows = \count(iterator_to_array($this->buildTableRows(array_merge($this->headers, [new TableSeparator()], $this->rows))));
 
         if ($this->headers) {
-            ++$numberOfRows; // Tambah Data for header separator
+            ++$numberOfRows; // Add row for header separator
         }
 
         if (\count($this->rows) > 0) {
-            ++$numberOfRows; // Tambah Data for footer separator
+            ++$numberOfRows; // Add row for footer separator
         }
 
         return $numberOfRows;

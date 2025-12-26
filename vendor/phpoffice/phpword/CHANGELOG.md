@@ -609,7 +609,7 @@ This is the first release after a long development hiatus in [CodePlex](https://
 ### Features
 - Implement RTF Writer - @Progi1984 #1
 - Implement ODT Writer - @Progi1984 #2
-- Word2007: Tambah Dataspan and colspan to cells - @kaystrobach
+- Word2007: Add rowspan and colspan to cells - @kaystrobach
 - Word2007: Support for tab stops - @RLovelett
 - Word2007: Support Multiple headers - @RLovelett
 - Word2007: Wrapping Styles to Images - @gabrielbull
